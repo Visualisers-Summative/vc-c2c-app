@@ -5,6 +5,7 @@
 </script>
 
 <template>
+  <h2>Test</h2>
 
   <router-link to="/" class="top"></router-link>
   <router-view />
