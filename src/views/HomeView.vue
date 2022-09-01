@@ -1,6 +1,7 @@
 <script>
 // import ApiServerData from '../components/ApiServerData.vue';
-import ProductsView from '../components/ProductsView.vue'
+// import ProductsView from '../components/ProductsView.vue'
+import Login from '../components/Login.vue'
 
 export default {
   name: 'HomeView',
@@ -13,6 +14,7 @@ export default {
     };
   },
   components: {
+<<<<<<< HEAD
     ProductsView
   },
   // object syntax is required
@@ -28,15 +30,23 @@ export default {
       default: () => ({ name: 'John' })
     }
   }
+=======
+    Login
+},
+>>>>>>> 7ff16515a4f1e43bba6522578fd5cec5a09a3b9d
 }
 
 </script>
 
 <template>
   <div>
+<<<<<<< HEAD
     <ProductsView :displaymessage='welcomeMsg' />
     <h2>HomeView</h2>
     {{ user }}
+=======
+    <Login />
+>>>>>>> 7ff16515a4f1e43bba6522578fd5cec5a09a3b9d
   </div>
 
 </template>
