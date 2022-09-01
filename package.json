@@ -19,7 +19,6 @@
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
-    "@nabla/vite-plugin-eslint": "^1.4.1",
     "@vitejs/plugin-vue": "^3.0.3",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
