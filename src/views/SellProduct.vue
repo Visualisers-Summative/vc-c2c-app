@@ -1,3 +1,9 @@
+<template>
+  <div>
+    <h1>Sell a vinyl</h1>
+  </div>
+</template>
+
 <script>
 
 export default {
@@ -16,10 +22,6 @@ export default {
 }
 </script>
   
-  <template>
-  <h1>Sell Products</h1>
 
-</template>
-  
   <style scoped>
   </style>

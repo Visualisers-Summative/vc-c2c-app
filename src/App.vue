@@ -7,13 +7,21 @@
 
 <template>
 
-  <router-link to="/" class="top">Buy</router-link> |
-  <router-link to="/Sell" class="top">Sell</router-link> |
-  <router-link to="/Profile" class="top">Profile</router-link>
-  <router-view />
+  <div class="nav-links">
+    <router-link to="/" class="top">Buy</router-link> |
+    <router-link to="/Sell" class="top">Sell</router-link> |
+    <router-link to="/Profile" class="top">Profile</router-link>
+  </div>
+
+  <div class="body">
+    <router-view />
+  </div>
 
 </template>
 
-<style scoped>
+<style>
 /* GLOBAL STYLES */
+h1 {
+  padding-top: 1rem;
+}
 </style>
