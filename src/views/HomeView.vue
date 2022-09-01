@@ -2,6 +2,7 @@
 // import ApiServerData from '../components/ApiServerData.vue';
 // import ProductsView from '../components/ProductsView.vue'
 import Login from '../components/Login.vue'
+import SignUp from '../components/SignUp.vue';
 
 export default {
   name: 'HomeView',
@@ -14,12 +15,18 @@ export default {
     };
   },
   components: {
-    Login
-},
+    Login,
+    SignUp
+  },
 }
 </script>
 
 <template>
+  <div>
+    <SignUp />
+  </div>
+
+
   <div>
     <Login />
   </div>

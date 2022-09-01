@@ -1,7 +1,7 @@
 <script>
 
 export default {
-  name: 'SellProduct',
+  name: 'UserProfile',
   props: [],
   methods: {
   },
@@ -15,11 +15,11 @@ export default {
   },
 }
 </script>
-  
-  <template>
-  <h1>Sell Products</h1>
+    
+    <template>
+  <h1>Profile</h1>
 
 </template>
-  
-  <style scoped>
-  </style>
+    
+    <style scoped>
+    </style>
