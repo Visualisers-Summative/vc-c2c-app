@@ -15,4 +15,5 @@
 </template>
 
 <style scoped>
+/* GLOBAL STYLES */
 </style>
