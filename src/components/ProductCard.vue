@@ -18,7 +18,7 @@ export default {
   props: {
     vinyls: Object
   },
-  data() {
+  data () {
     return {
 
     }

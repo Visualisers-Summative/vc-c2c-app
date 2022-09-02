@@ -29,7 +29,7 @@ export default {
   props: [],
   methods: {
   },
-  data() {
+  data () {
     return {
       records: [
         {
