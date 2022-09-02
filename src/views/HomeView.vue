@@ -29,75 +29,39 @@ export default {
   props: [],
   methods: {
   },
-  data() {
+  data () {
     return {
       records: [
         {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
+          id: 5928101,
+          artist: 'Cat Steven',
+          title: 'Cats Day Out',
+          description: 'Find your new feline friend at this event.',
+          year: '1982',
+          genre: 'jazz',
+          price: '$42',
+          image: 'https://picsum.photos/200'
         },
         {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
+          id: 6966101,
+          artist: 'Steven Irwin',
+          title: 'Rays Day Out',
+          description: 'Find your new stingray friend at this event.',
+          year: '1998',
+          genre: 'hardcore',
+          price: '$102',
+          image: 'https://loremflickr.com/200/200'
         },
         {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
+          id: 5466101,
+          artist: 'Kids Bop',
+          title: 'New kids on the bop',
+          description: 'Find your new friend at this event.',
+          year: '2018',
+          genre: 'pop',
+          price: '$3',
+          image: 'https://loremflickr.com/200/200'
         },
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        },
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        },
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        }
       ]
     };
   },
@@ -115,7 +79,9 @@ export default {
 
 <style scoped>
 .product-container {
-  column-count: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
 
