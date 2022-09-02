@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>Sell a vinyl</h1>
+    <h1>Profile</h1>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'SellProduct',
+  name: 'UserProfile',
   props: [],
   methods: {
   },
@@ -21,7 +21,6 @@ export default {
   },
 }
 </script>
-  
-
-  <style scoped>
-  </style>
+    
+<style scoped>
+</style>
