@@ -8,33 +8,64 @@
     <h1> Sign Up to Chord</h1>
 
     <div class="signup-fields register">
-      <input type="text" v-model="username" class="input" placeholder="Enter username">
-      <input type="text" v-model="email" class="input" placeholder="Enter email">
+      <input type="text" v-model="userDetails.username" class="input" placeholder="Enter username">
+      <input type="text" v-model="userDetails.email" class="input" placeholder="Enter email">
       <!-- CHANGE TO 8 minlength="8" LATER!!! -->
-      <input type="password" v-model="password" class="input" placeholder="Enter password (min 8 characters)">
+      <input type="password" v-model="userDetails.password" class="input"
+        placeholder="Enter password (min 8 characters)">
       <!-- <input type="password" class="input" placeholder="Re-enter password (min 8 characters)"> -->
 
-      <button :click="signUp" class="signup-btn">Sign up!</button>
+      <button @click="addUser" class="signup-btn">Sign up!</button>
 
     </div>
+
+
 
   </div>
 </template>
 
 <script>
+// const axios = require("axios");
+// import axios from 'axios';
+// const formData = require("form-data");
+const api = "https://vc-users-login.netlify.app/.netlify/functions/api/"
 export default {
   name: "SignUp",
   data () {
     return {
-      username: '',
-      email: '',
-      password: ''
+      userDetails: {
+        username: '',
+        email: '',
+        password: '',
+      },
     }
   }, methods: {
-    signUp () {
-      console.warn("singup")
-    }
-  }
+    addUser () { // done
+      fetch(api, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.userDetails)
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          this.resetData()
+          console.log(data)
+        })
+        .catch((err) => {
+          if (err) throw err;
+        })
+    },
+    resetData () {
+      this.editId = ''
+      this.userDetails.username = ''
+      this.userDetails.email = ''
+      this.userDetails.password = ''
+    },
+
+  },
+
 }
 
 </script>
