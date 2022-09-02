@@ -38,7 +38,7 @@
 <script>
 export default {
     name: "Login",
-    data() {
+    data () {
         return {
 
         }
@@ -94,8 +94,6 @@ export default {
     height: 60%;
     justify-content: space-between;
     margin: 2rem 0rem;
-
-
 
 }
 
