@@ -1,45 +1,71 @@
-<script setup>
-
-
-
-</script>
-
 <template>
 
-  <div>
-    <h2>404 - This page does not exist</h2>
-    <h1>Whoopsie something went wrong!</h1>
-    <p>Please return home again. Yay!</p>
-  </div>
+  <div class="fault-page">
+    <div class="fault-content">
+      <h1>404 - This page does not exist</h1>
+      <h2>Whoopsie something went wrong!</h2>
+      <p>
+        <router-link to="/" class="top">🏠 Return home here</router-link> or wait {{ timerCount }}
+      </p>
 
-  <router-link to="/" class="top">Return home</router-link>
-  <router-view />
+    </div>
+  </div>
 
 </template>
 
+<script>
+export default {
+  data () {
+    return {
+      timerCount: 10
+    }
+  },
+  watch: {
+    timerCount: {
+      handler (value) {
+
+        if (value > 0) {
+          setTimeout(() => {
+            this.timerCount--;
+          }, 1000);
+        }
+      },
+      immediate: true // This ensures the watcher is triggered upon creation
+    }
+  },
+  created () {
+    setTimeout(() => this.$router.push({ path: '/' }), 10000);
+  }
+}
+</script>
+
 <style lang="scss" scoped>
-div {
-  height: 30rem;
+.fault-page {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-h2 {
-  margin: auto 0;
-  align-items: center;
+.fault-page h2 {
+
   text-align: center;
   padding: 20px;
 }
 
-h1 {
+.fault-page h1 {
   margin: auto 0;
   align-items: center;
   text-align: center;
   padding: 20px;
+  font-size: clamp(1.5rem, 10vw, 4rem);
 }
 
-p {
+.fault-page p {
   margin: auto 0;
   align-items: center;
   text-align: center;
   padding: 20px;
+  font-size: 1.5rem;
 }
 </style>
