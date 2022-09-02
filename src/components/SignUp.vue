@@ -6,6 +6,7 @@
     <hr>
   </div>
 
+
   <div class="body">
     <div class="signup-div">
       <div class="signup-header">
@@ -31,11 +32,14 @@
       </div>
       <input type="button" @click="addUser" class="sign-up-btn" value="Sign up" />
 
+
     </div>
   </div>
 
+
   <div class="footer">
     <img src="../assets/images/c.png" alt="C-logo" class="logo-c">
+
   </div>
 
 
@@ -51,9 +55,11 @@ export default {
   data () {
     return {
       userDetails: {
+
         userName: '',
         userEmail: '',
         userPassword: '',
+
       },
     }
   }, methods: {
