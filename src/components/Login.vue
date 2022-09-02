@@ -95,8 +95,6 @@ export default {
     justify-content: space-between;
     margin: 2rem 0rem;
 
-
-
 }
 
 .input {
