@@ -4,9 +4,9 @@
     <SignUp />
   </div> -->
 
-  <!-- <div>
+  <div>
     <Login />
-  </div> -->
+  </div>
 
   <div class="product-container">
     <ProductCard v-for="vinyl in records" :key="vinyl.id" :vinyls="vinyl" />
