@@ -93,7 +93,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .logo-header {
   height: auto;
   margin-bottom: 8rem;

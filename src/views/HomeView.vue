@@ -4,9 +4,9 @@
     <SignUp />
   </div> -->
 
-  <div>
+  <!-- <div>
     <Login />
-  </div>
+  </div> -->
 
   <div class="product-container">
     <ProductCard v-for="vinyl in records" :key="vinyl.id" :vinyls="vinyl" />
@@ -110,10 +110,7 @@ export default {
 </script>
 
 
-      
-
-
-<style scoped>
+<style lang="scss" scoped>
 .product-container {
   column-count: 3;
 }

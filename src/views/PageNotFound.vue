@@ -6,7 +6,7 @@
 
 <template>
 
-   <div>
+  <div>
     <h2>404 - This page does not exist</h2>
     <h1>Whoopsie something went wrong!</h1>
     <p>Please return home again. Yay!</p>
@@ -17,30 +17,29 @@
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+div {
+  height: 30rem;
+}
 
-  div {
-    height: 30rem;
-  }
+h2 {
+  margin: auto 0;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
 
-  h2 {
-    margin: auto 0;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
+h1 {
+  margin: auto 0;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
 
-  h1 {
-    margin: auto 0;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-
-  p {
-    margin: auto 0;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
+p {
+  margin: auto 0;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
 </style>

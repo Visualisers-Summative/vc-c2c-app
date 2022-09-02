@@ -20,9 +20,5 @@
 
 </template>
 
-<style>
-/* GLOBAL STYLES */
-h1 {
-  padding-top: 1rem;
-}
+<style scoped>
 </style>
