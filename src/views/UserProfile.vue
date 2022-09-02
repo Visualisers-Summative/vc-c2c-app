@@ -1,3 +1,9 @@
+<template>
+  <div>
+    <h1>Profile</h1>
+  </div>
+</template>
+
 <script>
 
 export default {
@@ -16,10 +22,5 @@ export default {
 }
 </script>
     
-    <template>
-  <h1>Profile</h1>
-
-</template>
-    
-    <style scoped>
-    </style>
+<style scoped>
+</style>

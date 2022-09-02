@@ -8,16 +8,22 @@ import Login from './components/Login.vue';
 <template>
 
 
+  <div class="nav-links">
+    <router-link to="/" class="top">Buy</router-link> |
+    <router-link to="/Sell" class="top">Sell</router-link> |
+    <router-link to="/Profile" class="top">Profile</router-link>
+  </div>
 
-  <login />
-  
-  <!-- <router-link to="/" class="top">Buy</router-link>
-  <router-link to="/Sell" class="top">Sell</router-link>
+  <div class="body">
+    <router-view />
+  </div>
 
-  <router-link to="/Profile" class="top">Profile</router-link>
-  <router-view /> -->
 
 </template>
 
-<style scoped>
+<style>
+/* GLOBAL STYLES */
+h1 {
+  padding-top: 1rem;
+}
 </style>
