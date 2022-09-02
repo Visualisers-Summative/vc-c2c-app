@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <SignUp />
@@ -15,6 +16,7 @@
 
 </template>
 
+
 <script>
 // import ApiServerData from '../components/ApiServerData.vue';
 // import ProductsView from '../components/ProductsView.vue'
@@ -23,6 +25,7 @@ import SignUp from '../components/SignUp.vue';
 import ProductCard from '../components/ProductCard.vue';
 
 export default {
+
   name: 'HomeView',
   props: [],
   methods: {
@@ -71,6 +74,10 @@ export default {
 }
 </script>
 
+
+      
+
+
 <style scoped>
 .product-container {
   display: flex;
@@ -78,3 +85,4 @@ export default {
   align-items: center;
 }
 </style>
+
