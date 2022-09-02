@@ -17,8 +17,9 @@
                 </div>
                 <div class="input user-password">
                     <p>Password</p>
-                    <input type="password" name="userPassword">
-                    <label for="userPassword"></label>
+                    <div class="password">
+                        <input type="password" name="userPassword" class="password-inp">
+                    </div>
                     <p><span>Forgot your password?</span></p>
                 </div>
             </div>
@@ -57,13 +58,8 @@ export default {
     }
 }
 
-.login-header {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 1rem;
-}
-
 .login-div {
+    background-color: white;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -71,11 +67,7 @@ export default {
     justify-content: space-between;
     height: 20rem;
     width: 30rem;
-
-    .logo {
-        width: 2rem;
-        margin: 0px 10px;
-    }
+    padding: 4rem 6rem 6rem 6rem;
 
     p {
         font-size: 0.8rem;
@@ -87,6 +79,13 @@ export default {
         cursor: pointer;
     }
 }
+
+.login-header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
 
 .user-input {
     display: flex;
