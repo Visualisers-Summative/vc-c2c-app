@@ -1,3 +1,4 @@
+
 <script>
 // import ApiServerData from '../components/ApiServerData.vue';
 // import ProductsView from '../components/ProductsView.vue'
@@ -5,6 +6,7 @@ import Login from '../components/Login.vue'
 import SignUp from '../components/SignUp.vue';
 
 export default {
+
   name: 'HomeView',
   props: [],
   methods: {
@@ -31,7 +33,8 @@ export default {
     <Login />
   </div>
 
-</template>
 
+</template>
+      
 <style scoped>
 </style>
