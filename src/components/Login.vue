@@ -94,9 +94,6 @@ export default {
     height: 60%;
     justify-content: space-between;
     margin: 2rem 0rem;
-
-
-
 }
 
 .input {
