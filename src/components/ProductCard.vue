@@ -2,11 +2,11 @@
   <div class="product-card-container">
 
     <div class="product-card">
-      <img :src="vinyls.image" alt="Record cover">
-      <!-- <img class="user-image" :src="profile.devImageUrl" alt="image missing"> -->
-      <h4>{{ vinyls.artist }}</h4>
-      <h3>{{ vinyls.title }}</h3>
-      <p>{{ vinyls.description }}</p>
+      <img :src="vinyls.imageURL" alt="Record cover">
+      <p class="artist">{{ vinyls.artistName }}</p>
+      <p class="album">{{ vinyls.albumTitle }}</p>
+      <p class="length">{{ vinyls.length }}</p>
+      <p class="price">{{ vinyls.price }}</p>
     </div>
 
   </div>
@@ -18,7 +18,7 @@ export default {
   props: {
     vinyls: Object
   },
-  data () {
+  data() {
     return {
 
     }
@@ -32,7 +32,7 @@ export default {
   padding: 20px;
   width: 250px;
   cursor: pointer;
-  border: 1px solid #39495c;
+  border: 1px solid black;
   margin-bottom: 18px;
 }
 
