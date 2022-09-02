@@ -18,6 +18,7 @@
                 <div class="input user-password">
                     <p>Password</p>
                     <input type="password" name="userPassword">
+                    <label for="userPassword"></label>
                     <p><span>Forgot your password?</span></p>
                 </div>
             </div>
