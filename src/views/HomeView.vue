@@ -4,7 +4,6 @@
     <SignUp />
   </div> -->
 
-
   <div>
     <Login />
   </div>
