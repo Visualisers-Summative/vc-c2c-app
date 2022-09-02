@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // Page view files (add about here or other page views)
 import HomeView from '../views/HomeView.vue'
 import SellProduct from '../views/SellProduct.vue'
-import UserView from '../views/UserView.vue'
+import UserProfile from '../views/UserProfile.vue'
 
 
 const router = createRouter({
@@ -15,14 +15,14 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/',
-      name: 'Sell',
+      path: '/sell',
+      name: 'SellProduct',
       component: SellProduct
     },
     {
-      path: '/',
-      name: 'Profile',
-      component: UserView
+      path: '/profile',
+      name: 'UserProfile',
+      component: UserProfile
     },
   ]
 })

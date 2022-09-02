@@ -3,26 +3,36 @@
 // import ApiServerData from '../components/ApiServerData.vue';
 // import ProductsView from '../components/ProductsView.vue'
 import Login from '../components/Login.vue'
+import SignUp from '../components/SignUp.vue';
 
 export default {
-    name: 'LoginView',
-    props: [],
-    methods: {
-    },
-    data() {
-        return {
-        };
-    },
-    components: {
-        Login
-    },
+
+  name: 'HomeView',
+  props: [],
+  methods: {
+  },
+  data () {
+    return {
+      welcomeMsg: "Greetings component!"
+    };
+  },
+  components: {
+    Login,
+    SignUp
+  },
 }
 </script>
-      
-      <template>
-    <div>
-        <Login />
-    </div>
+
+<template>
+  <div>
+    <SignUp />
+  </div>
+
+
+  <div>
+    <Login />
+  </div>
+
 
 </template>
       
