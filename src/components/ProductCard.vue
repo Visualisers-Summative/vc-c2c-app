@@ -3,6 +3,7 @@
 
     <div class="product-card">
       <img :src="vinyls.imageURL" alt="Record cover">
+      <p>{{ vinyls.imageURL }}</p>
       <p class="artist">{{ vinyls.artistName }}</p>
       <p class="album">{{ vinyls.albumTitle }}</p>
       <p class="length">{{ vinyls.length }}</p>

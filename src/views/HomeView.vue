@@ -4,6 +4,15 @@
     <SignUp />
   </div> -->
 
+
+  <!-- <div v-for="(item, index) in recordsTwo" :key="index">
+    <p>item: {{ item._id }}</p>
+    <hr>
+    <p>{{ item.imageUrl }}</p>
+    <img class="card_image" :src="image" alt="instruments" />
+  </div> -->
+
+
   <div>
     <Login />
   </div>
@@ -19,9 +28,13 @@
 <script>
 // import ApiServerData from '../components/ApiServerData.vue';
 // import ProductsView from '../components/ProductsView.vue'
-import Login from '../components/Login.vue'
+import Login from '../components/Login.vue';
 import SignUp from '../components/SignUp.vue';
 import ProductCard from '../components/ProductCard.vue';
+import ProductService from '../services/ProductService.js';
+// import { get } from 'http';
+
+const api = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
 export default {
 
@@ -31,74 +44,11 @@ export default {
   },
   data () {
     return {
-      records: [
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        },
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        },
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        },
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        },
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        },
-        {
-          _id: { "$oid": "630deef8526c94a572442cb0" },
-          albumTitle: "Lew Davies & His Orchestra",
-          artistName: "Two Pianos & Twenty Voices",
-          genre: ["jazz", ""],
-          albumDescription: "",
-          yearReleased: "1960",
-          imageURL: "https://i.ibb.co/YyBHLWX/52241783421-e609ab33ed-4k-1.png",
-          length: "lp",
-          price: "50"
-        }
-      ]
+      records: null,
+      // recordsTwo: [{
+      //   imgUrl: ''
+      // }],
+      image: ''
     };
   },
   components: {
@@ -106,6 +56,24 @@ export default {
     SignUp,
     ProductCard
   },
+  methods: {
+    // getImageBlob (imageUrl) {
+    //   return axios.get(imageUrl).then(response => window.URL.createObjectURL(response.data))
+    // }
+  },
+  created () {
+    ProductService.getProducts()
+      .then(response => {
+        // console.log(response.data);
+        this.records = response.data
+        // this.recordsTwo = response.data
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  },
+
+
 }
 </script>
 
