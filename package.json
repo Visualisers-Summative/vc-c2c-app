@@ -11,6 +11,10 @@
     "format": "prettier .  --write"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@material/card": "^14.0.0",
+    "@mdi/font": "^7.0.96",
+    "@mdi/js": "^7.0.96",
     "axios": "^0.27.2",
     "core-js": "^3.25.0",
     "env": "^0.0.2",
