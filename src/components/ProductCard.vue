@@ -1,16 +1,18 @@
 <template>
-  <div class="product-card-container">
+  <router-link to="/ProductDetails/630deef8526c94a572442cb0" class="top">
+    <div class="product-card-container">
 
-    <div class="product-card">
-      <img :src="vinyls.imageURL" alt="Record cover">
-      <p>{{ vinyls.imageURL }}</p>
-      <p class="artist">{{ vinyls.artistName }}</p>
-      <p class="album">{{ vinyls.albumTitle }}</p>
-      <p class="length">{{ vinyls.length }}</p>
-      <p class="price">{{ vinyls.price }}</p>
+      <div class="product-card">
+        <img :src="vinyls.imageURL" alt="Record cover">
+        <!-- <p>{{ vinyls.imageURL }}</p> -->
+        <p class="artist">{{ vinyls.artistName }}</p>
+        <p class="album">{{ vinyls.albumTitle }}</p>
+        <p class="length">{{ vinyls.length }}</p>
+        <p class="price">{{ vinyls.price }}</p>
+      </div>
+
     </div>
-
-  </div>
+  </router-link>
 </template>
 
 <script>

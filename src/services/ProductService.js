@@ -15,5 +15,8 @@ export default {
   getProducts () {
     // return apiClient.get('/products')
     return apiClient.get()
+  },
+  getProduct (id) {
+    return apiClient.get(id)
   }
 }
