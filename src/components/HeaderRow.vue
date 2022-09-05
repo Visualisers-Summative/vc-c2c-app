@@ -16,7 +16,7 @@
         <div class="search">
               <input type="search" name="Search" class="search-field" />
               <button type="submit" class="search-button">
-              <img src="search.png">
+              <img src="../assets/images/search.png" alt="icon">
               </button>           
         </div>
     </div>
@@ -52,39 +52,31 @@ export default {
   width: 14rem;
   }
 
-  .nav-links {
-    margin-top: 0.75rem;
-  }
+.nav-links {
+  margin-top: 0.75rem;
+}
+
+.search {
+  align-items: center;
+}
 
 .search-field {
-    font-size: 1rem;
-    height: 2.5rem;
-    width: 14rem;
-    margin-top: 0.5rem;
-    margin-bottom: 5px;
-    padding: 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid black;
-    margin-bottom: 4rem;
+  font-size: 1rem;
+  height: 2.5rem;
+  width: 14rem;
+  margin-top: 0.5rem;
+  // padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid black;
+  margin-bottom: 4rem;
+  
   }
 
-  .search-profile-container {
-    text-align: right;
-  }
-
-//   .form {
-//   display: flex;
-//   flex-direction: row;
-// }
-// .search-field {
-//   width: 100%;
-//   padding: 10px 35px 10px 15px;
-//   border: none;
-//   border-radius: 100px;
-//   outline: none;
-// }
+.search-profile-container {
+  text-align: right;
+}
 
 .search-button {
   background: transparent;
