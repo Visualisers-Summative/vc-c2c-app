@@ -4,7 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SellProduct from '../views/SellProduct.vue'
 import UserProfile from '../views/UserProfile.vue'
-
+import PageNotFound from '../views/PageNotFound.vue'
+import ProductDetails from '../views/ProductDetails.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,12 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/ProductDetails/:id',
+      name: 'ProductDetails',
+      props: true,
+      component: ProductDetails
+    },
+    {
       path: '/sell',
       name: 'SellProduct',
       component: SellProduct
@@ -23,6 +30,11 @@ const router = createRouter({
       path: '/profile',
       name: 'UserProfile',
       component: UserProfile
+    },
+    {
+      path: '/:catchAll(.*)*',
+      name: "PageNotFound",
+      component: PageNotFound,
     },
   ]
 })
