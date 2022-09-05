@@ -1,74 +1,74 @@
 <template>
     <div v-if="record" class="product-details-container">
 
-    <div class="record-image-wrapper">
-      <img :src="record.imageURL" alt="Record cover" class="record-image">
-    </div>
-
-
-    <div class="product-details">
-      <h1 class="record-album">{{ record.albumTitle }}</h1>
-      
-      <div class="product-titles">
-        <h4>ARTIST</h4>
-        <p class="record-artist">{{ record.artistName }}</p>
-      </div>
-      
-      <div class="product-titles">
-        <h4>LABEL</h4>
-        <p class="">Details for Label here?</p>
-      </div>
-      
-      <div class="product-titles">
-        <h4>COUNTRY</h4>
-        <p class="">Details for Country here?</p>
-      </div>
-      
-      <div class="product-titles">
-        <h4>RELEASED</h4>
-        <p class="record-year">{{ record.yearReleased }}</p>
-      </div>
-      
-      <div class="product-titles">
-        <h4>GENRE</h4>
-        <p class="record-genre">{{ record.genre }}</p>
-      </div>
-
-      <div class="product-titles">
-        <h4>FORMAT</h4>
-        <p class="record-length">{{ record.length }}</p>
-      </div>
-      
-      <div>
-        <p>
-        Cheetah is an EP record by British electronic musician Richard D. James, released under his moniker Aphex Twin. According to Wikipedia “The name is a reference to Cheetah Marketing, a British manufacturer of microcomputer peripherals and electronic musical instruments in the 1980s (such as the MS800 namechecked in two of the EP’s track titles).” 
-        </p>
-      </div>
-
-      <div class="icon-container">
-        <svg-icon type="mdi" :path="path"></svg-icon>
+      <div class="record-image-wrapper">
+        <img :src="record.imageURL" alt="Record cover" class="record-image">
       </div>
 
 
-      <div class="button-container">
-        <div>
-          <h2 class="record-price">${{ record.price }}.00</h2>
+      <div class="product-details">
+        <h1 class="record-album">{{ record.albumTitle }}</h1>
+        
+        <div class="product-titles">
+          <h4>ARTIST</h4>
+          <p class="record-artist">{{ record.artistName }}</p>
         </div>
-        <!-- <button class="edit">EDIT</button> -->
-        <button class="purchase">PURCHASE</button>
-      </div>
-    </div>
+        
+        <div class="product-titles">
+          <h4>LABEL</h4>
+          <p class="">Details for Label here?</p>
+        </div>
+        
+        <div class="product-titles">
+          <h4>COUNTRY</h4>
+          <p class="">Details for Country here?</p>
+        </div>
+        
+        <div class="product-titles">
+          <h4>RELEASED</h4>
+          <p class="record-year">{{ record.yearReleased }}</p>
+        </div>
+        
+        <div class="product-titles">
+          <h4>GENRE</h4>
+          <p class="record-genre">{{ record.genre }}</p>
+        </div>
 
-    <!-- <div class="product-details">
-      <p class="record-artist">{{ record.artistName }}</p>
-      <p class="record-album">{{ record.albumTitle }}</p>
-      <p class="record-genre">{{ record.genre }}</p>
-      <p class="record-year">{{ record.yearReleased }}</p>
-      <p class="record-length">{{ record.length }}</p>
-      <p class="record-price">{{ record.price }}</p>
-      <p class="record-description">{{ record.albumDescription }}</p>
-      <svg-icon type="mdi" :path="path"></svg-icon>
-    </div> -->
+        <div class="product-titles">
+          <h4>FORMAT</h4>
+          <p class="record-length">{{ record.length }}</p>
+        </div>
+        
+        <div>
+          <p>
+          Cheetah is an EP record by British electronic musician Richard D. James, released under his moniker Aphex Twin. According to Wikipedia “The name is a reference to Cheetah Marketing, a British manufacturer of microcomputer peripherals and electronic musical instruments in the 1980s (such as the MS800 namechecked in two of the EP’s track titles).” 
+          </p>
+        </div>
+
+        <div class="icon-container">
+          <svg-icon type="mdi" :path="path"></svg-icon>
+        </div>
+
+
+        <div class="button-container">
+          <div>
+            <h2 class="record-price">${{ record.price }}.00</h2>
+          </div>
+          <!-- <button class="edit">EDIT</button> -->
+          <button class="purchase">PURCHASE</button>
+        </div>
+      </div>
+
+      <!-- <div class="product-details">
+        <p class="record-artist">{{ record.artistName }}</p>
+        <p class="record-album">{{ record.albumTitle }}</p>
+        <p class="record-genre">{{ record.genre }}</p>
+        <p class="record-year">{{ record.yearReleased }}</p>
+        <p class="record-length">{{ record.length }}</p>
+        <p class="record-price">{{ record.price }}</p>
+        <p class="record-description">{{ record.albumDescription }}</p>
+        <svg-icon type="mdi" :path="path"></svg-icon>
+      </div> -->
   </div>
 </template>
 

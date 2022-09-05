@@ -1,5 +1,9 @@
 <script setup>
 
+import FooterRow from '../src/components/FooterRow.vue'
+
+import HeaderRow from '../src/components/HeaderRow.vue';
+
 
 
 </script>
@@ -7,18 +11,28 @@
 <template>
 
 
-  <!-- <div class="nav-links">
-    <router-link to="/" class="top">Buy</router-link> |
-    <router-link to="/Sell" class="top">Sell</router-link> |
-    <router-link to="/Profile" class="top">Profile</router-link>
-  </div> -->
+
+
+  <div class="header">
+    <HeaderRow />
+  </div>
+
 
   <div class="body">
     <router-view />
   </div>
 
 
+
+  <div class="footer">
+    <FooterRow />
+  </div>
+
+
+
 </template>
+
+
 
 <style scoped>
 </style>
