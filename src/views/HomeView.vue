@@ -43,9 +43,6 @@ export default {
     SignUp,
     ProductCard
   },
-  methods: {
-
-  },
   created () {
     ProductService.getProducts()
       .then(response => {

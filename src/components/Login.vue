@@ -1,10 +1,5 @@
 <template>
-    <div class="logo-header">
-        <a href="#">
-            <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo">
-        </a>
-        <hr>
-    </div>
+
     <div class="body">
         <div class="login-div">
             <div class="login-header">
@@ -48,16 +43,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-header {
-    height: auto;
-    margin-bottom: 8rem;
-
-    .logo {
-        width: 14rem;
-        margin-bottom: 4rem;
-    }
-}
-
 .login-div {
     background-color: white;
     margin: 0 auto;
