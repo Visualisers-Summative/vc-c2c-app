@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/ProductDetails/630deef8526c94a572442cb0" class="top">
+  <router-link :to="{ name: 'ProductDetails', params: { id: vinyls._id } }" class="top">
     <div class="product-card-container">
 
       <div class="product-card">

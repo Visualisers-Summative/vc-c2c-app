@@ -20,10 +20,11 @@
 <script>
 import ProductService from '../services/ProductService.js';
 export default {
+  props: ['id'],
   data () {
     return {
       record: [],
-      id: '630deef8526c94a572442cb0'
+
     }
   },
   created () {
