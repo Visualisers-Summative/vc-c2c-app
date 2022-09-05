@@ -11,10 +11,13 @@
       </div>
     </div>
 
-    <div class="search-child">
+    <div class="search-profile-container">
       <router-link to="/Profile" class="top">Profile</router-link> | Cart
         <div class="search">
-        <input type="search" name="search" class="search-inp">
+              <input type="search" name="Search" class="search-field" />
+              <button type="submit" class="search-button">
+              <img src="search.png">
+              </button>           
         </div>
     </div>
   </div>
@@ -47,14 +50,13 @@ export default {
 
 .logo {
   width: 14rem;
-  // margin-bottom: 4rem;
   }
 
   .nav-links {
     margin-top: 0.75rem;
   }
 
-input {
+.search-field {
     font-size: 1rem;
     height: 2.5rem;
     width: 14rem;
@@ -68,8 +70,33 @@ input {
     margin-bottom: 4rem;
   }
 
-  .search-child {
+  .search-profile-container {
     text-align: right;
   }
+
+//   .form {
+//   display: flex;
+//   flex-direction: row;
+// }
+// .search-field {
+//   width: 100%;
+//   padding: 10px 35px 10px 15px;
+//   border: none;
+//   border-radius: 100px;
+//   outline: none;
+// }
+
+.search-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: -33px;
+}
+
+.search-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
 
 </style>
