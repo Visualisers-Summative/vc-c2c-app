@@ -1,47 +1,31 @@
 <template>
-  <router-link :to="{ name: 'ProductDetails', params: { id: vinyls._id } }" class="top">
-    <div class="product-card-container">
-
+  <div class="product-card-container">
+    <router-link :to="{ name: 'ProductDetails', params: { id: vinyls._id } }" class="top">
       <div class="product-card">
         <img :src="vinyls.imageURL" alt="Record cover">
-        <!-- <p>{{ vinyls.imageURL }}</p> -->
-        <p class="artist">{{ vinyls.artistName }}</p>
-        <p class="album">{{ vinyls.albumTitle }}</p>
-        <p class="length">{{ vinyls.length }}</p>
-        <p class="price">{{ vinyls.price }}</p>
-        <svg-icon type="mdi" :path="path"></svg-icon>
-      </div>
+        <div class="product-info">
+          <div class="artist-div">
+            <p class="artist">{{ vinyls.artistName }}</p>
 
-    </div>
-  </router-link>
-  <!-- <div class="mdc-card">
-    <div class="mdc-card__primary-action">
-      <div class="mdc-card__media mdc-card__media--square">
-        <div class="mdc-card__media-content">Title</div>
+          </div>
+          <p class="album">{{ vinyls.albumTitle }}</p>
+          <p class="genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p>
+          <p class="length">{{ vinyls.length }}</p>
+          <p class="year">{{ vinyls.year }}</p>
+          <div class="more-info-div">
+            <h3 class="price">${{ vinyls.price }}</h3>
+            <button class="button more-info">
+              <p>MORE INFO</p>
+            </button>
+          </div>
+        </div>
       </div>
-      ... additional primary action content ...
-      <div class="mdc-card__ripple"></div>
-    </div>
-    <div class="mdc-card__actions">
-      <div class="mdc-card__action-buttons">
-        <button class="mdc-button mdc-card__action mdc-card__action--button">
-          <div class="mdc-button__ripple"></div>
-          <span class="mdc-button__label">Action 1</span>
-        </button>
-        <button class="mdc-button mdc-card__action mdc-card__action--button">
-          <div class="mdc-button__ripple"></div>
-          <span class="mdc-button__label">Action 2</span>
-        </button>
-      </div>
-      <div class="mdc-card__action-icons">
-        <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon"
-          title="Share">share</button>
-        <button class="material-icons heart-outline mdc-icon-button mdc-card__action mdc-card__action--icon"
-          title="Favourite">heart-outline</button>
-
-      </div>
-    </div>
-  </div> -->
+    </router-link>
+    <svg @click="favourite" width="20" height="20" class="bi" viewBox="0 0 512 512">
+      <path
+        d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
+    </svg>
+  </div>
 
 
 </template>
@@ -56,29 +40,125 @@ export default {
   props: {
     vinyls: Object
   },
-  data () {
+  data() {
     return {
       path: mdiHeartOutline,
+      uppercased: '',
     }
-  }, components: {
+  },
+  methods: {
+    favourite() {
+      event.target.classList.toggle("favourite")
+    }
+  },
+  components: {
     SvgIcon
+  },
+  filters: {
+    uppercased() {
+      return this.value.toUpperCase()
+    }
   }
 }
 
 </script>
 
-<style lang="scss" scoped>
-.product-card {
+<style lang="scss">
+.product-card-container {
+  margin: 1rem auto;
+  width: 15rem;
+  min-height: 25rem;
   padding: 20px;
-  width: 250px;
-  height: 20rem;
-  cursor: pointer;
-  border: 1px solid black;
-  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.product-card:hover {
-  transform: scale(1.01);
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
+.product-card-container:hover {
+  border: 1px solid black;
+  padding: 19px;
+}
+
+.product-card {
+  cursor: pointer;
+  min-height: 25rem;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  p {
+    font-size: 0.9rem;
+    letter-spacing: 0px;
+  }
+}
+
+.bi {
+  margin-top: 0.8rem;
+  align-self: flex-end;
+  padding-right: 5px;
+  fill: black !important;
+  transition: fill .5s ease;
+}
+
+.bi:hover {
+  cursor: pointer;
+}
+
+.favourite {
+  transition: .5s ease;
+  fill: red !important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+img {
+  margin-bottom: 0.8rem;
+}
+
+.artist-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.artist {
+  font-weight: 800;
+  line-height: 1.2em;
+}
+
+.album {
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.genre,
+.length {
+  margin-bottom: 0.5rem;
+}
+
+.more-info-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.price {
+  font-weight: 800;
+}
+
+.more-info {
+  min-width: 6rem;
+
+  p {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
 }
 </style>
