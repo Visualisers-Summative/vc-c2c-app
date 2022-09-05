@@ -1,5 +1,5 @@
 <template>
-  <div class="product-details-container">
+  <div v-if="record" class="product-details-container">
 
     <div class="product-details">
       <img :src="record.imageURL" alt="Record cover" class="record-image">

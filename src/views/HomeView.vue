@@ -43,7 +43,6 @@ export default {
     ProductContainer
   },
   methods: {
-
   }
 }
 </script>

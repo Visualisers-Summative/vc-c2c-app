@@ -1,4 +1,5 @@
 <template>
+
     <section class="login">
         <div class="logo-header">
             <a href="#">
@@ -30,6 +31,7 @@
                 </p>
             </div>
         </div>
+
     </section>
 </template>
 
@@ -46,7 +48,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 
 .logo-header {
     height: auto;
