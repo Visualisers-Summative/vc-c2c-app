@@ -19,7 +19,7 @@
       <div class="mdc-card__media mdc-card__media--square">
         <div class="mdc-card__media-content">Title</div>
       </div>
-     ... additional primary action content ... 
+      ... additional primary action content ...
       <div class="mdc-card__ripple"></div>
     </div>
     <div class="mdc-card__actions">
@@ -71,6 +71,7 @@ export default {
 .product-card {
   padding: 20px;
   width: 250px;
+  height: 20rem;
   cursor: pointer;
   border: 1px solid black;
   margin-bottom: 18px;
