@@ -36,11 +36,11 @@
     </div>
   </div>
 
-
+<!-- 
   <div class="footer">
     <img src="../assets/images/c.png" alt="C-logo" class="logo-c">
 
-  </div>
+  </div> -->
 
 
 </template>
