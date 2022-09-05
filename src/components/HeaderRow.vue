@@ -1,8 +1,6 @@
 <template>
   
   <div class="header-container">
-
-  
     <div>
       <a href="#">
         <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo">
@@ -19,7 +17,6 @@
         <input type="search" name="search" class="search-inp">
         </div>
     </div>
-  
   </div>
   <hr>
 
@@ -40,9 +37,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
 .header-container {
   height: auto;
-  margin-bottom: 3rem;
   display: flex;
   justify-content: space-between;
 }
@@ -50,6 +48,10 @@ export default {
 .logo {
   width: 14rem;
   // margin-bottom: 4rem;
+  }
+
+  .nav-links {
+    margin-top: 0.75rem;
   }
 
 input {
