@@ -62,7 +62,8 @@ export default {
 
 <style lang="scss" scoped>
 .product-container {
-  column-count: 3;
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 </style>
 
