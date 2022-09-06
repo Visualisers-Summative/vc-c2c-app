@@ -23,7 +23,7 @@ export default {
       <li>Change Log</li>
     </ul>
     <ul>
-      <li>Help & Support</li>
+      <li>Help and Support</li>
       <li>FAQ's</li>
       <li>Forum</li>
       <li>Database Guidelines</li>
@@ -44,7 +44,7 @@ export default {
       <li>Soundcloud</li>
     </ul>
     <ul>
-      <li>Terms & Service</li>
+      <li>Terms and Service</li>
       <li>Privacy Policy</li>
       <li>© 2022 Chords</li>
     </ul>

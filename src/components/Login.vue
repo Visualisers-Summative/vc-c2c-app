@@ -1,12 +1,5 @@
 <template>
-
     <section class="login">
-        <!-- <div class="logo-header">
-            <a href="#">
-                <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo">
-            </a>
-            <hr>
-        </div> -->
         <div class="body">
             <div class="login-div">
                 <div class="login-header">
@@ -67,7 +60,8 @@ export default {
     justify-content: space-between;
     height: 20rem;
     width: 30rem;
-    padding: 4rem 8rem 6rem 8rem;
+    padding: 4rem 6rem 6rem 6rem;
+    box-shadow: 4px 4px 16px grey;
 
     p {
         font-size: 0.8rem;
