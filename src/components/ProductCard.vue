@@ -1,4 +1,5 @@
 <template>
+
   <div class="product-card-container">
     <router-link :to="{ name: 'ProductDetails', params: { id: vinyls._id } }" class="top">
       <div class="product-card">
@@ -6,7 +7,6 @@
         <div class="product-info">
           <div class="artist-div">
             <p class="artist">{{ vinyls.artistName }}</p>
-
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
           <p class="genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p>
@@ -20,6 +20,7 @@
           </div>
         </div>
       </div>
+
     </router-link>
     <svg @click="favourite" width="20" height="20" class="bi" viewBox="0 0 512 512">
       <path

@@ -28,7 +28,7 @@ export default {
   created () {
     ProductService.getProducts()
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         this.records = response.data
       })
       .catch(error => {
