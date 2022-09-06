@@ -1,12 +1,12 @@
 <template>
 
     <section class="login">
-        <div class="logo-header">
+        <!-- <div class="logo-header">
             <a href="#">
                 <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo">
             </a>
             <hr>
-        </div>
+        </div> -->
         <div class="body">
             <div class="login-div">
                 <div class="login-header">
@@ -38,7 +38,7 @@
 <script>
 export default {
     name: "Login",
-    data() {
+    data () {
         return {
 
         }
@@ -48,7 +48,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .logo-header {
     height: auto;
     margin-bottom: 4rem;

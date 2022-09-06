@@ -13,20 +13,19 @@ import ProductService from '../services/ProductService.js';
 // const api = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
 export default {
-
   name: 'ProductContainer',
-  props: {  vinyls: Object},
+  // props: { vinyls: Object },
   methods: {
   },
   data () {
     return {
       records: null,
     };
+  },
   components: {
     ProductCard
   },
-  created() {
-
+  created () {
     ProductService.getProducts()
       .then(response => {
         // console.log(response.data);
@@ -40,11 +39,10 @@ export default {
 </script>
 
 
-<style lang="scss">
 
+<style lang="scss">
 .product-container {
   display: grid;
   grid-template-columns: auto auto auto;
 }
-
 </style>

@@ -1,10 +1,7 @@
 <script setup>
 
 import FooterRow from '../src/components/FooterRow.vue'
-
 import HeaderRow from '../src/components/HeaderRow.vue';
-
-
 
 </script>
 
