@@ -1,8 +1,9 @@
 <template>
-  <div class="product-container">
-    <ProductCard v-for="vinyl in records" :key="vinyl.id" :vinyls="vinyl" />
+  <div class="product-div">
+    <div class="product-container">
+      <ProductCard v-for="vinyl in records" :key="vinyl.id" :vinyls="vinyl" />
+    </div>
   </div>
-
 </template>
 
 <script>
@@ -40,9 +41,17 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.product-div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .product-container {
   display: grid;
   grid-template-columns: auto auto auto;
+  column-gap: 5rem;
 }
 </style>

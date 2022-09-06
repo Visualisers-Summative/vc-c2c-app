@@ -13,10 +13,9 @@ import HeaderRow from '../src/components/HeaderRow.vue';
 
 
 
-  <div class="header">
+  <!-- <div class="header">
     <HeaderRow />
-  </div>
-
+  </div> -->
 
   <div class="body">
     <router-view />
@@ -24,9 +23,9 @@ import HeaderRow from '../src/components/HeaderRow.vue';
 
 
 
-  <div class="footer">
+  <!-- <div class="footer">
     <FooterRow />
-  </div>
+  </div> -->
 
 
 
@@ -35,4 +34,5 @@ import HeaderRow from '../src/components/HeaderRow.vue';
 
 
 <style scoped>
+
 </style>

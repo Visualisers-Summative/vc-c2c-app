@@ -68,7 +68,8 @@ export default {
     justify-content: space-between;
     height: 20rem;
     width: 30rem;
-    padding: 4rem 8rem 6rem 8rem;
+    padding: 4rem 6rem 6rem 6rem;
+    box-shadow: 4px 4px 16px grey;
 
     p {
         font-size: 0.8rem;

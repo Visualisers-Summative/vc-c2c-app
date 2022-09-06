@@ -11,11 +11,15 @@
       <ProductContainer />
     </div>
   </div>
+  <div class="footer">
+    <FooterRow />
+  </div>
 
 </template>
 
 
 <script>
+import FooterRow from '../components/FooterRow.vue'
 import Login from '../components/Login.vue';
 import SignUp from '../components/SignUp.vue';
 import ProductContainer from '../components/ProductContainer.vue';
@@ -38,9 +42,11 @@ export default {
     };
   },
   components: {
+    FooterRow,
     Login,
     SignUp,
-    ProductContainer
+    ProductContainer,
+
   },
   methods: {
   }
@@ -49,14 +55,20 @@ export default {
 
 
 <style lang="scss" scoped>
+.header {
+  display: none;
+}
+
 .view {
+  margin: 0 auto;
   height: 90vh;
   overflow: hidden;
-  width: clamp(40rem, 80%, 80rem);
+  width: 100%;
+  min-width: 50rem;
 }
 
 .login-cmp {
-  width: clamp(40rem, 80%, 80rem);
+  width: clamp(50rem, 80%, 80rem);
   height: 100%;
   background-color: rgba(255, 255, 255, 0.65);
   position: absolute;
@@ -64,8 +76,9 @@ export default {
 }
 
 .product-container-cmp {
-  width: 80%;
-  margin: 9rem auto 0 auto;
+  margin: 9rem auto 0rem auto;
+}
+.footer {
+  padding-top: 6rem;
 }
 </style>
-
