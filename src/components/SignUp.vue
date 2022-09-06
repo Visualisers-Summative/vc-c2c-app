@@ -47,7 +47,7 @@
 // const axios = require("axios");
 // import axios from 'axios';
 // const formData = require("form-data");
-const api = "https://vc-users-login.netlify.app/.netlify/functions/api/"
+const userApi = "https://vc-users-login.netlify.app/.netlify/functions/api/"
 export default {
   name: "SignUp",
   data () {
@@ -95,7 +95,7 @@ export default {
       return re.test(userEmail);
     },
     addUser () { // done
-      fetch(api, {
+      fetch(userApi, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -1,10 +1,8 @@
 <template>
   <div v-if="record" class="product-details-container">
-
     <div class="record-image-wrapper">
-      <img :src="record.imageUrl" alt="Record cover" class="record-image">
+      <img :src="record.imageUrl" alt="Record cover" class="record-image" />
     </div>
-
 
     <div class="product-details">
       <h1 class="record-album">{{ record.albumTitle }}</h1>
@@ -41,17 +39,14 @@
 
       <div>
         <p>
-          Cheetah is an EP record by British electronic musician Richard D. James, released under his moniker Aphex
-          Twin. According to Wikipedia “The name is a reference to Cheetah Marketing, a British manufacturer of
-          microcomputer peripherals and electronic musical instruments in the 1980s (such as the MS800 namechecked in
-          two of the EP’s track titles).”
+          Cheetah is an EP record by British electronic musician Richard D. James, released under his moniker Aphex Twin. According to Wikipedia “The name is a reference to Cheetah Marketing, a British manufacturer of microcomputer peripherals and electronic musical instruments in the 1980s (such as
+          the MS800 namechecked in two of the EP’s track titles).”
         </p>
       </div>
 
       <div class="icon-container">
         <svg-icon type="mdi" :path="path"></svg-icon>
       </div>
-
 
       <div class="button-container">
         <div>
@@ -78,31 +73,31 @@
 <script>
 import SvgIcon from '@jamescoyle/vue-icon'
 // import { mdiAccount } from '@mdi/js'
-import { mdiHeartOutline } from '@mdi/js';
+import { mdiHeartOutline } from '@mdi/js'
 
-import ProductService from '../services/ProductService.js';
+import ProductService from '../services/ProductService.js'
 
 export default {
   props: ['id'],
-  data () {
+  data() {
     return {
       record: null,
-      path: mdiHeartOutline
+      path: mdiHeartOutline,
     }
   },
   components: {
-    SvgIcon
+    SvgIcon,
   },
-  created () {
+  created() {
     ProductService.getProduct(this.id)
       .then(response => {
         // console.log(response.data);
         this.record = response.data
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       })
-  }
+  },
 }
 </script>
 
@@ -141,7 +136,6 @@ export default {
     .record-image {
       height: 476px;
       margin: 2rem 2rem 2rem 0rem;
-
     }
   }
 
@@ -150,7 +144,7 @@ export default {
     justify-content: right;
   }
 
-  //button styling - can be moved to main.scss 
+  //button styling - can be moved to main.scss
   .button-container {
     display: flex;
     justify-content: space-between;
