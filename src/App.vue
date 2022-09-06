@@ -25,7 +25,6 @@ import SignUp from './components/SignUp.vue';
 import ProductContainer from './components/ProductContainer.vue';
 import FooterRow from './components/FooterRow.vue';
 import HeaderRow from './components/HeaderRow.vue';
-
 </script>
 
 <template>

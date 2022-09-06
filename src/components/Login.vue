@@ -31,7 +31,7 @@
 <script>
 export default {
     name: "Login",
-    data() {
+    data () {
         return {
 
         }
@@ -41,7 +41,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .logo-header {
     height: auto;
     margin-bottom: 4rem;

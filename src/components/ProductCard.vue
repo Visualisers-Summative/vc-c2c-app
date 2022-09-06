@@ -1,12 +1,12 @@
 <template>
+
   <div class="product-card-container">
     <router-link :to="{ name: 'ProductDetails', params: { id: vinyls._id } }" class="top">
       <div class="product-card">
-        <img :src="vinyls.imageUrl">
+        <img :src="vinyls.imageUrl" alt="Record cover">
         <div class="product-info">
           <div class="artist-div">
             <p class="artist">{{ vinyls.artistName }}</p>
-
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
           <p class="genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p>
@@ -20,6 +20,7 @@
           </div>
         </div>
       </div>
+
     </router-link>
     <svg @click="favourite" width="20" height="20" class="bi" viewBox="0 0 512 512">
       <path
@@ -38,14 +39,14 @@ export default {
   props: {
     vinyls: Object
   },
-  data() {
+  data () {
     return {
       path: mdiHeartOutline,
       uppercased: '',
     }
   },
   methods: {
-    favourite() {
+    favourite () {
       event.target.classList.toggle("favourite")
     }
   },
@@ -53,7 +54,7 @@ export default {
     SvgIcon
   },
   filters: {
-    uppercased() {
+    uppercased () {
       return this.value.toUpperCase()
     }
   }
