@@ -56,23 +56,18 @@ export default {
   margin-top: 0.75rem;
 }
 
-.search {
-  align-items: center;
-}
-
 .search-field {
   font-size: 1rem;
-  height: 2.5rem;
+  height: 2.25rem;
   width: 14rem;
   margin-top: 0.5rem;
-  // padding: 10px;
+  padding-top: 10px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: 1px solid black;
-  margin-bottom: 4rem;
-  
-  }
+  margin-bottom: 4rem
+}
 
 .search-profile-container {
   text-align: right;
@@ -82,7 +77,7 @@ export default {
   background: transparent;
   border: none;
   outline: none;
-  margin-left: -33px;
+  margin-left: -33px; 
 }
 
 .search-button img {
