@@ -15,23 +15,18 @@ import ProductService from '../services/ProductService.js';
 export default {
 
   name: 'ProductContainer',
-  props: [],
+  props: {  vinyls: Object},
   methods: {
   },
   data () {
     return {
       records: null,
-      // recordsTwo: [],
-      // image: '',
-      data: {
-        users: []
-      }
     };
-  },
   components: {
     ProductCard
   },
-  created () {
+  created() {
+
     ProductService.getProducts()
       .then(response => {
         // console.log(response.data);
@@ -45,10 +40,11 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
+
 .product-container {
   display: grid;
   grid-template-columns: auto auto auto;
 }
-</style>
 
+</style>
