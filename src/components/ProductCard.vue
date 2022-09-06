@@ -2,7 +2,7 @@
   <div class="product-card-container">
     <router-link :to="{ name: 'ProductDetails', params: { id: vinyls._id } }" class="top">
       <div class="product-card">
-        <img :src="vinyls.imageURL" alt="Record cover">
+        <img :src="vinyls.imageUrl" alt="Record cover">
         <div class="product-info">
           <div class="artist-div">
             <p class="artist">{{ vinyls.artistName }}</p>
