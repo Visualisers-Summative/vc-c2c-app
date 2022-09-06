@@ -1,12 +1,5 @@
 <template>
-
     <section class="login">
-        <div class="logo-header">
-            <a href="#">
-                <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo">
-            </a>
-            <hr>
-        </div>
         <div class="body">
             <div class="login-div">
                 <div class="login-header">
