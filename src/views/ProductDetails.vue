@@ -106,8 +106,7 @@ export default {
 <style lang="scss" scoped>
 .product-details-container{
   display: flex;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
+  border-bottom: 1px solid;
 
   .product-details{
     h1{
