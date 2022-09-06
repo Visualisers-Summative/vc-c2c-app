@@ -62,15 +62,16 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product-card-container {
-  margin: 1rem auto;
-  width: 15rem;
-  min-height: 25rem;
+  margin-top: 1rem;
+  margin: 0.5rem;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 25rem;
+  min-width: 16rem;
 }
 
 .product-card-container:hover {
@@ -80,8 +81,8 @@ export default {
 
 .product-card {
   cursor: pointer;
-  min-height: 25rem;
-  width: 15rem;
+  min-height: 100%;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
