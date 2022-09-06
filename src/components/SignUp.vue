@@ -1,48 +1,46 @@
 <template>
-  <div class="logo-header">
-    <a href="#">
-      <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo">
-    </a>
-    <hr>
-  </div>
-
-
-  <div class="body">
-    <div class="signup-div">
-      <div class="signup-header">
-        <h2>Sign Up to Chord</h2>
-      </div>
-      <div class="user-input">
-        <div class="input user-name">
-          <p>Username</p>
-          <input type="text" v-model="userDetails.userName" class="input" placeholder="Enter username">
-        </div>
-        <div class="input user-email">
-          <p>Email address</p>
-          <input type="text" v-model="userDetails.userEmail" class="input" placeholder="Enter email">
-        </div>
-        <div class="input user-password">
-          <p>Password</p>
-          <div class="password">
-            <!-- CHANGE TO 8 minlength="8" LATER!!! -->
-            <input type="password" v-model="userDetails.password" class="input"
-              placeholder="Enter password (min 8 characters)">
+  <section class="signup">
+    <div class="body">
+      <form id="app" @submit.prevent="checkForm" ref="registerForm" action="#" novalidate="true">
+        <div class="signup-div">
+          <div class="signup-header">
+            <h2>Sign Up to Chord</h2>
           </div>
+          <div class="user-input">
+            <div class="input user-name">
+              <p>Username</p>
+              <input type="text" v-model="userDetails.userName" class="input" placeholder="Enter username">
+            </div>
+            <div class="input user-email">
+              <p>Email address</p>
+              <input type="text" v-model="userDetails.userEmail" class="input" placeholder="Enter email">
+            </div>
+            <div class="input user-password">
+              <p>Password</p>
+              <div class="password">
+                <!-- CHANGE TO 8 minlength="8" LATER!!! -->
+                <input type="password" v-model="userDetails.userPassword" class="input"
+                  placeholder="Enter password (min 8 characters)">
+              </div>
+            </div>
+          </div>
+
+          <div class="errors">
+            <p v-if="errors.length">
+              <b class="error-note">Please correct the following error(s):</b>
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+            </p>
+          </div>
+
+          <input type="submit" class="sign-up-btn" value="Sign up" />
+          <!-- <input type="button" @click="checkForm" class="sign-up-btn" value="Sign up" /> -->
+
         </div>
-      </div>
-      <input type="button" @click="addUser" class="sign-up-btn" value="Sign up" />
-
-
+      </form>
     </div>
-  </div>
-
-<!-- 
-  <div class="footer">
-    <img src="../assets/images/c.png" alt="C-logo" class="logo-c">
-
-  </div> -->
-
-
+  </section>
 </template>
 
 <script>
@@ -55,14 +53,47 @@ export default {
   data () {
     return {
       userDetails: {
-
         userName: '',
         userEmail: '',
         userPassword: '',
-
       },
+      errors: [],
+      dialog: true,
+
     }
-  }, methods: {
+  },
+  methods: {
+    checkForm (e) {
+      this.errors = [];
+
+      if (this.validEmail(this.userDetails.userEmail) && this.userDetails.userPassword.length >= 8 && this.userDetails.userName && this.userDetails.userPassword && this.userDetails.userEmail) {
+        return this.addUser()
+      }
+
+      if (!this.userDetails.userName) {
+        this.errors.push("Name required.");
+      }
+      if (!this.userDetails.userEmail) {
+        this.errors.push('Email required.');
+      } else if (!this.validEmail(this.userDetails.userEmail)) {
+        this.errors.push('Valid email required.');
+      }
+      if (!this.userDetails.userPassword) {
+        this.errors.push("Password required.");
+      } else if (this.userDetails.userPassword.length <= 8) {
+        this.errors.push("Password needs to be longer than 8 characters.");
+      }
+
+      if (!this.errors.length) {
+        return true;
+      }
+
+      e.preventDefault();
+    },
+    validEmail (userEmail) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(userEmail);
+    },
     addUser () { // done
       fetch(api, {
         method: 'POST',
@@ -81,29 +112,17 @@ export default {
         })
     },
     resetData () {
-      this.editId = ''
-      this.userDetails.username = ''
-      this.userDetails.email = ''
-      this.userDetails.password = ''
+      // this.editId = ''
+      this.userDetails.userName = ''
+      this.userDetails.userEmail = ''
+      this.userDetails.userPassword = ''
     },
-
-  },
-
+  }
 }
 
 </script>
 
 <style lang="scss" scoped>
-.logo-header {
-  height: auto;
-  margin-bottom: 8rem;
-
-  .logo {
-    width: 14rem;
-    margin-bottom: 4rem;
-  }
-}
-
 .signup-div {
   background-color: white;
   margin: 0 auto;
@@ -173,7 +192,7 @@ export default {
 }
 
 .sign-up-btn {
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
   width: 100%;
@@ -184,13 +203,19 @@ export default {
   cursor: pointer;
 }
 
-.footer {
-  position: absolute;
-  bottom: 4rem;
-  right: 15%;
+.errors {
+  text-align: left;
 }
 
-.logo-c {
-  width: 3rem;
+.errors p {
+
+  padding-top: 1em;
+  font-weight: 500;
+  color: tomato;
+}
+
+.error-note {
+  color: black;
+  font-size: 1rem;
 }
 </style>

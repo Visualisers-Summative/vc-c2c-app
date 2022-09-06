@@ -8,9 +8,9 @@
       <Login />
     </div> -->
 
-    <div class="product-container">
+    <!-- <div class="product-container">
       <ProductCard v-for="vinyl in records" :key="vinyl.id" :vinyls="vinyl" />
-    </div>
+    </div> -->
 
     <div>
       <ProductContainer />

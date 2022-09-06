@@ -1,13 +1,20 @@
 <script >
+export default {
+  name: "FooterRow",
+  data () {
+    return {
 
+    }
+  }
+}
 
 </script>
   
   <template>
-    <div class="divider-line">
-        <hr>
-    </div>
-  <div class="footer">  
+  <div class="divider-line">
+    <hr>
+  </div>
+  <div class="footer">
     <ul>
       <li>About Us</li>
       <li>Blog</li>
@@ -42,43 +49,44 @@
       <li>© 2022 Chords</li>
     </ul>
     <div>
-        <img src="../assets/images/c.png" alt="C-logo" class="logo-c">
+      <img src="../assets/images/c.png" alt="C-logo" class="logo-c">
     </div>
-  
+
   </div>
 
-  
+
 
 </template>
   
   <style lang="scss" scoped>
-
-.footer {
+  .footer {
     position: relative;
     top: 3rem;
     bottom: 3rem;
     display: flex;
     margin: auto 0;
-    margin-bottom: 3rem;;
+    margin-bottom: 3rem;
+    ;
     flex-direction: row;
     justify-content: space-between;
     line-height: 1.5rem;
-}
-.divider-line {
-  margin-top: 3rem;
-}
-
-li:hover {
-  text-decoration: underline;
-}
-
-li {
-  font-size: 0.85rem;
-  cursor: pointer;
-}
-
-.logo-c {
+  }
+  
+  .divider-line {
+    margin-top: 3rem;
+  }
+  
+  li:hover {
+    text-decoration: underline;
+  }
+  
+  li {
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  
+  .logo-c {
     width: 3rem;
-}
+  }
   </style>
   
