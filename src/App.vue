@@ -1,18 +1,16 @@
-<script setup>
+<script>
+import HeaderRow from './components/HeaderRow.vue';
+import FooterRow from './components/FooterRow.vue';
 
 export default {
   components: { FooterRow, HeaderRow },
   name: 'App',
+  data () {
+    return {
 
-  data: () => ({
-    // loggedUser: "guest"
-  }),
-  methods: {
-    // setLoggedUser(loggedInUser) {
-    //   this.loggedUser = loggedInUser;
-    // }
+    }
   }
-};
+}
 </script>
 
 <template>
@@ -39,6 +37,8 @@ export default {
 
 </template>
 
+
+<style lang="scss" scoped>
 .login-cmp {
   width: clamp(50rem, 80%, 80rem);
   height: 100%;
