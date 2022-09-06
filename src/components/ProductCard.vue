@@ -38,14 +38,14 @@ export default {
   props: {
     vinyls: Object
   },
-  data() {
+  data () {
     return {
       path: mdiHeartOutline,
       uppercased: '',
     }
   },
   methods: {
-    favourite() {
+    favourite () {
       event.target.classList.toggle("favourite")
     }
   },
@@ -53,7 +53,7 @@ export default {
     SvgIcon
   },
   filters: {
-    uppercased() {
+    uppercased () {
       return this.value.toUpperCase()
     }
   }

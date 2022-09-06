@@ -8,14 +8,14 @@
     <div class="login-cmp">
       <Login />
     </div>
-    
- <!-- <div class="product-container">
+
+    <!-- <div class="product-container">
     <ProductCard v-for="vinyl in records" :key="vinyl.id" :vinyls="vinyl" />
   </div> -->
 
-  <div>
-    <ProductContainer />
-  </div>
+    <div>
+      <ProductContainer />
+    </div>
   </div>
 
 </template>
@@ -33,7 +33,7 @@ export default {
   props: [],
   methods: {
   },
-  data() {
+  data () {
     return {
       // records: null,
       // data: {
