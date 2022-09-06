@@ -1,38 +1,31 @@
 <template>
-    <div class="logo-header">
-        <a href="#">
-            <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo">
-        </a>
-        <hr>
-    </div>
-    <div class="body">
-        <div class="login-div">
-            <div class="login-header">
-                <h2>Log in to your Chords account</h2>
-            </div>
-            <div class="user-input">
-                <div class="input user-email">
-                    <p>Email address</p>
-                    <input type="text" name="userEmail">
+    <section class="login">
+        <div class="body">
+            <div class="login-div">
+                <div class="login-header">
+                    <h2>Log in to your Chords account</h2>
                 </div>
-                <div class="input user-password">
-                    <p>Password</p>
-                    <div class="password">
-                        <input type="password" name="userPassword" class="password-inp">
+                <div class="user-input">
+                    <div class="input user-email">
+                        <p>Email address</p>
+                        <input type="text" name="userEmail">
                     </div>
-                    <p><span>Forgot your password?</span></p>
+                    <div class="input user-password">
+                        <p>Password</p>
+                        <div class="password">
+                            <input type="password" name="userPassword" class="password-inp">
+                        </div>
+                        <p><span>Forgot your password?</span></p>
+                    </div>
                 </div>
+                <input type="button" value="Log In" class="log-in-btn">
+                <p>New to Chords?
+                    <a href="#">Create an account</a>
+                </p>
             </div>
-            <input type="button" value="Log In" class="log-in-btn">
-            <p>New to Chords?
-                <a href="#">Create an account</a>
-            </p>
         </div>
-    </div>
 
-    <div class="footer">
-        <img src="../assets/images/c.png" alt="C-logo" class="logo-c">
-    </div>
+    </section>
 </template>
 
 <script>
@@ -50,7 +43,7 @@ export default {
 <style lang="scss" scoped>
 .logo-header {
     height: auto;
-    margin-bottom: 8rem;
+    margin-bottom: 4rem;
 
     .logo {
         width: 14rem;
@@ -60,7 +53,7 @@ export default {
 
 .login-div {
     background-color: white;
-    margin: 0 auto;
+    margin: 10rem auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,6 +61,7 @@ export default {
     height: 20rem;
     width: 30rem;
     padding: 4rem 6rem 6rem 6rem;
+    box-shadow: 4px 4px 16px grey;
 
     p {
         font-size: 0.8rem;
@@ -135,12 +129,6 @@ export default {
     background-color: black;
     color: white;
     cursor: pointer;
-}
-
-.footer {
-    position: absolute;
-    bottom: 4rem;
-    right: 15%;
 }
 
 .logo-c {
