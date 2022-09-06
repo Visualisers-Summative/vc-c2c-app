@@ -98,7 +98,7 @@ export default {
 .bi {
   margin-top: 0.8rem;
   align-self: flex-end;
-  padding-right: 5px;
+  padding-right: 15px;
   fill: black !important;
   transition: fill .5s ease;
 }
