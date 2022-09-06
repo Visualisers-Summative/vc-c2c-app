@@ -43,11 +43,25 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
 .product-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  column-gap: 5rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .product-container {
+    grid-template-columns: auto auto;
+    column-gap: 3rem;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .product-container {
+    grid-template-columns: auto auto auto auto;
+    column-gap: 2rem;
+  }
 }
 </style>
