@@ -4,9 +4,9 @@
   </div> -->
 
   <div class="view">
-    <!-- <div class="login-cmp">
+    <div class="login-cmp">
       <Login />
-    </div> -->
+    </div>
 
     <!-- <div class="product-container">
       <ProductCard v-for="vinyl in records" :key="vinyl.id" :vinyls="vinyl" />
