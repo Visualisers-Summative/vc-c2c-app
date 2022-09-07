@@ -8,8 +8,10 @@
             <p class="artist">{{ vinyls.artistName }}</p>
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
-          <p class="genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p>
-          <p class="length">{{ vinyls.length }}</p>
+          <div class="genre" >
+            <span>{{ vinyls.genre.join(', ') }}</span>
+          </div>
+          <p class="length">{{ vinyls.length.toUpperCase() }}</p>
           <p class="year">{{ vinyls.year }}</p>
           <div class="more-info-div">
             <h3 class="price">${{ vinyls.price }}</h3>
@@ -44,17 +46,29 @@ export default {
   },
   methods: {
     favourite() {
+<<<<<<< HEAD
       event.target.classList.toggle('favourite')
     },
+=======
+      event.target.classList.toggle("favourite")
+    }
+>>>>>>> 1e9e5aac16d73614c3d538827c0df37f19742e02
   },
   components: {
     SvgIcon,
   },
   filters: {
+<<<<<<< HEAD
     uppercased() {
       return this.value.toUpperCase()
     },
   },
+=======
+    titleise(value) {
+      return value.replace(/(?:^|\s|-)\S/g, x => x.toUpperCase());
+    }
+  }
+>>>>>>> 1e9e5aac16d73614c3d538827c0df37f19742e02
 }
 </script>
 
@@ -65,6 +79,7 @@ export default {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   min-height: 25rem;
   min-width: 16rem;
@@ -77,8 +92,8 @@ export default {
 
 .product-card {
   cursor: pointer;
-  min-height: 100%;
-  min-width: 100%;
+  height: 28rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -87,6 +102,14 @@ export default {
     font-size: 0.9rem;
     letter-spacing: 0px;
   }
+}
+
+.product-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-transform: capitalize;
 }
 
 .bi {
@@ -112,6 +135,7 @@ a:hover {
 
 img {
   margin-bottom: 0.8rem;
+  width: 16rem;
 }
 
 .artist-div {
@@ -132,9 +156,12 @@ img {
   margin-bottom: 0.8rem;
 }
 
-.genre,
-.length {
+.genre {
   margin-bottom: 0.5rem;
+}
+
+.length {
+  margin: 1rem 0;
 }
 
 .more-info-div {
