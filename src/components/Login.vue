@@ -1,5 +1,5 @@
 <template>
-  <section class="login">
+  <!-- <section class="login">
     <div class="body">
       <div class="login-div">
         <div class="login-header">
@@ -60,7 +60,8 @@
         </p>
       </div>
     </div>
-  </section>
+  </section> -->
+
   <section class="signup">
     <div class="body">
       <div class="signup-div">
@@ -128,7 +129,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+// import { ref } from 'vue'
 const usersApi = 'https://vc-users-login.netlify.app/.netlify/functions/api/'
 
 export default {
@@ -154,15 +155,15 @@ export default {
         userPassword: '',
       },
       errors: [],
-      dialog: true,
-      show1: false,
-      loginEmailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
-      //   isActive: false,
-      //   activeClass: 'active',
-      rules: {
-        required: value => !!value || 'Required.',
-        min: v => (v && v.length >= 8) || 'Min 8 characters',
-      },
+      //   dialog: true,
+      //   show1: false,
+      //   loginEmailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
+      //   //   isActive: false,
+      //   //   activeClass: 'active',
+      //   rules: {
+      //     required: value => !!value || 'Required.',
+      //     min: v => (v && v.length >= 8) || 'Min 8 characters',
+      //   },
     }
   },
   computed: {
@@ -171,100 +172,100 @@ export default {
     },
   },
   methods: {
-    login() {
-      let validform = this.$refs.loginForm.validate()
-      if (validform) {
-        // verify login details
-        this.users.forEach(element => {
-          if (element.email == this.loginFormValue.loginEmail && element.password == this.loginFormValue.loginPassword) {
-            this.loggedUser = element.firstname + ' ' + element.lastname
-            // localStorage
-            localStorage.userId = element._id
-            localStorage.loggedUser = this.loggedUser
-          }
-        })
-        if (this.loggedUser) {
-          console.log('login successful')
-          this.dialog = false
-          this.$emit('logged-user', this.loggedUser)
-          document.location.reload(true) // force page reload to show admin table
-        } else {
-          console.log('login failed')
-        }
-      }
-    },
-    checkForm(e) {
-      e.preventDefault()
-      this.errors = []
-      // validation
-      if (!this.userDetails.userName) {
-        this.errors.push('Name required.')
-      }
-      if (!this.userDetails.userEmail) {
-        this.errors.push('Email required.')
-      } else if (!this.validEmail(this.userDetails.userEmail)) {
-        this.errors.push('Valid email required.')
-      }
-      if (!this.userDetails.userPassword) {
-        this.errors.push('Password required.')
-      } else if (this.userDetails.userPassword.length < 8) {
-        this.errors.push('Password needs to be 8 characters or more.')
-      }
-      // no error found, call addUser
-      if (!this.errors.length) {
-        return this.addUser()
-      }
-    },
-    validEmail(userEmail) {
-      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      return re.test(userEmail)
-    },
-    addUser() {
-      // done
-      fetch(usersApi, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.userDetails),
-      })
-        .then(response => response.text())
-        .then(data => {
-          console.log(data)
-          if (data) {
-            this.dialog = false
-            this.loggedUser = this.userDetails.userName + ' ' + this.userDetails.userPassword
-            this.$emit('logged-user', this.loggedUser)
-            // verify data has been received before clearing
-            this.resetData()
-          }
-        })
-        .catch(err => {
-          if (err) throw err
-        })
-    },
-    resetData() {
-      this.userDetails.userName = ''
-      this.userDetails.userEmail = ''
-      this.userDetails.userPassword = ''
-    },
+    // login() {
+    //   //   let validform = this.$refs.loginForm.validate()
+    //   //   if (validform) {
+    //   // verify login details
+    //   this.users.forEach(element => {
+    //     if (element.email == this.loginFormValue.loginEmail && element.password == this.loginFormValue.loginPassword) {
+    //       this.loggedUser = element.firstname + ' ' + element.lastname
+    //       // localStorage
+    //       localStorage.userId = element._id
+    //       localStorage.loggedUser = this.loggedUser
+    //     }
+    //   })
+    //   if (this.loggedUser) {
+    //     console.log('login successful')
+    //     this.dialog = false
+    //     this.$emit('logged-user', this.loggedUser)
+    //     document.location.reload(true) // force page reload to show admin table
+    //   } else {
+    //     console.log('login failed')
+    //   }
+    // },
   },
-  mounted() {
-    // check if user is logged-in, do not show login form
-    if (localStorage.loggedUser) {
-      this.dialog = false
+  checkForm(e) {
+    e.preventDefault()
+    this.errors = []
+    // validation
+    if (!this.userDetails.userName) {
+      this.errors.push('Name required.')
     }
-
-    // get all users
-    fetch(usersApi)
-      .then(response => response.json())
+    if (!this.userDetails.userEmail) {
+      this.errors.push('Email required.')
+    } else if (!this.validEmail(this.userDetails.userEmail)) {
+      this.errors.push('Valid email required.')
+    }
+    if (!this.userDetails.userPassword) {
+      this.errors.push('Password required.')
+    } else if (this.userDetails.userPassword.length < 8) {
+      this.errors.push('Password needs to be 8 characters or more.')
+    }
+    // no error found, call addUser
+    if (!this.errors.length) {
+      return this.addUser()
+    }
+  },
+  validEmail(userEmail) {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(userEmail)
+  },
+  addUser() {
+    // done
+    fetch(usersApi, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.userDetails),
+    })
+      .then(response => response.text())
       .then(data => {
-        this.users = data
+        console.log(data)
+        if (data) {
+          //   this.dialog = false
+          //   this.loggedUser = this.userDetails.userName + ' ' + this.userDetails.userPassword
+          //   this.$emit('logged-user', this.loggedUser)
+          // verify data has been received before clearing
+          this.resetData()
+        }
       })
       .catch(err => {
         if (err) throw err
       })
   },
+  resetData() {
+    this.userDetails.userName = ''
+    this.userDetails.userEmail = ''
+    this.userDetails.userPassword = ''
+  },
+  //   },
+  //   mounted() {
+  //     // check if user is logged-in, do not show login form
+  //     if (localStorage.loggedUser) {
+  //       this.dialog = false
+  //     }
+
+  //     // get all users
+  //     fetch(usersApi)
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         this.users = data
+  //       })
+  //       .catch(err => {
+  //         if (err) throw err
+  //       })
+  //   },
 }
 </script>
 

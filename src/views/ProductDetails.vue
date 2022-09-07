@@ -1,7 +1,14 @@
 <template>
-  <div v-if="record" class="product-details-container">
+  <div
+    v-if="record"
+    class="product-details-container"
+  >
     <div class="record-image-wrapper">
-      <img :src="record.imageUrl" alt="Record cover" class="record-image" />
+      <img
+        :src="record.imageUrl"
+        alt="Record cover"
+        class="record-image"
+      />
     </div>
 
     <div class="product-details">
@@ -45,7 +52,10 @@
       </div>
 
       <div class="icon-container">
-        <svg-icon type="mdi" :path="path"></svg-icon>
+        <svg-icon
+          type="mdi"
+          :path="path"
+        ></svg-icon>
       </div>
 
       <div class="button-container">
@@ -74,7 +84,6 @@
 import SvgIcon from '@jamescoyle/vue-icon'
 // import { mdiAccount } from '@mdi/js'
 import { mdiHeartOutline } from '@mdi/js'
-
 import ProductService from '../services/ProductService.js'
 
 export default {
@@ -89,7 +98,7 @@ export default {
     SvgIcon,
   },
   created() {
-    ProductService.getProduct(this.id)
+    ProductService.getData(this.id)
       .then(response => {
         // console.log(response.data);
         this.record = response.data
