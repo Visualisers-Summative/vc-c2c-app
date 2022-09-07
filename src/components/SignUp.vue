@@ -64,12 +64,10 @@ export default {
   },
   methods: {
     checkForm (e) {
+      e.preventDefault();
       this.errors = [];
 
-      if (this.validEmail(this.userDetails.userEmail) && this.userDetails.userPassword.length >= 8 && this.userDetails.userName && this.userDetails.userPassword && this.userDetails.userEmail) {
-        return this.addUser()
-      }
-
+      // validation
       if (!this.userDetails.userName) {
         this.errors.push("Name required.");
       }
@@ -80,39 +78,38 @@ export default {
       }
       if (!this.userDetails.userPassword) {
         this.errors.push("Password required.");
-      } else if (this.userDetails.userPassword.length <= 8) {
-        this.errors.push("Password needs to be longer than 8 characters.");
+      } else if (this.userDetails.userPassword.length < 8) {
+        this.errors.push("Password needs to be 8 characters or more.");
       }
 
+      // no error found, call addUser
       if (!this.errors.length) {
-        return true;
+        return this.addUser()
       }
 
-      e.preventDefault();
     },
     validEmail (userEmail) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(userEmail);
     },
-    addUser () { // done
+    addUser () {
       fetch(api, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(this.userDetails)
       })
         .then((response) => response.text())
         .then((data) => {
-          this.resetData()
           console.log(data)
+          if (data) { // verify data has been received before clearing
+            this.resetData()
+          }
         })
         .catch((err) => {
           if (err) throw err;
         })
     },
     resetData () {
-      // this.editId = ''
       this.userDetails.userName = ''
       this.userDetails.userEmail = ''
       this.userDetails.userPassword = ''
