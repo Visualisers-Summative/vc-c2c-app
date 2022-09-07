@@ -32,6 +32,7 @@
       <div class="product-titles column-1">
         <h4>GENRE</h4>
         <p class="record-genre column-2">{{ record.genre }}</p>
+
         <!-- <p class="record-genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p> -->
 
       </div>
@@ -114,19 +115,14 @@ export default {
 
   .column-1{
   background-color: beige;
-
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
-  text-align: left;
-
   }
 
   .column-2{
   background-color: aquamarine;
-
-  height: 20px;
-  flex: 0 0 300px;
+  text-align: left;
+  flex:0 0 90%;
   margin-left: 10px;
   }
 
