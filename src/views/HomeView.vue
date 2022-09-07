@@ -1,7 +1,7 @@
 <template>
-  <!-- <div>
+  <div>
     <SignUp />
-  </div> -->
+  </div>
 
   <div class="view">
     <!-- <div class="login-cmp">
