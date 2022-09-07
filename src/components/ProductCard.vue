@@ -9,7 +9,9 @@
             <p class="artist">{{ vinyls.artistName }}</p>
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
-          <p class="genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p>
+          <div class="genre" >
+            <span>{{ vinyls.genre.join(', ') }}</span>
+          </div>
           <p class="length">{{ vinyls.length.toUpperCase() }}</p>
           <p class="year">{{ vinyls.year }}</p>
           <div class="more-info-div">
@@ -41,14 +43,14 @@ export default {
   props: {
     vinyls: Object
   },
-  data () {
+  data() {
     return {
       path: mdiHeartOutline,
       uppercased: '',
     }
   },
   methods: {
-    favourite () {
+    favourite() {
       event.target.classList.toggle("favourite")
     }
   },
@@ -56,8 +58,8 @@ export default {
     SvgIcon
   },
   filters: {
-    uppercased () {
-      return this.value.toUpperCase()
+    titleise(value) {
+      return value.replace(/(?:^|\s|-)\S/g, x => x.toUpperCase());
     }
   }
 }
@@ -84,7 +86,7 @@ export default {
 
 .product-card {
   cursor: pointer;
-  height: 100%;
+  height: 28rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -94,6 +96,14 @@ export default {
     font-size: 0.9rem;
     letter-spacing: 0px;
   }
+}
+
+.product-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-transform: capitalize;
 }
 
 .bi {
@@ -140,7 +150,7 @@ img {
   margin-bottom: 0.8rem;
 }
 
-.genre{
+.genre {
   margin-bottom: 0.5rem;
 }
 
