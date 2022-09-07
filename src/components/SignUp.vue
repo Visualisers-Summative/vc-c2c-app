@@ -1,7 +1,7 @@
 <template>
   <section class="signup">
     <div class="body">
-      <form id="app" @submit.prevent="checkForm" ref="registerForm" action="#" novalidate="true">
+      <form id="signup-form" @submit.prevent="checkForm" ref="registerForm" action="#" novalidate="true">
         <div class="signup-div">
           <div class="signup-header">
             <h2>Sign Up to Chord</h2>
