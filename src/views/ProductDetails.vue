@@ -9,34 +9,37 @@
     <div class="product-details">
       <h1 class="record-album">{{ record.albumTitle }}</h1>
 
-      <div class="product-titles">
+      <div class="product-titles column-1">
         <h4>ARTIST</h4>
-        <p class="record-artist">{{ record.artistName }}</p>
+        <p class="record-artist column-2">{{ record.artistName }}</p>
       </div>
 
-      <div class="product-titles">
+      <div class="product-titles column-1">
         <h4>LABEL</h4>
-        <p class="">Details for Label here?</p>
+        <p class="column-2">Details for Label here?</p>
       </div>
 
-      <div class="product-titles">
+      <div class="product-titles column-1">
         <h4>COUNTRY</h4>
-        <p class="">Details for Country here?</p>
+        <p class="column-2">Details for Country here?</p>
       </div>
 
-      <div class="product-titles">
+      <div class="product-titles column-1">
         <h4>RELEASED</h4>
-        <p class="record-year">{{ record.yearReleased }}</p>
+        <p class="record-year column-2">{{ record.yearReleased }}</p>
       </div>
 
-      <div class="product-titles">
+      <div class="product-titles column-1">
         <h4>GENRE</h4>
-        <p class="record-genre">{{ record.genre }}</p>
+        <p class="record-genre column-2">{{ record.genre }}</p>
+
+        <!-- <p class="record-genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p> -->
+
       </div>
 
-      <div class="product-titles">
+      <div class="product-titles column-1">
         <h4>FORMAT</h4>
-        <p class="record-length">{{ record.length }}</p>
+        <p class="record-length column-2">{{ record.length }}</p>
       </div>
 
       <div>
@@ -62,17 +65,12 @@
       </div>
     </div>
 
-    <!-- <div class="product-details">
-        <p class="record-artist">{{ record.artistName }}</p>
-        <p class="record-album">{{ record.albumTitle }}</p>
-        <p class="record-genre">{{ record.genre }}</p>
-        <p class="record-year">{{ record.yearReleased }}</p>
-        <p class="record-length">{{ record.length }}</p>
-        <p class="record-price">{{ record.price }}</p>
-        <p class="record-description">{{ record.albumDescription }}</p>
-        <svg-icon type="mdi" :path="path"></svg-icon>
-      </div> -->
   </div>
+
+  <div>
+    <CommentSection />
+  </div>
+  
 </template>
 
 <script>
@@ -81,6 +79,8 @@ import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiHeartOutline } from '@mdi/js';
 
 import ProductService from '../services/ProductService.js';
+import CommentSection from '../components/CommentSection.vue'
+
 
 export default {
   props: ['id'],
@@ -91,7 +91,8 @@ export default {
     }
   },
   components: {
-    SvgIcon
+    SvgIcon,
+    CommentSection
   },
   created () {
     ProductService.getProduct(this.id)
@@ -111,14 +112,28 @@ export default {
   display: flex;
   border-bottom: 1px solid;
 
+
+  .column-1{
+  background-color: beige;
+  display: flex;
+  justify-content: flex-end;
+  }
+
+  .column-2{
+  background-color: aquamarine;
+  text-align: left;
+  flex:0 0 90%;
+  margin-left: 10px;
+  }
+
   .product-details {
     h1 {
       margin-top: 2rem;
     }
 
     .product-titles {
-      display: flex;
-      flex-direction: row;
+      // display: flex;
+      // flex-direction: row;
       margin: 2rem 0rem 1rem 0rem;
 
       h4 {
