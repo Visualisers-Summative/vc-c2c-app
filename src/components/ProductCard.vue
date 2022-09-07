@@ -9,8 +9,10 @@
             <p class="artist">{{ vinyls.artistName }}</p>
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
-          <p class="genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p>
-          <p class="length">{{ vinyls.length }}</p>
+          <div class="genre" >
+            <span>{{ vinyls.genre.join(', ') }}</span>
+          </div>
+          <p class="length">{{ vinyls.length.toUpperCase() }}</p>
           <p class="year">{{ vinyls.year }}</p>
           <div class="more-info-div">
             <h3 class="price">${{ vinyls.price }}</h3>
@@ -21,12 +23,14 @@
         </div>
       </div>
 
+
     </router-link>
     <svg @click="favourite" width="20" height="20" class="bi" viewBox="0 0 512 512">
       <path
         d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
     </svg>
   </div>
+
 </template>
 
 <script>
@@ -39,14 +43,14 @@ export default {
   props: {
     vinyls: Object
   },
-  data () {
+  data() {
     return {
       path: mdiHeartOutline,
       uppercased: '',
     }
   },
   methods: {
-    favourite () {
+    favourite() {
       event.target.classList.toggle("favourite")
     }
   },
@@ -54,8 +58,8 @@ export default {
     SvgIcon
   },
   filters: {
-    uppercased () {
-      return this.value.toUpperCase()
+    titleise(value) {
+      return value.replace(/(?:^|\s|-)\S/g, x => x.toUpperCase());
     }
   }
 }
@@ -69,6 +73,7 @@ export default {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   min-height: 25rem;
   min-width: 16rem;
@@ -81,8 +86,8 @@ export default {
 
 .product-card {
   cursor: pointer;
-  min-height: 100%;
-  min-width: 100%;
+  height: 28rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -93,10 +98,18 @@ export default {
   }
 }
 
+.product-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
 .bi {
   margin-top: 0.8rem;
   align-self: flex-end;
-  padding-right: 5px;
+  padding-right: 1rem;
   fill: black !important;
   transition: fill .5s ease;
 }
@@ -116,6 +129,7 @@ a:hover {
 
 img {
   margin-bottom: 0.8rem;
+  width: 16rem;
 }
 
 .artist-div {
@@ -136,9 +150,12 @@ img {
   margin-bottom: 0.8rem;
 }
 
-.genre,
-.length {
+.genre {
   margin-bottom: 0.5rem;
+}
+
+.length {
+  margin: 1rem 0;
 }
 
 .more-info-div {
