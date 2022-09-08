@@ -1,6 +1,4 @@
 <template>
-  <h3>{{ loginFormValue.loginPassword }}</h3>
-  <p>{{ users }}</p>
   <section
     class="login"
     v-show="isLoginVisible"
