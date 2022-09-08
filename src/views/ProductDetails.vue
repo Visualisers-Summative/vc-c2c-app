@@ -94,7 +94,7 @@ export default {
     SvgIcon
   },
   created () {
-    ProductService.getProduct(this.id)
+    ProductService.getData(this.id)
       .then(response => {
         // console.log(response.data);
         this.record = response.data

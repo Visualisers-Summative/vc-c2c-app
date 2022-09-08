@@ -12,11 +12,11 @@ const apiClient = axios.create({
 })
 
 export default {
-  getProducts () {
+  getDatas () {
     // return apiClient.get('/products')
     return apiClient.get()
   },
-  getProduct (id) {
+  getData (id) {
     return apiClient.get(id)
   }
 }

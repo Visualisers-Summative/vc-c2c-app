@@ -26,7 +26,7 @@ export default {
     ProductCard
   },
   created () {
-    ProductService.getProducts()
+    ProductService.getDatas()
       .then(response => {
         console.log(response.data);
         this.records = response.data

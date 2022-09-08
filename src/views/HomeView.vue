@@ -49,17 +49,7 @@ export default {
 
     // ProductCard
     ProductContainer
-  },
-  // created () {
-  //   ProductService.getProducts()
-  //     .then(response => {
-  //       // console.log(response.data);
-  //       this.records = response.data
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     })
-  // },
+  }
 }
 </script>
 
