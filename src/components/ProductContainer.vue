@@ -26,8 +26,7 @@ export default {
   },
   components: {
     ProductCard,
-  },
-  created() {
+  }
     ProductService.getDatas()
       .then(response => {
         // console.log(response.data);

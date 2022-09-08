@@ -37,21 +37,10 @@ export default {
   components: {
     Login,
     SignUp,
+    ProductContainer
+  }
 
-    // ProductCard
-    ProductContainer,
-  },
-  // created () {
-  //   ProductService.getProducts()
-  //     .then(response => {
-  //       // console.log(response.data);
-  //       this.records = response.data
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     })
-  // },
-}
+
 </script>
 
 <style lang="scss" scoped></style>
