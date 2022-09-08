@@ -75,9 +75,9 @@
             margin-bottom: 10px;
         }
 
-        textarea {
-            // padding: 10px;
-        }
+        // textarea {
+        //     // padding: 10px;
+        // }
     }
 
     .view-comment-container {
