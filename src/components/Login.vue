@@ -1,13 +1,15 @@
 <template>
-  <!-- <section class="login">
+  <h3>{{ loginFormValue.loginPassword }}</h3>
+  <p>{{ users }}</p>
+  <section class="login">
     <div class="body">
       <div class="login-div">
         <div class="login-header">
           <h2>Log in to your Chords account</h2>
         </div>
         <form
-          id="apps"
-          @submit.prevent="checkForm"
+          id="login-form"
+          @submit.prevent=""
           ref="registerForm"
           action="#"
           novalidate="true"
@@ -19,9 +21,8 @@
               <input
                 type="text"
                 name="userEmail"
-                v-model="loginFormValue.userEmail"
+                v-model="loginFormValue.loginEmail"
                 :rules="loginEmailRules"
-                required
               />
             </div>
             <div class="input user-password">
@@ -31,10 +32,9 @@
                   type="password"
                   name="userPassword"
                   class="password-inp"
-                  v-model="loginFormValue.userPassword"
+                  v-model="loginFormValue.loginPassword"
                   @click:append="show1 = !show1"
                   @keyup.enter="login"
-                  required
                 />
               </div>
               <p><span>Forgot your password?</span></p>
@@ -60,18 +60,18 @@
         </p>
       </div>
     </div>
-  </section> -->
+  </section>
 
   <section class="signup">
     <div class="body">
-      <div class="signup-div">
-        <form
-          id="signup-form"
-          @submit.prevent="checkForm"
-          ref="registerForm"
-          action="#"
-          novalidate="true"
-        >
+      <form
+        id="signup-form"
+        @submit.prevent="checkForm"
+        ref="registerForm"
+        action="#"
+        novalidate="true"
+      >
+        <div class="signup-div">
           <div class="signup-header">
             <h2>Sign Up to Chord</h2>
           </div>
@@ -97,6 +97,7 @@
             <div class="input user-password">
               <p>Password</p>
               <div class="password">
+                <!-- CHANGE TO 8 minlength="8" LATER!!! -->
                 <input
                   type="password"
                   v-model="userDetails.userPassword"
@@ -109,7 +110,7 @@
 
           <div class="errors">
             <div v-if="errors.length">
-              <p class="error-note">Please correct the following error(s):</p>
+              <b class="error-note">Please correct the following error(s):</b>
               <ul>
                 <li v-for="error in errors">{{ error }}</li>
               </ul>
@@ -122,8 +123,8 @@
             value="Sign up"
           />
           <!-- <input type="button" @click="checkForm" class="sign-up-btn" value="Sign up" /> -->
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </section>
 </template>
@@ -131,6 +132,7 @@
 <script>
 // import { ref } from 'vue'
 const usersApi = 'https://vc-users-login.netlify.app/.netlify/functions/api/'
+const MINCHAR = 8
 
 export default {
   name: 'Login',
@@ -154,16 +156,17 @@ export default {
         userEmail: '',
         userPassword: '',
       },
+      //   email: null,
       errors: [],
-      //   dialog: true,
-      //   show1: false,
-      //   loginEmailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
-      //   //   isActive: false,
-      //   //   activeClass: 'active',
-      //   rules: {
-      //     required: value => !!value || 'Required.',
-      //     min: v => (v && v.length >= 8) || 'Min 8 characters',
-      //   },
+      dialog: true,
+      show1: false,
+      loginEmailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
+      //   isActive: false,
+      //   activeClass: 'active',
+      rules: {
+        required: value => !!value || 'Required.',
+        min: v => (v && v.length >= 8) || 'Min 8 characters',
+      },
     }
   },
   computed: {
@@ -172,100 +175,98 @@ export default {
     },
   },
   methods: {
-    // login() {
-    //   //   let validform = this.$refs.loginForm.validate()
-    //   //   if (validform) {
-    //   // verify login details
-    //   this.users.forEach(element => {
-    //     if (element.email == this.loginFormValue.loginEmail && element.password == this.loginFormValue.loginPassword) {
-    //       this.loggedUser = element.firstname + ' ' + element.lastname
-    //       // localStorage
-    //       localStorage.userId = element._id
-    //       localStorage.loggedUser = this.loggedUser
-    //     }
-    //   })
-    //   if (this.loggedUser) {
-    //     console.log('login successful')
-    //     this.dialog = false
-    //     this.$emit('logged-user', this.loggedUser)
-    //     document.location.reload(true) // force page reload to show admin table
-    //   } else {
-    //     console.log('login failed')
-    //   }
-    // },
-  },
-  checkForm(e) {
-    e.preventDefault()
-    this.errors = []
-    // validation
-    if (!this.userDetails.userName) {
-      this.errors.push('Name required.')
-    }
-    if (!this.userDetails.userEmail) {
-      this.errors.push('Email required.')
-    } else if (!this.validEmail(this.userDetails.userEmail)) {
-      this.errors.push('Valid email required.')
-    }
-    if (!this.userDetails.userPassword) {
-      this.errors.push('Password required.')
-    } else if (this.userDetails.userPassword.length < 8) {
-      this.errors.push('Password needs to be 8 characters or more.')
-    }
-    // no error found, call addUser
-    if (!this.errors.length) {
-      return this.addUser()
-    }
-  },
-  validEmail(userEmail) {
-    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    return re.test(userEmail)
-  },
-  addUser() {
-    // done
-    fetch(usersApi, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.userDetails),
-    })
-      .then(response => response.text())
-      .then(data => {
-        console.log(data)
-        if (data) {
-          //   this.dialog = false
-          //   this.loggedUser = this.userDetails.userName + ' ' + this.userDetails.userPassword
-          //   this.$emit('logged-user', this.loggedUser)
-          // verify data has been received before clearing
-          this.resetData()
+    login() {
+      //   let validform = this.$refs.loginForm.validate()
+      //   if (validform) {
+      // // // verify login details
+      this.users.forEach(element => {
+        if (element.userEmail == this.loginFormValue.loginEmail && element.userPassword == this.loginFormValue.loginPassword) {
+          this.loggedUser = element.userName
+          console.log(this.loggedUser)
+          //    + ' ' + element.lastname
+          // localStorage
+          localStorage.userId = element._id
+          localStorage.loggedUser = this.loggedUser
         }
+      })
+      if (this.loggedUser) {
+        console.log('login successful')
+        this.dialog = false // closing form
+        this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
+        document.location.reload(true) // force page reload to show admin table
+      } else {
+        console.log('login failed')
+      }
+      // }
+    },
+    checkForm(e) {
+      e.preventDefault()
+      this.errors = []
+      // validation
+      if (!this.userDetails.userName) {
+        this.errors.push('Name required.')
+      }
+      if (!this.userDetails.userEmail) {
+        this.errors.push('Email required.')
+      } else if (!this.validEmail(this.userDetails.userEmail)) {
+        this.errors.push('Valid email required.')
+      }
+      if (!this.userDetails.userPassword) {
+        this.errors.push('Password required.')
+      } else if (this.userDetails.userPassword.length < MINCHAR) {
+        this.errors.push('Password needs to be 8 characters or more.')
+      }
+      // no error found, call addUser
+      if (!this.errors.length) {
+        return this.addUser()
+      }
+    },
+    validEmail(email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return re.test(email)
+    },
+    addUser() {
+      // done
+      fetch(usersApi, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.userDetails),
+      })
+        .then(response => response.text())
+        .then(data => {
+          this.resetData()
+          console.log(data)
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
+    resetData() {
+      // this.editId = ''
+      this.userDetails.userName = ''
+      this.userDetails.userEmail = ''
+      this.userDetails.userPassword = ''
+    },
+  },
+  mounted() {
+    // check if user is logged-in, do not show login form
+    if (localStorage.loggedUser) {
+      this.dialog = false
+    }
+
+    // get all users
+    fetch(usersApi)
+      .then(response => response.json())
+      .then(data => {
+        this.users = data
+        console.log(this.users)
       })
       .catch(err => {
         if (err) throw err
       })
   },
-  resetData() {
-    this.userDetails.userName = ''
-    this.userDetails.userEmail = ''
-    this.userDetails.userPassword = ''
-  },
-  //   },
-  //   mounted() {
-  //     // check if user is logged-in, do not show login form
-  //     if (localStorage.loggedUser) {
-  //       this.dialog = false
-  //     }
-
-  //     // get all users
-  //     fetch(usersApi)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         this.users = data
-  //       })
-  //       .catch(err => {
-  //         if (err) throw err
-  //       })
-  //   },
 }
 </script>
 
@@ -320,7 +321,8 @@ export default {
   justify-content: space-between;
   margin: 2rem 0rem;
 }
-.user-input-form {
+.user-input-form,
+.errors {
   width: 100%;
 }
 
@@ -355,6 +357,7 @@ export default {
 #signup-form {
   width: 100%;
 }
+
 .log-in-btn,
 .sign-up-btn {
   margin-bottom: 1.5rem;
