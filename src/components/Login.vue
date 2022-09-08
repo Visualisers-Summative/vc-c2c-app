@@ -187,9 +187,9 @@ export default {
     }
   },
   computed: {
-    passwordMatch() {
-      return this.userDetails.userPassword === this.verify || 'Password must match'
-    },
+    // passwordMatch() {
+    //   return this.userDetails.userPassword === this.verify || 'Password must match'
+    // },
   },
   methods: {
     showSignupHideLogin() {
