@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h1>Profile</h1>
+    <ProfileSection />
   </div>
 </template>
 
 <script>
+import ProfileSection from '../components/ProfileSection.vue';
 
 export default {
   name: 'UserProfile',
@@ -17,10 +18,11 @@ export default {
     };
   },
   components: {
-
-  },
+    ProfileSection
+},
 }
 </script>
+
     
 <style lang="scss" scoped>
 </style>

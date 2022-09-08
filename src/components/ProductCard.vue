@@ -63,12 +63,7 @@ export default {
   },
   components: {
     SvgIcon,
-  },
-  filters: {
-    titleise(value) {
-      return value.replace(/(?:^|\s|-)\S/g, x => x.toUpperCase())
-    },
-  },
+  }
 }
 </script>
 
@@ -81,7 +76,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 25rem;
+  min-height: 29rem;
   min-width: 16rem;
 }
 
@@ -92,7 +87,7 @@ export default {
 
 .product-card {
   cursor: pointer;
-  height: 28rem;
+  height: 24rem;
   width: 100%;
   display: flex;
   flex-direction: column;
