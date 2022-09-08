@@ -64,6 +64,7 @@ export default {
   components: {
     SvgIcon,
   }
+}
 </script>
 
 <style lang="scss" scoped>
