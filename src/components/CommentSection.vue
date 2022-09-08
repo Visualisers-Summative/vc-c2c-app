@@ -51,6 +51,7 @@
 .comment-container {
     display: flex;
 
+
     .button-container {
     display: flex;
     justify-content: right;
@@ -76,7 +77,7 @@
         }
 
         textarea {
-            // padding: 10px;
+            resize: none;
         }
     }
 
@@ -90,7 +91,6 @@
         .mock-comment {
             display: flex;
             max-height: 60px;
-            // margin: 10px 0 0 10px;
             padding: 10px;
             align-items: center;
 
