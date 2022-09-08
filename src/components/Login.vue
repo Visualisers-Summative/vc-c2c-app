@@ -1,7 +1,10 @@
 <template>
   <h3>{{ loginFormValue.loginPassword }}</h3>
   <p>{{ users }}</p>
-  <section class="login">
+  <section
+    class="login"
+    v-show="isLoginVisible"
+  >
     <div class="body">
       <div class="login-div">
         <div class="login-header">
@@ -46,14 +49,13 @@
             value="Log In"
             class="log-in-btn"
             :rules="[rules.required, rules.min]"
-            :disabled="!isFormValid"
             @click="login"
           />
         </form>
         <p>
           New to Chords?
           <span
-            @click:append="show1 = !show1"
+            @click="showSignupHideLogin"
             class="create-acc"
           >
             Create an account
@@ -63,7 +65,10 @@
     </div>
   </section>
 
-  <section class="signup">
+  <section
+    class="signup"
+    v-show="isSignUpVisible"
+  >
     <div class="body">
       <form
         id="signup-form"
@@ -135,6 +140,11 @@ export default {
   name: 'Login',
   data() {
     return {
+      isLoginVisible: true,
+      isSignUpVisible: false,
+      //   displayLogin: {
+      //     display: 'none',
+      //   },
       isFormValid: true,
       loggedUser: '',
       users: [],
@@ -179,6 +189,15 @@ export default {
     },
   },
   methods: {
+    showSignupHideLogin() {
+      // console.log(this.id);
+      this.isLoginVisible = false
+      this.isSignUpVisible = true
+    },
+    showLoginHideSignup() {
+      this.isSignUpVisible = false
+      this.isLoginVisible = true
+    },
     login() {
       //   let validform = this.$refs.loginForm.checkForm()
       if (this.loginFormValue.loginEmail && this.loginFormValue.loginPassword) {
@@ -195,9 +214,11 @@ export default {
         })
         if (this.loggedUser) {
           console.log('login successful')
+
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
-          document.location.reload(true) // force page reload to show admin table
+          //   document.location.reload(true) // force page reload to show admin table
+          this.isLoginVisible = false
         } else {
           console.log('login failed')
         }
@@ -248,6 +269,7 @@ export default {
         .then(response => response.text())
         .then(data => {
           this.resetData()
+          this.showLoginHideSignup()
           console.log(data)
         })
         .catch(err => {
