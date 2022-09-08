@@ -40,6 +40,7 @@
               <p><span>Forgot your password?</span></p>
             </div>
           </div>
+          <p class="errors">{{ loginError }}</p>
           <input
             type="button"
             value="Log In"
@@ -84,6 +85,7 @@
                 class="input"
                 placeholder="Enter username"
               />
+              <p class="errors">{{ errors.blankUserName }}</p>
             </div>
             <div class="input user-email">
               <p>Email address</p>
@@ -93,6 +95,8 @@
                 class="input"
                 placeholder="Enter email"
               />
+              <p class="errors">{{ errors.blankEmail }}</p>
+              <p class="errors">{{ errors.badEmail }}</p>
             </div>
             <div class="input user-password">
               <p>Password</p>
@@ -104,16 +108,9 @@
                   class="input"
                   placeholder="Enter password (min 8 characters)"
                 />
+                <p class="errors">{{ errors.blankPswrd }}</p>
+                <p class="errors">{{ errors.shortPswrd }}</p>
               </div>
-            </div>
-          </div>
-
-          <div class="errors">
-            <div v-if="errors.length">
-              <b class="error-note">Please correct the following error(s):</b>
-              <ul>
-                <li v-for="error in errors">{{ error }}</li>
-              </ul>
             </div>
           </div>
 
@@ -157,7 +154,14 @@ export default {
         userPassword: '',
       },
       //   email: null,
-      errors: [],
+      errors: {
+        blankEmail: '',
+        blankPswrd: '',
+        blankUserName: '',
+        badEmail: '',
+        shortPswrd: '',
+      },
+      loginError: '',
       dialog: true,
       show1: false,
       loginEmailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
@@ -176,28 +180,30 @@ export default {
   },
   methods: {
     login() {
-      //   let validform = this.$refs.loginForm.validate()
-      //   if (validform) {
-      // // // verify login details
-      this.users.forEach(element => {
-        if (element.userEmail == this.loginFormValue.loginEmail && element.userPassword == this.loginFormValue.loginPassword) {
-          this.loggedUser = element.userName
-          console.log(this.loggedUser)
-          //    + ' ' + element.lastname
-          // localStorage
-          localStorage.userId = element._id
-          localStorage.loggedUser = this.loggedUser
+      //   let validform = this.$refs.loginForm.checkForm()
+      if (this.loginFormValue.loginEmail && this.loginFormValue.loginPassword) {
+        // // // verify login details
+        this.users.forEach(element => {
+          if (element.userEmail == this.loginFormValue.loginEmail && element.userPassword == this.loginFormValue.loginPassword) {
+            this.loggedUser = element.userName
+            console.log(this.loggedUser)
+            //    + ' ' + element.lastname
+            // localStorage
+            localStorage.userId = element._id
+            localStorage.loggedUser = this.loggedUser
+          }
+        })
+        if (this.loggedUser) {
+          console.log('login successful')
+          this.dialog = false // closing form
+          this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
+          document.location.reload(true) // force page reload to show admin table
+        } else {
+          console.log('login failed')
         }
-      })
-      if (this.loggedUser) {
-        console.log('login successful')
-        this.dialog = false // closing form
-        this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
-        document.location.reload(true) // force page reload to show admin table
       } else {
-        console.log('login failed')
+        this.loginError = 'Please enter the required fields'
       }
-      // }
     },
     checkForm(e) {
       e.preventDefault()
@@ -205,16 +211,21 @@ export default {
       // validation
       if (!this.userDetails.userName) {
         this.errors.push('Name required.')
+        this.errors.blankUserName = 'Name required.'
       }
       if (!this.userDetails.userEmail) {
         this.errors.push('Email required.')
+        this.errors.blankEmail = 'Email required.'
       } else if (!this.validEmail(this.userDetails.userEmail)) {
         this.errors.push('Valid email required.')
+        this.errors.badEmail = 'Valid email required.'
       }
       if (!this.userDetails.userPassword) {
         this.errors.push('Password required.')
+        this.errors.blankPswrd = 'Password required.'
       } else if (this.userDetails.userPassword.length < MINCHAR) {
         this.errors.push('Password needs to be 8 characters or more.')
+        this.errors.shortPswrd = 'Password needs to be 8 characters or more.'
       }
       // no error found, call addUser
       if (!this.errors.length) {
@@ -261,7 +272,7 @@ export default {
       .then(response => response.json())
       .then(data => {
         this.users = data
-        console.log(this.users)
+        // console.log(this.users)
       })
       .catch(err => {
         if (err) throw err
@@ -373,6 +384,7 @@ export default {
 // ERROR STLES
 .errors {
   text-align: left;
+  color: tomato;
 }
 
 .errors li {
