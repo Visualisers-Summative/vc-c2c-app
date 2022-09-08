@@ -1,41 +1,35 @@
 <template>
-
   <div class="fault-page">
     <div class="fault-content">
       <h1>404 - This page does not exist</h1>
       <h2>Whoopsie something went wrong!</h2>
-      <p>
-        <router-link to="/" class="top">🏠 Return home here</router-link> or wait {{ timerCount }}
-      </p>
-
+      <p><router-link to="/" class="top">🏠 Return home here</router-link> or wait {{ timerCount }}</p>
     </div>
   </div>
-
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      timerCount: 10
+      timerCount: 10,
     }
   },
   watch: {
     timerCount: {
-      handler (value) {
-
+      handler(value) {
         if (value > 0) {
           setTimeout(() => {
-            this.timerCount--;
-          }, 1000);
+            this.timerCount--
+          }, 1000)
         }
       },
-      immediate: true // This ensures the watcher is triggered upon creation
-    }
+      immediate: true, // This ensures the watcher is triggered upon creation
+    },
   },
-  created () {
-    setTimeout(() => this.$router.push({ path: '/' }), 10000);
-  }
+  created() {
+    setTimeout(() => this.$router.push({ path: '/' }), 10000)
+  },
 }
 </script>
 
@@ -48,7 +42,6 @@ export default {
 }
 
 .fault-page h2 {
-
   text-align: center;
   padding: 20px;
 }

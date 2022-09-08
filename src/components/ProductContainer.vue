@@ -1,38 +1,40 @@
 <template>
   <div class="product-div">
     <div class="product-container">
-      <ProductCard v-for="vinyl in records" :key="vinyl.id" :vinyls="vinyl" />
+      <ProductCard
+        v-for="vinyl in records"
+        :key="vinyl.id"
+        :vinyls="vinyl"
+      />
     </div>
   </div>
 </template>
 
-
 <script>
-import ProductCard from '../components/ProductCard.vue';
-import ProductService from '../services/ProductService.js';
+import ProductCard from '../components/ProductCard.vue'
+import ProductService from '../services/ProductService.js'
 // const api = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
 export default {
   name: 'ProductContainer',
   // props: { vinyls: Object },
-  methods: {
-  },
-  data () {
+  methods: {},
+  data() {
     return {
       records: null,
-    };
+    }
   },
   components: {
-    ProductCard
+    ProductCard,
   },
-  created () {
-    ProductService.getProducts()
+  created() {
+    ProductService.getDatas()
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.records = response.data
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       })
   },
 }

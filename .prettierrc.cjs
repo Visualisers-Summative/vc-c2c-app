@@ -6,5 +6,6 @@ module.exports = {
   "semi": false,
   "trailingComma": "all",
   "bracketSpacing": true,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "singleAttributePerLine": true
 }

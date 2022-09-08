@@ -1,9 +1,8 @@
 <template>
-  
   <div class="header-container">
     <div>
       <a href="#">
-        <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo">
+        <img src="../assets/images/Chords.svg" alt="chords-logo" class="logo" />
       </a>
       <div class="nav-links">
         <router-link to="/" class="top">Buy</router-link> |
@@ -13,35 +12,27 @@
 
     <div class="search-profile-container">
       <router-link to="/Profile" class="top">Profile</router-link> | Cart
-        <div class="search">
-              <input type="search" name="Search" class="search-field" />
-              <button type="submit" class="search-button">
-              <img src="../assets/images/search.png" alt="icon">
-              </button>           
-        </div>
+      <div class="search">
+        <input type="search" name="Search" class="search-field" />
+        <button type="submit" class="search-button">
+          <img src="../assets/images/search.png" alt="icon" />
+        </button>
+      </div>
     </div>
   </div>
-  <hr>
-
-
-
+  <hr />
 </template>
 
 <script>
 export default {
-  name: "HeaderRow",
-  data () {
-    return {
-
-    }
-  }
+  name: 'HeaderRow',
+  data() {
+    return {}
+  },
 }
-
 </script>
 
 <style lang="scss" scoped>
-
-
 .header-container {
   height: auto;
   display: flex;
@@ -50,7 +41,7 @@ export default {
 
 .logo {
   width: 14rem;
-  }
+}
 
 .nav-links {
   margin-top: 0.75rem;
@@ -66,7 +57,7 @@ export default {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: 1px solid black;
-  margin-bottom: 4rem
+  margin-bottom: 4rem;
 }
 
 .search-profile-container {
@@ -77,7 +68,7 @@ export default {
   background: transparent;
   border: none;
   outline: none;
-  margin-left: -33px; 
+  margin-left: -33px;
 }
 
 .search-button img {
@@ -85,5 +76,4 @@ export default {
   height: 20px;
   object-fit: cover;
 }
-
 </style>
