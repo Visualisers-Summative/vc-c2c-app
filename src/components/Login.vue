@@ -142,9 +142,6 @@ export default {
     return {
       isLoginVisible: true,
       isSignUpVisible: false,
-      //   displayLogin: {
-      //     display: 'none',
-      //   },
       isFormValid: true,
       loggedUser: '',
       users: [],
