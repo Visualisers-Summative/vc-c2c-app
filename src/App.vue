@@ -1,42 +1,30 @@
-<script>
-import HeaderRow from './components/HeaderRow.vue';
-import FooterRow from './components/FooterRow.vue';
-
-export default {
-  components: { FooterRow, HeaderRow },
-  name: 'App',
-  data () {
-    return {
-
-    }
-  }
-}
-</script>
-
 <template>
-
-
-
-
   <div class="header">
     <HeaderRow />
   </div>
-
 
   <div class="body">
     <router-view />
   </div>
 
-
-
   <div class="footer">
     <FooterRow />
   </div>
-
-
-
 </template>
 
+<script>
+import HeaderRow from './components/HeaderRow.vue'
+import FooterRow from './components/FooterRow.vue'
+
+export default {
+  components: { FooterRow, HeaderRow },
+  name: 'App',
+  data() {
+    return {}
+  },
+  methods: {},
+}
+</script>
 
 <style lang="scss" scoped>
 .login-cmp {
