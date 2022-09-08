@@ -1,57 +1,64 @@
 <template>
-  <div v-if="record" class="product-details-container">
-
+  <div
+    v-if="record"
+    class="product-details-container"
+  >
     <div class="record-image-wrapper">
-      <img :src="record.imageUrl" alt="Record cover" class="record-image">
+      <img
+        :src="record.imageUrl"
+        alt="Record cover"
+        class="record-image"
+      />
     </div>
-
 
     <div class="product-details">
       <h1 class="record-album">{{ record.albumTitle }}</h1>
 
-      <div class="product-titles">
-        <h4>ARTIST</h4>
-        <p class="record-artist">{{ record.artistName }}</p>
+      <div class="product-titles ">
+        <h4 class="column-1">ARTIST</h4>
+        <p class="record-artist column-2">{{ record.artistName }}</p>
       </div>
 
       <div class="product-titles">
-        <h4>LABEL</h4>
-        <p class="">Details for Label here?</p>
+        <h4 class="column-1">LABEL</h4>
+        <p class="column-2">Details for Label here?</p>
       </div>
 
       <div class="product-titles">
-        <h4>COUNTRY</h4>
-        <p class="">Details for Country here?</p>
+        <h4 class="column-1">COUNTRY</h4>
+        <p class="column-2">Details for Country here?</p>
       </div>
 
       <div class="product-titles">
-        <h4>RELEASED</h4>
-        <p class="record-year">{{ record.yearReleased }}</p>
+        <h4 class="column-1">RELEASED</h4>
+        <p class="record-year column-2">{{ record.yearReleased }}</p>
       </div>
 
       <div class="product-titles">
-        <h4>GENRE</h4>
-        <p class="record-genre">{{ record.genre }}</p>
+        <h4 class="column-1">GENRE</h4>
+        <p class="record-genre column-2">{{ record.genre }}</p>
+
+        <!-- <p class="record-genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p> -->
       </div>
 
       <div class="product-titles">
-        <h4>FORMAT</h4>
-        <p class="record-length">{{ record.length }}</p>
+        <h4 class="column-1">FORMAT</h4>
+        <p class="record-length column-2">{{ record.length }}</p>
       </div>
 
       <div>
         <p>
-          Cheetah is an EP record by British electronic musician Richard D. James, released under his moniker Aphex
-          Twin. According to Wikipedia “The name is a reference to Cheetah Marketing, a British manufacturer of
-          microcomputer peripherals and electronic musical instruments in the 1980s (such as the MS800 namechecked in
-          two of the EP’s track titles).”
+          Cheetah is an EP record by British electronic musician Richard D. James, released under his moniker Aphex Twin. According to Wikipedia “The name is a reference to Cheetah Marketing, a British manufacturer of microcomputer peripherals and electronic musical instruments in the 1980s (such as
+          the MS800 namechecked in two of the EP’s track titles).”
         </p>
       </div>
 
       <div class="icon-container">
-        <svg-icon type="mdi" :path="path"></svg-icon>
+        <svg-icon
+          type="mdi"
+          :path="path"
+        ></svg-icon>
       </div>
-
 
       <div class="button-container">
         <div>
@@ -61,48 +68,43 @@
         <button class="purchase">PURCHASE</button>
       </div>
     </div>
+  </div>
 
-    <!-- <div class="product-details">
-        <p class="record-artist">{{ record.artistName }}</p>
-        <p class="record-album">{{ record.albumTitle }}</p>
-        <p class="record-genre">{{ record.genre }}</p>
-        <p class="record-year">{{ record.yearReleased }}</p>
-        <p class="record-length">{{ record.length }}</p>
-        <p class="record-price">{{ record.price }}</p>
-        <p class="record-description">{{ record.albumDescription }}</p>
-        <svg-icon type="mdi" :path="path"></svg-icon>
-      </div> -->
+  <div>
+    <CommentSection />
   </div>
 </template>
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon'
 // import { mdiAccount } from '@mdi/js'
-import { mdiHeartOutline } from '@mdi/js';
+import { mdiHeartOutline } from '@mdi/js'
 
-import ProductService from '../services/ProductService.js';
+import ProductService from '../services/ProductService.js'
+import CommentSection from '../components/CommentSection.vue'
 
 export default {
   props: ['id'],
-  data () {
+  data() {
     return {
       record: null,
-      path: mdiHeartOutline
+      path: mdiHeartOutline,
     }
   },
   components: {
-    SvgIcon
+    SvgIcon,
+    CommentSection,
   },
-  created () {
+  created() {
     ProductService.getData(this.id)
       .then(response => {
         // console.log(response.data);
         this.record = response.data
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       })
-  }
+  },
 }
 </script>
 
@@ -112,17 +114,28 @@ export default {
   border-bottom: 1px solid;
 
   .product-details {
+    display: flex;
+    flex-direction:column;
+    margin-bottom: 2rem;
+
+    .column-1 {
+    min-width: 100px;
+    display: flex;
+  }
+  // .column-2 {
+  //   text-align: right;
+  // }
+
     h1 {
-      margin-top: 2rem;
+      margin: 2rem 0rem ;
     }
 
     .product-titles {
       display: flex;
-      flex-direction: row;
-      margin: 2rem 0rem 1rem 0rem;
+      margin-bottom: 25px;
 
       h4 {
-        margin-right: 10px;
+        margin-right: 0px;
       }
 
       .record-artist {
@@ -141,7 +154,6 @@ export default {
     .record-image {
       height: 476px;
       margin: 2rem 2rem 2rem 0rem;
-
     }
   }
 
@@ -150,7 +162,7 @@ export default {
     justify-content: right;
   }
 
-  //button styling - can be moved to main.scss 
+  //button styling - can be moved to main.scss
   .button-container {
     display: flex;
     justify-content: space-between;
