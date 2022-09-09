@@ -48,6 +48,21 @@
           <p>Norty track bruv</p>
         </div>
       </div>
+
+      <div class="mock-comment">
+        <img
+          src="../assets/images/SebastianStanvalentino.jpeg"
+          alt=""
+        />
+        <div class="comment-container">
+          <h4>recordboi</h4>
+          <p>Best album ever, amaaaaaaaaazing!</p>
+        </div>
+      </div>
+
+
+
+      
     </div>
   </div>
 </template>
@@ -84,6 +99,8 @@
 
     textarea {
       resize: none;
+      font-family: inherit;
+      padding: 5px;
     }
   }
 
@@ -92,13 +109,15 @@
     flex-direction: column;
     // margin-top: 30px;
     margin: 30px 0px 0px 30px;
+    height: 280px;
+    overflow: scroll;
+    overflow-x: hidden;
 
     .mock-comment {
       display: flex;
       max-height: 60px;
       padding: 10px;
       align-items: center;
-
       border-bottom: 1px solid;
 
       .comment-container {
@@ -115,6 +134,28 @@
         border-radius: 50%;
       }
     }
+  }
+//Scrollbar styling
+  ::-webkit-scrollbar {
+    width: 13px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #fffdeb;
+    outline: 1px solid;
+
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #000000;
+    max-height: 38px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(115, 115, 115);
   }
 }
 </style>
