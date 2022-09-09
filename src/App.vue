@@ -2,33 +2,77 @@
   <div class="header-container">
     <div>
       <a href="#">
-        <img src="./assets/images/Chords.svg" alt="chords-logo" class="logo" />
+        <img
+          src="./assets/images/Chords.svg"
+          alt="chords-logo"
+          class="logo"
+        />
       </a>
       <div class="nav-links">
-        <router-link to="/#" class="top">Buy</router-link>
+        <router-link
+          to="/#"
+          class="top"
+          >Buy</router-link
+        >
         |
-        <router-link to="/Profile" class="top">Sell</router-link>
+        <router-link
+          to="/Profile"
+          class="top"
+          >Sell</router-link
+        >
       </div>
     </div>
 
     <div class="search-profile-container">
-      <router-link to="/Profile" class="top">Profile</router-link>
+      <router-link
+        to="/Profile"
+        class="top"
+        >Profile</router-link
+      >
       <div class="login-cmp">
-        <Login @logged-user="setLoggedUser" v-if="loginform" />
-        <span text rounded>{{ loggedUser }}</span>
-        <span v-if="loggedUser != 'guest'" text rounded @click="logout" title="logout">
+        <Login
+          @logged-user="setLoggedUser"
+          v-if="loginform"
+        />
+        <span
+          text
+          rounded
+          >{{ loggedUser }}</span
+        >
+        <span
+          v-if="loggedUser != 'guest'"
+          text
+          rounded
+          @click="logout"
+          title="logout"
+        >
           <span> | logout</span>
         </span>
-        <span v-else text rounded @click="login" title="login">
+        <span
+          v-else
+          text
+          rounded
+          @click="login"
+          title="login"
+        >
           <span> | login</span>
         </span>
       </div>
       | Cart
+
+      <!-- <h2>{{ userDetails.user_id }}</h2> -->
       <div class="search">
         <form class="search-container">
-          <input type="text" id="search-bar" placeholder="Search?" />
-          <a href="#"><img class="search-icon"
-              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" /></a>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search?"
+          />
+          <a href="#"
+            ><img
+              class="search-icon"
+              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
+          /></a>
         </form>
       </div>
     </div>
@@ -78,6 +122,7 @@ export default {
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
+      console.log('loggedUSER' + localStorage.userId)
     }
   },
 }

@@ -1,4 +1,5 @@
 <template>
+  <!-- LOGIN UP SECTION [STARTS] -->
   <section
     class="login"
     v-show="isLoginVisible"
@@ -22,7 +23,7 @@
               <input
                 type="text"
                 name="userEmail"
-                v-model="loginFormValue.loginEmail"
+                v-model.trim="loginFormValue.loginEmail"
                 :rules="loginEmailRules"
               />
             </div>
@@ -33,8 +34,7 @@
                   type="password"
                   name="userPassword"
                   class="password-inp"
-                  v-model="loginFormValue.loginPassword"
-                  @click:append="show1 = !show1"
+                  v-model.trim="loginFormValue.loginPassword"
                   @keyup.enter="login"
                 />
               </div>
@@ -62,7 +62,9 @@
       </div>
     </div>
   </section>
+  <!-- LOGIN UP SECTION [ENDS] -->
 
+  <!-- SIGN UP SECTION [STARTS] -->
   <section
     class="signup"
     v-show="isSignUpVisible"
@@ -84,9 +86,10 @@
               <p>Username</p>
               <input
                 type="text"
-                v-model="userDetails.userName"
+                v-model.trim="userDetails.userName"
                 class="input"
                 placeholder="Enter username"
+                @keyup="lowercase"
               />
               <p class="errors">{{ errors.blankUserName }}</p>
             </div>
@@ -94,9 +97,10 @@
               <p>Email address</p>
               <input
                 type="text"
-                v-model="userDetails.userEmail"
+                v-model.trim="userDetails.userEmail"
                 class="input"
                 placeholder="Enter email"
+                @keyup="lowercase"
               />
               <p class="errors">{{ errors.blankEmail }}</p>
               <p class="errors">{{ errors.badEmail }}</p>
@@ -107,7 +111,7 @@
                 <!-- CHANGE TO 8 minlength="8" LATER!!! -->
                 <input
                   type="password"
-                  v-model="userDetails.userPassword"
+                  v-model.trim="userDetails.userPassword"
                   class="input"
                   placeholder="Enter password (min 8 characters)"
                 />
@@ -135,9 +139,12 @@
       </form>
     </div>
   </section>
+  <!-- SIGN UP SECTION [ENDS] -->
 </template>
 
 <script>
+// import axios from 'axios'
+// import formData from 'form-data'
 // import { ref } from 'vue'
 const usersApi = 'https://vc-users-login.netlify.app/.netlify/functions/api/'
 const MINCHAR = 8
@@ -149,13 +156,10 @@ export default {
       isLoginVisible: true,
       isSignUpVisible: false,
       isFormValid: true,
+      dialog: true,
       loggedUser: '',
       users: [],
-      //   formValues: {
-      //     // userName: '',
-      //     userEmail: '',
-      //     userPassword: '',
-      //   },
+      posts: [],
       loginFormValue: {
         loginEmail: '',
         loginPassword: '',
@@ -165,8 +169,8 @@ export default {
         userName: '',
         userEmail: '',
         userPassword: '',
+        user_id: '',
       },
-      //   email: null,
       errors: {
         blankEmail: '',
         blankPswrd: '',
@@ -175,11 +179,7 @@ export default {
         shortPswrd: '',
       },
       loginError: '',
-      dialog: true,
-      show1: false,
       loginEmailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
-      //   isActive: false,
-      //   activeClass: 'active',
       rules: {
         required: value => !!value || 'Required.',
         min: v => (v && v.length >= 8) || 'Min 8 characters',
@@ -201,6 +201,10 @@ export default {
       this.isSignUpVisible = false
       this.isLoginVisible = true
     },
+    lowercase() {
+      this.userDetails.userName = this.userDetails.userName.toLowerCase()
+      this.userDetails.userEmail = this.userDetails.userEmail.toLowerCase()
+    },
     login() {
       //   let validform = this.$refs.loginForm.checkForm()
       if (this.loginFormValue.loginEmail && this.loginFormValue.loginPassword) {
@@ -217,6 +221,7 @@ export default {
         })
         if (this.loggedUser) {
           console.log('login successful')
+          console.log('userid= ' + localStorage.userId)
 
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
@@ -260,6 +265,29 @@ export default {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return re.test(email)
     },
+    getAll() {
+      fetch(usersApi)
+        .then(response => response.json())
+        .then(data => {
+          // filter data to show only post that match the user_id
+          if (localStorage.userId) {
+            let postData = []
+            data.forEach(element => {
+              if (localStorage.userId == element.user_id) {
+                postData.push(element)
+              }
+            })
+            this.posts = postData
+          } else {
+            this.posts = data
+          }
+
+          this.loading = false
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
     addUser() {
       // done
       fetch(usersApi, {
@@ -302,6 +330,12 @@ export default {
       .catch(err => {
         if (err) throw err
       })
+
+    this.getAll()
+    if (localStorage.userId) {
+      // set user_id
+      this.userDetails.user_id = localStorage.userId
+    }
   },
 }
 </script>
