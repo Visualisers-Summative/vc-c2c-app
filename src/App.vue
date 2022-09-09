@@ -164,9 +164,9 @@ export default {
   margin-bottom: 4rem;
 }
 
-.search-profile-container {
-  text-align: right;
-}
+// .search-profile-container {
+//   text-align: right;
+// }
 
 // .search-button {
 //   background: transparent;

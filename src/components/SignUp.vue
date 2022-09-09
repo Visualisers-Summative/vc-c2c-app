@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <section class="signup">
     <div class="body">
       <form id="signup-form" @submit.prevent="checkForm" ref="registerForm" action="#" novalidate="true">
@@ -18,7 +18,7 @@
             <div class="input user-password">
               <p>Password</p>
               <div class="password">
-                <!-- CHANGE TO 8 minlength="8" LATER!!! -->
+            
                 <input type="password" v-model="userDetails.userPassword" class="input"
                   placeholder="Enter password (min 8 characters)">
               </div>
@@ -35,7 +35,7 @@
           </div>
 
           <input type="submit" class="sign-up-btn" value="Sign up" />
-          <!-- <input type="button" @click="checkForm" class="sign-up-btn" value="Sign up" /> -->
+        
 
         </div>
       </form>
@@ -218,4 +218,4 @@ export default {
   color: black;
   font-size: 1rem;
 }
-</style>
+</style> -->
