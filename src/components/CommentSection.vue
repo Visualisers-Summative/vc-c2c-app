@@ -64,7 +64,7 @@
 </template>
 
 <script>
-const apiMessage = 'dasdasdadsad'
+const apiComments = ''
 </script>
 
 <style scoped lang="scss">

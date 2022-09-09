@@ -1,42 +1,80 @@
 <template>
-
   <div class="header-container">
     <div>
       <a href="#">
-        <img src="./assets/images/Chords.svg" alt="chords-logo" class="logo" />
+        <img
+          src="./assets/images/Chords.svg"
+          alt="chords-logo"
+          class="logo"
+        />
       </a>
       <div class="nav-links">
-        <router-link to="/#" class="top">Buy</router-link>
+        <router-link
+          to="/#"
+          class="top"
+          >Buy</router-link
+        >
         |
-        <router-link to="/Profile" class="top">Sell</router-link>
+        <router-link
+          to="/Profile"
+          class="top"
+          >Sell</router-link
+        >
       </div>
     </div>
 
-
     <div class="search-profile-container">
       <div class="profile-cmp">
-        <router-link to="/Profile" class="top">Profile</router-link>
-        <span class="profile-options" v-if="loggedUser" text rounded @click="logout" title="Logout">Logout</span>
+        <router-link
+          to="/Profile"
+          class="top"
+          >Profile</router-link
+        >
+        <span
+          class="profile-options"
+          v-if="loggedUser"
+          text
+          rounded
+          @click="logout"
+          title="Logout"
+          >Logout</span
+        >
         <span class="profile-options">|</span>
         <span class="profile-options">Cart</span>
       </div>
 
       <div class="search">
         <form class="search-container">
-          <input type="text" id="search-bar" placeholder="Search..." />
-          <a href="#"><img class="search-icon"
-              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" /></a>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search..."
+          />
+          <a href="#"
+            ><img
+              class="search-icon"
+              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
+          /></a>
         </form>
       </div>
     </div>
   </div>
   <hr />
   <div class="login">
-    <Login class="login-form" @logged-user="setLoggedUser" v-if="loginform != true" />
+    <Login
+      class="login-form"
+      @logged-user="setLoggedUser"
+      v-if="loginform != true"
+    />
     <router-view class="router-view" />
   </div>
   <div class="footer">
-    <FooterRow />
+    <div
+      class="show-footer"
+      v-if="loginform != true"
+    >
+      <FooterRow />
+    </div>
   </div>
 </template>
 
@@ -70,6 +108,7 @@ export default {
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
+      console.log('loggedUSER' + localStorage.userId)
     }
   },
 }
@@ -80,7 +119,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
-
 }
 
 .logo {
@@ -197,7 +235,6 @@ input#search-bar {
   .router-view {
     margin-bottom: -90%;
   }
-
 }
 
 @media only screen and (min-width: 1500px) {
