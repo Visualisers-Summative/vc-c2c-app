@@ -64,7 +64,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 const apiComments = ''
+=======
+const apiMessage = 'dasdasdadsad'
+>>>>>>> bab0a21b24853a96820011c84fa2273071b91109
 </script>
 
 <style scoped lang="scss">
