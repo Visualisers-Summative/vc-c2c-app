@@ -59,15 +59,13 @@
           <p>Best album ever, amaaaaaaaaazing!</p>
         </div>
       </div>
-
-
-
-      
     </div>
   </div>
 </template>
 
-<script></script>
+<script>
+const apiComments = ''
+</script>
 
 <style scoped lang="scss">
 .comment-container {
@@ -135,7 +133,7 @@
       }
     }
   }
-//Scrollbar styling
+  //Scrollbar styling
   ::-webkit-scrollbar {
     width: 13px;
   }
@@ -144,7 +142,6 @@
   ::-webkit-scrollbar-track {
     background: #fffdeb;
     outline: 1px solid;
-
   }
 
   /* Handle */

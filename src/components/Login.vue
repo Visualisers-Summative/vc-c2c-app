@@ -1,42 +1,82 @@
 <template>
-  <section class="login" v-show="isLoginVisible">
+  <!-- LOGIN UP SECTION [STARTS] -->
+  <section
+    class="login"
+    v-show="isLoginVisible"
+  >
     <div class="body">
       <div class="login-div">
         <div class="login-header">
           <h2>Log in to your Chords account</h2>
         </div>
-        <form id="login-form" @submit.prevent="" ref="registerForm" action="#" novalidate="true"
-          class="user-input-form">
+        <form
+          id="login-form"
+          @submit.prevent=""
+          ref="registerForm"
+          action="#"
+          novalidate="true"
+          class="user-input-form"
+        >
           <div class="user-input">
             <div class="input user-email">
               <p>Email address</p>
-              <input type="text" name="userEmail" v-model="loginFormValue.loginEmail" :rules="loginEmailRules" />
+              <input
+                type="text"
+                name="userEmail"
+                v-model.trim="loginFormValue.loginEmail"
+                :rules="loginEmailRules"
+              />
             </div>
             <div class="input user-password">
               <p>Password</p>
               <div class="password">
-                <input type="password" name="userPassword" class="password-inp" v-model="loginFormValue.loginPassword"
-                  @click:append="show1 = !show1" @keyup.enter="login" />
+                <input
+                  type="password"
+                  name="userPassword"
+                  class="password-inp"
+                  v-model.trim="loginFormValue.loginPassword"
+                  @keyup.enter="login"
+                />
               </div>
               <p><span>Forgot your password?</span></p>
             </div>
           </div>
           <p class="errors">{{ loginError }}</p>
-          <input type="button" value="Log In" class="log-in-btn" :rules="[rules.required, rules.min]" @click="login" />
+          <input
+            type="button"
+            value="Log In"
+            class="log-in-btn"
+            :rules="[rules.required, rules.min]"
+            @click="login"
+          />
         </form>
         <p>
           New to Chords?
-          <span @click="showSignupHideLogin" class="create-acc">
+          <span
+            @click="showSignupHideLogin"
+            class="create-acc"
+          >
             Create an account
           </span>
         </p>
       </div>
     </div>
   </section>
+  <!-- LOGIN UP SECTION [ENDS] -->
 
-  <section class="signup" v-show="isSignUpVisible">
+  <!-- SIGN UP SECTION [STARTS] -->
+  <section
+    class="signup"
+    v-show="isSignUpVisible"
+  >
     <div class="body">
-      <form id="signup-form" @submit.prevent="checkForm" ref="registerForm" action="#" novalidate="true">
+      <form
+        id="signup-form"
+        @submit.prevent="checkForm"
+        ref="registerForm"
+        action="#"
+        novalidate="true"
+      >
         <div class="signup-div">
           <div class="signup-header">
             <h2>Sign Up to Chord</h2>
@@ -44,12 +84,24 @@
           <div class="user-input">
             <div class="input user-name">
               <p>Username</p>
-              <input type="text" v-model="userDetails.userName" class="input" placeholder="Enter username" />
+              <input
+                type="text"
+                v-model.trim="userDetails.userName"
+                class="input"
+                placeholder="Enter username"
+                @keyup="lowercase"
+              />
               <p class="errors">{{ errors.blankUserName }}</p>
             </div>
             <div class="input user-email">
               <p>Email address</p>
-              <input type="text" v-model="userDetails.userEmail" class="input" placeholder="Enter email" />
+              <input
+                type="text"
+                v-model.trim="userDetails.userEmail"
+                class="input"
+                placeholder="Enter email"
+                @keyup="lowercase"
+              />
               <p class="errors">{{ errors.blankEmail }}</p>
               <p class="errors">{{ errors.badEmail }}</p>
             </div>
@@ -57,17 +109,28 @@
               <p>Password</p>
               <div class="password">
                 <!-- CHANGE TO 8 minlength="8" LATER!!! -->
-                <input type="password" v-model="userDetails.userPassword" class="input"
-                  placeholder="Enter password (min 8 characters)" />
+                <input
+                  type="password"
+                  v-model.trim="userDetails.userPassword"
+                  class="input"
+                  placeholder="Enter password (min 8 characters)"
+                />
                 <p class="errors">{{ errors.blankPswrd }}</p>
                 <p class="errors">{{ errors.shortPswrd }}</p>
               </div>
             </div>
           </div>
 
-          <input type="submit" class="sign-up-btn" value="Sign up" />
+          <input
+            type="submit"
+            class="sign-up-btn"
+            value="Sign up"
+          />
           <p>
-            <span @click="showLoginHideSignup" class="create-acc">
+            <span
+              @click="showLoginHideSignup"
+              class="create-acc"
+            >
               Login
             </span>
           </p>
@@ -76,9 +139,12 @@
       </form>
     </div>
   </section>
+  <!-- SIGN UP SECTION [ENDS] -->
 </template>
 
 <script>
+// import axios from 'axios'
+// import formData from 'form-data'
 // import { ref } from 'vue'
 const usersApi = 'https://vc-users-login.netlify.app/.netlify/functions/api/'
 const MINCHAR = 8
@@ -90,13 +156,10 @@ export default {
       isLoginVisible: true,
       isSignUpVisible: false,
       isFormValid: true,
+      dialog: true,
       loggedUser: '',
       users: [],
-      //   formValues: {
-      //     // userName: '',
-      //     userEmail: '',
-      //     userPassword: '',
-      //   },
+      posts: [],
       loginFormValue: {
         loginEmail: '',
         loginPassword: '',
@@ -106,8 +169,8 @@ export default {
         userName: '',
         userEmail: '',
         userPassword: '',
+        user_id: '',
       },
-      //   email: null,
       errors: {
         blankEmail: '',
         blankPswrd: '',
@@ -116,11 +179,7 @@ export default {
         shortPswrd: '',
       },
       loginError: '',
-      dialog: true,
-      show1: false,
       loginEmailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
-      //   isActive: false,
-      //   activeClass: 'active',
       rules: {
         required: value => !!value || 'Required.',
         min: v => (v && v.length >= 8) || 'Min 8 characters',
@@ -142,6 +201,10 @@ export default {
       this.isSignUpVisible = false
       this.isLoginVisible = true
     },
+    lowercase() {
+      this.userDetails.userName = this.userDetails.userName.toLowerCase()
+      this.userDetails.userEmail = this.userDetails.userEmail.toLowerCase()
+    },
     login() {
       //   let validform = this.$refs.loginForm.checkForm()
       if (this.loginFormValue.loginEmail && this.loginFormValue.loginPassword) {
@@ -158,6 +221,9 @@ export default {
         })
         if (this.loggedUser) {
           console.log('login successful')
+          this.userDetails.user_id = localStorage.userId
+          console.log('userid= ' + localStorage.userId)
+          console.log(this.userDetails.user_id)
 
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
@@ -201,6 +267,29 @@ export default {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return re.test(email)
     },
+    getAll() {
+      fetch(usersApi)
+        .then(response => response.json())
+        .then(data => {
+          // filter data to show only post that match the user_id
+          if (localStorage.userId) {
+            let postData = []
+            data.forEach(element => {
+              if (localStorage.userId == element.user_id) {
+                postData.push(element)
+              }
+            })
+            this.posts = postData
+          } else {
+            this.posts = data
+          }
+
+          this.loading = false
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
     addUser() {
       // done
       fetch(usersApi, {
@@ -243,6 +332,12 @@ export default {
       .catch(err => {
         if (err) throw err
       })
+
+    this.getAll()
+    if (localStorage.userId) {
+      // set user_id
+      this.userDetails.user_id = localStorage.userId
+    }
   },
 }
 </script>

@@ -1,4 +1,5 @@
-<template>
+<!-- <template>
+  <h2>{{userDetails.userName}}</h2>
   <section class="signup">
     <div class="body">
       <form id="signup-form" @submit.prevent="checkForm" ref="registerForm" action="#" novalidate="true">
@@ -9,7 +10,7 @@
           <div class="user-input">
             <div class="input user-name">
               <p>Username</p>
-              <input type="text" v-model="userDetails.userName" class="input" placeholder="Enter username">
+              <input type="text" v-model="userDetails.userName" @keyup="lowercase" class="input" placeholder="Enter username">
             </div>
             <div class="input user-email">
               <p>Email address</p>
@@ -18,7 +19,7 @@
             <div class="input user-password">
               <p>Password</p>
               <div class="password">
-                <!-- CHANGE TO 8 minlength="8" LATER!!! -->
+            
                 <input type="password" v-model="userDetails.userPassword" class="input"
                   placeholder="Enter password (min 8 characters)">
               </div>
@@ -35,7 +36,7 @@
           </div>
 
           <input type="submit" class="sign-up-btn" value="Sign up" />
-          <!-- <input type="button" @click="checkForm" class="sign-up-btn" value="Sign up" /> -->
+        
 
         </div>
       </form>
@@ -63,6 +64,10 @@ export default {
     }
   },
   methods: {
+    lowercase() {
+      this.userDetails.userName = this.userDetails.userName.toLowerCase();
+      this.userDetails.userEmail = this.userDetails.userEmail.toLowerCase();
+    },
     checkForm (e) {
       this.errors = [];
 
@@ -218,4 +223,4 @@ export default {
   color: black;
   font-size: 1rem;
 }
-</style>
+</style> -->
