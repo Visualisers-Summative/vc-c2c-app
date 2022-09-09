@@ -1,61 +1,32 @@
 <template>
-  <section
-    class="login"
-    v-show="isLoginVisible"
-  >
+  <section class="login" v-show="isLoginVisible">
     <div class="body">
       <div class="login-div">
         <div class="login-header">
           <h2>Log in to your Chords account</h2>
         </div>
-        <form
-          id="login-form"
-          @submit.prevent=""
-          ref="registerForm"
-          action="#"
-          novalidate="true"
-          class="user-input-form"
-        >
+        <form id="login-form" @submit.prevent="" ref="registerForm" action="#" novalidate="true"
+          class="user-input-form">
           <div class="user-input">
             <div class="input user-email">
               <p>Email address</p>
-              <input
-                type="text"
-                name="userEmail"
-                v-model="loginFormValue.loginEmail"
-                :rules="loginEmailRules"
-              />
+              <input type="text" name="userEmail" v-model="loginFormValue.loginEmail" :rules="loginEmailRules" />
             </div>
             <div class="input user-password">
               <p>Password</p>
               <div class="password">
-                <input
-                  type="password"
-                  name="userPassword"
-                  class="password-inp"
-                  v-model="loginFormValue.loginPassword"
-                  @click:append="show1 = !show1"
-                  @keyup.enter="login"
-                />
+                <input type="password" name="userPassword" class="password-inp" v-model="loginFormValue.loginPassword"
+                  @click:append="show1 = !show1" @keyup.enter="login" />
               </div>
               <p><span>Forgot your password?</span></p>
             </div>
           </div>
           <p class="errors">{{ loginError }}</p>
-          <input
-            type="button"
-            value="Log In"
-            class="log-in-btn"
-            :rules="[rules.required, rules.min]"
-            @click="login"
-          />
+          <input type="button" value="Log In" class="log-in-btn" :rules="[rules.required, rules.min]" @click="login" />
         </form>
         <p>
           New to Chords?
-          <span
-            @click="showSignupHideLogin"
-            class="create-acc"
-          >
+          <span @click="showSignupHideLogin" class="create-acc">
             Create an account
           </span>
         </p>
@@ -63,18 +34,9 @@
     </div>
   </section>
 
-  <section
-    class="signup"
-    v-show="isSignUpVisible"
-  >
+  <section class="signup" v-show="isSignUpVisible">
     <div class="body">
-      <form
-        id="signup-form"
-        @submit.prevent="checkForm"
-        ref="registerForm"
-        action="#"
-        novalidate="true"
-      >
+      <form id="signup-form" @submit.prevent="checkForm" ref="registerForm" action="#" novalidate="true">
         <div class="signup-div">
           <div class="signup-header">
             <h2>Sign Up to Chord</h2>
@@ -82,22 +44,12 @@
           <div class="user-input">
             <div class="input user-name">
               <p>Username</p>
-              <input
-                type="text"
-                v-model="userDetails.userName"
-                class="input"
-                placeholder="Enter username"
-              />
+              <input type="text" v-model="userDetails.userName" class="input" placeholder="Enter username" />
               <p class="errors">{{ errors.blankUserName }}</p>
             </div>
             <div class="input user-email">
               <p>Email address</p>
-              <input
-                type="text"
-                v-model="userDetails.userEmail"
-                class="input"
-                placeholder="Enter email"
-              />
+              <input type="text" v-model="userDetails.userEmail" class="input" placeholder="Enter email" />
               <p class="errors">{{ errors.blankEmail }}</p>
               <p class="errors">{{ errors.badEmail }}</p>
             </div>
@@ -105,28 +57,17 @@
               <p>Password</p>
               <div class="password">
                 <!-- CHANGE TO 8 minlength="8" LATER!!! -->
-                <input
-                  type="password"
-                  v-model="userDetails.userPassword"
-                  class="input"
-                  placeholder="Enter password (min 8 characters)"
-                />
+                <input type="password" v-model="userDetails.userPassword" class="input"
+                  placeholder="Enter password (min 8 characters)" />
                 <p class="errors">{{ errors.blankPswrd }}</p>
                 <p class="errors">{{ errors.shortPswrd }}</p>
               </div>
             </div>
           </div>
 
-          <input
-            type="submit"
-            class="sign-up-btn"
-            value="Sign up"
-          />
+          <input type="submit" class="sign-up-btn" value="Sign up" />
           <p>
-            <span
-              @click="showLoginHideSignup"
-              class="create-acc"
-            >
+            <span @click="showLoginHideSignup" class="create-acc">
               Login
             </span>
           </p>
@@ -357,6 +298,7 @@ export default {
   justify-content: space-between;
   margin: 2rem 0rem;
 }
+
 .user-input-form,
 .errors {
   width: 100%;
