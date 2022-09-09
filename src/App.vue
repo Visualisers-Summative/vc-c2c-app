@@ -69,7 +69,12 @@
     <router-view class="router-view" />
   </div>
   <div class="footer">
-    <FooterRow />
+    <div
+      class="show-footer"
+      v-if="loginform != true"
+    >
+      <FooterRow />
+    </div>
   </div>
 </template>
 
