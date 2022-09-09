@@ -366,6 +366,7 @@ export default {
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 1rem;
+  text-align: left;
 
   input {
     font-size: 1rem;
