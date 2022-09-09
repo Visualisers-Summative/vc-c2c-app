@@ -221,7 +221,9 @@ export default {
         })
         if (this.loggedUser) {
           console.log('login successful')
+          this.userDetails.user_id = localStorage.userId
           console.log('userid= ' + localStorage.userId)
+          console.log(this.userDetails.user_id)
 
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
