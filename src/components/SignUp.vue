@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <h2>{{userDetails.userName}}</h2>
   <section class="signup">
     <div class="body">
@@ -223,4 +223,4 @@ export default {
   color: black;
   font-size: 1rem;
 }
-</style>
+</style> -->
