@@ -1,5 +1,4 @@
 <template>
-
   <div class="header-container">
     <div>
       <a href="#">
@@ -24,79 +23,49 @@
       </div>
     </div>
 
-
     <div class="search-profile-container">
-<<<<<<< HEAD
-      <router-link
-        to="/Profile"
-        class="top"
-        >Profile</router-link
-      >
-      <div class="login-cmp">
-        <Login
-          @logged-user="setLoggedUser"
-          v-if="loginform"
-        />
-        <span
-          text
-          rounded
-          >{{ loggedUser }}</span
+      <div class="profile-cmp">
+        <router-link
+          to="/Profile"
+          class="top"
+          >Profile</router-link
         >
         <span
-          v-if="loggedUser != 'guest'"
+          class="profile-options"
+          v-if="loggedUser"
           text
           rounded
           @click="logout"
-          title="logout"
+          title="Logout"
+          >Logout</span
         >
-          <span> | logout</span>
-        </span>
-        <span
-          v-else
-          text
-          rounded
-          @click="login"
-          title="login"
-        >
-          <span> | login</span>
-        </span>
-      </div>
-      | Cart
-
-      <!-- <h2>{{ userDetails.user_id }}</h2> -->
-      <div class="search">
-        <form class="search-container">
-          <input
-            type="text"
-            id="search-bar"
-            placeholder="Search?"
-          />
-          <a href="#"
-            ><img
-              class="search-icon"
-              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
-          /></a>
-=======
-      <div class="profile-cmp">
-        <router-link to="/Profile" class="top">Profile</router-link>
-        <span class="profile-options" v-if="loggedUser" text rounded @click="logout" title="Logout">Logout</span>
         <span class="profile-options">|</span>
         <span class="profile-options">Cart</span>
       </div>
 
       <div class="search">
         <form class="search-container">
-          <input type="text" id="search-bar" placeholder="Search..." />
-          <a href="#"><img class="search-icon"
-              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" /></a>
->>>>>>> 9af5c3b1b570a7c9668f589d9d2339adc2d70e36
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search..."
+          />
+          <a href="#"
+            ><img
+              class="search-icon"
+              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
+          /></a>
         </form>
       </div>
     </div>
   </div>
   <hr />
   <div class="login">
-    <Login class="login-form" @logged-user="setLoggedUser" v-if="loginform != true" />
+    <Login
+      class="login-form"
+      @logged-user="setLoggedUser"
+      v-if="loginform != true"
+    />
     <router-view class="router-view" />
   </div>
   <div class="footer">
@@ -145,7 +114,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
-
 }
 
 .logo {
@@ -169,15 +137,9 @@ export default {
   margin-bottom: 4rem;
 }
 
-<<<<<<< HEAD
-// .search-profile-container {
-//   text-align: right;
-// }
-=======
 #search-bar {
   border: 1px solid black;
 }
->>>>>>> 9af5c3b1b570a7c9668f589d9d2339adc2d70e36
 
 .profile-options {
   padding-left: 0.5rem;
@@ -268,7 +230,6 @@ input#search-bar {
   .router-view {
     margin-bottom: -90%;
   }
-
 }
 
 @media only screen and (min-width: 1500px) {
