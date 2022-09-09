@@ -2,9 +2,9 @@
 
   <div class="header-container">
     <div>
-      <a href="#">
+      <router-link to="/#">
         <img src="./assets/images/Chords.svg" alt="chords-logo" class="logo" />
-      </a>
+      </router-link>
       <div class="nav-links">
         <router-link to="/#" class="top">Buy</router-link>
         |
@@ -15,10 +15,11 @@
 
     <div class="search-profile-container">
       <div class="profile-cmp">
-        <router-link to="/Profile" class="top">Profile</router-link>
-        <span class="profile-options" v-if="loggedUser" text rounded @click="logout" title="Logout">Logout</span>
-        <span class="profile-options">|</span>
-        <span class="profile-options">Cart</span>
+        <router-link v-if="loggedUser" to="/Profile" class="top">Profile</router-link>
+        <span v-if="loggedUser" class="profile-options text">|</span>
+        <router-link to="/#" class="profile-options text" v-if="loggedUser" @click="logout" title="Logout"><span>Logout</span></router-link>
+        <span v-if="loggedUser" class="profile-options">|</span>
+        <span v-if="loggedUser" class="profile-options text">Cart</span>
       </div>
 
       <div class="search">
@@ -32,8 +33,8 @@
   </div>
   <hr />
   <div class="login">
-    <Login class="login-form" @logged-user="setLoggedUser" v-if="loginform != true" />
-    <router-view class="router-view" />
+    <Login class="login-form" @logged-user="setLoggedUser" v-if="loggedUser != true" />
+    <router-view :class="{ loggedin: loggedUser, loggedout: !loggedUser }" />
   </div>
   <div class="footer">
     <FooterRow />
@@ -58,6 +59,7 @@ export default {
     logout() {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
+      this.loginform = false
       document.location.reload(true) // force page reload
     },
     setLoggedUser(loggedInUser) {
@@ -80,7 +82,12 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
-
+  .text {
+    cursor: pointer;
+  }
+  .text:hover {
+    text-decoration: underline;
+  }
 }
 
 .logo {
@@ -162,20 +169,24 @@ input#search-bar {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  padding-bottom: 2rem;
 }
 
-.login-fornm {
-  background-color: rgba(255, 255, 255, 0.65);
-  height: 100%;
-  width: 100%;
-}
 
-.router-view {
+.loggedout {
   z-index: -1;
   max-height: 50rem;
   transform: translateY(-105%) scale(0.9);
   overflow-y: hidden;
-  margin-bottom: -60%;
+  margin-bottom: -70%;
+}
+
+.loggedin {
+  transform: none;
+  z-index: 0;
+  max-height: none;
+  margin-top: 1rem;
+  margin-bottom: -8rem;
 }
 
 .search-icon {
@@ -188,21 +199,15 @@ input#search-bar {
 }
 
 .footer {
-  position: fixed;
-  bottom: 2rem;
-  width: clamp(40rem, 80%, 80rem);
+  z-index: 0;
 }
 
-@media only screen and (max-width: 1200px) {
-  .router-view {
-    margin-bottom: -90%;
-  }
-
-}
+@media only screen and (max-width: 1200px) {}
 
 @media only screen and (min-width: 1500px) {
-  router-view {
-    margin-bottom: -80%;
+
+  .login {
+    padding-bottom: 8rem;
   }
 }
 </style>
