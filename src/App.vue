@@ -1,4 +1,5 @@
 <template>
+
   <div class="header-container">
     <div>
       <a href="#">
@@ -23,7 +24,9 @@
       </div>
     </div>
 
+
     <div class="search-profile-container">
+<<<<<<< HEAD
       <router-link
         to="/Profile"
         class="top"
@@ -73,20 +76,29 @@
               class="search-icon"
               src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
           /></a>
+=======
+      <div class="profile-cmp">
+        <router-link to="/Profile" class="top">Profile</router-link>
+        <span class="profile-options" v-if="loggedUser" text rounded @click="logout" title="Logout">Logout</span>
+        <span class="profile-options">|</span>
+        <span class="profile-options">Cart</span>
+      </div>
+
+      <div class="search">
+        <form class="search-container">
+          <input type="text" id="search-bar" placeholder="Search..." />
+          <a href="#"><img class="search-icon"
+              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" /></a>
+>>>>>>> 9af5c3b1b570a7c9668f589d9d2339adc2d70e36
         </form>
       </div>
     </div>
   </div>
   <hr />
-
-  <!-- <div class="header">
-    <HeaderRow />
-  </div> -->
-
-  <div class="body">
-    <router-view />
+  <div class="login">
+    <Login class="login-form" @logged-user="setLoggedUser" v-if="loginform != true" />
+    <router-view class="router-view" />
   </div>
-
   <div class="footer">
     <FooterRow />
   </div>
@@ -102,7 +114,7 @@ export default {
   name: 'App',
   data() {
     return {
-      loggedUser: 'guest',
+      loggedUser: '',
       loginform: false,
     }
   },
@@ -129,21 +141,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .login-cmp {
-//   width: clamp(50rem, 80%, 80rem);
-//   height: 100%;
-//   background-color: rgba(255, 255, 255, 0.65);
-//   position: absolute;
-//   z-index: 1;
-// }
-
-// .product-container-cmp {
-//   margin: 0 auto;
-// }
 .header-container {
-  height: auto;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+
 }
 
 .logo {
@@ -167,25 +169,27 @@ export default {
   margin-bottom: 4rem;
 }
 
+<<<<<<< HEAD
 // .search-profile-container {
 //   text-align: right;
 // }
+=======
+#search-bar {
+  border: 1px solid black;
+}
+>>>>>>> 9af5c3b1b570a7c9668f589d9d2339adc2d70e36
 
-// .search-button {
-//   background: transparent;
-//   border: none;
-//   outline: none;
-//   margin-left: -33px;
-// }
+.profile-options {
+  padding-left: 0.5rem;
+}
 
-// .search-button img {
-//   width: 20px;
-//   height: 20px;
-//   object-fit: cover;
-// }
+.profile-cmp {
+  display: flex;
+  justify-content: flex-end;
+}
 
 .search-container {
-  width: 200px;
+  width: 18rem;
   display: block;
   margin: 0 auto;
   margin-top: 1em;
@@ -222,6 +226,29 @@ input#search-bar {
   }
 }
 
+.login {
+  background-color: rgba(255, 255, 255, 0.65);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.login-fornm {
+  background-color: rgba(255, 255, 255, 0.65);
+  height: 100%;
+  width: 100%;
+}
+
+.router-view {
+  z-index: -1;
+  max-height: 50rem;
+  transform: translateY(-105%) scale(0.9);
+  overflow-y: hidden;
+  margin-bottom: -60%;
+}
+
 .search-icon {
   position: relative;
   float: right;
@@ -232,6 +259,21 @@ input#search-bar {
 }
 
 .footer {
-  margin-top: 9rem;
+  position: fixed;
+  bottom: 2rem;
+  width: clamp(40rem, 80%, 80rem);
+}
+
+@media only screen and (max-width: 1200px) {
+  .router-view {
+    margin-bottom: -90%;
+  }
+
+}
+
+@media only screen and (min-width: 1500px) {
+  router-view {
+    margin-bottom: -80%;
+  }
 }
 </style>
