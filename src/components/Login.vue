@@ -122,6 +122,14 @@
             class="sign-up-btn"
             value="Sign up"
           />
+          <p>
+            <span
+              @click="showLoginHideSignup"
+              class="create-acc"
+            >
+              Login
+            </span>
+          </p>
           <!-- <input type="button" @click="checkForm" class="sign-up-btn" value="Sign up" /> -->
         </div>
       </form>
@@ -179,9 +187,9 @@ export default {
     }
   },
   computed: {
-    passwordMatch() {
-      return this.userDetails.userPassword === this.verify || 'Password must match'
-    },
+    // passwordMatch() {
+    //   return this.userDetails.userPassword === this.verify || 'Password must match'
+    // },
   },
   methods: {
     showSignupHideLogin() {
