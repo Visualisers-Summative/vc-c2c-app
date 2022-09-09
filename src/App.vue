@@ -97,7 +97,7 @@ export default {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
       document.location.reload(true) // force page reload
-      document.location.path('/')
+      document.location.router('/')
     },
     setLoggedUser(loggedInUser) {
       this.loggedUser = loggedInUser
