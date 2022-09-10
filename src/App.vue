@@ -2,32 +2,77 @@
   <div class="header-container">
     <div>
       <router-link to="/#">
-        <img src="./assets/images/Chords.svg" alt="chords-logo" class="logo" />
+        <img
+          src="./assets/images/Chords.svg"
+          alt="chords-logo"
+          class="logo"
+        />
       </router-link>
       <div class="nav-links">
-        <router-link to="/#" v-if="loggedUser" class="top">Buy |</router-link>
-        <router-link to="/Profile" v-if="loggedUser" class="top">Sell</router-link>
+        <router-link
+          to="/#"
+          v-if="loggedUser"
+          class="top"
+          >Buy |</router-link
+        >
+        <router-link
+          to="/Profile"
+          v-if="loggedUser"
+          class="top"
+          >Sell</router-link
+        >
       </div>
     </div>
 
     <div class="search-profile-container">
       <div class="profile-cmp">
-
-        <router-link v-if="loggedUser" to="/Profile" class="top">Profile</router-link>
-        <span v-if="loggedUser" class="profile-options text">|</span>
-        <router-link to="/#" class="profile-options text" v-if="loggedUser" @click="logout" title="Logout">
+        <router-link
+          v-if="loggedUser"
+          to="/Profile"
+          class="top"
+          >Profile</router-link
+        >
+        <span
+          v-if="loggedUser"
+          class="profile-options text"
+          >|</span
+        >
+        <router-link
+          to="/#"
+          class="profile-options text"
+          v-if="loggedUser"
+          @click="logout"
+          title="Logout"
+        >
           <span>Logout</span>
         </router-link>
-        <span v-if="loggedUser" class="profile-options">|</span>
-        <span v-if="loggedUser" class="profile-options text">Cart</span>
-
+        <span
+          v-if="loggedUser"
+          class="profile-options"
+          >|</span
+        >
+        <span
+          v-if="loggedUser"
+          class="profile-options text"
+          >Cart</span
+        >
       </div>
 
-      <div v-if="loggedUser" class="search">
+      <div
+        v-if="loggedUser"
+        class="search"
+      >
         <form class="search-container">
-          <input type="text" id="search-bar" placeholder="Search..." />
-          <a href="#"><img class="search-icon"
-              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" /></a>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search..."
+          />
+          <a href="#"
+            ><img
+              class="search-icon"
+              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
+          /></a>
         </form>
       </div>
     </div>
@@ -36,8 +81,15 @@
   <hr />
 
   <div class="login">
-    <Login class="login-form" @logged-user="setLoggedUser" v-if="isLoginVisible == true" />
-    <router-view :class="{ loggedin: loggedUser, loggedout: !loggedUser }" class="loginform" />
+    <Login
+      class="login-form"
+      @logged-user="setLoggedUser"
+      v-if="isLoginVisible == true"
+    />
+    <router-view
+      :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
+      class="loginform"
+    />
   </div>
 
   <div class="footer">
@@ -57,7 +109,7 @@ export default {
     return {
       loggedUser: '',
       loginform: false,
-      isLoginVisible: true
+      isLoginVisible: true,
     }
   },
   methods: {
@@ -65,6 +117,8 @@ export default {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
       document.location.reload(true) // force page reload
+      // document.location.router('/')
+      window.location = '/'
     },
     setLoggedUser(loggedInUser) {
       this.loggedUser = loggedInUser
@@ -182,7 +236,6 @@ input#search-bar {
   padding-bottom: 2rem;
 }
 
-
 .loggedout {
   z-index: -1;
   max-height: 50rem;
@@ -221,7 +274,6 @@ input#search-bar {
     margin-top: -6rem;
   }
 }
-
 
 @media only screen and (max-width: 1200px) {
   .footer {

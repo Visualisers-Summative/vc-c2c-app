@@ -338,6 +338,10 @@ export default {
       // set user_id
       this.userDetails.user_id = localStorage.userId
     }
+
+    if (localStorage.userId) {
+      this.isLoginVisible = false
+    }
   },
 }
 </script>
