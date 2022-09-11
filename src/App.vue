@@ -76,6 +76,7 @@
             type="text"
             id="search-bar"
             placeholder="Search..."
+            v-model="search"
           />
           <a href="#"
             ><img
@@ -90,11 +91,15 @@
   <hr />
 
   <div class="login">
-    <Login
+    <!-- <Login
       class="login-form"
       @logged-user="setLoggedUser"
       v-if="isLoginVisible == true"
-    />
+    /> -->
+    <div class="login-form">
+      <Login />
+    </div>
+
     <router-view
       :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
       class="loginform"
@@ -119,6 +124,8 @@ export default {
       loggedUser: '',
       loginform: false,
       isLoginVisible: true,
+      search: '',
+      records: [],
     }
   },
   methods: {
@@ -126,7 +133,6 @@ export default {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
       document.location.reload(true) // force page reload
-      // document.location.router('/')
       window.location = '/'
     },
     setLoggedUser(loggedInUser) {
@@ -139,11 +145,18 @@ export default {
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
-      console.log('loggedUSER:' + localStorage.userId)
+      console.log('logged USERs ID:' + localStorage.userId)
     }
     if (localStorage.userId) {
       this.isLoginVisible = false
     }
+  },
+  computed: {
+    filteredList() {
+      return this.postList.filter(post => {
+        return post.title.toLowerCase().includes(this.search.toLowerCase())
+      })
+    },
   },
 }
 </script>
@@ -259,7 +272,7 @@ input#search-bar {
   z-index: 0;
   max-height: none;
   margin-top: 1rem;
-  margin-bottom: -8rem;
+  // margin-bottom: -8rem;
 }
 
 .search-icon {
@@ -272,8 +285,8 @@ input#search-bar {
 }
 
 .profile-circle {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -293,22 +306,22 @@ input#search-bar {
 }
 
 .footer {
-  margin-top: 4rem;
+  // margin-top: 4rem;
   position: absolute;
-  padding: 2rem 0rem;
+  // padding: 2rem 0rem;
   width: clamp(40rem, 80%, 80rem);
   z-index: 0;
 }
 
-@media only screen and (max-width: 1500px) {
-  .footer {
-    margin-top: -6rem;
-  }
-}
+// @media only screen and (max-width: 1500px) {
+//   .footer {
+//     // margin-top: -6rem;
+//   }
+// }
 
-@media only screen and (max-width: 1200px) {
-  .footer {
-    margin-top: -16rem;
-  }
-}
+// @media only screen and (max-width: 1200px) {
+//   .footer {
+//     // margin-top: -16rem;
+//   }
+// }
 </style>

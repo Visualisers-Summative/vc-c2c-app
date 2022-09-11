@@ -227,7 +227,7 @@ export default {
 
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
-          //   document.location.reload(true) // force page reload to show admin table
+          document.location.reload(true) // force page reload to show admin table
           this.isLoginVisible = false
         } else {
           console.log('login failed')

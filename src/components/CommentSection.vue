@@ -34,7 +34,7 @@
         />
         <div class="comment-container">
           <h4>vinyllover</h4>
-          <p>Great EP! It’s perfect for me, the tracks, the cover and the fact it is 2x12inch. I am a fan of 1x12 inch records cause it’s more easy to handle.</p>
+          <p>Great EP! It's perfect for me, the tracks, the cover and the fact it is 2x12inch. I am a fan of 1x12 inch records cause it's more easy to handle.</p>
         </div>
       </div>
 
