@@ -29,8 +29,17 @@
         <router-link
           v-if="loggedUser"
           to="/Profile"
+          class="profile-icon"
+        >
+          <span class="profile-circle">{{ loggedUser.charAt(0) }}</span>
+        </router-link>
+
+        <router-link
+          v-if="loggedUser"
+          to="/Profile"
           class="top"
-          >Profile</router-link
+        >
+          Profile</router-link
         >
         <span
           v-if="loggedUser"
@@ -130,7 +139,7 @@ export default {
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
-      console.log('loggedUSER' + localStorage.userId)
+      console.log('loggedUSER:' + localStorage.userId)
     }
     if (localStorage.userId) {
       this.isLoginVisible = false
@@ -186,6 +195,7 @@ export default {
 .profile-cmp {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .search-container {
@@ -259,6 +269,27 @@ input#search-bar {
   height: 770x;
   top: -60px;
   right: -25px;
+}
+
+.profile-circle {
+  height: 50px;
+  width: 50px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-image: linear-gradient(to right, blue, green);
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.profile-icon {
+  margin-right: 0.5em;
+}
+
+.profile-icon:hover {
+  text-decoration: none;
 }
 
 .footer {
