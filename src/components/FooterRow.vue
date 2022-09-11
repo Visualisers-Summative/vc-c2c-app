@@ -1,14 +1,4 @@
-<script >
-export default {
-  name: "FooterRow",
-  data () {
-    return {
 
-    }
-  }
-}
-
-</script>
   
   <template>
   <div class="divider-line">
@@ -49,14 +39,23 @@ export default {
       <li>© 2022 Chords</li>
     </ul>
     <div>
-      <img src="../assets/images/c.png" alt="C-logo" class="logo-c">
+      <router-link to="/#"><img src="../assets/images/c.png" alt="C-logo" class="logo-c"></router-link>
     </div>
 
   </div>
-
-
-
 </template>
+
+<script >
+  export default {
+    name: "FooterRow",
+    data () {
+      return {
+  
+      }
+    }
+  }
+  
+  </script>
   
   <style lang="scss" scoped>
   .footer {
