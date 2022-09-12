@@ -23,7 +23,10 @@
         />
         <div class="comment-container">
           <h4>honicz</h4>
-          <p>I really like the artwork of this release. I know the font is supposed to be a homage to the Cheetah “Sweet Talker” speech synth chip from the 80’s.</p>
+          <p>
+            I really like the artwork of this release. I know the font is supposed to be a homage to
+            the Cheetah “Sweet Talker” speech synth chip from the 80’s.
+          </p>
         </div>
       </div>
 
@@ -34,7 +37,10 @@
         />
         <div class="comment-container">
           <h4>vinyllover</h4>
-          <p>Great EP! It’s perfect for me, the tracks, the cover and the fact it is 2x12inch. I am a fan of 1x12 inch records cause it’s more easy to handle.</p>
+          <p>
+            Great EP! It's perfect for me, the tracks, the cover and the fact it is 2x12inch. I am a
+            fan of 1x12 inch records cause it's more easy to handle.
+          </p>
         </div>
       </div>
 
@@ -64,7 +70,7 @@
 </template>
 
 <script>
-const apiComments = ''
+const apiComments = 'https://vc-comments.netlify.app/.netlify/functions/api'
 </script>
 
 <style scoped lang="scss">
