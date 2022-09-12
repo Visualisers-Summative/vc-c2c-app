@@ -2,11 +2,24 @@
   <div class="header-container">
     <div>
       <router-link to="/#">
-        <img src="./assets/images/Chords2.svg" alt="chords-logo" class="logo" />
+        <img
+          src="./assets/images/Chords2.svg"
+          alt="chords-logo"
+          class="logo"
+        />
       </router-link>
       <div class="nav-links">
-        <router-link to="/#" class="top">Buy</router-link> |
-        <router-link to="/Profile" class="top">Sell</router-link>
+        <router-link
+          to="/#"
+          class="top"
+          >Buy</router-link
+        >
+        |
+        <router-link
+          to="/Profile"
+          class="top"
+          >Sell</router-link
+        >
       </div>
     </div>
 
@@ -52,38 +65,23 @@
           >Cart</span
         >
       </div>
-<<<<<<< HEAD
+      <!-- | Cart -->
 
-      <div
-        v-if="loggedUser"
-        class="search"
-      >
-        <form class="search-container">
+      <div class="box">
+        <form name="search">
           <input
             type="text"
-            id="search-bar"
-            placeholder="Search..."
-            v-model="search"
+            class="input"
+            name="txt"
+            onmouseout="this.value = ''; this.blur();"
           />
           <a href="#"
             ><img
               class="search-icon"
-              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
+              src="./assets/images/search.png"
           /></a>
         </form>
-=======
-      <!-- | Cart -->
-    
-      <div class="box">
-    <form name="search">
-        <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
-        <a href="#"><img class="search-icon"
-              src="./assets/images/search.png" /></a>
-    </form>
-    
->>>>>>> 8f87edbb3233d31cf79b42dba7a86e859ba0f618
       </div>
-
     </div>
   </div>
 
@@ -114,7 +112,6 @@
 // import HeaderRow from './components/HeaderRow.vue'
 import FooterRow from './components/FooterRow.vue'
 import Login from './components/Login.vue'
-
 
 export default {
   components: { FooterRow, Login },
@@ -185,66 +182,44 @@ export default {
   margin-top: 0.75rem;
 }
 
-<<<<<<< HEAD
-// .search-field {
-//   font-size: 1rem;
-//   height: 2.25rem;
-//   width: 14rem;
-//   margin-top: 0.5rem;
-//   padding-top: 10px;
-//   -webkit-box-sizing: border-box;
-//   -moz-box-sizing: border-box;
-//   box-sizing: border-box;
-//   border: 1px solid black;
-//   margin-bottom: 4rem;
-// }
-
-// #search-bar {
-//   border: 1px solid black;
-// }
-
-.profile-options {
-  padding-left: 0.5rem;
-=======
 .search-profile-container {
   text-align: right;
 }
 
-.box{
-    position: relative;
-    margin-top: 1rem;
+.box {
+  position: relative;
+  margin-top: 1rem;
 }
 .input {
-    padding: 10px;
-    width: 40px;
-    height: 40px;
-    background: none;
-    border: 1px solid #201f1b;
-    border-radius: 50px;
-    box-sizing: border-box;
-    font-size: 15px;
-    color: #000000;
-    outline: none;
-    transition: .5s;
->>>>>>> 8f87edbb3233d31cf79b42dba7a86e859ba0f618
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid #201f1b;
+  border-radius: 50px;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #000000;
+  outline: none;
+  transition: 0.5s;
 }
-.box:hover input{
-    width: 350px;
-    background: #ffffff;
-    border-radius: 10px;
+.box:hover input {
+  width: 350px;
+  background: #ffffff;
+  border-radius: 10px;
 }
-.box a{
-    position: absolute;
-    top: 52%;
-    right: 1.8%;
-    transform: translate(-50%,-50%);
-    font-size: 15px;
-    color: #030303;
-    transition: .2s;
+.box a {
+  position: absolute;
+  top: 52%;
+  right: 1.8%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  color: #030303;
+  transition: 0.2s;
 }
-.box:hover a{
-    opacity: 0;
-    z-index: -1;
+.box:hover a {
+  opacity: 0;
+  z-index: -1;
 }
 
 .login {
@@ -307,19 +282,6 @@ export default {
   z-index: 0;
 }
 
-<<<<<<< HEAD
-// @media only screen and (max-width: 1500px) {
-//   .footer {
-//     // margin-top: -6rem;
-//   }
-// }
-
-// @media only screen and (max-width: 1200px) {
-//   .footer {
-//     // margin-top: -16rem;
-//   }
-// }
-=======
 @media only screen and (max-width: 1500px) {
   .footer {
     margin-top: -6rem;
@@ -330,7 +292,5 @@ export default {
   .footer {
     margin-top: -16rem;
   }
-
 }
->>>>>>> 8f87edbb3233d31cf79b42dba7a86e859ba0f618
 </style>
