@@ -183,6 +183,9 @@ export default {
 }
 
 .search-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   text-align: right;
 }
 
@@ -253,9 +256,11 @@ export default {
   height: 18px;
 }
 
-.profile-cmp{
+.profile-cmp {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  text-align: right;
 }
 
 .profile-circle {
@@ -287,15 +292,15 @@ export default {
   z-index: 0;
 }
 
-@media only screen and (max-width: 1500px) {
-  .footer {
-    margin-top: -6rem;
-  }
-}
+// @media only screen and (max-width: 1500px) {
+//   .footer {
+//     margin-top: -6rem;
+//   }
+// }
 
-@media only screen and (max-width: 1200px) {
-  .footer {
-    margin-top: -16rem;
-  }
-}
+// @media only screen and (max-width: 1200px) {
+//   .footer {
+//     margin-top: -16rem;
+//   }
+// }
 </style>
