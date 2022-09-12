@@ -72,7 +72,7 @@
             type="text"
             class="input"
             name="txt"
-            onclick="this.value = ''; this.blur();"
+            onclick="this.value = '';"
           />
           <a href="#"
             ><img
