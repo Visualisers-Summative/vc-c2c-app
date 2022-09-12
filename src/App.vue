@@ -72,6 +72,7 @@
             type="text"
             class="input"
             name="txt"
+            placeholder="Search"
             onclick="this.value = '';"
           />
           <a href="#"
@@ -182,16 +183,18 @@ export default {
 }
 
 .search-profile-container {
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
 }
 
 .box {
   position: relative;
   margin-top: 1rem;
+  background-color: #ffffff;
 }
+
 .input {
   padding: 10px;
   width: 40px;
@@ -203,17 +206,21 @@ text-align: right;
   font-size: 15px;
   color: #000000;
   outline: none;
-  transition: 0.5s;
+  transition: 0.7s;
 }
 .box:hover input {
   width: 350px;
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 0;
 }
+
 .box a {
   position: absolute;
-  top: 52%;
-  right: 1.5%;
+  z-index: 1;
+  top: 1.35rem;
+  right: 0.1rem;
+  vertical-align: middle;
+  text-align: center;
   transform: translate(-50%, -50%);
   font-size: 15px;
   color: #030303;
@@ -249,6 +256,7 @@ text-align: right;
 .search-icon {
   width: 18px;
   height: 18px;
+  background-color: #ffffff;
 }
 
 .profile-circle {
