@@ -2,25 +2,11 @@
   <div class="header-container">
     <div>
       <router-link to="/#">
-        <img
-          src="./assets/images/Chords.svg"
-          alt="chords-logo"
-          class="logo"
-        />
+        <img src="./assets/images/Chords2.svg" alt="chords-logo" class="logo" />
       </router-link>
       <div class="nav-links">
-        <router-link
-          to="/#"
-          v-if="loggedUser"
-          class="top"
-          >Buy |</router-link
-        >
-        <router-link
-          to="/Profile"
-          v-if="loggedUser"
-          class="top"
-          >Sell</router-link
-        >
+        <router-link to="/#" class="top">Buy</router-link> |
+        <router-link to="/Profile" class="top">Sell</router-link>
       </div>
     </div>
 
@@ -66,24 +52,17 @@
           >Cart</span
         >
       </div>
-
-      <div
-        v-if="loggedUser"
-        class="search"
-      >
-        <form class="search-container">
-          <input
-            type="text"
-            id="search-bar"
-            placeholder="Search..."
-          />
-          <a href="#"
-            ><img
-              class="search-icon"
-              src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
-          /></a>
-        </form>
+      <!-- | Cart -->
+    
+      <div class="box">
+    <form name="search">
+        <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
+        <a href="#"><img class="search-icon"
+              src="./assets/images/search.png" /></a>
+    </form>
+    
       </div>
+
     </div>
   </div>
 
@@ -110,6 +89,7 @@
 // import HeaderRow from './components/HeaderRow.vue'
 import FooterRow from './components/FooterRow.vue'
 import Login from './components/Login.vue'
+
 
 export default {
   components: { FooterRow, Login },
@@ -150,6 +130,7 @@ export default {
 
 <style lang="scss" scoped>
 .header-container {
+  height: 6.5rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -171,69 +152,44 @@ export default {
   margin-top: 0.75rem;
 }
 
-.search-field {
-  font-size: 1rem;
-  height: 2.25rem;
-  width: 14rem;
-  margin-top: 0.5rem;
-  padding-top: 10px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  border: 1px solid black;
-  margin-bottom: 4rem;
+.search-profile-container {
+  text-align: right;
 }
 
-#search-bar {
-  border: 1px solid black;
+.box{
+    position: relative;
+    margin-top: 1rem;
 }
-
-.profile-options {
-  padding-left: 0.5rem;
+.input {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 1px solid #201f1b;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #000000;
+    outline: none;
+    transition: .5s;
 }
-
-.profile-cmp {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.box:hover input{
+    width: 350px;
+    background: #ffffff;
+    border-radius: 10px;
 }
-
-.search-container {
-  width: 18rem;
-  display: block;
-  margin: 0 auto;
-  margin-top: 1em;
+.box a{
+    position: absolute;
+    top: 52%;
+    right: 1.8%;
+    transform: translate(-50%,-50%);
+    font-size: 15px;
+    color: #030303;
+    transition: .2s;
 }
-
-input#search-bar {
-  margin: 0 auto;
-  width: 100%;
-  height: 45px;
-  padding: 0 0.3em;
-  font-size: 1rem;
-  border: 1px solid #d0cfce;
-  outline: none;
-
-  &:focus {
-    border: 1px solid #008abf;
-    transition: 0.35s ease;
-    color: #008abf;
-
-    &::-webkit-input-placeholder {
-      transition: opacity 0.45s ease;
-      opacity: 0;
-    }
-
-    &::-moz-placeholder {
-      transition: opacity 0.45s ease;
-      opacity: 0;
-    }
-
-    &:-ms-placeholder {
-      transition: opacity 0.45s ease;
-      opacity: 0;
-    }
-  }
+.box:hover a{
+    opacity: 0;
+    z-index: -1;
 }
 
 .login {
@@ -263,12 +219,8 @@ input#search-bar {
 }
 
 .search-icon {
-  position: relative;
-  float: right;
-  width: 70px;
-  height: 770x;
-  top: -60px;
-  right: -25px;
+  width: 18px;
+  height: 18px;
 }
 
 .profile-circle {
@@ -310,5 +262,6 @@ input#search-bar {
   .footer {
     margin-top: -16rem;
   }
+
 }
 </style>
