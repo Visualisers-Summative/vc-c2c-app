@@ -181,18 +181,19 @@ export default {
           ) {
             this.loggedUser = element.userName
             this.userDetails.userGradient = element.userGradient
+            this.userDetails.userEmail = element.userEmail
             console.log(this.loggedUser)
-            //    + ' ' + element.lastname
-            // localStorage
             localStorage.userId = element._id
             localStorage.loggedUser = this.loggedUser
             localStorage.userGradient = this.userDetails.userGradient
+            localStorage.userEmail = element.userEmail
           }
         })
         if (this.loggedUser) {
           console.log('login successful')
           this.userDetails.user_id = localStorage.userId
           this.userDetails.userGradient = localStorage.userGradient
+          this.userDetails.userEmail = localStorage.userEmail
           console.log('userid= ' + localStorage.userId)
           console.log(this.userDetails.user_id)
           console.log(localStorage);

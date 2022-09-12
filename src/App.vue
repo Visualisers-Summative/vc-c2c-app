@@ -15,7 +15,6 @@
         <router-link v-if="loggedUser" to="/Profile" class="profile-icon">
           <span class="profile-circle" :style="{ background: userGradient }">{{ loggedUser.charAt(0) }}</span>
         </router-link>
-
         <router-link v-if="loggedUser" to="/Profile" class="top">
           Profile</router-link>
         <span v-if="loggedUser" class="profile-options text">|</span>
@@ -122,6 +121,12 @@ export default {
 
 .search-profile-container {
   text-align: right;
+}
+
+.profile-cmp {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .box {
