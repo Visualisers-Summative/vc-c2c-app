@@ -33,7 +33,7 @@ export default {
       records: null,
       recordsArray: [],
       currentPage: 0,
-      pageSize: 4,
+      pageSize: 8,
       visibleRecords: null,
     }
   },

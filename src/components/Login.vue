@@ -1,61 +1,33 @@
 <template>
   <!-- LOGIN UP SECTION [STARTS] -->
-  <section
-    class="login"
-    v-show="isLoginVisible"
-  >
+  <section class="login" v-show="isLoginVisible">
     <div class="body">
       <div class="login-div">
         <div class="login-header">
           <h2>Log in to your Chords account</h2>
         </div>
-        <form
-          id="login-form"
-          @submit.prevent=""
-          ref="registerForm"
-          action="#"
-          novalidate="true"
-          class="user-input-form"
-        >
+        <form id="login-form" @submit.prevent="" ref="registerForm" action="#" novalidate="true"
+          class="user-input-form">
           <div class="user-input">
             <div class="input user-email">
               <p>Email address</p>
-              <input
-                type="text"
-                name="userEmail"
-                v-model.trim="loginFormValue.loginEmail"
-                :rules="loginEmailRules"
-              />
+              <input type="text" name="userEmail" v-model.trim="loginFormValue.loginEmail" :rules="loginEmailRules" />
             </div>
             <div class="input user-password">
               <p>Password</p>
               <div class="password">
-                <input
-                  type="password"
-                  name="userPassword"
-                  class="password-inp"
-                  v-model.trim="loginFormValue.loginPassword"
-                  @keyup.enter="login"
-                />
+                <input type="password" name="userPassword" class="password-inp"
+                  v-model.trim="loginFormValue.loginPassword" @keyup.enter="login" />
               </div>
               <p><span>Forgot your password?</span></p>
             </div>
           </div>
           <p class="errors">{{ loginError }}</p>
-          <input
-            type="button"
-            value="Log In"
-            class="log-in-btn"
-            :rules="[rules.required, rules.min]"
-            @click="login"
-          />
+          <input type="button" value="Log In" class="log-in-btn" :rules="[rules.required, rules.min]" @click="login" />
         </form>
         <p>
           New to Chords?
-          <span
-            @click="showSignupHideLogin"
-            class="create-acc"
-          >
+          <span @click="showSignupHideLogin" class="create-acc">
             Create an account
           </span>
         </p>
@@ -65,18 +37,9 @@
   <!-- LOGIN UP SECTION [ENDS] -->
 
   <!-- SIGN UP SECTION [STARTS] -->
-  <section
-    class="signup"
-    v-show="isSignUpVisible"
-  >
+  <section class="signup" v-show="isSignUpVisible">
     <div class="body">
-      <form
-        id="signup-form"
-        @submit.prevent="checkForm"
-        ref="registerForm"
-        action="#"
-        novalidate="true"
-      >
+      <form id="signup-form" @submit.prevent="checkForm" ref="registerForm" action="#" novalidate="true">
         <div class="signup-div">
           <div class="signup-header">
             <h2>Sign Up to Chord</h2>
@@ -84,24 +47,14 @@
           <div class="user-input">
             <div class="input user-name">
               <p>Username</p>
-              <input
-                type="text"
-                v-model.trim="userDetails.userName"
-                class="input"
-                placeholder="Enter username"
-                @keyup="lowercase"
-              />
+              <input type="text" v-model.trim="userDetails.userName" class="input" placeholder="Enter username"
+                @keyup="lowercase" />
               <p class="errors">{{ errors.blankUserName }}</p>
             </div>
             <div class="input user-email">
               <p>Email address</p>
-              <input
-                type="text"
-                v-model.trim="userDetails.userEmail"
-                class="input"
-                placeholder="Enter email"
-                @keyup="lowercase"
-              />
+              <input type="text" v-model.trim="userDetails.userEmail" class="input" placeholder="Enter email"
+                @keyup="lowercase" />
               <p class="errors">{{ errors.blankEmail }}</p>
               <p class="errors">{{ errors.badEmail }}</p>
             </div>
@@ -109,28 +62,17 @@
               <p>Password</p>
               <div class="password">
                 <!-- CHANGE TO 8 minlength="8" LATER!!! -->
-                <input
-                  type="password"
-                  v-model.trim="userDetails.userPassword"
-                  class="input"
-                  placeholder="Enter password (min 8 characters)"
-                />
+                <input type="password" v-model.trim="userDetails.userPassword" class="input"
+                  placeholder="Enter password (min 8 characters)" />
                 <p class="errors">{{ errors.blankPswrd }}</p>
                 <p class="errors">{{ errors.shortPswrd }}</p>
               </div>
             </div>
           </div>
 
-          <input
-            type="submit"
-            class="sign-up-btn"
-            value="Sign up"
-          />
+          <input type="submit" class="sign-up-btn" value="Sign up" />
           <p>
-            <span
-              @click="showLoginHideSignup"
-              class="create-acc"
-            >
+            <span @click="showLoginHideSignup" class="create-acc">
               Login
             </span>
           </p>
@@ -162,7 +104,7 @@ export default {
       posts: [],
       loginFormValue: {
         loginEmail: '',
-        loginPassword: '',
+        loginPassword: ''
       },
       verify: '',
       userDetails: {
@@ -170,6 +112,7 @@ export default {
         userEmail: '',
         userPassword: '',
         user_id: '',
+        userGradient: ''
       },
       errors: {
         blankEmail: '',
@@ -192,6 +135,27 @@ export default {
     // },
   },
   methods: {
+    createHex() {
+      var hexCode1 = "";
+      var hexValues1 = "0123456789abcdef";
+
+      for (var i = 0; i < 6; i++) {
+        hexCode1 += hexValues1.charAt(Math.floor(Math.random() * hexValues1.length));
+      }
+      return hexCode1;
+    },
+
+    generateGradient() {
+
+      var deg = Math.floor(Math.random() * 360);
+
+      var gradient = "linear-gradient(" + deg + "deg, " + "#" + this.createHex() + ", " + "#" + this.createHex() + ")";
+
+      this.userDetails.userGradient = gradient
+
+      console.log(gradient);
+
+    },
     showSignupHideLogin() {
       // console.log(this.id);
       this.isLoginVisible = false
@@ -213,21 +177,25 @@ export default {
         this.users.forEach(element => {
           if (
             element.userEmail == this.loginFormValue.loginEmail &&
-            element.userPassword == this.loginFormValue.loginPassword
+            element.userPassword == this.loginFormValue.loginPassword 
           ) {
             this.loggedUser = element.userName
+            this.userDetails.userGradient = element.userGradient
             console.log(this.loggedUser)
             //    + ' ' + element.lastname
             // localStorage
             localStorage.userId = element._id
             localStorage.loggedUser = this.loggedUser
+            localStorage.userGradient = this.userDetails.userGradient
           }
         })
         if (this.loggedUser) {
           console.log('login successful')
           this.userDetails.user_id = localStorage.userId
+          this.userDetails.userGradient = localStorage.userGradient
           console.log('userid= ' + localStorage.userId)
           console.log(this.userDetails.user_id)
+          console.log(localStorage);
 
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
@@ -296,6 +264,7 @@ export default {
     },
     addUser() {
       // done
+      this.generateGradient()
       fetch(usersApi, {
         method: 'POST',
         headers: {
@@ -309,6 +278,7 @@ export default {
           this.resetData()
           this.showLoginHideSignup()
           console.log(data)
+          console.log(this.userDetails)
         })
         .catch(err => {
           if (err) throw err
@@ -331,6 +301,7 @@ export default {
       this.userDetails.userName = ''
       this.userDetails.userEmail = ''
       this.userDetails.userPassword = ''
+      this.userDetails.userGradient = ''
       this.loginFormValue.loginEmail = ''
       this.loginFormValue.loginPassword = ''
     },
