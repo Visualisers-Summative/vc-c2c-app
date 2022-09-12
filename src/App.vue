@@ -253,6 +253,11 @@ export default {
   height: 18px;
 }
 
+.profile-cmp {
+  display: flex;
+  align-items: center;
+}
+
 .profile-circle {
   height: 30px;
   width: 30px;
