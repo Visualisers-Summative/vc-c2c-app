@@ -223,9 +223,14 @@ export default {
   height: 18px;
 }
 
+.profile-cmp{
+  display: flex;
+  align-items: center;
+}
+
 .profile-circle {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   display: table-cell;
   text-align: center;
   vertical-align: middle;
