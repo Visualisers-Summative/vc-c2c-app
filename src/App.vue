@@ -2,105 +2,46 @@
   <div class="header-container">
     <div>
       <router-link to="/#">
-        <img
-          src="./assets/images/Chords2.svg"
-          alt="chords-logo"
-          class="logo"
-        />
+        <img src="./assets/images/Chords2.svg" alt="chords-logo" class="logo" />
       </router-link>
-      <div class="nav-links">
-        <router-link
-          to="/#"
-          class="top"
-          >Buy</router-link
-        >
-        |
-        <router-link
-          to="/Profile"
-          class="top"
-          >Sell</router-link
-        >
+      <div v-if="loggedUser" class="nav-links">
+        <router-link to="/#" class="top">Buy</router-link> |
+        <router-link to="/Profile" class="top">Sell</router-link>
       </div>
     </div>
-
     <div class="search-profile-container">
       <div class="profile-cmp">
-        <router-link
-          v-if="loggedUser"
-          to="/Profile"
-          class="profile-icon"
-        >
-          <span class="profile-circle">{{ loggedUser.charAt(0) }}</span>
-        </router-link>
 
-        <router-link
-          v-if="loggedUser"
-          to="/Profile"
-          class="top"
-        >
-          Profile</router-link
-        >
-        <span
-          v-if="loggedUser"
-          class="profile-options text"
-          >|</span
-        >
-        <router-link
-          to="/#"
-          class="profile-options text"
-          v-if="loggedUser"
-          @click="logout"
-          title="Logout"
-        >
+        <router-link v-if="loggedUser" to="/Profile" class="profile-icon">
+          <span class="profile-circle" :style="{ background: userGradient }">{{ loggedUser.charAt(0) }}</span>
+        </router-link>
+        <router-link v-if="loggedUser" to="/Profile" class="top">
+          Profile</router-link>
+        <span v-if="loggedUser" class="profile-options text">|</span>
+        <router-link to="/#" class="profile-options text" v-if="loggedUser" @click="logout" title="Logout">
           <span>Logout</span>
         </router-link>
-        <span
-          v-if="loggedUser"
-          class="profile-options"
-          >|</span
-        >
-        <span
-          v-if="loggedUser"
-          class="profile-options text"
-          >Cart</span
-        >
+        <span v-if="loggedUser" class="profile-options">|</span>
+        <span v-if="loggedUser" class="profile-options text">Cart</span>
       </div>
       <!-- | Cart -->
 
-      <div class="box">
+      <div v-if="loggedUser" class="box">
         <form name="search">
-          <input
-            type="text"
-            class="input"
-            name="txt"
-            onmouseout="this.value = ''; this.blur();"
-          />
-          <a href="#"
-            ><img
-              class="search-icon"
-              src="./assets/images/search.png"
-          /></a>
+          <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
+          <a href="#"><img class="search-icon" src="./assets/images/search.png" /></a>
         </form>
+
       </div>
+
     </div>
   </div>
 
   <hr />
 
   <div class="login">
-    <!-- <Login
-      class="login-form"
-      @logged-user="setLoggedUser"
-      v-if="isLoginVisible == true"
-    /> -->
-    <div class="login-form">
-      <Login />
-    </div>
-
-    <router-view
-      :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
-      class="loginform"
-    />
+    <Login class="login-form" @logged-user="setLoggedUser" v-if="isLoginVisible == true" />
+    <router-view :class="{ loggedin: loggedUser, loggedout: !loggedUser }" class="loginform" />
   </div>
 
   <div class="footer">
@@ -113,6 +54,7 @@
 import FooterRow from './components/FooterRow.vue'
 import Login from './components/Login.vue'
 
+
 export default {
   components: { FooterRow, Login },
   name: 'App',
@@ -121,8 +63,7 @@ export default {
       loggedUser: '',
       loginform: false,
       isLoginVisible: true,
-      search: '',
-      records: [],
+      userGradient: ''
     }
   },
   methods: {
@@ -130,6 +71,7 @@ export default {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
       document.location.reload(true) // force page reload
+      // document.location.router('/')
       window.location = '/'
     },
     setLoggedUser(loggedInUser) {
@@ -142,18 +84,13 @@ export default {
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
-      console.log('logged USERs ID:' + localStorage.userId)
+      this.userGradient = localStorage.userGradient
+      console.log(localStorage);
+      // console.log('loggedUSER:' + localStorage.userId)
     }
     if (localStorage.userId) {
       this.isLoginVisible = false
     }
-  },
-  computed: {
-    filteredList() {
-      return this.postList.filter(post => {
-        return post.title.toLowerCase().includes(this.search.toLowerCase())
-      })
-    },
   },
 }
 </script>
@@ -189,10 +126,17 @@ export default {
   text-align: right;
 }
 
+.profile-cmp {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .box {
   position: relative;
   margin-top: 1rem;
 }
+
 .input {
   padding: 10px;
   width: 40px;
@@ -204,13 +148,15 @@ export default {
   font-size: 15px;
   color: #000000;
   outline: none;
-  transition: 0.5s;
+  transition: .5s;
 }
+
 .box:hover input {
   width: 350px;
   background: #ffffff;
   border-radius: 10px;
 }
+
 .box a {
   position: absolute;
   top: 52%;
@@ -218,8 +164,9 @@ export default {
   transform: translate(-50%, -50%);
   font-size: 15px;
   color: #030303;
-  transition: 0.2s;
+  transition: .2s;
 }
+
 .box:hover a {
   opacity: 0;
   z-index: -1;
@@ -248,7 +195,7 @@ export default {
   z-index: 0;
   max-height: none;
   margin-top: 1rem;
-  // margin-bottom: -8rem;
+  margin-bottom: -8rem;
 }
 
 .search-icon {
@@ -264,13 +211,13 @@ export default {
 }
 
 .profile-circle {
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   display: table-cell;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;
-  background-image: linear-gradient(to right, blue, green);
+  background-color: #000000;
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -285,9 +232,9 @@ export default {
 }
 
 .footer {
-  // margin-top: 4rem;
+  margin-top: 4rem;
   position: absolute;
-  // padding: 2rem 0rem;
+  padding: 2rem 0rem;
   width: clamp(40rem, 80%, 80rem);
   z-index: 0;
 }
@@ -298,9 +245,18 @@ export default {
 //   }
 // }
 
+<<<<<<< HEAD
 // @media only screen and (max-width: 1200px) {
 //   .footer {
 //     margin-top: -16rem;
 //   }
 // }
+=======
+@media only screen and (max-width: 1200px) {
+  .footer {
+    margin-top: -16rem;
+  }
+
+}
+>>>>>>> b97d074c761d68ab16e4fff15da5117d3f06923b
 </style>
