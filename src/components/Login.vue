@@ -206,11 +206,15 @@ export default {
       this.userDetails.userEmail = this.userDetails.userEmail.toLowerCase()
     },
     login() {
+      console.log(this.loginFormValue)
       //   let validform = this.$refs.loginForm.checkForm()
       if (this.loginFormValue.loginEmail && this.loginFormValue.loginPassword) {
         // // // verify login details
         this.users.forEach(element => {
-          if (element.userEmail == this.loginFormValue.loginEmail && element.userPassword == this.loginFormValue.loginPassword) {
+          if (
+            element.userEmail == this.loginFormValue.loginEmail &&
+            element.userPassword == this.loginFormValue.loginPassword
+          ) {
             this.loggedUser = element.userName
             console.log(this.loggedUser)
             //    + ' ' + element.lastname
@@ -260,11 +264,13 @@ export default {
       }
       // no error found, call addUser
       if (!this.errors.length) {
+        this.getAllUsers()
         return this.addUser()
       }
     },
     validEmail(email) {
-      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      var re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return re.test(email)
     },
     getAll() {
@@ -309,6 +315,18 @@ export default {
           if (err) throw err
         })
     },
+    getAllUsers() {
+      fetch(usersApi)
+        .then(response => response.json())
+        .then(data => {
+          this.users = data
+          // console.log(this.users)
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
+
     resetData() {
       // this.editId = ''
       this.userDetails.userName = ''
@@ -323,17 +341,9 @@ export default {
     }
 
     // get all users
-    fetch(usersApi)
-      .then(response => response.json())
-      .then(data => {
-        this.users = data
-        // console.log(this.users)
-      })
-      .catch(err => {
-        if (err) throw err
-      })
-
+    this.getAllUsers()
     this.getAll()
+
     if (localStorage.userId) {
       // set user_id
       this.userDetails.user_id = localStorage.userId

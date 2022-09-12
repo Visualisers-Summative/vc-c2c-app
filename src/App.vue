@@ -184,22 +184,22 @@ export default {
   margin-top: 0.75rem;
 }
 
-.search-field {
-  font-size: 1rem;
-  height: 2.25rem;
-  width: 14rem;
-  margin-top: 0.5rem;
-  padding-top: 10px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  border: 1px solid black;
-  margin-bottom: 4rem;
-}
+// .search-field {
+//   font-size: 1rem;
+//   height: 2.25rem;
+//   width: 14rem;
+//   margin-top: 0.5rem;
+//   padding-top: 10px;
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+//   border: 1px solid black;
+//   margin-bottom: 4rem;
+// }
 
-#search-bar {
-  border: 1px solid black;
-}
+// #search-bar {
+//   border: 1px solid black;
+// }
 
 .profile-options {
   padding-left: 0.5rem;
