@@ -1,28 +1,23 @@
 <template>
-  <div>
+  <div id="profile-page">
     <ProfileSection />
   </div>
 </template>
 
 <script>
-import ProfileSection from '../components/ProfileSection.vue';
+import ProfileSection from '../components/ProfileSection.vue'
 
 export default {
   name: 'UserProfile',
   props: [],
-  methods: {
-  },
-  data () {
-    return {
-
-    };
+  methods: {},
+  data() {
+    return {}
   },
   components: {
-    ProfileSection
-},
+    ProfileSection,
+  },
 }
 </script>
 
-    
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

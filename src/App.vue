@@ -2,46 +2,109 @@
   <div class="header-container">
     <div>
       <router-link to="/#">
-        <img src="./assets/images/Chords2.svg" alt="chords-logo" class="logo" />
+        <img
+          src="./assets/images/Chords2.svg"
+          alt="chords-logo"
+          class="logo"
+        />
       </router-link>
-      <div v-if="loggedUser" class="nav-links">
-        <router-link to="/#" class="top">Buy</router-link> |
-        <router-link to="/Profile" class="top">Sell</router-link>
+      <div
+        v-if="loggedUser"
+        class="nav-links"
+      >
+        <router-link
+          to="/#"
+          class="top"
+          >Buy</router-link
+        >
+        |
+        <router-link
+          to="/Profile"
+          class="top"
+          >Sell</router-link
+        >
       </div>
     </div>
     <div class="search-profile-container">
       <div class="profile-cmp">
-
-        <router-link v-if="loggedUser" to="/Profile" class="profile-icon">
-          <span class="profile-circle" :style="{ background: userGradient }">{{ loggedUser.charAt(0) }}</span>
+        <router-link
+          v-if="loggedUser"
+          to="/Profile"
+          class="profile-icon"
+        >
+          <span
+            class="profile-circle"
+            :style="{ background: userGradient }"
+            >{{ loggedUser.charAt(0) }}</span
+          >
         </router-link>
-        <router-link v-if="loggedUser" to="/Profile" class="top">
-          Profile</router-link>
-        <span v-if="loggedUser" class="profile-options text">|</span>
-        <router-link to="/#" class="profile-options text" v-if="loggedUser" @click="logout" title="Logout">
+        <router-link
+          v-if="loggedUser"
+          to="/Profile"
+          class="top"
+        >
+          Profile</router-link
+        >
+        <span
+          v-if="loggedUser"
+          class="profile-options text"
+          >|</span
+        >
+        <router-link
+          to="/#"
+          class="profile-options text"
+          v-if="loggedUser"
+          @click="logout"
+          title="Logout"
+        >
           <span>Logout</span>
         </router-link>
-        <span v-if="loggedUser" class="profile-options">|</span>
-        <span v-if="loggedUser" class="profile-options text">Cart</span>
+        <span
+          v-if="loggedUser"
+          class="profile-options"
+          >|</span
+        >
+        <span
+          v-if="loggedUser"
+          class="profile-options text"
+          >Cart</span
+        >
       </div>
       <!-- | Cart -->
 
-      <div v-if="loggedUser" class="box">
+      <div
+        v-if="loggedUser"
+        class="box"
+      >
         <form name="search">
-          <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
-          <a href="#"><img class="search-icon" src="./assets/images/search.png" /></a>
+          <input
+            type="text"
+            class="input"
+            name="txt"
+            onmouseout="this.value = ''; this.blur();"
+          />
+          <a href="#"
+            ><img
+              class="search-icon"
+              src="./assets/images/search.png"
+          /></a>
         </form>
-
       </div>
-
     </div>
   </div>
 
   <hr />
 
   <div class="login">
-    <Login class="login-form" @logged-user="setLoggedUser" v-if="isLoginVisible == true" />
-    <router-view :class="{ loggedin: loggedUser, loggedout: !loggedUser }" class="loginform" />
+    <Login
+      class="login-form"
+      @logged-user="setLoggedUser"
+      v-if="isLoginVisible == true"
+    />
+    <router-view
+      :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
+      class="loginform"
+    />
   </div>
 
   <div class="footer">
@@ -54,7 +117,6 @@
 import FooterRow from './components/FooterRow.vue'
 import Login from './components/Login.vue'
 
-
 export default {
   components: { FooterRow, Login },
   name: 'App',
@@ -63,7 +125,7 @@ export default {
       loggedUser: '',
       loginform: false,
       isLoginVisible: true,
-      userGradient: ''
+      userGradient: '',
     }
   },
   methods: {
@@ -85,8 +147,8 @@ export default {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
       this.userGradient = localStorage.userGradient
-      console.log(localStorage);
-      // console.log('loggedUSER:' + localStorage.userId)
+      console.log(localStorage)
+      console.log('loggedUSER ID: ' + localStorage.userId)
     }
     if (localStorage.userId) {
       this.isLoginVisible = false
@@ -148,7 +210,7 @@ export default {
   font-size: 15px;
   color: #000000;
   outline: none;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .box:hover input {
@@ -164,7 +226,7 @@ export default {
   transform: translate(-50%, -50%);
   font-size: 15px;
   color: #030303;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .box:hover a {
@@ -211,8 +273,8 @@ export default {
 }
 
 .profile-circle {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -245,18 +307,9 @@ export default {
 //   }
 // }
 
-<<<<<<< HEAD
 // @media only screen and (max-width: 1200px) {
 //   .footer {
 //     margin-top: -16rem;
 //   }
 // }
-=======
-@media only screen and (max-width: 1200px) {
-  .footer {
-    margin-top: -16rem;
-  }
-
-}
->>>>>>> b97d074c761d68ab16e4fff15da5117d3f06923b
 </style>
