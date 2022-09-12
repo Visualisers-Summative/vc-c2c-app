@@ -60,10 +60,13 @@ export default {
     favourite() {
       event.target.classList.toggle('favourite')
     },
+    onClickHandler() {
+      console.log(page)
+    },
   },
   components: {
     SvgIcon,
-  }
+  },
 }
 </script>
 

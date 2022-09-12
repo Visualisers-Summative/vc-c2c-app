@@ -2,11 +2,24 @@
   <div class="header-container">
     <div>
       <router-link to="/#">
-        <img src="./assets/images/Chords2.svg" alt="chords-logo" class="logo" />
+        <img
+          src="./assets/images/Chords2.svg"
+          alt="chords-logo"
+          class="logo"
+        />
       </router-link>
       <div class="nav-links">
-        <router-link to="/#" class="top">Buy</router-link> |
-        <router-link to="/Profile" class="top">Sell</router-link>
+        <router-link
+          to="/#"
+          class="top"
+          >Buy</router-link
+        >
+        |
+        <router-link
+          to="/Profile"
+          class="top"
+          >Sell</router-link
+        >
       </div>
     </div>
 
@@ -53,27 +66,37 @@
         >
       </div>
       <!-- | Cart -->
-    
-      <div class="box">
-    <form name="search">
-        <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
-        <a href="#"><img class="search-icon"
-              src="./assets/images/search.png" /></a>
-    </form>
-    
-      </div>
 
+      <div class="box">
+        <form name="search">
+          <input
+            type="text"
+            class="input"
+            name="txt"
+            onmouseout="this.value = ''; this.blur();"
+          />
+          <a href="#"
+            ><img
+              class="search-icon"
+              src="./assets/images/search.png"
+          /></a>
+        </form>
+      </div>
     </div>
   </div>
 
   <hr />
 
   <div class="login">
-    <Login
+    <!-- <Login
       class="login-form"
       @logged-user="setLoggedUser"
       v-if="isLoginVisible == true"
-    />
+    /> -->
+    <div class="login-form">
+      <Login />
+    </div>
+
     <router-view
       :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
       class="loginform"
@@ -90,7 +113,6 @@
 import FooterRow from './components/FooterRow.vue'
 import Login from './components/Login.vue'
 
-
 export default {
   components: { FooterRow, Login },
   name: 'App',
@@ -99,6 +121,8 @@ export default {
       loggedUser: '',
       loginform: false,
       isLoginVisible: true,
+      search: '',
+      records: [],
     }
   },
   methods: {
@@ -106,7 +130,6 @@ export default {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
       document.location.reload(true) // force page reload
-      // document.location.router('/')
       window.location = '/'
     },
     setLoggedUser(loggedInUser) {
@@ -119,11 +142,18 @@ export default {
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
-      console.log('loggedUSER:' + localStorage.userId)
+      console.log('logged USERs ID:' + localStorage.userId)
     }
     if (localStorage.userId) {
       this.isLoginVisible = false
     }
+  },
+  computed: {
+    filteredList() {
+      return this.postList.filter(post => {
+        return post.title.toLowerCase().includes(this.search.toLowerCase())
+      })
+    },
   },
 }
 </script>
@@ -156,40 +186,40 @@ export default {
   text-align: right;
 }
 
-.box{
-    position: relative;
-    margin-top: 1rem;
+.box {
+  position: relative;
+  margin-top: 1rem;
 }
 .input {
-    padding: 10px;
-    width: 40px;
-    height: 40px;
-    background: none;
-    border: 1px solid #201f1b;
-    border-radius: 50px;
-    box-sizing: border-box;
-    font-size: 15px;
-    color: #000000;
-    outline: none;
-    transition: .5s;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid #201f1b;
+  border-radius: 50px;
+  box-sizing: border-box;
+  font-size: 15px;
+  color: #000000;
+  outline: none;
+  transition: 0.5s;
 }
-.box:hover input{
-    width: 350px;
-    background: #ffffff;
-    border-radius: 10px;
+.box:hover input {
+  width: 350px;
+  background: #ffffff;
+  border-radius: 10px;
 }
-.box a{
-    position: absolute;
-    top: 52%;
-    right: 1.8%;
-    transform: translate(-50%,-50%);
-    font-size: 15px;
-    color: #030303;
-    transition: .2s;
+.box a {
+  position: absolute;
+  top: 52%;
+  right: 1.8%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  color: #030303;
+  transition: 0.2s;
 }
-.box:hover a{
-    opacity: 0;
-    z-index: -1;
+.box:hover a {
+  opacity: 0;
+  z-index: -1;
 }
 
 .login {
@@ -215,7 +245,7 @@ export default {
   z-index: 0;
   max-height: none;
   margin-top: 1rem;
-  margin-bottom: -8rem;
+  // margin-bottom: -8rem;
 }
 
 .search-icon {
@@ -224,8 +254,8 @@ export default {
 }
 
 .profile-circle {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
   display: table-cell;
   text-align: center;
   vertical-align: middle;
@@ -245,9 +275,9 @@ export default {
 }
 
 .footer {
-  margin-top: 4rem;
+  // margin-top: 4rem;
   position: absolute;
-  padding: 2rem 0rem;
+  // padding: 2rem 0rem;
   width: clamp(40rem, 80%, 80rem);
   z-index: 0;
 }
@@ -262,6 +292,5 @@ export default {
   .footer {
     margin-top: -16rem;
   }
-
 }
 </style>

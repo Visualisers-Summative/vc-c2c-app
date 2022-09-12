@@ -14,7 +14,7 @@
     <div class="product-details">
       <h1 class="record-album">{{ record.albumTitle }}</h1>
 
-      <div class="product-titles ">
+      <div class="product-titles">
         <h4 class="column-1">ARTIST</h4>
         <p class="record-artist column-2">{{ record.artistName }}</p>
       </div>
@@ -46,8 +46,7 @@
 
       <div>
         <p>
-          Cheetah is an EP record by British electronic musician Richard D. James, released under his moniker Aphex Twin. According to Wikipedia “The name is a reference to Cheetah Marketing, a British manufacturer of microcomputer peripherals and electronic musical instruments in the 1980s (such as
-          the MS800 namechecked in two of the EP’s track titles).”
+          {{ record.albumDescription }}
         </p>
       </div>
 
@@ -113,19 +112,19 @@ export default {
 
   .product-details {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     margin-bottom: 2rem;
 
     .column-1 {
-    min-width: 100px;
-    display: flex;
-  }
-  // .column-2 {
-  //   text-align: right;
-  // }
+      min-width: 100px;
+      display: flex;
+    }
+    // .column-2 {
+    //   text-align: right;
+    // }
 
     h1 {
-      margin: 2rem 0rem ;
+      margin: 2rem 0rem;
     }
 
     .product-titles {
