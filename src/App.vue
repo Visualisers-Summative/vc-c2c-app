@@ -253,7 +253,7 @@ export default {
   height: 18px;
 }
 
-.profile-cmp {
+.profile-cmp{
   display: flex;
   align-items: center;
 }
