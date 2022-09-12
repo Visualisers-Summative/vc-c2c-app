@@ -187,7 +187,6 @@ display: flex;
 flex-direction: column;
 align-items: flex-end;
 text-align: right;
-
 }
 
 .box {
@@ -253,18 +252,6 @@ text-align: right;
   height: 18px;
 }
 
-<<<<<<< Updated upstream
-.profile-cmp {
-=======
-<<<<<<< Updated upstream
-.profile-cmp{
->>>>>>> Stashed changes
-  display: flex;
-  align-items: center;
-}
-
-=======
->>>>>>> Stashed changes
 .profile-circle {
   height: 30px;
   width: 30px;
