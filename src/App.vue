@@ -65,7 +65,6 @@
           >Cart</span
         >
       </div>
-      <!-- | Cart -->
 
       <div class="box">
         <form name="search">
@@ -73,7 +72,7 @@
             type="text"
             class="input"
             name="txt"
-            onmouseout="this.value = ''; this.blur();"
+            onclick="this.value = ''; this.blur();"
           />
           <a href="#"
             ><img
