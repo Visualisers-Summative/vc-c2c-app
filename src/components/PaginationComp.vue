@@ -52,7 +52,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.recordsArray.length)
     // this.pageTotal = this.records.length
   },
 }
