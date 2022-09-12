@@ -264,7 +264,6 @@ export default {
       }
       // no error found, call addUser
       if (!this.errors.length) {
-        this.getAllUsers()
         return this.addUser()
       }
     },
@@ -289,7 +288,6 @@ export default {
           } else {
             this.posts = data
           }
-
           this.loading = false
         })
         .catch(err => {
@@ -307,6 +305,7 @@ export default {
       })
         .then(response => response.text())
         .then(data => {
+          this.getAllUsers()
           this.resetData()
           this.showLoginHideSignup()
           console.log(data)
@@ -332,6 +331,8 @@ export default {
       this.userDetails.userName = ''
       this.userDetails.userEmail = ''
       this.userDetails.userPassword = ''
+      this.loginFormValue.loginEmail = ''
+      this.loginFormValue.loginPassword = ''
     },
   },
   mounted() {
