@@ -549,9 +549,10 @@ export default {
   color: tomato;
 }
 
-.error-note {
-  color: black;
+.error-msg {
+  color: red;
   font-size: 1rem;
+  padding-bottom: 1em;
 }
 
 // .signup-section {
