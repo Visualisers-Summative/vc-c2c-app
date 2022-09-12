@@ -183,7 +183,11 @@ export default {
 }
 
 .search-profile-container {
-  text-align: right;
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+text-align: right;
+
 }
 
 .box {
@@ -211,15 +215,11 @@ export default {
 .box a {
   position: absolute;
   top: 52%;
-  right: 1.8%;
+  right: 1.5%;
   transform: translate(-50%, -50%);
   font-size: 15px;
   color: #030303;
   transition: 0.2s;
-}
-.box:hover a {
-  opacity: 0;
-  z-index: -1;
 }
 
 .login {
@@ -253,11 +253,18 @@ export default {
   height: 18px;
 }
 
+<<<<<<< Updated upstream
 .profile-cmp {
+=======
+<<<<<<< Updated upstream
+.profile-cmp{
+>>>>>>> Stashed changes
   display: flex;
   align-items: center;
 }
 
+=======
+>>>>>>> Stashed changes
 .profile-circle {
   height: 30px;
   width: 30px;
