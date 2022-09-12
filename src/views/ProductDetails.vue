@@ -36,9 +36,7 @@
 
       <div class="product-titles">
         <h4 class="column-1">GENRE</h4>
-        <p class="record-genre column-2">{{ record.genre }}</p>
-
-        <!-- <p class="record-genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p> -->
+        <p class="record-genre column-2">{{ record.genre.join(', ') }}</p>
       </div>
 
       <div class="product-titles">

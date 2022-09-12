@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="header-container">
     <div>
       <a href="#">
@@ -76,4 +76,4 @@ export default {
   height: 20px;
   object-fit: cover;
 }
-</style>
+</style> -->

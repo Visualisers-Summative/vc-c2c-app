@@ -11,16 +11,46 @@
     </div>
 
     <div class="search-profile-container">
-      <router-link to="/Profile" class="top">Profile</router-link>
-      <div class="login-cmp">
-        <Login @logged-user="setLoggedUser" v-if="loginform" />
-        <span text rounded>{{ loggedUser }}</span>
-        <span v-if="loggedUser != 'guest'" text rounded @click="logout" title="logout">
-          <span> | logout</span>
-        </span>
-        <span v-else text rounded @click="login" title="login">
-          <span> | login</span>
-        </span>
+      <div class="profile-cmp">
+        <router-link
+          v-if="loggedUser"
+          to="/Profile"
+          class="profile-icon"
+        >
+          <span class="profile-circle">{{ loggedUser.charAt(0) }}</span>
+        </router-link>
+
+        <router-link
+          v-if="loggedUser"
+          to="/Profile"
+          class="top"
+        >
+          Profile</router-link
+        >
+        <span
+          v-if="loggedUser"
+          class="profile-options text"
+          >|</span
+        >
+        <router-link
+          to="/#"
+          class="profile-options text"
+          v-if="loggedUser"
+          @click="logout"
+          title="Logout"
+        >
+          <span>Logout</span>
+        </router-link>
+        <span
+          v-if="loggedUser"
+          class="profile-options"
+          >|</span
+        >
+        <span
+          v-if="loggedUser"
+          class="profile-options text"
+          >Cart</span
+        >
       </div>
       <!-- | Cart -->
     
@@ -38,12 +68,16 @@
 
   <hr />
 
-  <!-- <div class="header">
-    <HeaderRow />
-  </div> -->
-
-  <div class="body">
-    <router-view />
+  <div class="login">
+    <Login
+      class="login-form"
+      @logged-user="setLoggedUser"
+      v-if="isLoginVisible == true"
+    />
+    <router-view
+      :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
+      class="loginform"
+    />
   </div>
 
   <div class="footer">
@@ -62,8 +96,9 @@ export default {
   name: 'App',
   data() {
     return {
-      loggedUser: 'guest',
+      loggedUser: '',
       loginform: false,
+      isLoginVisible: true,
     }
   },
   methods: {
@@ -71,6 +106,8 @@ export default {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
       document.location.reload(true) // force page reload
+      // document.location.router('/')
+      window.location = '/'
     },
     setLoggedUser(loggedInUser) {
       this.loggedUser = loggedInUser
@@ -82,6 +119,10 @@ export default {
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
+      console.log('loggedUSER:' + localStorage.userId)
+    }
+    if (localStorage.userId) {
+      this.isLoginVisible = false
     }
   },
 }
@@ -90,8 +131,17 @@ export default {
 <style lang="scss" scoped>
 .header-container {
   height: 6.5rem;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.text {
+  cursor: pointer;
+}
+
+.text:hover {
+  text-decoration: underline;
 }
 
 .logo {
@@ -142,12 +192,76 @@ export default {
     z-index: -1;
 }
 
+.login {
+  background-color: rgba(255, 255, 255, 0.65);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 2rem;
+}
+
+.loggedout {
+  z-index: -1;
+  max-height: 50rem;
+  transform: translateY(-105%) scale(0.9);
+  overflow-y: hidden;
+  margin-bottom: -70%;
+}
+
+.loggedin {
+  transform: none;
+  z-index: 0;
+  max-height: none;
+  margin-top: 1rem;
+  margin-bottom: -8rem;
+}
+
 .search-icon {
   width: 18px;
   height: 18px;
 }
 
+.profile-circle {
+  height: 50px;
+  width: 50px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-image: linear-gradient(to right, blue, green);
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.profile-icon {
+  margin-right: 0.5em;
+}
+
+.profile-icon:hover {
+  text-decoration: none;
+}
+
 .footer {
-  margin-top: 6rem;
+  margin-top: 4rem;
+  position: absolute;
+  padding: 2rem 0rem;
+  width: clamp(40rem, 80%, 80rem);
+  z-index: 0;
+}
+
+@media only screen and (max-width: 1500px) {
+  .footer {
+    margin-top: -6rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .footer {
+    margin-top: -16rem;
+  }
+
 }
 </style>
