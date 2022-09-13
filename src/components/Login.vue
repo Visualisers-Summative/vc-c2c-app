@@ -559,7 +559,7 @@ export default {
 //     display: none;
 // }
 
-.activeClass {
-  display: block;
-}
+// .activeClass {
+//   display: block;
+// }
 </style>
