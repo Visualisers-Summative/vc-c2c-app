@@ -70,24 +70,25 @@
           >Cart</span
         >
       </div>
-      <!-- | Cart -->
 
-      <div
-        v-if="loggedUser"
-        class="box"
-      >
+      <div class="box" @click="expandBox = '350px'; radius = '0px'" v-if="loggedUser" >
+
         <form name="search">
           <input
             type="text"
             class="input"
             name="txt"
-            onmouseout="this.value = ''; this.blur();"
+            placeholder="Search"
+            onclick="this.value = '';"
+            :style="{ width: expandBox, borderRadius: radius }"
+            @blur="expandBox = '', radius = '50px'"
           />
-          <a href="#"
-            ><img
+    
+            <img
               class="search-icon"
               src="./assets/images/search.png"
-          /></a>
+          />
+
         </form>
       </div>
     </div>
@@ -125,6 +126,9 @@ export default {
       loggedUser: '',
       loginform: false,
       isLoginVisible: true,
+      search: '',
+      records: [],
+      expandBox: 'none',
       userGradient: '',
     }
   },
@@ -142,6 +146,10 @@ export default {
     login() {
       this.loginform = true
     },
+    shrinkBox() {
+      console.log("test") 
+    },
+    
   },
   mounted() {
     if (localStorage.loggedUser) {
@@ -195,8 +203,10 @@ export default {
 }
 
 .box {
+  display: block;
   position: relative;
   margin-top: 1rem;
+  background-color: #ffffff;
 }
 
 .input {
@@ -210,28 +220,20 @@ export default {
   font-size: 15px;
   color: #000000;
   outline: none;
-  transition: 0.5s;
+  transition: 0.7s;
 }
 
-.box:hover input {
-  width: 350px;
-  background: #ffffff;
-  border-radius: 10px;
-}
-
-.box a {
+.box img {
   position: absolute;
-  top: 52%;
-  right: 1.8%;
+  z-index: 1;
+  top: 1.35rem;
+  right: 0.1rem;
+  vertical-align: middle;
+  text-align: center;
   transform: translate(-50%, -50%);
   font-size: 15px;
   color: #030303;
   transition: 0.2s;
-}
-
-.box:hover a {
-  opacity: 0;
-  z-index: -1;
 }
 
 .login {
@@ -263,6 +265,7 @@ export default {
 .search-icon {
   width: 18px;
   height: 18px;
+  background-color: #ffffff;
 }
 
 .profile-cmp {
