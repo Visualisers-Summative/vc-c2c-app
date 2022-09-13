@@ -101,6 +101,18 @@
 
     <div class="user-listings">
       <h1>USER LISTINGS HERE</h1>
+      <div
+        v-for="record in usersRecords"
+        v-bind:key="record._id"
+        class="records-loop"
+      >
+        <div class="artist-name">
+          {{ record.artistName }}
+          <div>{{ record._id }}</div>
+          <div>{{ record.albumDescription }}</div>
+          <div>${{ record.price }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -113,11 +125,18 @@ const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
 export default {
   name: 'UserProfile',
   props: [],
+  components: {
+    ProfileSection,
+    // SellSection
+  },
   data() {
     return {
       isModalVisible: false,
       editId: '',
-      records: [],
+      usersRecords: [],
+      postsData: [],
+      postsLoading: true,
+      loading: true,
       editId: '',
       id: '',
       listRecord: {
@@ -134,18 +153,14 @@ export default {
         length: '',
         price: '',
         yearReleased: '',
-        userId: '',
-        id: '',
+        loggedUser: '',
+        loggedUserId: '',
       },
       editRecord: {
         albumDescription: '',
         albumTitle: '',
         artistName: '',
-        genre: [
-          {
-            '': '',
-          },
-        ],
+        genre: [],
         imageUrl: '',
         label: '',
         length: '',
@@ -166,7 +181,7 @@ export default {
       })
         .then(response => response.text())
         .then(data => {
-          // this.loadAllData()
+          this.loadAllData()
           // this.hideModal()
           this.resetData()
           console.log(data)
@@ -186,10 +201,47 @@ export default {
       this.listRecord.price = ''
       this.listRecord.yearReleased = ''
     },
+    loadAllData() {
+      fetch(productApi)
+        .then(response => response.json())
+        .then(data => {
+          this.usersRecords = data
+          console.log('id: ' + localStorage.userId)
+          if (localStorage.userId) {
+            let postData = []
+            data.forEach(element => {
+              console.log(element)
+              if (localStorage.userId === element.loggedUserId) {
+                postData.push(element)
+                console.log(postData)
+              }
+            })
+            this.usersRecords = postData
+            // console.log(this.usersRecords)
+            // } else {
+            //   // call login
+            //   console.log("call login");
+            //   localStorage.callLogin = true;
+          }
+          // set posts data
+          data.forEach(element => {
+            this.postsData[element._id] = element
+          })
+          // console.log(this.postsData)
+          // console.log(this.usersRecords)
+          // this.postsLoading = false
+          // this.loading = false
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
   },
-  components: {
-    ProfileSection,
-    // SellSection
+  mounted() {
+    this.listRecord.loggedUser = localStorage.loggedUser
+    this.listRecord.loggedUserId = localStorage.userId
+
+    this.loadAllData()
   },
 }
 </script>

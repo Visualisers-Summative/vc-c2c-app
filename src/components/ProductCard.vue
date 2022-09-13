@@ -14,9 +14,9 @@
             <p class="artist">{{ vinyls.artistName }}</p>
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
-          <div class="genre">
+          <!-- <div class="genre">
             <span>{{ vinyls.genre.join(', ') }}</span>
-          </div>
+          </div> -->
           <p class="length">{{ vinyls.length.toUpperCase() }}</p>
           <p class="year">{{ vinyls.year }}</p>
           <div class="more-info-div">
