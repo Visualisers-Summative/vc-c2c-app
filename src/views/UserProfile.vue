@@ -106,11 +106,30 @@
         v-bind:key="record._id"
         class="records-loop"
       >
+        <img
+          :src="record.imageUrl"
+          alt="Record cover"
+        />
         <div class="artist-name">
           {{ record.artistName }}
           <div>{{ record._id }}</div>
           <div>{{ record.albumDescription }}</div>
           <div>${{ record.price }}</div>
+        </div>
+        <div class="edit-buttons">
+          <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
+          <button
+            class="delete-btn"
+            @click="deleteDoc(record._id)"
+          >
+            Delete
+          </button>
+          <button
+            class="edit-btn"
+            v-on:click="onEdit(record)"
+          >
+            Edit
+          </button>
         </div>
       </div>
     </div>
@@ -119,6 +138,7 @@
 
 <script>
 import ProfileSection from '../components/ProfileSection.vue'
+import Swal from 'sweetalert2'
 // import SellSection from '../components/SellSection.vue';
 const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
@@ -235,6 +255,52 @@ export default {
         .catch(err => {
           if (err) throw err
         })
+    },
+    deleteDoc(id) {
+      // done
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this profile!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        dangerMode: true,
+      }).then(result => {
+        if (result.isConfirmed) {
+          fetch(productApi + id, {
+            method: 'DELETE',
+          })
+            .then(response => response.text())
+            .then(data => {
+              this.loadAllData()
+              console.log(data)
+            })
+            .catch(err => {
+              if (err) throw err
+            })
+          Swal.fire('Deleted!', 'Record has been deleted.', 'success', {
+            icon: 'success',
+          })
+        } else {
+          Swal.fire('Fail!', 'Fail to delete record.', 'error')
+        }
+      })
+    },
+    onEdit(profile) {
+      this.editId = profile._id
+      this.editFormValues.devName = profile.devName
+      this.editFormValues.devEmail = profile.devEmail
+      this.editFormValues.devMultipleImageUrl = profile.devMultipleImageUrl
+      this.editFormValues.devWebsiteName = profile.devWebsiteName
+    },
+    onCancel() {
+      this.editId = ''
+      this.editFormValues.devName = ''
+      this.editFormValues.devEmail = ''
+      this.editFormValues.devMultipleImageUrl = ''
+      this.editFormValues.devWebsiteName = ''
     },
   },
   mounted() {
