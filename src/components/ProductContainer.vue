@@ -47,7 +47,10 @@ export default {
       this.updateVisibleRecords()
     },
     updateVisibleRecords() {
-      this.visibleRecords = this.records.slice(this.currentPage * this.pageSize, this.currentPage * this.pageSize + this.pageSize)
+      this.visibleRecords = this.records.slice(
+        this.currentPage * this.pageSize,
+        this.currentPage * this.pageSize + this.pageSize,
+      )
 
       if (this.visibleRecords.length == 0 && this.currentPage > 0) {
         this.updatePage(this.currentPage - 1)
@@ -61,7 +64,7 @@ export default {
   created() {
     ProductService.getDatas()
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data)
         this.records = response.data
         this.recordsArray = response.data
         this.visibleRecords = response.data

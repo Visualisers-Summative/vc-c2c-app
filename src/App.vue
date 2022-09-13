@@ -71,8 +71,11 @@
         >
       </div>
 
-      <div class="box" @click="expandBox = '350px'; radius = '0px'" v-if="loggedUser" >
-
+      <div
+        class="box"
+        @click=";(expandBox = '350px'), (radius = '0px')"
+        v-if="loggedUser"
+      >
         <form name="search">
           <input
             type="text"
@@ -81,14 +84,13 @@
             placeholder="Search"
             onclick="this.value = '';"
             :style="{ width: expandBox, borderRadius: radius }"
-            @blur="expandBox = '', radius = '50px'"
-          />
-    
-            <img
-              class="search-icon"
-              src="./assets/images/search.png"
+            @blur=";(expandBox = ''), (radius = '50px')"
           />
 
+          <img
+            class="search-icon"
+            src="./assets/images/search.png"
+          />
         </form>
       </div>
     </div>
@@ -145,16 +147,15 @@ export default {
     login() {
       this.loginform = true
     },
-    shrinkBox() {
-      console.log("test") 
-    },
-    
+    // shrinkBox() {
+    //   console.log('test')
+    // },
   },
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
       this.userGradient = localStorage.userGradient
-      console.log(localStorage)
+      // console.log(localStorage)
       console.log('loggedUSER ID: ' + localStorage.userId)
     }
     if (localStorage.userId) {
