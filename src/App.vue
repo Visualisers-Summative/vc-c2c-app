@@ -66,7 +66,7 @@
         >
       </div>
 
-      <div class="box">
+      <div class="box" @click="expandBox = '350px'; radius = '0px'" >
         <form name="search">
           <input
             type="text"
@@ -74,12 +74,15 @@
             name="txt"
             placeholder="Search"
             onclick="this.value = '';"
+            :style="{ width: expandBox, borderRadius: radius }"
+            @blur="expandBox = '', radius = '50px'"
           />
-          <a href="#"
-            ><img
+    
+            <img
               class="search-icon"
               src="./assets/images/search.png"
-          /></a>
+          />
+
         </form>
       </div>
     </div>
@@ -123,6 +126,7 @@ export default {
       isLoginVisible: true,
       search: '',
       records: [],
+      expandBox: 'none',
     }
   },
   methods: {
@@ -138,6 +142,10 @@ export default {
     login() {
       this.loginform = true
     },
+    shrinkBox() {
+      console.log("test") 
+    },
+    
   },
   mounted() {
     if (localStorage.loggedUser) {
@@ -190,6 +198,7 @@ export default {
 }
 
 .box {
+  display: block;
   position: relative;
   margin-top: 1rem;
   background-color: #ffffff;
@@ -208,13 +217,13 @@ export default {
   outline: none;
   transition: 0.7s;
 }
-.box:hover input {
-  width: 350px;
-  background: #ffffff;
-  border-radius: 0;
-}
+// .box:focus input {
+//   width: 350px;
+//   background: #ffffff;
+//   border-radius: 0;
+// }
 
-.box a {
+.box img {
   position: absolute;
   z-index: 1;
   top: 1.35rem;
