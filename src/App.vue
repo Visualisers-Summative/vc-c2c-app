@@ -8,7 +8,10 @@
           class="logo"
         />
       </router-link>
-      <div class="nav-links">
+      <div
+        v-if="loggedUser"
+        class="nav-links"
+      >
         <router-link
           to="/#"
           class="top"
@@ -22,7 +25,6 @@
         >
       </div>
     </div>
-
     <div class="search-profile-container">
       <div class="profile-cmp">
         <router-link
@@ -30,9 +32,12 @@
           to="/Profile"
           class="profile-icon"
         >
-          <span class="profile-circle">{{ loggedUser.charAt(0) }}</span>
+          <span
+            class="profile-circle"
+            :style="{ background: userGradient }"
+            >{{ loggedUser.charAt(0) }}</span
+          >
         </router-link>
-
         <router-link
           v-if="loggedUser"
           to="/Profile"
@@ -66,7 +71,8 @@
         >
       </div>
 
-      <div class="box" @click="expandBox = '350px'; radius = '0px'" >
+      <div class="box" @click="expandBox = '350px'; radius = '0px'" v-if="loggedUser" >
+
         <form name="search">
           <input
             type="text"
@@ -91,15 +97,11 @@
   <hr />
 
   <div class="login">
-    <!-- <Login
+    <Login
       class="login-form"
       @logged-user="setLoggedUser"
       v-if="isLoginVisible == true"
-    /> -->
-    <div class="login-form">
-      <Login />
-    </div>
-
+    />
     <router-view
       :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
       class="loginform"
@@ -127,6 +129,7 @@ export default {
       search: '',
       records: [],
       expandBox: 'none',
+      userGradient: '',
     }
   },
   methods: {
@@ -134,6 +137,7 @@ export default {
       localStorage.removeItem('loggedUser')
       localStorage.removeItem('userId')
       document.location.reload(true) // force page reload
+      // document.location.router('/')
       window.location = '/'
     },
     setLoggedUser(loggedInUser) {
@@ -150,18 +154,13 @@ export default {
   mounted() {
     if (localStorage.loggedUser) {
       this.loggedUser = localStorage.loggedUser
-      console.log('logged USERs ID:' + localStorage.userId)
+      this.userGradient = localStorage.userGradient
+      console.log(localStorage)
+      console.log('loggedUSER ID: ' + localStorage.userId)
     }
     if (localStorage.userId) {
       this.isLoginVisible = false
     }
-  },
-  computed: {
-    filteredList() {
-      return this.postList.filter(post => {
-        return post.title.toLowerCase().includes(this.search.toLowerCase())
-      })
-    },
   },
 }
 </script>
@@ -197,6 +196,12 @@ export default {
   text-align: right;
 }
 
+.profile-cmp {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .box {
   display: block;
   position: relative;
@@ -217,11 +222,6 @@ export default {
   outline: none;
   transition: 0.7s;
 }
-// .box:focus input {
-//   width: 350px;
-//   background: #ffffff;
-//   border-radius: 0;
-// }
 
 .box img {
   position: absolute;
@@ -259,13 +259,20 @@ export default {
   z-index: 0;
   max-height: none;
   margin-top: 1rem;
-  // margin-bottom: -8rem;
+  margin-bottom: -8rem;
 }
 
 .search-icon {
   width: 18px;
   height: 18px;
   background-color: #ffffff;
+}
+
+.profile-cmp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: right;
 }
 
 .profile-circle {
@@ -275,7 +282,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;
-  background-image: linear-gradient(to right, blue, green);
+  background-color: #000000;
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -290,22 +297,22 @@ export default {
 }
 
 .footer {
-  // margin-top: 4rem;
+  margin-top: 4rem;
   position: absolute;
-  // padding: 2rem 0rem;
+  padding: 2rem 0rem;
   width: clamp(40rem, 80%, 80rem);
   z-index: 0;
 }
 
-@media only screen and (max-width: 1500px) {
-  .footer {
-    margin-top: -6rem;
-  }
-}
+// @media only screen and (max-width: 1500px) {
+//   .footer {
+//     margin-top: -6rem;
+//   }
+// }
 
-@media only screen and (max-width: 1200px) {
-  .footer {
-    margin-top: -16rem;
-  }
-}
+// @media only screen and (max-width: 1200px) {
+//   .footer {
+//     margin-top: -16rem;
+//   }
+// }
 </style>

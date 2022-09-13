@@ -36,18 +36,26 @@
                   class="password-inp"
                   v-model.trim="loginFormValue.loginPassword"
                   @keyup.enter="login"
+                  @focus="hideLoginErrorMsg"
                 />
               </div>
               <p><span>Forgot your password?</span></p>
             </div>
           </div>
           <p class="errors">{{ loginError }}</p>
+          <div
+            class="error-msg"
+            v-if="isLoginError"
+          >
+            {{ loginErrorMsg }}
+          </div>
           <input
             type="button"
             value="Log In"
             class="log-in-btn"
             :rules="[rules.required, rules.min]"
             @click="login"
+            @focus="hideLoginErrorMsg"
           />
         </form>
         <p>
@@ -120,7 +128,12 @@
               </div>
             </div>
           </div>
-
+          <div
+            class="error-msg"
+            v-if="isEmailError"
+          >
+            {{ emailErrorMsg }}
+          </div>
           <input
             type="submit"
             class="sign-up-btn"
@@ -153,6 +166,10 @@ export default {
   name: 'Login',
   data() {
     return {
+      isEmailError: false,
+      emailErrorMsg: 'Email is already taken',
+      isLoginError: false,
+      loginErrorMsg: 'Email or Password does not match',
       isLoginVisible: true,
       isSignUpVisible: false,
       isFormValid: true,
@@ -170,6 +187,7 @@ export default {
         userEmail: '',
         userPassword: '',
         user_id: '',
+        userGradient: '',
       },
       errors: {
         blankEmail: '',
@@ -192,6 +210,34 @@ export default {
     // },
   },
   methods: {
+    createHex() {
+      var hexCode1 = ''
+      var hexValues1 = '0123456789abcdef'
+
+      for (var i = 0; i < 6; i++) {
+        hexCode1 += hexValues1.charAt(Math.floor(Math.random() * hexValues1.length))
+      }
+      return hexCode1
+    },
+
+    generateGradient() {
+      var deg = Math.floor(Math.random() * 360)
+
+      var gradient =
+        'linear-gradient(' +
+        deg +
+        'deg, ' +
+        '#' +
+        this.createHex() +
+        ', ' +
+        '#' +
+        this.createHex() +
+        ')'
+
+      this.userDetails.userGradient = gradient
+
+      console.log(gradient)
+    },
     showSignupHideLogin() {
       // console.log(this.id);
       this.isLoginVisible = false
@@ -216,18 +262,23 @@ export default {
             element.userPassword == this.loginFormValue.loginPassword
           ) {
             this.loggedUser = element.userName
+            this.userDetails.userGradient = element.userGradient
+            this.userDetails.userEmail = element.userEmail
             console.log(this.loggedUser)
-            //    + ' ' + element.lastname
-            // localStorage
             localStorage.userId = element._id
             localStorage.loggedUser = this.loggedUser
+            localStorage.userGradient = this.userDetails.userGradient
+            localStorage.userEmail = element.userEmail
           }
         })
         if (this.loggedUser) {
           console.log('login successful')
           this.userDetails.user_id = localStorage.userId
+          this.userDetails.userGradient = localStorage.userGradient
+          this.userDetails.userEmail = localStorage.userEmail
           console.log('userid= ' + localStorage.userId)
           console.log(this.userDetails.user_id)
+          console.log(localStorage)
 
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
@@ -235,6 +286,7 @@ export default {
           this.isLoginVisible = false
         } else {
           console.log('login failed')
+          this.isLoginError = true
         }
       } else {
         this.loginError = 'Please enter the required fields'
@@ -296,23 +348,43 @@ export default {
     },
     addUser() {
       // done
-      fetch(usersApi, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.userDetails),
-      })
-        .then(response => response.text())
-        .then(data => {
-          this.getAllUsers()
-          this.resetData()
-          this.showLoginHideSignup()
-          console.log(data)
+      this.generateGradient()
+
+      if (
+        this.userDetails.userName &&
+        this.userDetails.userEmail &&
+        this.userDetails.userPassword
+      ) {
+        // check email from database
+        this.users.forEach(element => {
+          console.log('users = ' + this.users)
+          console.log('users = ' + this.users.userEmail)
+          console.log('element = ' + element.userEmail)
+          if (element.userEmail == this.userDetails.userEmail) {
+            this.isEmailError = true
+          }
         })
-        .catch(err => {
-          if (err) throw err
-        })
+        if (!this.isEmailError) {
+          fetch(usersApi, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.userDetails),
+          })
+            .then(response => response.text())
+            .then(data => {
+              this.getAllUsers()
+              this.resetData()
+              this.showLoginHideSignup()
+              console.log(data)
+              // console.log(this.userDetails)
+            })
+            .catch(err => {
+              if (err) throw err
+            })
+        }
+      }
     },
     getAllUsers() {
       fetch(usersApi)
@@ -325,12 +397,18 @@ export default {
           if (err) throw err
         })
     },
-
+    hideLoginErrorMsg() {
+      this.isLoginError = false
+    },
+    hideEmailErrorMsg() {
+      this.isEmailError = false
+    },
     resetData() {
       // this.editId = ''
       this.userDetails.userName = ''
       this.userDetails.userEmail = ''
       this.userDetails.userPassword = ''
+      this.userDetails.userGradient = ''
       this.loginFormValue.loginEmail = ''
       this.loginFormValue.loginPassword = ''
     },
@@ -471,16 +549,17 @@ export default {
   color: tomato;
 }
 
-.error-note {
-  color: black;
+.error-msg {
+  color: red;
   font-size: 1rem;
+  padding-bottom: 1em;
 }
 
 // .signup-section {
 //     display: none;
 // }
 
-.activeClass {
-  display: block;
-}
+// .activeClass {
+//   display: block;
+// }
 </style>
