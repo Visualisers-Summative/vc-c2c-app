@@ -1,7 +1,7 @@
 <template>
   <div class="profile-div">
     <div
-    :style="{ background: userGradient }"
+      :style="{ background: userGradient }"
       class="user-image"
     >
       <h1>{{ loggedUser.slice(0, 1) }}</h1>
@@ -19,34 +19,33 @@
 </template>
 
 <script>
-import ProductService from '../services/ProductService.js'
+// import ProductService from '../services/ProductService.js'
 
 export default {
   data() {
     return {
-      record: null,
+      // record: null,
       username: '',
       userEmail: '',
       userGradient: '',
-      loggedUser: ''
+      loggedUser: '',
     }
   },
-  methods: {
-     },
-  created() {
-    ProductService.getData(this.id)
-      .then(response => {
-        this.record = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  },
+  methods: {},
+  // created() {
+  //   ProductService.getData(this.id)
+  //     .then(response => {
+  //       this.record = response.data
+  //     })
+  //     .catch(error => {
+  //       console.log(error)
+  //     })
+  // },
   mounted() {
     this.userGradient = localStorage.userGradient
     this.loggedUser = localStorage.loggedUser
     this.userEmail = localStorage.userEmail
-  }
+  },
 }
 </script>
 

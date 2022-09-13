@@ -5,7 +5,7 @@
       <textarea
         placeholder="Your comment here..."
         name="type-comment"
-        id=""
+        id="comment-input"
         cols="60"
         rows="13"
       ></textarea>

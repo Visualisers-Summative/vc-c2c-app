@@ -97,6 +97,7 @@ export default {
       .then(response => {
         // console.log(response.data);
         this.record = response.data
+        // console.log(this.record)
       })
       .catch(error => {
         console.log(error)
