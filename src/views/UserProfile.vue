@@ -263,7 +263,7 @@ export default {
         text: 'Once deleted, you will not be able to recover this profile!',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#333',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!',
         dangerMode: true,
@@ -288,19 +288,27 @@ export default {
         }
       })
     },
-    onEdit(profile) {
-      this.editId = profile._id
-      this.editFormValues.devName = profile.devName
-      this.editFormValues.devEmail = profile.devEmail
-      this.editFormValues.devMultipleImageUrl = profile.devMultipleImageUrl
-      this.editFormValues.devWebsiteName = profile.devWebsiteName
+    onEdit(record) {
+      // this.editId = record._id
+      this.editRecord.albumDescription = record.albumDescription
+      this.editRecord.albumTitle = record.albumTitle
+      this.editRecord.artistName = record.artistName
+      this.editRecord.genre = record.genre
+      this.editRecord.imageUrl = record.imageUrl
+      this.editRecord.length = record.length
+      this.editRecord.price = record.price
+      this.editRecord.yearReleased = record.yearReleased
     },
     onCancel() {
-      this.editId = ''
-      this.editFormValues.devName = ''
-      this.editFormValues.devEmail = ''
-      this.editFormValues.devMultipleImageUrl = ''
-      this.editFormValues.devWebsiteName = ''
+      // this.editRecord = ''
+      this.editRecord.albumDescription = ''
+      this.editRecord.albumTitle = ''
+      this.editRecord.artistName = ''
+      this.editRecord.genre = ''
+      this.editRecord.imageUrl = ''
+      this.editRecord.length = ''
+      this.editRecord.price = ''
+      this.editRecord.yearReleased = ''
     },
   },
   mounted() {
