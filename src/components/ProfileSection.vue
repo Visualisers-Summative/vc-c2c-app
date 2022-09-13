@@ -70,6 +70,7 @@ export default {
 }
 
 .username {
+  text-transform: capitalize;
   font-weight: 800;
   font-size: 1.1rem;
 }

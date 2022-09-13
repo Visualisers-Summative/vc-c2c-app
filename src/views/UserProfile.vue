@@ -2,10 +2,14 @@
   <div id="profile-page">
     <ProfileSection />
   </div>
+  <div class="sell-section">
+    <SellSection />
+  </div>
 </template>
 
 <script>
 import ProfileSection from '../components/ProfileSection.vue'
+import SellSection from '../components/SellSection.vue';
 
 export default {
   name: 'UserProfile',
@@ -15,7 +19,7 @@ export default {
     return {}
   },
   components: {
-    ProfileSection,
+    ProfileSection, SellSection
   },
 }
 </script>
