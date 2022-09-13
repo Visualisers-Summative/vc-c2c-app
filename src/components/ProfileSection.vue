@@ -52,7 +52,6 @@ export default {
 
 <style lang="scss" scoped>
 .profile-div {
-  margin-top: 3rem;
   border: solid 1px grey;
   padding: 1rem;
   width: 18rem;
@@ -82,7 +81,7 @@ export default {
 }
 
 .user-image {
-  margin: 0 auto;
+  margin: 1rem auto;
   min-width: 10rem;
   min-height: 10rem;
   border-radius: 50%;
@@ -91,11 +90,12 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  transform: translateY(-25%);
+  transform: translateY(-30%);
 
   h1 {
     font-size: 4em;
     color: white;
+    text-transform: capitalize;
   }
 }
 </style>

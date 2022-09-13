@@ -24,7 +24,7 @@
             <label for="ep">EP
                 <input type="radio" v-model="pick" :value="second" id="ep" name="length" class="length"></label>
         </div>
-        <button class="button start-listing">Start Listing</button>
+        <button class="button start-listing">Create Listing</button>
     </section>
 </template>
 
@@ -43,18 +43,20 @@ export default {
 
 <style lang="scss" scoped>
 .sell-vinyl-section {
-    margin-top: 2rem;
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 20rem;
-    padding: 1rem;
+    height: 30rem;
 
     input {
         margin-bottom: 0.8rem;
     }
 
     h2 {
-        margin-bottom: 1.5rem;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
     }
 
     button {
@@ -66,7 +68,6 @@ export default {
     font-size: 1rem;
     height: 2.5rem;
     width: 100%;
-    padding: none;
     margin-top: 0.5rem;
     margin-bottom: 5px;
     padding: 10px;
@@ -85,6 +86,10 @@ export default {
     align-items: baseline;
     justify-content: space-between;
     width: 100%;
+
+    label {
+        width: 9rem;
+    }
 }
 
 .short-input {
@@ -95,5 +100,46 @@ export default {
     display: flex;
     justify-content: space-between;
     width: 20%;
+    margin-bottom: 1rem;
+}
+
+
+input[type="radio"] {
+    cursor: pointer;
+    appearance: none;
+    background-color: #fff;
+    margin: 0.5rem 1rem 1rem 0;
+    font: inherit;
+    color: black;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    transform: translateY(0.1em);
+    display: grid;
+    place-content: center;
+}
+
+input[type="radio"]:hover {
+    border: 2px solid grey;
+}
+
+input[type="radio"]:checked {
+    border: 1px solid black;
+}
+
+input[type="radio"]::before {
+    content: "";
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 2rem 2rem;
+}
+
+input[type="radio"]:checked::before {
+    transform: scale(1);
+    color: black;
 }
 </style>
