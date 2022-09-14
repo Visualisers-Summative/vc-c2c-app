@@ -1,3 +1,4 @@
-@import url(./assets/styles/main.scss);
-@use "@material/card";
+/* @import url(./assets/styles/main.scss); */
+@import url(./assets/styles/main.css);
+@use '@material/card';
 @include card.core-styles;

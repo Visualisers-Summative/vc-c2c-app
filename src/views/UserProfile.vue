@@ -260,11 +260,9 @@ export default {
       // done
       Swal.fire({
         title: 'Are you sure?',
-        text: 'Once deleted, you will not be able to recover this profile!',
+        text: 'Once deleted, you will not be able to recover this record!',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#333',
-        cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!',
         dangerMode: true,
       }).then(result => {
