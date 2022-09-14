@@ -1,13 +1,11 @@
 <template>
   <div class="review-container">
-    <!-- <h3>Reviews:</h3> -->
     <ul>
       <li
         v-for="(review, index) in reviews"
         :key="index"
       >
-        <!-- <h4>{{ review.name }}</h4> -->
-        <h4>Username here</h4>
+        <h4>Username here!!!</h4>
         <br />
         "{{ review.review }}"
       </li>
