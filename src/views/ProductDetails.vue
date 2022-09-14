@@ -61,13 +61,11 @@
         <div>
           <h2 class="record-price">${{ record.price }}.00</h2>
         </div>
-        <!-- <button class="edit">EDIT</button> -->
         <button class="purchase">PURCHASE</button>
       </div>
     </div>
   </div>
 
-  <!-- <ReviewList :reviews="reviews" /> -->
 <div class="comment-section">
   <ReviewForm @review-submitted="addReview"></ReviewForm>
   <ReviewList :reviews="reviews"></ReviewList>
@@ -153,9 +151,7 @@ export default {
         margin-right: 0px;
       }
        
-      // p {
-      //   width:100%;
-      // }
+
 
       .record-artist {
         font-style: italic;
@@ -172,7 +168,6 @@ export default {
   .record-image-wrapper {
     .record-image {
       height: 476px;
-      // min-width:476px;
       margin: 2rem 2rem 2rem 0rem;
     }
   }
@@ -205,7 +200,6 @@ export default {
 .comment-section{
   display: flex;
   width: 100%;
-  // justify-content: space-between;
   margin-top: 30px;
 }
 </style>

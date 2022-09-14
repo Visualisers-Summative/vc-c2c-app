@@ -5,13 +5,6 @@
       @submit.prevent="onSubmit"
     >
       <h4>Post a Comment</h4>
-
-      <!-- <label for="name">Username here:</label> -->
-      <!-- <input
-        id="name"
-        v-model="name"
-        placeholder="Name here:"
-      /> -->
       <textarea 
         id="review"
         v-model="review"
@@ -55,7 +48,6 @@ export default {
         return
       }
       let productReview = {
-        // name: this.name,
         review: this.review,
       }
 
@@ -63,7 +55,6 @@ export default {
       this.$emit('review-submitted', productReview)
 
       //clear out and reset
-      // this.name = ''
       this.review = ''
     },
   },
@@ -96,7 +87,6 @@ input{
   textarea {
     resize: none;
     font-family: inherit;
-    // font-size: inherit;
     padding: 5px;
     border: 1px solid;
   }
