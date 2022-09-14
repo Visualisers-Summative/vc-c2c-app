@@ -25,14 +25,50 @@
             class="album input long-input"
           />
           <div class="short-inputs">
-            <label for="genre"
+            <!-- <label for="genre"
               >Genre
               <input
                 type="text"
                 v-model.trim="listRecord.genre"
                 id="genre"
                 class="genre input short-input"
-            /></label>
+            /></label> -->
+            <form action="#">
+              <label for="genre">Genre</label>
+              <select
+                name="genre"
+                id="genre"
+                multiple
+                v-model.trim="listRecord.genre"
+              >
+                <option value="Alternative">Alternative</option>
+                <option value="Blues">Blues</option>
+                <option value="Children's Music">Children's Music</option>
+                <option value="Classical">Classical</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Country">Country</option>
+                <option value="Dance">Dance</option>
+                <option value="EDM">EDM</option>
+                <option value="Easy Listening">Easy Listening</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Hip-Hop">Hip-Hop</option>
+                <option value="Holiday">Holiday</option>
+                <option value="Industrial">Industrial</option>
+                <option value="Gospel">Gospel</option>
+                <option value="J-Pop">J-Pop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="K-Pop">K-Pop</option>
+                <option value="Latino">Latino</option>
+                <option value="New Age">New Age</option>
+                <option value="Opera">Opera</option>
+                <option value="Pop">Pop</option>
+                <option value="R&B">R&B</option>
+                <option value="Soul">Soul</option>
+                <option value="Reggae">Reggae</option>
+                <option value="Rock">Rock</option>
+                <option value="World">World</option>
+              </select>
+            </form>
             <label for="label"
               >Label
               <input
@@ -115,6 +151,7 @@
           <div>{{ record._id }}</div>
           <div>{{ record.albumDescription }}</div>
           <div>${{ record.price }}</div>
+          <div>{{ record.genre.join(', ') }}</div>
         </div>
         <div class="edit-buttons">
           <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
@@ -330,10 +367,8 @@ export default {
   margin: 0 auto 0 1rem;
   width: 100%;
   height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
 .sell-vinyl-section {
