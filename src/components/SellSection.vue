@@ -1,47 +1,262 @@
 <template>
     <section class="sell-vinyl-section">
-        <h2>Sell Some Vinyl</h2>
-        <p>Artist</p>
-        <input type="text" class="artist input long-input">
-        <p>Album</p>
-        <input type="text" class="album input long-input">
-        <div class="short-inputs">
-            <label for="genre">Genre
-                <input type="text" id="genre" class="genre input short-input"></label>
+        <form id="signup-form" @submit.prevent="insertDoc" ref="registerForm" action="#" novalidate="true">
+            <h2>Sell Some Vinyl</h2>
+            <p>Artist</p>
+            <input type="text" v-model.trim="listRecord.artistName" class="artist input long-input" />
+            <p>Album</p>
+            <input type="text" v-model.trim="listRecord.albumTitle" class="album input long-input" />
             <label for="label">Label
-                <input type="text" class="label input short-input">
+                <input type="text" v-model.trim="listRecord.label" class="label input long-input" />
             </label>
-        </div>
-        <div class="short-inputs">
-            <label for="year">Release Year
-                <input type="text" id="year" class="year input short-input"></label>
-            <label for="price">Asking Price
-                <input v-model="number" id="price" class="price input short-input"></label>
-        </div>
-        <div class="lengths-div">
-            <label for="lp">LP
-                <input type="radio" v-model="pick" :value="first" id="lp" name="length" class="length"></label>
-            <label for="ep">EP
-                <input type="radio" v-model="pick" :value="second" id="ep" name="length" class="length"></label>
-        </div>
-        <button class="button start-listing">Create Listing</button>
-    </section>
-</template>
+            <div class="short-inputs">
+                <div class="genres">
+                    <p>Genres</p>
+                    <div class="checkbox-dropdown-list input">
+                        <label>ALternative
+                            <input v-model="listRecord.genre" type="checkbox" value="Alternative" name="genre" />
+                        </label>
+                        <label>Blues
+                            <input v-model="listRecord.genre" type="checkbox" value="Blues" name="genre" />
+                        </label>
+                        <label>Children's Music
+                            <input v-model="listRecord.genre" type="checkbox" value="Children's Music" name="genre" />
+                        </label>
+                        <label>Classical
+                            <input v-model="listRecord.genre" type="checkbox" value="Classical" name="genre" />
+                        </label>
+                        <label>Comedy
+                            <input v-model="listRecord.genre" type="checkbox" value="Comedy" name="genre" />
+                        </label>
+                        <label>Country
+                            <input v-model="listRecord.genre" type="checkbox" value="Country" name="genre" />
+                        </label>
+                        <label>Dance
+                            <input v-model="listRecord.genre" type="checkbox" value="Dance" name="genre" />
+                        </label>
+                        <label>EDM
+                            <input v-model="listRecord.genre" type="checkbox" value="EDM" name="genre" />
+                        </label>
+                        <label>Easy Listening
+                            <input v-model="listRecord.genre" type="checkbox" value="Easy Listening" name="genre" />
+                        </label>
+                        <label>Electronic
+                            <input v-model="listRecord.genre" type="checkbox" value="Electronic" name="genre" />
+                        </label>
+                        <label>Hip-Hop
+                            <input v-model="listRecord.genre" type="checkbox" value="Hip-Hop" name="genre" />
+                        </label>
+                        <label>Holiday
+                            <input v-model="listRecord.genre" type="checkbox" value="Holiday" name="genre" />
+                        </label>
+                        <label>Industrial
+                            <input v-model="listRecord.genre" type="checkbox" value="Industrial" name="genre" />
+                        </label>
+                        <label>Gospel
+                            <input v-model="listRecord.genre" type="checkbox" value="Gospel" name="genre" />
+                        </label>
+                        <label>J-Pop
+                            <input v-model="listRecord.genre" type="checkbox" value="Gospel" name="genre" />
+                        </label>
+                        <label>Jazz
+                            <input v-model="listRecord.genre" type="checkbox" value="Jazz" name="genre" />
+                        </label>
+                        <label>K-Pop
+                            <input v-model="listRecord.genre" type="checkbox" value="K-Pop" name="genre" />
+                        </label>
+                        <label>Latino
+                            <input v-model="listRecord.genre" type="checkbox" value="Latino" name="genre" />
+                        </label>
+                        <label>New Age
+                            <input v-model="listRecord.genre" type="checkbox" value="New Age" name="genre" />
+                        </label>
+                        <label>Opera
+                            <input v-model="listRecord.genre" type="checkbox" value="Opera" name="genre" />
+                        </label>
+                        <label>Pop
+                            <input v-model="listRecord.genre" type="checkbox" value="Pop" name="genre" />
+                        </label>
+                        <label>R&B
+                            <input v-model="listRecord.genre" type="checkbox" value="R&B" name="genre" />
+                        </label>
+                        <label>Soul
+                            <input v-model="listRecord.genre" type="checkbox" value="Soul" name="genre" />
+                        </label>
+                        <label>Reggae
+                            <input v-model="listRecord.genre" type="checkbox" value="Reggae" name="genre" />
+                        </label>
+                        <label>Rock
+                            <input v-model="listRecord.genre" type="checkbox" value="Rock" name="genre" />
+                        </label>
+                        <label>World
+                            <input v-model="listRecord.genre" type="checkbox" value="World" name="genre" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="short-inputs">
+                <label for="year">Release Year
+                    <input type="text" v-model.trim="listRecord.yearReleased" id="year"
+                        class="year input short-input" /></label>
+                <label for="price">Asking Price
+                    <input type="text" v-model.trim="listRecord.price" id="price" placeholder="$"
+                        class="price input short-input" /></label>
+            </div>
+            <p>Description</p>
+            <textarea type="text-area" v-model.trim="listRecord.albumDescription"
+                class="description input long-input"></textarea>
+            <div class="lengths-div">
+                <label for="lp">LP
+                    <input type="radio" v-model="listRecord.length" value="lp" id="lp" name="length"
+                        class="length" /></label>
+                <label for="ep">EP
+                    <input type="radio" v-model="listRecord.length" value="ep" id="ep" name="length"
+                        class="length" /></label>
+            </div>
 
+            <input type="submit" class="button start-listing" value="Create Listing" />
+        </form>
+    </section>
+
+    <div class="user-listings">
+        <div v-for="record in usersRecords" v-bind:key="record._id" class="records-loop">
+            <div class="artist-name">
+                {{ record.artistName }}
+                <div>{{ record._id }}</div>
+                <div>{{ record.albumDescription }}</div>
+                <div>${{ record.price }}</div>
+                <div>{{ record.genre.join(', ') }}</div>
+            </div>
+        </div>
+    </div>
+</template>
+  
 <script>
+const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
+
 export default {
+    name: 'UserProfile',
+    props: [],
+    components: {
+    },
     data() {
         return {
-
+            isModalVisible: false,
+            editId: '',
+            usersRecords: [],
+            postsData: [],
+            postsLoading: true,
+            loading: true,
+            editId: '',
+            id: '',
+            listRecord: {
+                albumDescription: '',
+                albumTitle: '',
+                artistName: '',
+                genre: [],
+                imageUrl: '',
+                label: '',
+                length: '',
+                price: '',
+                yearReleased: '',
+                loggedUser: '',
+                loggedUserId: '',
+            },
+            editRecord: {
+                albumDescription: '',
+                albumTitle: '',
+                artistName: '',
+                genre: [],
+                imageUrl: '',
+                label: '',
+                length: '',
+                price: '',
+                yearReleased: '',
+            },
+            dropDownVisible: false
         }
     },
     methods: {
-
+        insertDoc() {
+            // done
+            fetch(productApi, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(this.listRecord),
+            })
+                .then(response => response.text())
+                .then(data => {
+                    this.loadAllData()
+                    // this.hideModal()
+                    this.resetData()
+                    console.log(data)
+                })
+                .catch(err => {
+                    if (err) throw err
+                })
+        },
+        dropDown() {
+            this.dropDownVisible = !this.dropDownVisible
+        },
+        resetData() {
+            this.listRecord.artistName = ''
+            this.listRecord.albumTitle = ''
+            this.listRecord.albumDescription = ''
+            this.listRecord.genre = ''
+            this.listRecord.imageUrl = ''
+            this.listRecord.label = ''
+            this.listRecord.length = ''
+            this.listRecord.price = ''
+            this.listRecord.yearReleased = ''
+        },
+        loadAllData() {
+            fetch(productApi)
+                .then(response => response.json())
+                .then(data => {
+                    this.usersRecords = data
+                    console.log('id: ' + localStorage.userId)
+                    if (localStorage.userId) {
+                        let postData = []
+                        data.forEach(element => {
+                            if (localStorage.userId === element.loggedUserId) {
+                                postData.push(element)
+                            }
+                        })
+                        this.usersRecords = postData
+                        // console.log(this.usersRecords)
+                        // } else {
+                        //   // call login
+                        //   console.log("call login");
+                        //   localStorage.callLogin = true;
+                    }
+                    // set posts data
+                    data.forEach(element => {
+                        this.postsData[element._id] = element
+                    })
+                    // console.log(this.postsData)
+                    // console.log(this.usersRecords)
+                    // this.postsLoading = false
+                    // this.loading = false
+                })
+                .catch(err => {
+                    if (err) throw err
+                })
+        },
     }
 }
 </script>
-
+  
 <style lang="scss" scoped>
+.user-listings {
+    margin: 0 auto 0 1rem;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
 .sell-vinyl-section {
     margin-top: 3rem;
     display: flex;
@@ -59,7 +274,7 @@ export default {
         margin-bottom: 1rem;
     }
 
-    button {
+    .button {
         width: 50%;
     }
 }
@@ -86,9 +301,23 @@ export default {
     align-items: baseline;
     justify-content: space-between;
     width: 100%;
+}
 
+.genres {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-dropdown-list {
+    overflow: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 6rem;
     label {
-        width: 9rem;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
     }
 }
 
@@ -103,8 +332,7 @@ export default {
     margin-bottom: 1rem;
 }
 
-
-input[type="radio"] {
+input[type='radio'] {
     cursor: pointer;
     appearance: none;
     background-color: #fff;
@@ -120,16 +348,16 @@ input[type="radio"] {
     place-content: center;
 }
 
-input[type="radio"]:hover {
+input[type='radio']:hover {
     border: 2px solid grey;
 }
 
-input[type="radio"]:checked {
+input[type='radio']:checked {
     border: 1px solid black;
 }
 
-input[type="radio"]::before {
-    content: "";
+input[type='radio']::before {
+    content: '';
     width: 0.75rem;
     height: 0.75rem;
     border-radius: 50%;
@@ -138,8 +366,9 @@ input[type="radio"]::before {
     box-shadow: inset 2rem 2rem;
 }
 
-input[type="radio"]:checked::before {
+input[type='radio']:checked::before {
     transform: scale(1);
     color: black;
 }
 </style>
+  
