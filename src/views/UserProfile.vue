@@ -136,7 +136,7 @@
     </div>
 
     <div class="user-listings">
-      <h1>USER LISTINGS HERE</h1>
+      <!-- <h1>USER LISTINGS HERE</h1> -->
       <div
         v-for="record in usersRecords"
         v-bind:key="record._id"
