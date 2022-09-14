@@ -123,11 +123,15 @@ export default {
 .product-details-container {
   display: flex;
   border-bottom: 1px solid;
+  width: 100%;
+  justify-content: space-between;
 
   .product-details {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
+    width:60%;
+  
 
     .column-1 {
       min-width: 100px;
@@ -148,6 +152,10 @@ export default {
       h4 {
         margin-right: 0px;
       }
+       
+      // p {
+      //   width:100%;
+      // }
 
       .record-artist {
         font-style: italic;
@@ -164,6 +172,7 @@ export default {
   .record-image-wrapper {
     .record-image {
       height: 476px;
+      // min-width:476px;
       margin: 2rem 2rem 2rem 0rem;
     }
   }

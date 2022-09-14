@@ -7,11 +7,11 @@
       <h4>Post a Comment</h4>
 
       <!-- <label for="name">Username here:</label> -->
-      <input
+      <!-- <input
         id="name"
         v-model="name"
         placeholder="Name here:"
-      />
+      /> -->
       <textarea 
         id="review"
         v-model="review"
@@ -46,16 +46,16 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (this.name === '' || this.review === '' || this.rating === null) {
-        alert('Review is incomplete. Please fill out every field.')
-        return
-      }
-      // if (this.review === '') {
+      // if (this.name === '' || this.review === '' || this.rating === null) {
       //   alert('Review is incomplete. Please fill out every field.')
       //   return
       // }
+      if (this.review === '') {
+        alert('Review is incomplete. Please fill out every field.')
+        return
+      }
       let productReview = {
-        name: this.name,
+        // name: this.name,
         review: this.review,
       }
 
@@ -63,7 +63,7 @@ export default {
       this.$emit('review-submitted', productReview)
 
       //clear out and reset
-      this.name = ''
+      // this.name = ''
       this.review = ''
     },
   },
