@@ -236,7 +236,7 @@ export default {
 
       this.userDetails.userGradient = gradient
 
-      console.log(gradient)
+      // console.log(gradient)
     },
     showSignupHideLogin() {
       // console.log(this.id);
@@ -349,7 +349,6 @@ export default {
     addUser() {
       // done
       this.generateGradient()
-
       if (
         this.userDetails.userName &&
         this.userDetails.userEmail &&
@@ -426,6 +425,7 @@ export default {
     if (localStorage.userId) {
       // set user_id
       this.userDetails.user_id = localStorage.userId
+      // console.log(localStorage)
     }
 
     if (localStorage.userId) {
