@@ -404,7 +404,7 @@ export default {
   },
   data() {
     return {
-      isModalVisible: false,
+      // isModalVisible: false,
       usersRecords: [],
       postsData: [],
       postsLoading: true,
@@ -693,6 +693,29 @@ export default {
   }
 }
 
+.genres {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-dropdown-list {
+  overflow: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 6rem;
+
+  label {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.short-input {
+  width: 9rem;
+}
+
 // .checkbox-dropdown {
 //   width: 200px;
 //   border: 1px solid #aaa;
@@ -723,45 +746,45 @@ export default {
 //   margin-top: -9px;
 // }
 
-.checkbox-dropdown-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 100%; /* align the dropdown right below the dropdown text */
-  border: inherit;
-  border-top: none;
-  left: -1px; /* align the dropdown to the left */
-  right: -1px; /* align the dropdown to the right */
-  opacity: 0; /* hide the dropdown */
+// .checkbox-dropdown-list {
+//   list-style: none;
+//   margin: 0;
+//   padding: 0;
+//   position: absolute;
+//   top: 100%; /* align the dropdown right below the dropdown text */
+//   border: inherit;
+//   border-top: none;
+//   left: -1px; /* align the dropdown to the left */
+//   right: -1px; /* align the dropdown to the right */
+//   opacity: 0; /* hide the dropdown */
 
-  transition: opacity 0.4s ease-in-out;
-  height: 100px;
-  overflow: scroll;
-  overflow-x: hidden;
-  pointer-events: none; /* avoid mouse click events inside the dropdown */
-}
-.is-active .checkbox-dropdown-list {
-  opacity: 1; /* display the dropdown */
-  pointer-events: auto; /* make sure that the user still can select checkboxes */
-}
+//   transition: opacity 0.4s ease-in-out;
+//   height: 100px;
+//   overflow: scroll;
+//   overflow-x: hidden;
+//   pointer-events: none; /* avoid mouse click events inside the dropdown */
+// }
+// .is-active .checkbox-dropdown-list {
+//   opacity: 1; /* display the dropdown */
+//   pointer-events: auto; /* make sure that the user still can select checkboxes */
+// }
 
-.checkbox-dropdown-list li label {
-  display: block;
-  border-bottom: 1px solid silver;
-  padding: 10px;
+// .checkbox-dropdown-list li label {
+//   display: block;
+//   border-bottom: 1px solid silver;
+//   padding: 10px;
 
-  transition: all 0.2s ease-out;
-}
+//   transition: all 0.2s ease-out;
+// }
 
-.checkbox-dropdown-list li label:hover {
-  background-color: #555;
-  color: white;
-}
+// .checkbox-dropdown-list li label:hover {
+//   background-color: #555;
+//   color: white;
+// }
 
-.short-input {
-  width: 9rem;
-}
+// .short-input {
+//   width: 9rem;
+// }
 
 .lengths-div {
   display: flex;
