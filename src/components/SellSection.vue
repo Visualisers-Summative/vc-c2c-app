@@ -385,7 +385,7 @@ export default {
           this.loadAllData()
           // this.hideModal()
           this.resetData()
-          console.log(data)
+          //   console.log(data)
         })
         .catch(err => {
           if (err) throw err
@@ -447,7 +447,7 @@ export default {
   mounted() {
     this.listRecord.loggedUser = localStorage.loggedUser
     this.listRecord.loggedUserId = localStorage.userId
-    this.loadAllData()
+    // this.loadAllData()
   },
 }
 </script>

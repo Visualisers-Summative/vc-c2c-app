@@ -133,10 +133,10 @@ export default {
           if (localStorage.userId) {
             let postData = []
             data.forEach(element => {
-              console.log(element)
+              // console.log(element)
               if (localStorage.userId === element.loggedUserId) {
                 postData.push(element)
-                console.log(postData)
+                // console.log(postData)
               }
             })
             this.usersRecords = postData
@@ -167,7 +167,6 @@ export default {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
-        dangerMode: true,
       }).then(result => {
         if (result.isConfirmed) {
           fetch(productApi + id, {
@@ -176,7 +175,7 @@ export default {
             .then(response => response.text())
             .then(data => {
               this.loadAllData()
-              console.log(data)
+              // console.log(data)
             })
             .catch(err => {
               if (err) throw err
