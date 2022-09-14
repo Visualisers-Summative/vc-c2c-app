@@ -22,32 +22,32 @@
             <form action="#">
               <label for="genre">Genre</label>
               <select name="genre" id="genre" multiple v-model.trim="listRecord.genre">
-                <option value="alternative">Alternative</option>
-                <option value="blues">Blues</option>
-                <option value="children-music">ChildrenU+0060s Music</option>
-                <option value="classical">Classical</option>
-                <option value="comedy">Comedy</option>
-                <option value="country">Country</option>
-                <option value="dance">Dance</option>
-                <option value="edn">EDM</option>
-                <option value="easy-listening">Easy Listening</option>
-                <option value="electronic">Electronic</option>
-                <option value="hip-hop">Hip-Hop</option>
-                <option value="holiday">Holiday</option>
-                <option value="industrial">Industrial</option>
-                <option value="gospel">Gospel</option>
-                <option value="j-pop">J-Pop</option>
-                <option value="jazz">Jazz</option>
-                <option value="k-pop">K-Pop</option>
-                <option value="latino">Latino</option>
-                <option value="new-age">New Age</option>
-                <option value="opera">Opera</option>
-                <option value="pop">Pop</option>
-                <option value="r&b">R&B</option>
-                <option value="soul">Soul</option>
-                <option value="reggae">Reggae</option>
-                <option value="rock">Rock</option>
-                <option value="world">World</option>
+                <option value="Alternative">Alternative</option>
+                <option value="Blues">Blues</option>
+                <option value="Children's Music">Children's Music</option>
+                <option value="Classical">Classical</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Country">Country</option>
+                <option value="Dance">Dance</option>
+                <option value="EDM">EDM</option>
+                <option value="Easy Listening">Easy Listening</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Hip-Hop">Hip-Hop</option>
+                <option value="Holiday">Holiday</option>
+                <option value="Industrial">Industrial</option>
+                <option value="Gospel">Gospel</option>
+                <option value="J-Pop">J-Pop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="K-Pop">K-Pop</option>
+                <option value="Latino">Latino</option>
+                <option value="New Age">New Age</option>
+                <option value="Opera">Opera</option>
+                <option value="Pop">Pop</option>
+                <option value="R&B">R&B</option>
+                <option value="Soul">Soul</option>
+                <option value="Reggae">Reggae</option>
+                <option value="Rock">Rock</option>
+                <option value="World">World</option>
               </select>
             </form>
             <label for="label">Label
@@ -78,7 +78,6 @@
     </div>
 
     <div class="user-listings">
-      <h1>USER LISTINGS HERE</h1>
       <div v-for="record in usersRecords" v-bind:key="record._id" class="records-loop">
         <div class="artist-name">
           {{ record.artistName }}
@@ -233,10 +232,8 @@ export default {
   margin: 0 auto 0 1rem;
   width: 100%;
   height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
 .sell-vinyl-section {
