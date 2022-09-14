@@ -6,13 +6,37 @@
     </div>
 
     <div class="user-listings">
-      <div v-for="record in usersRecords" v-bind:key="record._id" class="records-loop">
+      <!-- <h1>USER LISTINGS HERE</h1> -->
+      <div
+        v-for="record in usersRecords"
+        v-bind:key="record._id"
+        class="records-loop"
+      >
+        <img
+          :src="record.imageUrl"
+          alt="Record cover"
+        />
         <div class="artist-name">
           {{ record.artistName }}
           <div>{{ record._id }}</div>
           <div>{{ record.albumDescription }}</div>
           <div>${{ record.price }}</div>
           <div>{{ record.genre.join(', ') }}</div>
+        </div>
+        <div class="edit-buttons">
+          <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
+          <button
+            class="delete-btn"
+            @click="deleteDoc(record._id)"
+          >
+            Delete
+          </button>
+          <button
+            class="edit-btn"
+            v-on:click="onEdit(record)"
+          >
+            Edit
+          </button>
         </div>
       </div>
     </div>
@@ -22,6 +46,7 @@
 <script>
 import ProfileSection from '../components/ProfileSection.vue'
 import SellSection from '../components/SellSection.vue';
+import Swal from 'sweetalert2'
 const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
 export default {
@@ -136,6 +161,58 @@ export default {
         .catch(err => {
           if (err) throw err
         })
+    },
+    deleteDoc(id) {
+      // done
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this record!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        dangerMode: true,
+      }).then(result => {
+        if (result.isConfirmed) {
+          fetch(productApi + id, {
+            method: 'DELETE',
+          })
+            .then(response => response.text())
+            .then(data => {
+              this.loadAllData()
+              console.log(data)
+            })
+            .catch(err => {
+              if (err) throw err
+            })
+          Swal.fire('Deleted!', 'Record has been deleted.', 'success', {
+            icon: 'success',
+          })
+        } else {
+          Swal.fire('Fail!', 'Fail to delete record.', 'error')
+        }
+      })
+    },
+    onEdit(record) {
+      // this.editId = record._id
+      this.editRecord.albumDescription = record.albumDescription
+      this.editRecord.albumTitle = record.albumTitle
+      this.editRecord.artistName = record.artistName
+      this.editRecord.genre = record.genre
+      this.editRecord.imageUrl = record.imageUrl
+      this.editRecord.length = record.length
+      this.editRecord.price = record.price
+      this.editRecord.yearReleased = record.yearReleased
+    },
+    onCancel() {
+      // this.editRecord = ''
+      this.editRecord.albumDescription = ''
+      this.editRecord.albumTitle = ''
+      this.editRecord.artistName = ''
+      this.editRecord.genre = ''
+      this.editRecord.imageUrl = ''
+      this.editRecord.length = ''
+      this.editRecord.price = ''
+      this.editRecord.yearReleased = ''
     },
   },
   mounted() {

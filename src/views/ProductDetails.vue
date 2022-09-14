@@ -61,15 +61,16 @@
         <div>
           <h2 class="record-price">${{ record.price }}.00</h2>
         </div>
-        <!-- <button class="edit">EDIT</button> -->
         <button class="purchase">PURCHASE</button>
       </div>
     </div>
   </div>
 
-  <div>
-    <CommentSection />
-  </div>
+<div class="comment-section">
+  <ReviewForm @review-submitted="addReview"></ReviewForm>
+  <ReviewList :reviews="reviews"></ReviewList>
+</div>
+
 </template>
 
 <script>
@@ -78,7 +79,8 @@ import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiHeartOutline } from '@mdi/js'
 
 import ProductService from '../services/ProductService.js'
-import CommentSection from '../components/CommentSection.vue'
+import ReviewForm from '../components/ReviewForm.vue'
+import ReviewList from '../components/ReviewList.vue'
 
 export default {
   props: ['id'],
@@ -86,12 +88,15 @@ export default {
     return {
       record: null,
       path: mdiHeartOutline,
+
+      reviews: []
     }
   },
   components: {
     SvgIcon,
-    CommentSection,
-  },
+    ReviewForm,
+    ReviewList
+},
   created() {
     ProductService.getData(this.id)
       .then(response => {
@@ -103,6 +108,12 @@ export default {
         console.log(error)
       })
   },
+  methods:{
+    addReview(review) {
+      this.reviews.push(review)
+    }
+  }
+  
 }
 </script>
 
@@ -110,11 +121,15 @@ export default {
 .product-details-container {
   display: flex;
   border-bottom: 1px solid;
+  width: 100%;
+  justify-content: space-between;
 
   .product-details {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
+    width:60%;
+  
 
     .column-1 {
       min-width: 100px;
@@ -135,6 +150,8 @@ export default {
       h4 {
         margin-right: 0px;
       }
+       
+
 
       .record-artist {
         font-style: italic;
@@ -178,5 +195,11 @@ export default {
       transition: border-color 0.25s;
     }
   }
+}
+
+.comment-section{
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
 }
 </style>
