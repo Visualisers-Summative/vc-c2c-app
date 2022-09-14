@@ -4,12 +4,26 @@
       <ProfileSection />
       <!-- <SellSection /> -->
       <section class="sell-vinyl-section">
-        <form id="signup-form" @submit.prevent="insertDoc" ref="registerForm" action="#" novalidate="true">
+        <form
+          id="signup-form"
+          @submit.prevent="insertDoc"
+          ref="registerForm"
+          action="#"
+          novalidate="true"
+        >
           <h2>Sell Some Vinyl</h2>
           <p>Artist</p>
-          <input type="text" v-model.trim="listRecord.artistName" class="artist input long-input" />
+          <input
+            type="text"
+            v-model.trim="listRecord.artistName"
+            class="artist input long-input"
+          />
           <p>Album</p>
-          <input type="text" v-model.trim="listRecord.albumTitle" class="album input long-input" />
+          <input
+            type="text"
+            v-model.trim="listRecord.albumTitle"
+            class="album input long-input"
+          />
           <div class="short-inputs">
             <!-- <label for="genre"
               >Genre
@@ -21,7 +35,12 @@
             /></label> -->
             <form action="#">
               <label for="genre">Genre</label>
-              <select name="genre" id="genre" multiple v-model.trim="listRecord.genre">
+              <select
+                name="genre"
+                id="genre"
+                multiple
+                v-model.trim="listRecord.genre"
+              >
                 <option value="Alternative">Alternative</option>
                 <option value="Blues">Blues</option>
                 <option value="Children's Music">Children's Music</option>
@@ -50,41 +69,104 @@
                 <option value="World">World</option>
               </select>
             </form>
-            <label for="label">Label
-              <input type="text" v-model.trim="listRecord.label" class="label input short-input" />
+            <label for="label"
+              >Label
+              <input
+                type="text"
+                v-model.trim="listRecord.label"
+                class="label input short-input"
+              />
             </label>
           </div>
           <div class="short-inputs">
-            <label for="year">Release Year
-              <input type="text" v-model.trim="listRecord.yearReleased" id="year"
-                class="year input short-input" /></label>
-            <label for="price">Asking Price
-              <input type="text" v-model.trim="listRecord.price" id="price" placeholder="$"
-                class="price input short-input" /></label>
+            <label for="year"
+              >Release Year
+              <input
+                type="text"
+                v-model.trim="listRecord.yearReleased"
+                id="year"
+                class="year input short-input"
+            /></label>
+            <label for="price"
+              >Asking Price
+              <input
+                type="text"
+                v-model.trim="listRecord.price"
+                id="price"
+                placeholder="$"
+                class="price input short-input"
+            /></label>
           </div>
           <p>Description</p>
-          <textarea type="text-area" v-model.trim="listRecord.albumDescription"
-            class="description input long-input"></textarea>
+          <textarea
+            type="text-area"
+            v-model.trim="listRecord.albumDescription"
+            class="description input long-input"
+          ></textarea>
           <div class="lengths-div">
-            <label for="lp">LP
-              <input type="radio" v-model="listRecord.length" value="lp" id="lp" name="length" class="length" /></label>
-            <label for="ep">EP
-              <input type="radio" v-model="listRecord.length" value="ep" id="ep" name="length" class="length" /></label>
+            <label for="lp"
+              >LP
+              <input
+                type="radio"
+                v-model="listRecord.length"
+                value="lp"
+                id="lp"
+                name="length"
+                class="length"
+            /></label>
+            <label for="ep"
+              >EP
+              <input
+                type="radio"
+                v-model="listRecord.length"
+                value="ep"
+                id="ep"
+                name="length"
+                class="length"
+            /></label>
           </div>
 
-          <input type="submit" class="button start-listing" value="Create Listing" />
+          <input
+            type="submit"
+            class="button start-listing"
+            value="Create Listing"
+          />
         </form>
       </section>
     </div>
 
     <div class="user-listings">
-      <div v-for="record in usersRecords" v-bind:key="record._id" class="records-loop">
+      <h1>USER LISTINGS HERE</h1>
+      <div
+        v-for="record in usersRecords"
+        v-bind:key="record._id"
+        class="records-loop"
+      >
+        <img
+          :src="record.imageUrl"
+          alt="Record cover"
+        />
         <div class="artist-name">
           {{ record.artistName }}
           <div>{{ record._id }}</div>
           <div>{{ record.albumDescription }}</div>
           <div>${{ record.price }}</div>
           <div>{{ record.genre.join(', ') }}</div>
+        </div>
+        <div class="edit-buttons">
+          <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
+          <button
+            class="delete-btn"
+            @click="deleteDoc(record._id)"
+          >
+            Delete
+          </button>
+          <button
+            class="edit-btn"
+            v-on:click="onEdit(record)"
+          >
+            Edit
+          </button>
         </div>
       </div>
     </div>
@@ -93,6 +175,7 @@
 
 <script>
 import ProfileSection from '../components/ProfileSection.vue'
+import Swal from 'sweetalert2'
 // import SellSection from '../components/SellSection.vue';
 const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
@@ -209,6 +292,58 @@ export default {
         .catch(err => {
           if (err) throw err
         })
+    },
+    deleteDoc(id) {
+      // done
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this record!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        dangerMode: true,
+      }).then(result => {
+        if (result.isConfirmed) {
+          fetch(productApi + id, {
+            method: 'DELETE',
+          })
+            .then(response => response.text())
+            .then(data => {
+              this.loadAllData()
+              console.log(data)
+            })
+            .catch(err => {
+              if (err) throw err
+            })
+          Swal.fire('Deleted!', 'Record has been deleted.', 'success', {
+            icon: 'success',
+          })
+        } else {
+          Swal.fire('Fail!', 'Fail to delete record.', 'error')
+        }
+      })
+    },
+    onEdit(record) {
+      // this.editId = record._id
+      this.editRecord.albumDescription = record.albumDescription
+      this.editRecord.albumTitle = record.albumTitle
+      this.editRecord.artistName = record.artistName
+      this.editRecord.genre = record.genre
+      this.editRecord.imageUrl = record.imageUrl
+      this.editRecord.length = record.length
+      this.editRecord.price = record.price
+      this.editRecord.yearReleased = record.yearReleased
+    },
+    onCancel() {
+      // this.editRecord = ''
+      this.editRecord.albumDescription = ''
+      this.editRecord.albumTitle = ''
+      this.editRecord.artistName = ''
+      this.editRecord.genre = ''
+      this.editRecord.imageUrl = ''
+      this.editRecord.length = ''
+      this.editRecord.price = ''
+      this.editRecord.yearReleased = ''
     },
   },
   mounted() {
