@@ -2,137 +2,7 @@
   <div class="profile-page-container">
     <div class="user-profile">
       <ProfileSection />
-      <!-- <SellSection /> -->
-      <section class="sell-vinyl-section">
-        <form
-          id="signup-form"
-          @submit.prevent="insertDoc"
-          ref="registerForm"
-          action="#"
-          novalidate="true"
-        >
-          <h2>Sell Some Vinyl</h2>
-          <p>Artist</p>
-          <input
-            type="text"
-            v-model.trim="listRecord.artistName"
-            class="artist input long-input"
-          />
-          <p>Album</p>
-          <input
-            type="text"
-            v-model.trim="listRecord.albumTitle"
-            class="album input long-input"
-          />
-          <div class="short-inputs">
-            <!-- <label for="genre"
-              >Genre
-              <input
-                type="text"
-                v-model.trim="listRecord.genre"
-                id="genre"
-                class="genre input short-input"
-            /></label> -->
-            <form action="#">
-              <label for="genre">Genre</label>
-              <select
-                name="genre"
-                id="genre"
-                multiple
-                v-model.trim="listRecord.genre"
-              >
-                <option value="Alternative">Alternative</option>
-                <option value="Blues">Blues</option>
-                <option value="Children's Music">Children's Music</option>
-                <option value="Classical">Classical</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Country">Country</option>
-                <option value="Dance">Dance</option>
-                <option value="EDM">EDM</option>
-                <option value="Easy Listening">Easy Listening</option>
-                <option value="Electronic">Electronic</option>
-                <option value="Hip-Hop">Hip-Hop</option>
-                <option value="Holiday">Holiday</option>
-                <option value="Industrial">Industrial</option>
-                <option value="Gospel">Gospel</option>
-                <option value="J-Pop">J-Pop</option>
-                <option value="Jazz">Jazz</option>
-                <option value="K-Pop">K-Pop</option>
-                <option value="Latino">Latino</option>
-                <option value="New Age">New Age</option>
-                <option value="Opera">Opera</option>
-                <option value="Pop">Pop</option>
-                <option value="R&B">R&B</option>
-                <option value="Soul">Soul</option>
-                <option value="Reggae">Reggae</option>
-                <option value="Rock">Rock</option>
-                <option value="World">World</option>
-              </select>
-            </form>
-            <label for="label"
-              >Label
-              <input
-                type="text"
-                v-model.trim="listRecord.label"
-                class="label input short-input"
-              />
-            </label>
-          </div>
-          <div class="short-inputs">
-            <label for="year"
-              >Release Year
-              <input
-                type="text"
-                v-model.trim="listRecord.yearReleased"
-                id="year"
-                class="year input short-input"
-            /></label>
-            <label for="price"
-              >Asking Price
-              <input
-                type="text"
-                v-model.trim="listRecord.price"
-                id="price"
-                placeholder="$"
-                class="price input short-input"
-            /></label>
-          </div>
-          <p>Description</p>
-          <textarea
-            type="text-area"
-            v-model.trim="listRecord.albumDescription"
-            class="description input long-input"
-          ></textarea>
-          <div class="lengths-div">
-            <label for="lp"
-              >LP
-              <input
-                type="radio"
-                v-model="listRecord.length"
-                value="lp"
-                id="lp"
-                name="length"
-                class="length"
-            /></label>
-            <label for="ep"
-              >EP
-              <input
-                type="radio"
-                v-model="listRecord.length"
-                value="ep"
-                id="ep"
-                name="length"
-                class="length"
-            /></label>
-          </div>
-
-          <input
-            type="submit"
-            class="button start-listing"
-            value="Create Listing"
-          />
-        </form>
-      </section>
+      <SellSection />
     </div>
 
     <div class="user-listings">
@@ -175,8 +45,8 @@
 
 <script>
 import ProfileSection from '../components/ProfileSection.vue'
+import SellSection from '../components/SellSection.vue';
 import Swal from 'sweetalert2'
-// import SellSection from '../components/SellSection.vue';
 const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
 export default {
@@ -184,7 +54,7 @@ export default {
   props: [],
   components: {
     ProfileSection,
-    // SellSection
+    SellSection
   },
   data() {
     return {
@@ -200,11 +70,7 @@ export default {
         albumDescription: '',
         albumTitle: '',
         artistName: '',
-        genre: [
-          {
-            '': '',
-          },
-        ],
+        genre: [],
         imageUrl: '',
         label: '',
         length: '',
@@ -246,6 +112,9 @@ export default {
         .catch(err => {
           if (err) throw err
         })
+    },
+    dropDown() {
+      this.toggleClass("is-active")
     },
     resetData() {
       this.listRecord.artistName = ''
@@ -365,7 +234,6 @@ export default {
 
 .user-listings {
   margin: 0 auto 0 1rem;
-  width: 100%;
   height: auto;
   display: grid;
   grid-template-columns: auto auto auto;
@@ -420,6 +288,73 @@ export default {
     width: 9rem;
   }
 }
+
+.checkbox-dropdown {
+  width: 200px;
+  border: 1px solid #aaa;
+  padding: 10px;
+  position: relative;
+  margin: 0 auto;
+  
+  user-select: none;
+}
+
+/* Display CSS arrow to the right of the dropdown text */
+.checkbox-dropdown:after {
+  content:'';
+  height: 0;
+  position: absolute;
+  width: 0;
+  border: 6px solid transparent;
+  border-top-color: #000;
+  top: 50%;
+  right: 10px;
+  margin-top: -3px;
+}
+
+/* Reverse the CSS arrow when the dropdown is active */
+.checkbox-dropdown.is-active:after {
+  border-bottom-color: #000;
+  border-top-color: #fff;
+  margin-top: -9px;
+}
+
+.checkbox-dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%; /* align the dropdown right below the dropdown text */
+  border: inherit;
+  border-top: none;
+  left: -1px; /* align the dropdown to the left */
+  right: -1px; /* align the dropdown to the right */
+  opacity: 0; /* hide the dropdown */
+ 
+  transition: opacity 0.4s ease-in-out;
+  height: 100px;
+  overflow: scroll;
+  overflow-x: hidden;
+  pointer-events: none; /* avoid mouse click events inside the dropdown */
+}
+.is-active .checkbox-dropdown-list {
+  opacity: 1; /* display the dropdown */
+  pointer-events: auto; /* make sure that the user still can select checkboxes */
+}
+
+.checkbox-dropdown-list li label {
+  display: block;
+  border-bottom: 1px solid silver;
+  padding: 10px;
+ 
+  transition: all 0.2s ease-out;
+}
+
+.checkbox-dropdown-list li label:hover {
+  background-color: #555;
+  color: white;
+}
+
 
 .short-input {
   width: 9rem;
