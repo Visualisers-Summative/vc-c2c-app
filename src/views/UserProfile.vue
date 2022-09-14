@@ -4,113 +4,88 @@
       <ProfileSection />
       <!-- <SellSection /> -->
       <section class="sell-vinyl-section">
-        <form
-          id="signup-form"
-          @submit.prevent="insertDoc"
-          ref="registerForm"
-          action="#"
-          novalidate="true"
-        >
+        <form id="signup-form" @submit.prevent="insertDoc" ref="registerForm" action="#" novalidate="true">
           <h2>Sell Some Vinyl</h2>
           <p>Artist</p>
-          <input
-            type="text"
-            v-model.trim="listRecord.artistName"
-            class="artist input long-input"
-          />
+          <input type="text" v-model.trim="listRecord.artistName" class="artist input long-input" />
           <p>Album</p>
-          <input
-            type="text"
-            v-model.trim="listRecord.albumTitle"
-            class="album input long-input"
-          />
+          <input type="text" v-model.trim="listRecord.albumTitle" class="album input long-input" />
           <div class="short-inputs">
-            <label for="genre"
+            <!-- <label for="genre"
               >Genre
               <input
                 type="text"
                 v-model.trim="listRecord.genre"
                 id="genre"
                 class="genre input short-input"
-            /></label>
-            <label for="label"
-              >Label
-              <input
-                type="text"
-                v-model.trim="listRecord.label"
-                class="label input short-input"
-              />
+            /></label> -->
+            <form action="#">
+              <label for="genre">Genre</label>
+              <select name="genre" id="genre" multiple v-model.trim="listRecord.genre">
+                <option value="alternative">Alternative</option>
+                <option value="blues">Blues</option>
+                <option value="children-music">ChildrenU+0060s Music</option>
+                <option value="classical">Classical</option>
+                <option value="comedy">Comedy</option>
+                <option value="country">Country</option>
+                <option value="dance">Dance</option>
+                <option value="edn">EDM</option>
+                <option value="easy-listening">Easy Listening</option>
+                <option value="electronic">Electronic</option>
+                <option value="hip-hop">Hip-Hop</option>
+                <option value="holiday">Holiday</option>
+                <option value="industrial">Industrial</option>
+                <option value="gospel">Gospel</option>
+                <option value="j-pop">J-Pop</option>
+                <option value="jazz">Jazz</option>
+                <option value="k-pop">K-Pop</option>
+                <option value="latino">Latino</option>
+                <option value="new-age">New Age</option>
+                <option value="opera">Opera</option>
+                <option value="pop">Pop</option>
+                <option value="r&b">R&B</option>
+                <option value="soul">Soul</option>
+                <option value="reggae">Reggae</option>
+                <option value="rock">Rock</option>
+                <option value="world">World</option>
+              </select>
+            </form>
+            <label for="label">Label
+              <input type="text" v-model.trim="listRecord.label" class="label input short-input" />
             </label>
           </div>
           <div class="short-inputs">
-            <label for="year"
-              >Release Year
-              <input
-                type="text"
-                v-model.trim="listRecord.yearReleased"
-                id="year"
-                class="year input short-input"
-            /></label>
-            <label for="price"
-              >Asking Price
-              <input
-                type="text"
-                v-model.trim="listRecord.price"
-                id="price"
-                placeholder="$"
-                class="price input short-input"
-            /></label>
+            <label for="year">Release Year
+              <input type="text" v-model.trim="listRecord.yearReleased" id="year"
+                class="year input short-input" /></label>
+            <label for="price">Asking Price
+              <input type="text" v-model.trim="listRecord.price" id="price" placeholder="$"
+                class="price input short-input" /></label>
           </div>
           <p>Description</p>
-          <textarea
-            type="text-area"
-            v-model.trim="listRecord.albumDescription"
-            class="description input long-input"
-          ></textarea>
+          <textarea type="text-area" v-model.trim="listRecord.albumDescription"
+            class="description input long-input"></textarea>
           <div class="lengths-div">
-            <label for="lp"
-              >LP
-              <input
-                type="radio"
-                v-model="listRecord.length"
-                value="lp"
-                id="lp"
-                name="length"
-                class="length"
-            /></label>
-            <label for="ep"
-              >EP
-              <input
-                type="radio"
-                v-model="listRecord.length"
-                value="ep"
-                id="ep"
-                name="length"
-                class="length"
-            /></label>
+            <label for="lp">LP
+              <input type="radio" v-model="listRecord.length" value="lp" id="lp" name="length" class="length" /></label>
+            <label for="ep">EP
+              <input type="radio" v-model="listRecord.length" value="ep" id="ep" name="length" class="length" /></label>
           </div>
 
-          <input
-            type="submit"
-            class="button start-listing"
-            value="Create Listing"
-          />
+          <input type="submit" class="button start-listing" value="Create Listing" />
         </form>
       </section>
     </div>
 
     <div class="user-listings">
       <h1>USER LISTINGS HERE</h1>
-      <div
-        v-for="record in usersRecords"
-        v-bind:key="record._id"
-        class="records-loop"
-      >
+      <div v-for="record in usersRecords" v-bind:key="record._id" class="records-loop">
         <div class="artist-name">
           {{ record.artistName }}
           <div>{{ record._id }}</div>
           <div>{{ record.albumDescription }}</div>
           <div>${{ record.price }}</div>
+          <div>{{ record.genre.join(', ') }}</div>
         </div>
       </div>
     </div>
