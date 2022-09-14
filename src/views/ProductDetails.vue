@@ -51,10 +51,18 @@
       </div>
 
       <div class="icon-container">
-        <svg-icon
-          type="mdi"
-          :path="path"
-        ></svg-icon>
+
+        <svg
+          @click="favourite"
+          width="20"
+          height="20"
+          class="bi"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
+          />
+        </svg>
       </div>
 
       <div class="button-container">
@@ -66,11 +74,10 @@
     </div>
   </div>
 
-<div class="comment-section">
-  <ReviewForm @review-submitted="addReview"></ReviewForm>
-  <ReviewList :reviews="reviews"></ReviewList>
-</div>
-
+  <div class="comment-section">
+    <ReviewForm @review-submitted="addReview"></ReviewForm>
+    <ReviewList :reviews="reviews"></ReviewList>
+  </div>
 </template>
 
 <script>
@@ -88,15 +95,15 @@ export default {
     return {
       record: null,
       path: mdiHeartOutline,
-
       reviews: []
     }
   },
   components: {
     SvgIcon,
     ReviewForm,
-    ReviewList
-},
+    ReviewList,
+    
+  },
   created() {
     ProductService.getData(this.id)
       .then(response => {
@@ -108,12 +115,18 @@ export default {
         console.log(error)
       })
   },
-  methods:{
+  methods: {
     addReview(review) {
       this.reviews.push(review)
-    }
-  }
-  
+    },
+    favourite() {
+      event.target.classList.toggle('favourite')
+    },
+    onClickHandler() {
+      console.log(page)
+    },
+  },
+
 }
 </script>
 
@@ -128,16 +141,12 @@ export default {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
-    width:60%;
-  
+    width: 60%;
 
     .column-1 {
       min-width: 100px;
       display: flex;
     }
-    // .column-2 {
-    //   text-align: right;
-    // }
 
     h1 {
       margin: 2rem 0rem;
@@ -150,8 +159,6 @@ export default {
       h4 {
         margin-right: 0px;
       }
-       
-
 
       .record-artist {
         font-style: italic;
@@ -175,6 +182,15 @@ export default {
   .icon-container {
     display: flex;
     justify-content: right;
+
+    .bi:hover {
+      cursor: pointer;
+    }
+
+    .favourite {
+      transition: 0.5s ease;
+      fill: red !important;
+    }
   }
 
   //button styling - can be moved to main.scss
@@ -197,7 +213,7 @@ export default {
   }
 }
 
-.comment-section{
+.comment-section {
   display: flex;
   width: 100%;
   margin-top: 30px;
