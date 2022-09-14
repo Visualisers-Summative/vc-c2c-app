@@ -110,9 +110,9 @@
     />
   </div>
 
-  <div class="footer">
+  <!-- <div class="footer">
     <FooterRow />
-  </div>
+  </div> -->
 </template>
 
 <script>
