@@ -67,9 +67,12 @@
     </div>
   </div>
 
-  <div>
-    <CommentSection />
-  </div>
+  <!-- <ReviewList :reviews="reviews" /> -->
+<div class="comment-section">
+  <ReviewForm @review-submitted="addReview"></ReviewForm>
+  <ReviewList :reviews="reviews"></ReviewList>
+</div>
+
 </template>
 
 <script>
@@ -78,7 +81,8 @@ import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiHeartOutline } from '@mdi/js'
 
 import ProductService from '../services/ProductService.js'
-import CommentSection from '../components/CommentSection.vue'
+import ReviewForm from '../components/ReviewForm.vue'
+import ReviewList from '../components/ReviewList.vue'
 
 export default {
   props: ['id'],
@@ -86,12 +90,15 @@ export default {
     return {
       record: null,
       path: mdiHeartOutline,
+
+      reviews: []
     }
   },
   components: {
     SvgIcon,
-    CommentSection,
-  },
+    ReviewForm,
+    ReviewList
+},
   created() {
     ProductService.getData(this.id)
       .then(response => {
@@ -103,6 +110,12 @@ export default {
         console.log(error)
       })
   },
+  methods:{
+    addReview(review) {
+      this.reviews.push(review)
+    }
+  }
+  
 }
 </script>
 
@@ -178,5 +191,12 @@ export default {
       transition: border-color 0.25s;
     }
   }
+}
+
+.comment-section{
+  display: flex;
+  width: 100%;
+  // justify-content: space-between;
+  margin-top: 30px;
 }
 </style>
