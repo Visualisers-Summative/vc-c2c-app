@@ -2,7 +2,7 @@
   <div class="profile-page-container">
     <div class="user-profile">
       <ProfileSection />
-      <SellSection />
+      <SellSection @showUsersData="loadAllData" />
     </div>
 
     <div class="user-listings">
@@ -45,7 +45,7 @@
 
 <script>
 import ProfileSection from '../components/ProfileSection.vue'
-import SellSection from '../components/SellSection.vue';
+import SellSection from '../components/SellSection.vue'
 import Swal from 'sweetalert2'
 const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
@@ -54,7 +54,7 @@ export default {
   props: [],
   components: {
     ProfileSection,
-    SellSection
+    SellSection,
   },
   data() {
     return {
@@ -292,13 +292,13 @@ export default {
   padding: 10px;
   position: relative;
   margin: 0 auto;
-  
+
   user-select: none;
 }
 
 /* Display CSS arrow to the right of the dropdown text */
 .checkbox-dropdown:after {
-  content:'';
+  content: '';
   height: 0;
   position: absolute;
   width: 0;
@@ -327,7 +327,7 @@ export default {
   left: -1px; /* align the dropdown to the left */
   right: -1px; /* align the dropdown to the right */
   opacity: 0; /* hide the dropdown */
- 
+
   transition: opacity 0.4s ease-in-out;
   height: 100px;
   overflow: scroll;
@@ -343,7 +343,7 @@ export default {
   display: block;
   border-bottom: 1px solid silver;
   padding: 10px;
- 
+
   transition: all 0.2s ease-out;
 }
 
@@ -351,7 +351,6 @@ export default {
   background-color: #555;
   color: white;
 }
-
 
 .short-input {
   width: 9rem;
