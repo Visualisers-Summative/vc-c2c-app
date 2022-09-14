@@ -363,6 +363,7 @@ export default {
         yearReleased: '',
         loggedUser: '',
         loggedUserId: '',
+        productId: '',
       },
       //   editRecord: {
       //     albumDescription: '',
@@ -393,7 +394,7 @@ export default {
           this.loadAllData()
           // this.hideModal()
           this.resetData()
-          //   console.log(data)
+          console.log(data)
         })
         .catch(err => {
           if (err) throw err

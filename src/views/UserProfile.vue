@@ -335,7 +335,7 @@
             <div class="edit-buttons confirm-btn">
               <button
                 class="edit"
-                @click="updateDoc(profile._id)"
+                @click="updateDoc(record._id)"
               >
                 Confirm
               </button>
@@ -404,8 +404,7 @@ export default {
   },
   data() {
     return {
-      isModalVisible: false,
-      editId: '',
+      // isModalVisible: false,
       usersRecords: [],
       postsData: [],
       postsLoading: true,
@@ -424,6 +423,7 @@ export default {
         yearReleased: '',
         loggedUser: '',
         loggedUserId: '',
+        productId: '',
       },
       editRecord: {
         albumDescription: '',
@@ -439,43 +439,64 @@ export default {
     }
   },
   methods: {
-    insertDoc() {
-      // done
-      fetch(productApi, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.listRecord),
-      })
-        .then(response => response.text())
-        .then(data => {
-          this.loadAllData()
-          // this.hideModal()
-          this.resetData()
-          console.log(data)
-        })
-        .catch(err => {
-          if (err) throw err
-        })
-    },
+    // getRecordData(id) {
+    //   // done
+    //   this.id = id
+    //   fetch(productApi + id, {
+    //     method: 'GET',
+    //   })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       console.log('get data: ' + data)
+    //       this.listRecord.albumDescription = data.albumDescription
+    //       this.listRecord.albumTitle = data.albumTitle
+    //       this.listRecord.artistName = data.artistName
+    //       this.listRecord.devWebsiteName = data.devWebsiteName
+    //     })
+    //     .catch(err => {
+    //       if (err) throw err
+    //     })
+    // },
+    // insertDoc() {
+    //   // done
+    //   fetch(productApi, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(this.listRecord),
+    //   })
+    //     .then(response => response.text())
+    //     .then(data => {
+    //       // console.log(data._id)
+
+    //       this.loadAllData()
+    //       // this.hideModal()
+    //       this.resetData()
+    //       console.log(data)
+    //     })
+    //     .catch(err => {
+    //       if (err) throw err
+    //     })
+    // },
     loadAllData() {
       fetch(productApi)
         .then(response => response.json())
         .then(data => {
           this.usersRecords = data
+
+          // console.log(data._id)
           console.log('id: ' + localStorage.userId)
           if (localStorage.userId) {
             let postData = []
             data.forEach(element => {
-              // console.log(element)
-              if (localStorage.userId === element.loggedUserId) {
+              // console.log(this.listRecord.productId)
+              if (localStorage.userId == element.loggedUserId) {
                 postData.push(element)
-                // console.log(postData)
               }
             })
             this.usersRecords = postData
-            // console.log(this.usersRecords)
+
             // } else {
             //   // call login
             //   console.log("call login");
@@ -484,9 +505,10 @@ export default {
           // set posts data
           data.forEach(element => {
             this.postsData[element._id] = element
+            // this.listRecord.productId =
           })
           // console.log(this.postsData)
-          // console.log(this.usersRecords)
+          // console.log(this.listRecord.productId)
           // this.postsLoading = false
           // this.loading = false
         })
@@ -510,7 +532,7 @@ export default {
             .then(response => response.text())
             .then(data => {
               this.loadAllData()
-              // console.log(data)
+              console.log(data)
             })
             .catch(err => {
               if (err) throw err
@@ -523,8 +545,41 @@ export default {
         }
       })
     },
+    updateDoc(id) {
+      Swal.fire({
+        // title: "Well done!",
+        text: 'Your profile was updated',
+        icon: 'success',
+        confirmButtonText: 'Rock n roll',
+      })
+      // this.id = id
+      fetch(productApi + id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.editRecord),
+      })
+        .then(response => response.text())
+        .then(data => {
+          console.log(data)
+          console.log(this.editRecord)
+          this.editId = ''
+          this.editRecord.albumDescription = ''
+          this.editRecord.albumTitle = ''
+          this.editRecord.artistName = ''
+          this.editRecord.genre = ''
+          this.editRecord.imageUrl = ''
+          this.editRecord.length = ''
+          this.editRecord.price = ''
+          this.editRecord.yearReleased = ''
+          this.loadAllData()
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
     onEdit(record) {
-      // this.editId = record._id
       this.editId = record._id
       this.editRecord.albumDescription = record.albumDescription
       this.editRecord.albumTitle = record.albumTitle
@@ -547,23 +602,27 @@ export default {
       this.editRecord.price = ''
       this.editRecord.yearReleased = ''
     },
-    resetData() {
-      this.editId = ''
-      this.listRecord.artistName = ''
-      this.listRecord.albumTitle = ''
-      this.listRecord.albumDescription = ''
-      this.listRecord.genre = ''
-      this.listRecord.imageUrl = ''
-      this.listRecord.label = ''
-      this.listRecord.length = ''
-      this.listRecord.price = ''
-      this.listRecord.yearReleased = ''
+    addProductId() {
+      this.listRecord.productId = element._id
+      // console.log(this.listRecord)
     },
+    // resetData() {
+    //   this.editId = ''
+    //   this.listRecord.artistName = ''
+    //   this.listRecord.albumTitle = ''
+    //   this.listRecord.albumDescription = ''
+    //   this.listRecord.genre = ''
+    //   this.listRecord.imageUrl = ''
+    //   this.listRecord.label = ''
+    //   this.listRecord.length = ''
+    //   this.listRecord.price = ''
+    //   this.listRecord.yearReleased = ''
+    // },
   },
   mounted() {
     this.listRecord.loggedUser = localStorage.loggedUser
     this.listRecord.loggedUserId = localStorage.userId
-
+    // this.listRecord.productId = localStorage._id
     this.loadAllData()
   },
 }
@@ -634,75 +693,98 @@ export default {
   }
 }
 
-.checkbox-dropdown {
-  width: 200px;
-  border: 1px solid #aaa;
-  padding: 10px;
-  position: relative;
-  margin: 0 auto;
-
-  user-select: none;
-}
-
-/* Display CSS arrow to the right of the dropdown text */
-.checkbox-dropdown:after {
-  content: '';
-  height: 0;
-  position: absolute;
-  width: 0;
-  border: 6px solid transparent;
-  border-top-color: #000;
-  top: 50%;
-  right: 10px;
-  margin-top: -3px;
-}
-
-/* Reverse the CSS arrow when the dropdown is active */
-.checkbox-dropdown.is-active:after {
-  border-bottom-color: #000;
-  border-top-color: #fff;
-  margin-top: -9px;
+.genres {
+  display: flex;
+  flex-direction: column;
 }
 
 .checkbox-dropdown-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 100%; /* align the dropdown right below the dropdown text */
-  border: inherit;
-  border-top: none;
-  left: -1px; /* align the dropdown to the left */
-  right: -1px; /* align the dropdown to the right */
-  opacity: 0; /* hide the dropdown */
-
-  transition: opacity 0.4s ease-in-out;
-  height: 100px;
   overflow: scroll;
   overflow-x: hidden;
-  pointer-events: none; /* avoid mouse click events inside the dropdown */
-}
-.is-active .checkbox-dropdown-list {
-  opacity: 1; /* display the dropdown */
-  pointer-events: auto; /* make sure that the user still can select checkboxes */
-}
+  display: flex;
+  flex-direction: column;
+  height: 6rem;
 
-.checkbox-dropdown-list li label {
-  display: block;
-  border-bottom: 1px solid silver;
-  padding: 10px;
-
-  transition: all 0.2s ease-out;
-}
-
-.checkbox-dropdown-list li label:hover {
-  background-color: #555;
-  color: white;
+  label {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .short-input {
   width: 9rem;
 }
+
+// .checkbox-dropdown {
+//   width: 200px;
+//   border: 1px solid #aaa;
+//   padding: 10px;
+//   position: relative;
+//   margin: 0 auto;
+
+//   user-select: none;
+// }
+
+// /* Display CSS arrow to the right of the dropdown text */
+// .checkbox-dropdown:after {
+//   content: '';
+//   height: 0;
+//   position: absolute;
+//   width: 0;
+//   border: 6px solid transparent;
+//   border-top-color: #000;
+//   top: 50%;
+//   right: 10px;
+//   margin-top: -3px;
+// }
+
+// /* Reverse the CSS arrow when the dropdown is active */
+// .checkbox-dropdown.is-active:after {
+//   border-bottom-color: #000;
+//   border-top-color: #fff;
+//   margin-top: -9px;
+// }
+
+// .checkbox-dropdown-list {
+//   list-style: none;
+//   margin: 0;
+//   padding: 0;
+//   position: absolute;
+//   top: 100%; /* align the dropdown right below the dropdown text */
+//   border: inherit;
+//   border-top: none;
+//   left: -1px; /* align the dropdown to the left */
+//   right: -1px; /* align the dropdown to the right */
+//   opacity: 0; /* hide the dropdown */
+
+//   transition: opacity 0.4s ease-in-out;
+//   height: 100px;
+//   overflow: scroll;
+//   overflow-x: hidden;
+//   pointer-events: none; /* avoid mouse click events inside the dropdown */
+// }
+// .is-active .checkbox-dropdown-list {
+//   opacity: 1; /* display the dropdown */
+//   pointer-events: auto; /* make sure that the user still can select checkboxes */
+// }
+
+// .checkbox-dropdown-list li label {
+//   display: block;
+//   border-bottom: 1px solid silver;
+//   padding: 10px;
+
+//   transition: all 0.2s ease-out;
+// }
+
+// .checkbox-dropdown-list li label:hover {
+//   background-color: #555;
+//   color: white;
+// }
+
+// .short-input {
+//   width: 9rem;
+// }
 
 .lengths-div {
   display: flex;
