@@ -12,32 +12,378 @@
         v-bind:key="record._id"
         class="records-loop"
       >
-        <img
-          :src="record.imageUrl"
-          alt="Record cover"
-        />
-        <div class="artist-name">
-          {{ record.artistName }}
-          <div>{{ record._id }}</div>
-          <div>{{ record.albumDescription }}</div>
-          <div>${{ record.price }}</div>
-          <div>{{ record.genre.join(', ') }}</div>
+        <!-- Input rows to edit data  -->
+        <div
+          id="edit-inputs"
+          v-if="editId == record._id"
+        >
+          <p>Artist</p>
+          <input
+            type="text"
+            v-model.trim="editRecord.artistName"
+            class="artist input long-input"
+          />
+          <p>Album</p>
+          <input
+            type="text"
+            v-model.trim="editRecord.albumTitle"
+            class="album input long-input"
+          />
+          <label for="albumCover"
+            >Album Cover
+            <input
+              type="text"
+              v-model.trim="editRecord.imageUrl"
+              class="album-cover input long-input"
+            />
+          </label>
+          <label for="label"
+            >Label
+            <input
+              type="text"
+              v-model.trim="editRecord.label"
+              class="label input long-input"
+            />
+          </label>
+          <div class="short-inputs">
+            <div class="genres">
+              <p>Genres</p>
+              <div class="checkbox-dropdown-list input">
+                <label
+                  >ALternative
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Alternative"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Blues
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Blues"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Children's Music
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Children's Music"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Classical
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Classical"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Comedy
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Comedy"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Country
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Country"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Dance
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Dance"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >EDM
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="EDM"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Easy Listening
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Easy Listening"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Electronic
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Electronic"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Hip-Hop
+                  <input
+                    v-model="listRecord.genre"
+                    type="checkbox"
+                    value="Hip-Hop"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Holiday
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Holiday"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Industrial
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Industrial"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Gospel
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Gospel"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >J-Pop
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Gospel"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Jazz
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Jazz"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >K-Pop
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="K-Pop"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Latino
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Latino"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >New Age
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="New Age"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Opera
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Opera"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Pop
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Pop"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >R&B
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="R&B"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Soul
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Soul"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Reggae
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Reggae"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >Rock
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="Rock"
+                    name="genre"
+                  />
+                </label>
+                <label
+                  >World
+                  <input
+                    v-model="editRecord.genre"
+                    type="checkbox"
+                    value="World"
+                    name="genre"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="short-inputs">
+            <label for="year"
+              >Release Year
+              <input
+                type="text"
+                v-model.trim="editRecord.yearReleased"
+                id="year"
+                class="year input short-input"
+            /></label>
+            <label for="price"
+              >Asking Price
+              <input
+                type="text"
+                v-model.trim="editRecord.price"
+                id="price"
+                placeholder="$"
+                class="price input short-input"
+            /></label>
+          </div>
+          <p>Description</p>
+          <textarea
+            type="text-area"
+            v-model.trim="editRecord.albumDescription"
+            class="description input long-input"
+          ></textarea>
+          <div class="lengths-div">
+            <label for="lp"
+              >LP
+              <input
+                type="radio"
+                v-model="editRecord.length"
+                value="lp"
+                id="lp"
+                name="length"
+                class="length"
+            /></label>
+            <label for="ep"
+              >EP
+              <input
+                type="radio"
+                v-model="editRecord.length"
+                value="ep"
+                id="ep"
+                name="length"
+                class="length"
+            /></label>
+            <div class="edit-buttons confirm-btn">
+              <button
+                class="edit"
+                @click="updateDoc(profile._id)"
+              >
+                Confirm
+              </button>
+              <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
+              <button
+                class="remove"
+                @click="onCancel"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="edit-buttons">
-          <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
-          <button
-            class="delete-btn"
-            @click="deleteDoc(record._id)"
-          >
-            Delete
-          </button>
-          <button
-            class="edit-btn"
-            v-on:click="onEdit(record)"
-          >
-            Edit
-          </button>
+        <!-- end of edit values -->
+
+        <!-- start of display values -->
+        <div
+          id="displayed-values"
+          v-else
+        >
+          <img
+            :src="record.imageUrl"
+            alt="Record cover"
+          />
+          <div class="artist-name">
+            {{ record.artistName }}
+            <div>{{ record._id }}</div>
+            <div>{{ record.albumDescription }}</div>
+            <div>${{ record.price }}</div>
+            <div>{{ record.genre.join(', ') }}</div>
+          </div>
+          <div class="edit-buttons">
+            <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
+            <button
+              class="delete-btn"
+              @click="deleteDoc(record._id)"
+            >
+              Delete
+            </button>
+            <button
+              class="edit-btn"
+              v-on:click="onEdit(record)"
+            >
+              Edit
+            </button>
+          </div>
         </div>
+        <!-- end of display values-->
       </div>
     </div>
   </div>
@@ -113,17 +459,6 @@ export default {
           if (err) throw err
         })
     },
-    resetData() {
-      this.listRecord.artistName = ''
-      this.listRecord.albumTitle = ''
-      this.listRecord.albumDescription = ''
-      this.listRecord.genre = ''
-      this.listRecord.imageUrl = ''
-      this.listRecord.label = ''
-      this.listRecord.length = ''
-      this.listRecord.price = ''
-      this.listRecord.yearReleased = ''
-    },
     loadAllData() {
       fetch(productApi)
         .then(response => response.json())
@@ -190,6 +525,7 @@ export default {
     },
     onEdit(record) {
       // this.editId = record._id
+      this.editId = record._id
       this.editRecord.albumDescription = record.albumDescription
       this.editRecord.albumTitle = record.albumTitle
       this.editRecord.artistName = record.artistName
@@ -200,15 +536,28 @@ export default {
       this.editRecord.yearReleased = record.yearReleased
     },
     onCancel() {
-      // this.editRecord = ''
-      this.editRecord.albumDescription = ''
-      this.editRecord.albumTitle = ''
+      this.editId = ''
       this.editRecord.artistName = ''
+      this.editRecord.albumTitle = ''
+      this.editRecord.albumDescription = ''
       this.editRecord.genre = ''
       this.editRecord.imageUrl = ''
+      this.editRecord.label = ''
       this.editRecord.length = ''
       this.editRecord.price = ''
       this.editRecord.yearReleased = ''
+    },
+    resetData() {
+      this.editId = ''
+      this.listRecord.artistName = ''
+      this.listRecord.albumTitle = ''
+      this.listRecord.albumDescription = ''
+      this.listRecord.genre = ''
+      this.listRecord.imageUrl = ''
+      this.listRecord.label = ''
+      this.listRecord.length = ''
+      this.listRecord.price = ''
+      this.listRecord.yearReleased = ''
     },
   },
   mounted() {

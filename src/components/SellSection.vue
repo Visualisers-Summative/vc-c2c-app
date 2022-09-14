@@ -20,6 +20,14 @@
         v-model.trim="listRecord.albumTitle"
         class="album input long-input"
       />
+      <label for="albumCover"
+        >Album Cover
+        <input
+          type="text"
+          v-model.trim="listRecord.imageUrl"
+          class="album-cover input long-input"
+        />
+      </label>
       <label for="label"
         >Label
         <input
@@ -356,18 +364,18 @@ export default {
         loggedUser: '',
         loggedUserId: '',
       },
-      editRecord: {
-        albumDescription: '',
-        albumTitle: '',
-        artistName: '',
-        genre: [],
-        imageUrl: '',
-        label: '',
-        length: '',
-        price: '',
-        yearReleased: '',
-      },
-      dropDownVisible: false,
+      //   editRecord: {
+      //     albumDescription: '',
+      //     albumTitle: '',
+      //     artistName: '',
+      //     genre: [],
+      //     imageUrl: '',
+      //     label: '',
+      //     length: '',
+      //     price: '',
+      //     yearReleased: '',
+      //   },
+      //   dropDownVisible: false,
     }
   },
   methods: {
@@ -391,9 +399,9 @@ export default {
           if (err) throw err
         })
     },
-    dropDown() {
-      this.dropDownVisible = !this.dropDownVisible
-    },
+    // dropDown() {
+    //   this.dropDownVisible = !this.dropDownVisible
+    // },
     resetData() {
       this.listRecord.artistName = ''
       this.listRecord.albumTitle = ''
