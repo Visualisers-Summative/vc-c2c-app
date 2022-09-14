@@ -117,18 +117,6 @@
             <input type="submit" class="button start-listing" value="Create Listing" />
         </form>
     </section>
-
-    <div class="user-listings">
-        <div v-for="record in usersRecords" v-bind:key="record._id" class="records-loop">
-            <div class="artist-name">
-                {{ record.artistName }}
-                <div>{{ record._id }}</div>
-                <div>{{ record.albumDescription }}</div>
-                <div>${{ record.price }}</div>
-                <div>{{ record.genre.join(', ') }}</div>
-            </div>
-        </div>
-    </div>
 </template>
   
 <script>
@@ -220,8 +208,10 @@ export default {
                     if (localStorage.userId) {
                         let postData = []
                         data.forEach(element => {
+                            console.log(element)
                             if (localStorage.userId === element.loggedUserId) {
                                 postData.push(element)
+                                console.log(postData)
                             }
                         })
                         this.usersRecords = postData
@@ -244,7 +234,11 @@ export default {
                     if (err) throw err
                 })
         },
-    }
+    },
+    mounted() {
+        this.listRecord.loggedUser = localStorage.loggedUser
+        this.listRecord.loggedUserId = localStorage.userId
+    },
 }
 </script>
   
@@ -314,6 +308,7 @@ export default {
     display: flex;
     flex-direction: column;
     height: 6rem;
+
     label {
         display: flex;
         width: 100%;

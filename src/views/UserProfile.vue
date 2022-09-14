@@ -113,9 +113,6 @@ export default {
           if (err) throw err
         })
     },
-    dropDown() {
-      this.toggleClass("is-active")
-    },
     resetData() {
       this.listRecord.artistName = ''
       this.listRecord.albumTitle = ''
