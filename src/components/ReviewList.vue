@@ -6,7 +6,8 @@
         v-for="(review, index) in reviews"
         :key="index"
       >
-        <h4>{{ review.name }}</h4>
+        <!-- <h4>{{ review.name }}</h4> -->
+        <h4>Username here</h4>
         <br />
         "{{ review.review }}"
       </li>
@@ -41,8 +42,8 @@ export default {
 
 
   li {
-    margin-right: 10px;
-    padding: 10px;
+    // margin-right: 10px;
+    padding-top: 10px;
     align-items: center;
     border-bottom: 1px solid;
   }
