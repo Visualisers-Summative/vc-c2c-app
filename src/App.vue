@@ -132,6 +132,7 @@ export default {
       records: [],
       expandBox: 'none',
       userGradient: '',
+      radius: ''
     }
   },
   methods: {
