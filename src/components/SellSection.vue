@@ -5,7 +5,6 @@
       <p>Artist</p>
       <input required type="text" v-model.trim="listRecord.artistName" class="artist input long-input" />
       <p>Album</p>
-<<<<<<< HEAD
       <input
         type="text"
         v-model.trim="listRecord.albumTitle"
@@ -20,11 +19,6 @@
           class="album-cover input long-input"
           @change="uploadImage($event)"
         />
-=======
-      <input required type="text" v-model.trim="listRecord.albumTitle" class="album input long-input" />
-      <label for="label">Label
-        <input required type="text" v-model.trim="listRecord.label" class="label input long-input" />
->>>>>>> 85a4c5999fcb7656b748c0c0e87b5cefae9a8a8c
       </label>
       <div class="long-inputs long-input">
         <div class="genres">
@@ -160,14 +154,9 @@ export default {
   components: {},
   data() {
     return {
-<<<<<<< HEAD
-      //   isModalVisible: false,
-=======
       image: 'image.png',
       max: 200,
-      isModalVisible: false,
-      editId: '',
->>>>>>> 85a4c5999fcb7656b748c0c0e87b5cefae9a8a8c
+    //   isModalVisible: false,
       usersRecords: [],
       postsData: [],
       postsLoading: true,

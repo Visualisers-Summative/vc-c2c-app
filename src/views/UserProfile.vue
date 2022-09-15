@@ -366,12 +366,8 @@
             {{ record.artistName }}
             <div>{{ record._id }}</div>
             <div>{{ record.genre.join(', ') }}</div>
-<<<<<<< HEAD
-            <!-- <div>Id: {{ record.productId }}</div> -->
-=======
             <div>{{ record.albumDescription }}</div>
 
->>>>>>> 85a4c5999fcb7656b748c0c0e87b5cefae9a8a8c
           </div>
 
 
@@ -432,25 +428,24 @@
               </p>
             </div>
 
-            
             <div class="price-button-wrapper">
               <h3 class="record-price">${{ record.price }}</h3>
 
-            <div class="listing-edit-buttons">
-              <button
-                class="delete-btn"
-                @click="deleteDoc(record._id)"
-              >
-                DELETE
-              </button>
-              <button
-                class="edit-btn"
-                v-on:click="onEdit(record)"
-              >
-                EDIT
-              </button>
+              <div class="listing-edit-buttons">
+                <button
+                  class="delete-btn"
+                  @click="deleteDoc(record._id)"
+                >
+                  DELETE
+                </button>
+                <button
+                  class="edit-btn"
+                  v-on:click="onEdit(record)"
+                >
+                  EDIT
+                </button>
+              </div>
             </div>
-          </div>
           </div>
         </div>
         <!-- end of display values-->
@@ -856,12 +851,12 @@ input[type='radio']:checked::before {
   display: flex;
   width: 100%;
   min-height: 280px;
-  margin:0px 20px 0px 20px;
+  margin: 0px 20px 0px 20px;
 
   img {
-      height: 280px;
-      margin: 0rem 1rem 3rem 0rem;
-    }
+    height: 280px;
+    margin: 0rem 1rem 3rem 0rem;
+  }
 
   .listing-product-details {
     display: flex;
@@ -873,7 +868,8 @@ input[type='radio']:checked::before {
       flex-direction: row;
       margin: 10px 0px 10px 0px;
 
-      h4, p{
+      h4,
+      p {
         font-size: 0.8rem;
       }
 
@@ -893,39 +889,39 @@ input[type='radio']:checked::before {
     display: flex;
   }
 
-  .price-button-wrapper{
+  .price-button-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 
     .listing-edit-buttons {
-    display: flex;
-    align-items: flex-end;
+      display: flex;
+      align-items: flex-end;
 
-    .delete-btn{
-      height: 22px;
-      width: 115px;
-      margin: 5px;
-      background-color: white;
-      color: red;
-      border: 1px solid red;
-      font-size: .8em;
-      cursor: pointer;
-      transition: border-color 0.25s;
-    }
+      .delete-btn {
+        height: 22px;
+        width: 115px;
+        margin: 5px;
+        background-color: white;
+        color: red;
+        border: 1px solid red;
+        font-size: 0.8em;
+        cursor: pointer;
+        transition: border-color 0.25s;
+      }
 
-    .edit-btn {
-      height: 22px;
-      width: 115px;
-      margin: 5px;
-      background-color: black;
-      color: white;
-      border: none;
-      font-size: .8em;
-      cursor: pointer;
-      transition: border-color 0.25s;
+      .edit-btn {
+        height: 22px;
+        width: 115px;
+        margin: 5px;
+        background-color: black;
+        color: white;
+        border: none;
+        font-size: 0.8em;
+        cursor: pointer;
+        transition: border-color 0.25s;
+      }
     }
-  }
   }
 }
 </style>
