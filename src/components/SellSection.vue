@@ -392,10 +392,6 @@ export default {
         .then(response => response.text())
         .then(data => {
           this.loadAllData()
-          data.forEach(element => {
-            this.postsData[element._id] = element
-            this.listRecord.productId = element._id
-          })
           // this.hideModal()
           this.resetData()
           console.log(data)

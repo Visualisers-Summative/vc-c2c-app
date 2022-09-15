@@ -366,6 +366,7 @@
             <div>{{ record.albumDescription }}</div>
             <div>${{ record.price }}</div>
             <div>{{ record.genre.join(', ') }}</div>
+            <div>Id: {{ record.productId }}</div>
           </div>
           <div class="edit-buttons">
             <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
@@ -486,11 +487,13 @@ export default {
           this.usersRecords = data
 
           // console.log(data._id)
-          console.log('id: ' + localStorage.userId)
+          console.log('user id: ' + localStorage.userId)
           if (localStorage.userId) {
             let postData = []
             data.forEach(element => {
-              // console.log(this.listRecord.productId)
+              console.log(element._id)
+              this.listRecord.productId = element._id
+              console.log('id:' + this.listRecord.productId)
               if (localStorage.userId == element.loggedUserId) {
                 postData.push(element)
               }
