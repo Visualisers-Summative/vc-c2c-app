@@ -19,7 +19,7 @@
         <p class="record-artist column-2">{{ record.artistName }}</p>
       </div>
 
-      <div class="product-titles">
+      <!-- <div class="product-titles">
         <h4 class="column-1">LABEL</h4>
         <p class="column-2">Details for Label here?</p>
       </div>
@@ -27,7 +27,7 @@
       <div class="product-titles">
         <h4 class="column-1">COUNTRY</h4>
         <p class="column-2">Details for Country here?</p>
-      </div>
+      </div> -->
 
       <div class="product-titles">
         <h4 class="column-1">RELEASED</h4>
