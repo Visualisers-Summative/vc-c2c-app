@@ -45,7 +45,7 @@
               class="label input long-input"
             />
           </label>
-          <div class="short-inputs">
+          <div class="long-input">
             <div class="genres">
               <p>Genres</p>
               <div class="checkbox-dropdown-list input">
@@ -352,25 +352,34 @@
         <!-- end of edit values -->
 
         <!-- start of display values -->
-        <div
+        <!-- <div
           id="displayed-values"
           v-else
+          class="displayed-values-container"
         >
           <img
             :src="record.imageUrl"
             alt="Record cover"
           />
-          <div class="artist-name">
+
+          <div class="artist-name listings-product-details">
             {{ record.artistName }}
             <div>{{ record._id }}</div>
-            <div>{{ record.albumDescription }}</div>
-            <div>${{ record.price }}</div>
             <div>{{ record.genre.join(', ') }}</div>
+<<<<<<< HEAD
             <!-- <div>Id: {{ record.productId }}</div> -->
+=======
+            <div>{{ record.albumDescription }}</div>
+
+>>>>>>> 85a4c5999fcb7656b748c0c0e87b5cefae9a8a8c
           </div>
+
+
           <div class="edit-buttons">
-            <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
-            <button
+            <div>${{ record.price }}</div> -->
+
+        <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
+        <!-- <button
               class="delete-btn"
               @click="deleteDoc(record._id)"
             >
@@ -382,6 +391,66 @@
             >
               Edit
             </button>
+          </div>
+        </div> -->
+
+        <div
+          v-else
+          class="displayed-values-container"
+        >
+          <img
+            :src="record.imageUrl"
+            alt="Record cover"
+          />
+
+          <div class="listing-product-details">
+            <h2 class="record-album">{{ record.albumTitle }}</h2>
+
+            <div class="title-description">
+              <h4 class="column-1">ARTIST</h4>
+              <p class="record-artist">{{ record.artistName }}</p>
+            </div>
+
+            <div class="title-description">
+              <h4 class="column-1">RELEASED</h4>
+              <p class="record-year">{{ record.yearReleased }}</p>
+            </div>
+
+            <div class="title-description">
+              <h4 class="column-1">GENRE</h4>
+              <p class="record-genre">{{ record.genre.join(', ') }}</p>
+            </div>
+
+            <div class="title-description">
+              <h4 class="column-1">FORMAT</h4>
+              <p class="record-length">{{ record.length }}</p>
+            </div>
+
+            <div class="title-description">
+              <p>
+                {{ record.albumDescription }}
+              </p>
+            </div>
+
+            
+            <div class="price-button-wrapper">
+              <h3 class="record-price">${{ record.price }}</h3>
+
+            <div class="listing-edit-buttons">
+              <button
+                class="delete-btn"
+                @click="deleteDoc(record._id)"
+              >
+                DELETE
+              </button>
+              <button
+                class="edit-btn"
+                v-on:click="onEdit(record)"
+              >
+                EDIT
+              </button>
+            </div>
+          </div>
           </div>
         </div>
         <!-- end of display values-->
@@ -683,32 +752,10 @@ export default {
 }
 
 .user-listings {
-  margin: 0 auto 0 1rem;
-  height: auto;
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-
-.sell-vinyl-section {
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 20rem;
-  height: 30rem;
-
-  input {
-    margin-bottom: 0.8rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .button {
-    width: 50%;
-  }
+  margin: 0 auto 0 1rem;
+  height: auto;
 }
 
 .input {
@@ -733,10 +780,6 @@ export default {
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
-
-  label {
-    width: 9rem;
-  }
 }
 
 .genres {
@@ -759,78 +802,8 @@ export default {
 }
 
 .short-input {
-  width: 9rem;
+  width: 10rem;
 }
-
-// .checkbox-dropdown {
-//   width: 200px;
-//   border: 1px solid #aaa;
-//   padding: 10px;
-//   position: relative;
-//   margin: 0 auto;
-
-//   user-select: none;
-// }
-
-// /* Display CSS arrow to the right of the dropdown text */
-// .checkbox-dropdown:after {
-//   content: '';
-//   height: 0;
-//   position: absolute;
-//   width: 0;
-//   border: 6px solid transparent;
-//   border-top-color: #000;
-//   top: 50%;
-//   right: 10px;
-//   margin-top: -3px;
-// }
-
-// /* Reverse the CSS arrow when the dropdown is active */
-// .checkbox-dropdown.is-active:after {
-//   border-bottom-color: #000;
-//   border-top-color: #fff;
-//   margin-top: -9px;
-// }
-
-// .checkbox-dropdown-list {
-//   list-style: none;
-//   margin: 0;
-//   padding: 0;
-//   position: absolute;
-//   top: 100%; /* align the dropdown right below the dropdown text */
-//   border: inherit;
-//   border-top: none;
-//   left: -1px; /* align the dropdown to the left */
-//   right: -1px; /* align the dropdown to the right */
-//   opacity: 0; /* hide the dropdown */
-
-//   transition: opacity 0.4s ease-in-out;
-//   height: 100px;
-//   overflow: scroll;
-//   overflow-x: hidden;
-//   pointer-events: none; /* avoid mouse click events inside the dropdown */
-// }
-// .is-active .checkbox-dropdown-list {
-//   opacity: 1; /* display the dropdown */
-//   pointer-events: auto; /* make sure that the user still can select checkboxes */
-// }
-
-// .checkbox-dropdown-list li label {
-//   display: block;
-//   border-bottom: 1px solid silver;
-//   padding: 10px;
-
-//   transition: all 0.2s ease-out;
-// }
-
-// .checkbox-dropdown-list li label:hover {
-//   background-color: #555;
-//   color: white;
-// }
-
-// .short-input {
-//   width: 9rem;
-// }
 
 .lengths-div {
   display: flex;
@@ -867,7 +840,7 @@ input[type='radio']::before {
   content: '';
   width: 0.75rem;
   height: 0.75rem;
-  border-radius: 50%;
+  border-radius: 50px;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
   box-shadow: inset 2rem 2rem;
@@ -876,5 +849,83 @@ input[type='radio']::before {
 input[type='radio']:checked::before {
   transform: scale(1);
   color: black;
+}
+
+//Users listings:
+.displayed-values-container {
+  display: flex;
+  width: 100%;
+  min-height: 280px;
+  margin:0px 20px 0px 20px;
+
+  img {
+      height: 280px;
+      margin: 0rem 1rem 3rem 0rem;
+    }
+
+  .listing-product-details {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+
+    .title-description {
+      display: flex;
+      flex-direction: row;
+      margin: 10px 0px 10px 0px;
+
+      h4, p{
+        font-size: 0.8rem;
+      }
+
+      .record-artist {
+        font-style: italic;
+        font-weight: 800;
+      }
+
+      .record-length {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .column-1 {
+    min-width: 100px;
+    display: flex;
+  }
+
+  .price-button-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .listing-edit-buttons {
+    display: flex;
+    align-items: flex-end;
+
+    .delete-btn{
+      height: 22px;
+      width: 115px;
+      margin: 5px;
+      background-color: white;
+      color: red;
+      border: 1px solid red;
+      font-size: .8em;
+      cursor: pointer;
+      transition: border-color 0.25s;
+    }
+
+    .edit-btn {
+      height: 22px;
+      width: 115px;
+      margin: 5px;
+      background-color: black;
+      color: white;
+      border: none;
+      font-size: .8em;
+      cursor: pointer;
+      transition: border-color 0.25s;
+    }
+  }
+  }
 }
 </style>
