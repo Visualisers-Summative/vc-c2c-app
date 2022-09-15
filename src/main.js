@@ -4,8 +4,6 @@ import App from './App.vue'
 import router from './router'
 import FontAwesomeIcon from "./assets/icons/fontawesome";
 
-
-
 createApp(App)
   .use(router)
   .component("font-awesome-icon", FontAwesomeIcon)

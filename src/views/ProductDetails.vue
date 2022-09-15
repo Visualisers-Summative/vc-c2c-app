@@ -51,7 +51,6 @@
       </div>
 
       <div class="icon-container">
-
         <svg
           @click="favourite"
           width="20"
@@ -95,21 +94,20 @@ export default {
     return {
       record: null,
       path: mdiHeartOutline,
-      reviews: []
+      reviews: [],
     }
   },
   components: {
     SvgIcon,
     ReviewForm,
     ReviewList,
-    
   },
   created() {
     ProductService.getData(this.id)
       .then(response => {
         // console.log(response.data);
         this.record = response.data
-        // console.log(this.record)
+        console.log(this.record)
       })
       .catch(error => {
         console.log(error)
@@ -126,7 +124,6 @@ export default {
       console.log(page)
     },
   },
-
 }
 </script>
 

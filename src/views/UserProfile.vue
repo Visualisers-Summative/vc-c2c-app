@@ -383,7 +383,7 @@
             </button>
             <button
               class="edit-btn"
-              v-on:click="onEdit(record)"
+              @click="getRecordData(record._id)"
             >
               Edit
             </button>
@@ -428,25 +428,24 @@
               </p>
             </div>
 
-            
             <div class="price-button-wrapper">
               <h3 class="record-price">${{ record.price }}</h3>
 
-            <div class="listing-edit-buttons">
-              <button
-                class="delete-btn"
-                @click="deleteDoc(record._id)"
-              >
-                DELETE
-              </button>
-              <button
-                class="edit-btn"
-                v-on:click="onEdit(record)"
-              >
-                EDIT
-              </button>
+              <div class="listing-edit-buttons">
+                <button
+                  class="delete-btn"
+                  @click="deleteDoc(record._id)"
+                >
+                  DELETE
+                </button>
+                <button
+                  class="edit-btn"
+                  v-on:click="getRecordData(record._id)"
+                >
+                  EDIT
+                </button>
+              </div>
             </div>
-          </div>
           </div>
         </div>
         <!-- end of display values-->
@@ -459,6 +458,8 @@
 import ProfileSection from '../components/ProfileSection.vue'
 import SellSection from '../components/SellSection.vue'
 import Swal from 'sweetalert2'
+// import axios from 'axios'
+// import formData from 'form-data'
 const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
 export default {
@@ -475,6 +476,7 @@ export default {
       postsData: [],
       postsLoading: true,
       loading: true,
+      uploadedImage: '',
       editId: '',
       id: '',
       listRecord: {
@@ -505,23 +507,39 @@ export default {
     }
   },
   methods: {
-    // getRecordData(id) {
-    //   // done
-    //   this.id = id
-    //   fetch(productApi + id, {
-    //     method: 'GET',
-    //   })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       console.log('get data: ' + data)
-    //       this.listRecord.albumDescription = data.albumDescription
-    //       this.listRecord.albumTitle = data.albumTitle
-    //       this.listRecord.artistName = data.artistName
-    //       this.listRecord.devWebsiteName = data.devWebsiteName
+    // uploadImage(event) {
+    //   try {
+    //     console.log('ping !')
+    //     const bodyFormData = new formData()
+    //     bodyFormData.append('image', event) // event = is our image object
+
+    //     const imgApiUrl = 'https://api.imgbb.com/1/upload'
+    //     const apiKey = 'ad1657a0170c660f8b82bff44cafbb78'
+    //     axios({
+    //       method: 'POST',
+    //       url: imgApiUrl + '?key=' + apiKey,
+    //       data: bodyFormData,
+    //       header: { 'Content-Type': 'multipart/form-data' },
     //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
+    //       .then(response => {
+    //         console.log('API response ↓')
+    //         console.log(response)
+    //         console.log(response.data.data.url) // image url
+    //         this.uploadedImage = response.data.data.url // assign to data property
+    //         this.listRecord.imageUrl = response.data.data.url
+    //       })
+    //       .catch(err => {
+    //         console.log('API error ↓')
+    //         console.log(err)
+
+    //         if (err.response.data.error) {
+    //           console.log(err.response.data.error)
+    //           //When trouble shooting, simple informations about the error can be found in err.response.data.error so it's good to display it
+    //         }
+    //       })
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
     // },
     // insertDoc() {
     //   // done
@@ -552,11 +570,13 @@ export default {
           this.usersRecords = data
 
           // console.log(data._id)
-          console.log('id: ' + localStorage.userId)
+          console.log('user id: ' + localStorage.userId)
           if (localStorage.userId) {
             let postData = []
             data.forEach(element => {
-              // console.log(this.listRecord.productId)
+              // console.log(element._id)
+              this.listRecord.productId = element._id
+              // console.log('id:' + this.listRecord.productId)
               if (localStorage.userId == element.loggedUserId) {
                 postData.push(element)
               }
@@ -611,6 +631,30 @@ export default {
         }
       })
     },
+    getRecordData(id) {
+      // done
+      this.id = id
+      fetch(productApi + id, {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          this.editId = data._id
+          this.editRecord.albumDescription = data.albumDescription
+          this.editRecord.albumTitle = data.albumTitle
+          this.editRecord.artistName = data.artistName
+          this.editRecord.genre = data.genre
+          this.editRecord.imageUrl = data.imageUrl
+          this.editRecord.length = data.length
+          this.editRecord.price = data.price
+          this.editRecord.yearReleased = data.yearReleased
+          // this.listRecord.productId = data._id
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
     updateDoc(id) {
       Swal.fire({
         // title: "Well done!",
@@ -645,17 +689,17 @@ export default {
           if (err) throw err
         })
     },
-    onEdit(record) {
-      this.editId = record._id
-      this.editRecord.albumDescription = record.albumDescription
-      this.editRecord.albumTitle = record.albumTitle
-      this.editRecord.artistName = record.artistName
-      this.editRecord.genre = record.genre
-      this.editRecord.imageUrl = record.imageUrl
-      this.editRecord.length = record.length
-      this.editRecord.price = record.price
-      this.editRecord.yearReleased = record.yearReleased
-    },
+    // onEdit(record) {
+    //   this.editId = record._id
+    //   this.editRecord.albumDescription = record.albumDescription
+    //   this.editRecord.albumTitle = record.albumTitle
+    //   this.editRecord.artistName = record.artistName
+    //   this.editRecord.genre = record.genre
+    //   this.editRecord.imageUrl = record.imageUrl
+    //   this.editRecord.length = record.length
+    //   this.editRecord.price = record.price
+    //   this.editRecord.yearReleased = record.yearReleased
+    // },
     onCancel() {
       this.editId = ''
       this.editRecord.artistName = ''
@@ -807,12 +851,12 @@ input[type='radio']:checked::before {
   display: flex;
   width: 100%;
   min-height: 280px;
-  margin:0px 20px 0px 20px;
+  margin: 0px 20px 0px 20px;
 
   img {
-      height: 280px;
-      margin: 0rem 1rem 3rem 0rem;
-    }
+    height: 280px;
+    margin: 0rem 1rem 3rem 0rem;
+  }
 
   .listing-product-details {
     display: flex;
@@ -824,7 +868,8 @@ input[type='radio']:checked::before {
       flex-direction: row;
       margin: 10px 0px 10px 0px;
 
-      h4, p{
+      h4,
+      p {
         font-size: 0.8rem;
       }
 
@@ -844,39 +889,39 @@ input[type='radio']:checked::before {
     display: flex;
   }
 
-  .price-button-wrapper{
+  .price-button-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 
     .listing-edit-buttons {
-    display: flex;
-    align-items: flex-end;
+      display: flex;
+      align-items: flex-end;
 
-    .delete-btn{
-      height: 22px;
-      width: 115px;
-      margin: 5px;
-      background-color: white;
-      color: red;
-      border: 1px solid red;
-      font-size: .8em;
-      cursor: pointer;
-      transition: border-color 0.25s;
-    }
+      .delete-btn {
+        height: 22px;
+        width: 115px;
+        margin: 5px;
+        background-color: white;
+        color: red;
+        border: 1px solid red;
+        font-size: 0.8em;
+        cursor: pointer;
+        transition: border-color 0.25s;
+      }
 
-    .edit-btn {
-      height: 22px;
-      width: 115px;
-      margin: 5px;
-      background-color: black;
-      color: white;
-      border: none;
-      font-size: .8em;
-      cursor: pointer;
-      transition: border-color 0.25s;
+      .edit-btn {
+        height: 22px;
+        width: 115px;
+        margin: 5px;
+        background-color: black;
+        color: white;
+        border: none;
+        font-size: 0.8em;
+        cursor: pointer;
+        transition: border-color 0.25s;
+      }
     }
-  }
   }
 }
 </style>
