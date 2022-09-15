@@ -45,7 +45,7 @@
               class="label input long-input"
             />
           </label>
-          <div class="short-inputs">
+          <div class="long-input">
             <div class="genres">
               <p>Genres</p>
               <div class="checkbox-dropdown-list input">
@@ -643,28 +643,6 @@ export default {
   grid-template-columns: auto auto auto;
 }
 
-.sell-vinyl-section {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 20rem;
-  height: 30rem;
-
-  input {
-    margin-bottom: 0.8rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .button {
-    width: 50%;
-  }
-}
-
 .input {
   font-size: 1rem;
   height: 2.5rem;
@@ -687,10 +665,6 @@ export default {
   align-items: baseline;
   justify-content: space-between;
   width: 100%;
-
-  label {
-    width: 9rem;
-  }
 }
 
 .genres {
@@ -713,78 +687,8 @@ export default {
 }
 
 .short-input {
-  width: 9rem;
+  width: 10rem;
 }
-
-// .checkbox-dropdown {
-//   width: 200px;
-//   border: 1px solid #aaa;
-//   padding: 10px;
-//   position: relative;
-//   margin: 0 auto;
-
-//   user-select: none;
-// }
-
-// /* Display CSS arrow to the right of the dropdown text */
-// .checkbox-dropdown:after {
-//   content: '';
-//   height: 0;
-//   position: absolute;
-//   width: 0;
-//   border: 6px solid transparent;
-//   border-top-color: #000;
-//   top: 50%;
-//   right: 10px;
-//   margin-top: -3px;
-// }
-
-// /* Reverse the CSS arrow when the dropdown is active */
-// .checkbox-dropdown.is-active:after {
-//   border-bottom-color: #000;
-//   border-top-color: #fff;
-//   margin-top: -9px;
-// }
-
-// .checkbox-dropdown-list {
-//   list-style: none;
-//   margin: 0;
-//   padding: 0;
-//   position: absolute;
-//   top: 100%; /* align the dropdown right below the dropdown text */
-//   border: inherit;
-//   border-top: none;
-//   left: -1px; /* align the dropdown to the left */
-//   right: -1px; /* align the dropdown to the right */
-//   opacity: 0; /* hide the dropdown */
-
-//   transition: opacity 0.4s ease-in-out;
-//   height: 100px;
-//   overflow: scroll;
-//   overflow-x: hidden;
-//   pointer-events: none; /* avoid mouse click events inside the dropdown */
-// }
-// .is-active .checkbox-dropdown-list {
-//   opacity: 1; /* display the dropdown */
-//   pointer-events: auto; /* make sure that the user still can select checkboxes */
-// }
-
-// .checkbox-dropdown-list li label {
-//   display: block;
-//   border-bottom: 1px solid silver;
-//   padding: 10px;
-
-//   transition: all 0.2s ease-out;
-// }
-
-// .checkbox-dropdown-list li label:hover {
-//   background-color: #555;
-//   color: white;
-// }
-
-// .short-input {
-//   width: 9rem;
-// }
 
 .lengths-div {
   display: flex;
@@ -821,7 +725,7 @@ input[type='radio']::before {
   content: '';
   width: 0.75rem;
   height: 0.75rem;
-  border-radius: 50%;
+  border-radius: 50px;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
   box-shadow: inset 2rem 2rem;
