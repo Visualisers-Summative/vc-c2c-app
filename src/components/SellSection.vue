@@ -23,10 +23,11 @@
       <label for="albumCover"
         >Album Cover Image
 
+        <!-- v-model="listRecord.imageUrl" -->
         <input
           type="file"
           class="album-cover input long-input"
-          @click="uploadImage"
+          @change="uploadImage($event)"
         />
       </label>
       <label for="label"
@@ -351,6 +352,7 @@ export default {
       postsData: [],
       postsLoading: true,
       loading: true,
+      FILE: null,
       uploadedImage: '',
       editId: '',
       id: '',
@@ -368,40 +370,6 @@ export default {
         loggedUserId: '',
         productId: '',
       },
-      uploadImage(event) {
-        try {
-          console.log('ping !')
-          const bodyFormData = new formData()
-          bodyFormData.append('image', event) // event = is our image object
-
-          const imgApiUrl = 'https://api.imgbb.com/1/upload'
-          const apiKey = 'ad1657a0170c660f8b82bff44cafbb78'
-          axios({
-            method: 'POST',
-            url: imgApiUrl + '?key=' + apiKey,
-            data: bodyFormData,
-            header: { 'Content-Type': 'multipart/form-data' },
-          })
-            .then(response => {
-              console.log('API response ↓')
-              console.log(response)
-              console.log(response.data.data.url) // image url
-              this.uploadedImage = response.data.data.url // assign to data property
-              this.listRecord.imageUrl = response.data.data.url
-            })
-            .catch(err => {
-              console.log('API error ↓')
-              console.log(err)
-
-              if (err.response.data.error) {
-                console.log(err.response.data.error)
-                //When trouble shooting, simple informations about the error can be found in err.response.data.error so it's good to display it
-              }
-            })
-        } catch (error) {
-          console.log(error)
-        }
-      },
       //   editRecord: {
       //     albumDescription: '',
       //     albumTitle: '',
@@ -417,6 +385,48 @@ export default {
     }
   },
   methods: {
+    // onFileUpload(event) {
+    //   this.FILE = event.target.files[0]
+    //   this.uploadImage()
+    // },
+
+    uploadImage(event) {
+      try {
+        console.log('ping !')
+        const bodyFormData = new formData()
+        this.FILE = event.target.files[0]
+
+        bodyFormData.append('image', this.FILE, this.FILE.uploadedImage) // event = is our image object
+        bodyFormData.append('uploadedImage', this.uploadedImage)
+
+        const imgApiUrl = 'https://api.imgbb.com/1/upload'
+        const apiKey = '181716cc1a23a16440134307971e8dd0'
+        axios({
+          method: 'POST',
+          url: imgApiUrl + '?key=' + apiKey,
+          data: bodyFormData,
+          header: { 'Content-Type': 'multipart/form-data' },
+        })
+          .then(response => {
+            console.log('API response ↓')
+            console.log(response)
+            console.log(response.data.data.url) // image url
+            this.uploadedImage = response.data.data.url // assign to data property
+            this.listRecord.imageUrl = response.data.data.url
+          })
+          .catch(err => {
+            console.log('API error ↓')
+            console.log(err)
+
+            if (err.response.data.error) {
+              console.log(err.response.data.error)
+              //When trouble shooting, simple informations about the error can be found in err.response.data.error so it's good to display it
+            }
+          })
+      } catch (error) {
+        console.log(error)
+      }
+    },
     insertDoc() {
       // done
       fetch(productApi, {

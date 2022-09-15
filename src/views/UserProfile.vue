@@ -366,7 +366,7 @@
             <div>{{ record.albumDescription }}</div>
             <div>${{ record.price }}</div>
             <div>{{ record.genre.join(', ') }}</div>
-            <div>Id: {{ record.productId }}</div>
+            <!-- <div>Id: {{ record.productId }}</div> -->
           </div>
           <div class="edit-buttons">
             <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
