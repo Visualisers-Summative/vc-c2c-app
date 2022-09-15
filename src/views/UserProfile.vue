@@ -440,7 +440,7 @@
                 </button>
                 <button
                   class="edit-btn"
-                  v-on:click="onEdit(record)"
+                  v-on:click="getRecordData(record._id)"
                 >
                   EDIT
                 </button>
