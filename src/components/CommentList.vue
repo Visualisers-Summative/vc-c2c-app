@@ -44,7 +44,7 @@ export default {
   overflow-x: hidden;
   overflow-y: auto;
   height: 280px;
-  min-width: 60%;
+  min-width: 100%;
   margin-left: 10px;
 
   li {

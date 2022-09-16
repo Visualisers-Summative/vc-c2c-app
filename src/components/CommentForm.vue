@@ -163,7 +163,7 @@ export default {
 <style scoped lang="scss">
 .review-container {
   display: flex;
-  width: 40%;
+  width: 100%;
   .review-form {
     display: flex;
     flex-direction: column;
