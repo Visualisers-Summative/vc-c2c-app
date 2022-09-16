@@ -74,8 +74,11 @@
   </div>
 
   <div class="comment-section">
-    <ReviewForm @review-submitted="addReview"></ReviewForm>
-    <ReviewList :reviews="reviews"></ReviewList>
+    <CommentForm
+      @review-submitted="addReview"
+      @showUsersData="loadAllData"
+    />
+    <CommentList :comments="comments" />
   </div>
 </template>
 
@@ -85,8 +88,9 @@ import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiHeartOutline } from '@mdi/js'
 
 import ProductService from '../services/ProductService.js'
-import ReviewForm from '../components/ReviewForm.vue'
-import ReviewList from '../components/ReviewList.vue'
+import CommentForm from '../components/CommentForm.vue'
+import CommentList from '../components/CommentList.vue'
+import store from '../store'
 
 export default {
   props: ['id'],
@@ -94,13 +98,13 @@ export default {
     return {
       record: null,
       path: mdiHeartOutline,
-      reviews: [],
+      comments: [],
     }
   },
   components: {
     SvgIcon,
-    ReviewForm,
-    ReviewList,
+    CommentForm,
+    CommentList,
   },
   created() {
     ProductService.getData(this.id)
@@ -114,8 +118,8 @@ export default {
       })
   },
   methods: {
-    addReview(review) {
-      this.reviews.push(review)
+    addReview(comment) {
+      this.comments.push(comment)
     },
     favourite() {
       event.target.classList.toggle('favourite')
@@ -123,6 +127,10 @@ export default {
     onClickHandler() {
       console.log(page)
     },
+  },
+  mounted() {
+    // console.log(this.id)
+    store.state.product_id = this.id
   },
 }
 </script>
