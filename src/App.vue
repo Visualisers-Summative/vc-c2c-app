@@ -119,10 +119,15 @@
 // import HeaderRow from './components/HeaderRow.vue'
 import FooterRow from './components/FooterRow.vue'
 import Login from './components/Login.vue'
+import { provide } from 'vue'
+import store from './store'
 
 export default {
   components: { FooterRow, Login },
   name: 'App',
+  setup() {
+    provide('store', store)
+  },
   data() {
     return {
       loggedUser: '',
@@ -132,7 +137,7 @@ export default {
       records: [],
       expandBox: 'none',
       userGradient: '',
-      radius: ''
+      radius: '',
     }
   },
   methods: {

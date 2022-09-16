@@ -37,9 +37,17 @@
 <script>
 const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 import Swal from 'sweetalert2'
+import { inject } from 'vue'
 
 export default {
   name: 'CommentsForm',
+  setup() {
+    const store = inject('store')
+    return {
+      store,
+    }
+  },
+
   data() {
     return {
       name: '',
@@ -60,6 +68,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      this.commentFormValues.postId = this.store.state.product_id
       // if (this.name === '' || this.review === '' || this.rating === null) {
       //   alert('Review is incomplete. Please fill out every field.')
       //   return
@@ -146,6 +155,7 @@ export default {
       this.commentFormValues.userName = localStorage.loggedUser
       this.commentFormValues.userId = localStorage.userId
     }
+    console.log('StoredID = ' + this.store.state.product_id)
 
     this.loadAllData()
   },

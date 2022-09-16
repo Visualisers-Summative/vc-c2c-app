@@ -90,6 +90,7 @@ import { mdiHeartOutline } from '@mdi/js'
 import ProductService from '../services/ProductService.js'
 import CommentForm from '../components/CommentForm.vue'
 import CommentList from '../components/CommentList.vue'
+import store from '../store'
 
 export default {
   props: ['id'],
@@ -126,6 +127,10 @@ export default {
     onClickHandler() {
       console.log(page)
     },
+  },
+  mounted() {
+    // console.log(this.id)
+    store.state.product_id = this.id
   },
 }
 </script>

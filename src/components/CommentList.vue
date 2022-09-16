@@ -15,6 +15,7 @@
 
 <script>
 const apiComments = 'https://vc-comments.netlify.app/.netlify/functions/api'
+import { inject } from 'vue'
 
 export default {
   name: 'CommentsList',
@@ -22,6 +23,12 @@ export default {
     reviews: {
       type: Array,
       required: true,
+    },
+    setup() {
+      const store = inject('store')
+      return {
+        store,
+      }
     },
   },
 }
