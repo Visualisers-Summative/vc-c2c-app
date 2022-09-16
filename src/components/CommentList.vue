@@ -1,5 +1,6 @@
 <template>
   <div class="review-container">
+    <h1>This is a review header</h1>
     <ul>
       <li
         v-for="(review, index) in reviews"
@@ -10,6 +11,7 @@
         "{{ review.review }}"
       </li>
     </ul>
+    <p>this si the content</p>
   </div>
 </template>
 

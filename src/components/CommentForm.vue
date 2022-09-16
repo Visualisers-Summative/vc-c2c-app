@@ -5,6 +5,7 @@
       @submit.prevent="onSubmit"
     >
       <h4>Post a Comment</h4>
+      {{ store.state.product_id }}
       <textarea
         id="review"
         v-model="commentFormValues.commentMsg"
@@ -60,7 +61,7 @@ export default {
       msg: '',
       commentFormValues: {
         commentMsg: '',
-        postId: '',
+        productPostId: '',
         userName: '',
         userId: '',
       },
@@ -68,11 +69,8 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.commentFormValues.postId = this.store.state.product_id
-      // if (this.name === '' || this.review === '' || this.rating === null) {
-      //   alert('Review is incomplete. Please fill out every field.')
-      //   return
-      // }
+      this.commentFormValues.productPostId = this.store.state.product_id
+
       if (this.commentFormValues.commentMsg === '') {
         Swal.fire({
           icon: 'error',
@@ -123,24 +121,24 @@ export default {
       }
     },
 
-    getAllMessages() {
-      fetch(commentsApi)
-        .then(response => response.json())
-        .then(data => {
-          // all messages
-          this.allMessages = data
+    // getAllMessages() {
+    //   fetch(commentsApi)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       // all messages
+    //       this.allMessages = data
 
-          // grouping message by post_id
-          this.postMessages = this.allMessages.reduce((results, msg) => {
-            results[msg.post_id] = results[msg.post_id] || []
-            results[msg.post_id].push(msg)
-            return results
-          })
-        })
-        .catch(err => {
-          if (err) throw err
-        })
-    },
+    //       // grouping message by post_id
+    //       this.postMessages = this.allMessages.reduce((results, msg) => {
+    //         results[msg.post_id] = results[msg.post_id] || []
+    //         results[msg.post_id].push(msg)
+    //         return results
+    //       })
+    //     })
+    //     .catch(err => {
+    //       if (err) throw err
+    //     })
+    // },
     resetData() {
       this.commentFormValues.commentMsg = ''
     },
