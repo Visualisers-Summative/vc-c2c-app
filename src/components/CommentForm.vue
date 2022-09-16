@@ -7,7 +7,7 @@
       <h4>Post a Comment</h4>
       <textarea
         id="review"
-        v-model="review"
+        v-model="commentFormValues.commentMsg"
         placeholder="Your comment here..."
         name="type-comment"
         maxlength="300"
@@ -17,13 +17,20 @@
 
       <div class="button-container">
         <input
-          type="button"
+          type="submit"
           class="button"
           value="Submit Comment"
-          @click="onSubmit()"
         />
       </div>
     </form>
+
+    <div
+      v-for="comment in commentList"
+      v-bind:key="comment._id"
+      class="records-loop"
+    >
+      <div></div>
+    </div>
   </div>
 </template>
 
@@ -37,12 +44,17 @@ export default {
     return {
       name: '',
       review: '',
+      allComments: [],
+      postComments: [],
+      commentList: [],
       editId: '',
       id: '',
-      enteredComment: {
-        userName: '',
+      msg: '',
+      commentFormValues: {
         commentMsg: '',
-        productId: '',
+        postId: '',
+        userName: '',
+        userId: '',
       },
     }
   },
@@ -52,7 +64,7 @@ export default {
       //   alert('Review is incomplete. Please fill out every field.')
       //   return
       // }
-      if (this.review === '') {
+      if (this.commentFormValues.commentMsg === '') {
         Swal.fire({
           icon: 'error',
           text: 'Please enter a comment before submitting',
@@ -66,11 +78,11 @@ export default {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.enteredComment),
+        body: JSON.stringify(this.commentFormValues),
       })
         .then(response => response.text())
         .then(data => {
-          this.loadAllData()
+          // this.loadAllData()
           // this.hideModal()
           this.resetData()
           console.log(data)
@@ -80,7 +92,7 @@ export default {
         })
 
       let productReview = {
-        review: this.review,
+        commentFormValues: this.commentFormValues,
       }
 
       //productReview = payload
@@ -89,14 +101,53 @@ export default {
       //clear out and reset
       this.review = ''
     },
+    getMessages(postId) {
+      this.msglist = []
+      if (postId) {
+        let singlePost = []
+        this.allMessages.forEach(msg => {
+          if (msg.postId == postId) {
+            singlePost.push(msg)
+          }
+        })
+        this.msglist = singlePost
+      }
+    },
+
+    getAllMessages() {
+      fetch(commentsApi)
+        .then(response => response.json())
+        .then(data => {
+          // all messages
+          this.allMessages = data
+
+          // grouping message by post_id
+          this.postMessages = this.allMessages.reduce((results, msg) => {
+            results[msg.post_id] = results[msg.post_id] || []
+            results[msg.post_id].push(msg)
+            return results
+          })
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
+    resetData() {
+      this.commentFormValues.commentMsg = ''
+    },
     loadAllData() {
       this.$emit('showUsersData')
     },
   },
   mounted() {
-    this.listRecord.loggedUser = localStorage.loggedUser
-    this.listRecord.loggedUserId = localStorage.userId
-    // this.loadAllData()
+    // set user_id
+    if (localStorage.userId) {
+      console.log(localStorage)
+      this.commentFormValues.userName = localStorage.loggedUser
+      this.commentFormValues.userId = localStorage.userId
+    }
+
+    this.loadAllData()
   },
 }
 </script>
