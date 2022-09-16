@@ -48,7 +48,6 @@ export default {
       store,
     }
   },
-
   data() {
     return {
       name: '',
@@ -108,18 +107,18 @@ export default {
       //clear out and reset
       this.review = ''
     },
-    getMessages(postId) {
-      this.msglist = []
-      if (postId) {
-        let singlePost = []
-        this.allMessages.forEach(msg => {
-          if (msg.postId == postId) {
-            singlePost.push(msg)
-          }
-        })
-        this.msglist = singlePost
-      }
-    },
+    // getMessages(postId) {
+    //   this.msglist = []
+    //   if (postId) {
+    //     let singlePost = []
+    //     this.allMessages.forEach(msg => {
+    //       if (msg.postId == postId) {
+    //         singlePost.push(msg)
+    //       }
+    //     })
+    //     this.msglist = singlePost
+    //   }
+    // },
 
     // getAllMessages() {
     //   fetch(commentsApi)
