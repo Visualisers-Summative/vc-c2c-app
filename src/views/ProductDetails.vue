@@ -78,7 +78,7 @@
       @review-submitted="addReview"
       @showUsersData="loadAllData"
     />
-    <CommentList :comments="comments" />
+    <CommentList :comments="commentFormValues" />
   </div>
 </template>
 
@@ -130,6 +130,8 @@ export default {
   },
   mounted() {
     // console.log(this.id)
+
+    // The product ID shared for comment connection
     store.state.product_id = this.id
   },
 }

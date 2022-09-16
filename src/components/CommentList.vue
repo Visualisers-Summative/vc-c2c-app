@@ -1,6 +1,7 @@
 <template>
   <div class="review-container">
-    <h1>This is a review header</h1>
+    <h2>Comments</h2>
+    <br />
     <ul>
       <li
         v-for="(review, index) in reviews"
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-const apiComments = 'https://vc-comments.netlify.app/.netlify/functions/api'
+const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 import { inject } from 'vue'
 
 export default {
@@ -31,6 +32,39 @@ export default {
       return {
         store,
       }
+    },
+    methods: {
+      getMessages(postId) {
+        this.msglist = []
+        if (postId) {
+          let singlePost = []
+          this.allMessages.forEach(msg => {
+            if (msg.postId == postId) {
+              singlePost.push(msg)
+            }
+          })
+          this.msglist = singlePost
+        }
+      },
+
+      // getAllMessages() {
+      //   fetch(commentsApi)
+      //     .then(response => response.json())
+      //     .then(data => {
+      //       // all messages
+      //       this.allMessages = data
+
+      //       // grouping message by post_id
+      //       this.postMessages = this.allMessages.reduce((results, msg) => {
+      //         results[msg.post_id] = results[msg.post_id] || []
+      //         results[msg.post_id].push(msg)
+      //         return results
+      //       })
+      //     })
+      //     .catch(err => {
+      //       if (err) throw err
+      //     })
+      // },
     },
   },
 }
