@@ -2,17 +2,25 @@
   <div class="review-container">
     <h2>Comments</h2>
     <br />
+
+    <div
+      v-for="comment in comments"
+      v-bind:key="comment._id"
+      class="records-loop"
+    >
+      <div>{{ comment }}</div>
+    </div>
     <ul>
-      <li
-        v-for="(review, index) in reviews"
+      <!-- <li
+        v-for="(review, index) in comments"
         :key="index"
       >
         <h4>Username here!!!</h4>
         <br />
         "{{ review.review }}"
-      </li>
+      </li> -->
     </ul>
-    <p>this si the content</p>
+    <!-- <p>{{ postComments }}</p> -->
   </div>
 </template>
 
@@ -23,7 +31,7 @@ import { inject } from 'vue'
 export default {
   name: 'CommentsList',
   props: {
-    reviews: {
+    comments: {
       type: Array,
       required: true,
     },
@@ -33,38 +41,58 @@ export default {
         store,
       }
     },
+    data() {
+      return {
+        allComments: [],
+        postComments: [],
+        commentList: [],
+        editId: '',
+        id: '',
+        msg: '',
+        commentFormValues: {
+          commentMsg: '',
+          productPostId: '',
+          userName: '',
+          userId: '',
+        },
+      }
+    },
     methods: {
-      getMessages(postId) {
-        this.msglist = []
-        if (postId) {
-          let singlePost = []
-          this.allMessages.forEach(msg => {
-            if (msg.postId == postId) {
-              singlePost.push(msg)
-            }
-          })
-          this.msglist = singlePost
-        }
-      },
-
-      // getAllMessages() {
-      //   fetch(commentsApi)
-      //     .then(response => response.json())
-      //     .then(data => {
-      //       // all messages
-      //       this.allMessages = data
-
-      //       // grouping message by post_id
-      //       this.postMessages = this.allMessages.reduce((results, msg) => {
-      //         results[msg.post_id] = results[msg.post_id] || []
-      //         results[msg.post_id].push(msg)
-      //         return results
-      //       })
+      // getMessages(postId) {
+      //   this.msglist = []
+      //   if (postId) {
+      //     let singlePost = []
+      //     this.allMessages.forEach(msg => {
+      //       if (msg.postId == postId) {
+      //         singlePost.push(msg)
+      //       }
       //     })
-      //     .catch(err => {
-      //       if (err) throw err
-      //     })
+      //     this.msglist = singlePost
+      //   }
       // },
+
+      getAllMessages() {
+        fetch(commentsApi, { method: 'GET' })
+          .then(response => response.json())
+          .then(data => {
+            // all messages
+            this.allMessages = data
+            console.log(this.allMessages)
+
+            // grouping message by post_id
+            this.postComments = this.allMessages.reduce((results, msg) => {
+              results[msg.post_id] = results[msg.post_id] || []
+              results[msg.post_id].push(msg)
+              return results
+            })
+          })
+          .catch(err => {
+            if (err) throw err
+          })
+      },
+    },
+    mounted() {
+      this.getAllMessages()
     },
   },
 }

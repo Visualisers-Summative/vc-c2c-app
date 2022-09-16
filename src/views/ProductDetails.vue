@@ -74,11 +74,13 @@
   </div>
 
   <div class="comment-section">
-    <CommentForm
+    <!-- <CommentForm
       @review-submitted="addReview"
-      @showUsersData="loadAllData"
-    />
-    <CommentList :comments="commentFormValues" />
+      @showUsersData="getAllComments"
+    /> -->
+    <CommentForm @showUsersData="getAllComments" />
+    <CommentList :comments="comments" />
+    <!-- <CommentList :commentFormValues="commentFormValues" /> -->
   </div>
 </template>
 
@@ -91,6 +93,8 @@ import ProductService from '../services/ProductService.js'
 import CommentForm from '../components/CommentForm.vue'
 import CommentList from '../components/CommentList.vue'
 import store from '../store'
+
+const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 
 export default {
   props: ['id'],
@@ -111,21 +115,32 @@ export default {
       .then(response => {
         // console.log(response.data);
         this.record = response.data
-        console.log(this.record)
+        // console.log(this.record)
       })
       .catch(error => {
         console.log(error)
       })
   },
   methods: {
-    addReview(comment) {
-      this.comments.push(comment)
-    },
+    // addReview(comment) {
+    //   this.comments.push(comment)
+    // },
     favourite() {
       event.target.classList.toggle('favourite')
     },
     onClickHandler() {
       console.log(page)
+    },
+    getAllComments() {
+      fetch(commentsApi)
+        .then(response => response.json())
+        .then(data => {
+          this.comments = data
+          console.log(this.comments)
+        })
+        .catch(err => {
+          if (err) throw err
+        })
     },
   },
   mounted() {
