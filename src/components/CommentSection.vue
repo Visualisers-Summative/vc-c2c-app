@@ -41,11 +41,14 @@
         class="records-loop"
       >
         <h4>username: {{ comment.userName }}</h4>
+
         <span> Product ID: {{ comment.productPostId }}</span>
         <p>USER ID: {{ comment.userId }}</p>
-        <div v-if="loggedUser">
+        {{ commentFormValues.userId }}
+        {{ commentFormValues.userId == comments.userId }}
+        <div v-show="commentFormValues.userId == comments.userId ? true : false">
           <!-- <p>{{ comment.commentMsg }}</p> -->
-          <p><span>edit </span> | <span>delete</span></p>
+          <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
         </div>
         <div>
           <p>{{ comment.commentMsg }}</p>
@@ -74,6 +77,7 @@
 </template>
 
 <script>
+import { faL } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
 import { inject } from 'vue'
 
@@ -109,7 +113,7 @@ export default {
         userName: '',
         userId: '',
       },
-      loggedUser: false,
+      loggedInUser: false,
     }
   },
   methods: {
@@ -186,12 +190,7 @@ export default {
     //       if (err) throw err
     //     })
     // },
-    editComment() {
-      if (localStorage.userId != this.comments.userId) {
-        this.loggedUser = true
-        return
-      }
-    },
+
     getAllComments() {
       fetch(commentsApi)
         .then(response => response.json())
@@ -207,7 +206,7 @@ export default {
               }
             })
             this.userPosts = postData
-            this.editComment()
+            // this.editComment()
           }
           // console.log(this.comments)
         })
@@ -218,9 +217,6 @@ export default {
     resetData() {
       this.commentFormValues.commentMsg = ''
     },
-    // getAllComments() {
-    //   this.$emit('showUsersData')
-    // },
   },
   mounted() {
     // set user_id
@@ -231,8 +227,9 @@ export default {
     }
     console.log('StoredID = ' + this.store.state.product_id)
     this.getAllComments()
-    console.log(this.commentFormValues.userId)
+    // console.log(this.commentFormValues.userId)
   },
+  updated() {},
 }
 </script>
 
@@ -323,5 +320,9 @@ export default {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(115, 115, 115);
+}
+
+.ammend-comment {
+  color: red;
 }
 </style>
