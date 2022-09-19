@@ -35,6 +35,7 @@ export default {
       type: Array,
       required: true,
     },
+    method: { type: Function },
     setup() {
       const store = inject('store')
       return {
@@ -57,6 +58,9 @@ export default {
         },
       }
     },
+    watch: {
+      // whenever question changes, this function will run
+    },
     methods: {
       // getMessages(postId) {
       //   this.msglist = []
@@ -70,29 +74,32 @@ export default {
       //     this.msglist = singlePost
       //   }
       // },
-
-      getAllMessages() {
-        fetch(commentsApi, { method: 'GET' })
-          .then(response => response.json())
-          .then(data => {
-            // all messages
-            this.allMessages = data
-            console.log(this.allMessages)
-
-            // grouping message by post_id
-            this.postComments = this.allMessages.reduce((results, msg) => {
-              results[msg.post_id] = results[msg.post_id] || []
-              results[msg.post_id].push(msg)
-              return results
-            })
-          })
-          .catch(err => {
-            if (err) throw err
-          })
-      },
+      // getAllMessages() {
+      //   fetch(commentsApi, { method: 'GET' })
+      //     .then(response => response.json())
+      //     .then(data => {
+      //       // all messages
+      //       this.allMessages = data
+      //       console.log(this.allMessages)
+      //       // grouping message by post_id
+      //       this.postComments = this.allMessages.reduce((results, msg) => {
+      //         results[msg.post_id] = results[msg.post_id] || []
+      //         results[msg.post_id].push(msg)
+      //         return results
+      //       })
+      //     })
+      //     .catch(err => {
+      //       if (err) throw err
+      //     })
+      // },
+      // getAllComments() {
+      //   this.$emit('showUsersData')
+      // },
     },
     mounted() {
-      this.getAllMessages()
+      // this.getAllMessages()
+      // this.getAllComments()
+      // this.method()
     },
   },
 }

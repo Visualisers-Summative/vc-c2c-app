@@ -80,7 +80,7 @@ export default {
       })
         .then(response => response.text())
         .then(data => {
-          // this.loadAllData()
+          this.getAllComments()
           // this.hideModal()
           this.resetData()
           console.log(data)
@@ -146,7 +146,7 @@ export default {
     }
     // console.log('StoredID = ' + this.store.state.product_id)
 
-    this.getAllComments()
+    // this.getAllComments()
   },
 }
 </script>

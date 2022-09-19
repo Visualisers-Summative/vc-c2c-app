@@ -79,7 +79,11 @@
       @showUsersData="getAllComments"
     /> -->
     <CommentForm @showUsersData="getAllComments" />
-    <CommentList :comments="comments" />
+    <CommentList
+      :comments="comments"
+      @showUsersData="getAllComments"
+      :method="parentMethod"
+    />
     <!-- <CommentList :commentFormValues="commentFormValues" /> -->
   </div>
 </template>
@@ -121,6 +125,19 @@ export default {
         console.log(error)
       })
   },
+  watch: {
+    // getAllComments() {
+    //   fetch(commentsApi)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       this.comments = data
+    //       console.log(this.comments)
+    //     })
+    //     .catch(err => {
+    //       if (err) throw err
+    //     })
+    // },
+  },
   methods: {
     // addReview(comment) {
     //   this.comments.push(comment)
@@ -130,6 +147,9 @@ export default {
     },
     onClickHandler() {
       console.log(page)
+    },
+    parentMethod() {
+      this.getAllComments()
     },
     getAllComments() {
       fetch(commentsApi)
@@ -145,7 +165,7 @@ export default {
   },
   mounted() {
     // console.log(this.id)
-
+    this.getAllComments()
     // The product ID shared for comment connection
     store.state.product_id = this.id
   },
