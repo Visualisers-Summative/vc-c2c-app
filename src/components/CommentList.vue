@@ -1,10 +1,10 @@
-<template>
-  <!-- <div class="review-container">
+<!-- <template> -->
+<!-- <div class="review-container">
     <h2>Comments</h2> -->
-  <!-- {{ store.state.product_id }} -->
-  ----------------
+<!-- {{ store.state.product_id }} -->
+----------------
 
-  <!-- <div
+<!-- <div
       v-for="comment in comments"
       :key="comment._id"
       class="records-loop"
@@ -14,7 +14,7 @@
       <p>{{ comment.commentMsg }}</p>
     </div>
     <ul> -->
-  <!-- <li
+<!-- <li
         v-for="(review, index) in comments"
         :key="index"
       >
@@ -22,10 +22,10 @@
         <br />
         "{{ review.review }}"
       </li> -->
-  <!-- </ul> -->
-  <!-- <p>{{ postComments }}</p> -->
-  <!-- </div> -->
-</template>
+<!-- </ul> -->
+<!-- <p>{{ postComments }}</p> -->
+<!-- </div> -->
+<!-- </template> -->
 <!-- 
 <script>
 const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
