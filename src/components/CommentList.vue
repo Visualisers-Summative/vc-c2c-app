@@ -1,17 +1,20 @@
-<template>
-  <div class="review-container">
-    <h2>Comments</h2>
-    <br />
+<!-- <template> -->
+<!-- <div class="review-container">
+    <h2>Comments</h2> -->
+<!-- {{ store.state.product_id }} -->
+----------------
 
-    <div
+<!-- <div
       v-for="comment in comments"
-      v-bind:key="comment._id"
+      :key="comment._id"
       class="records-loop"
     >
-      <div>{{ comment }}</div>
+      <h4>{{ comment.userName }}</h4>
+      <span> Product ID: {{ comment.productPostId }}</span>
+      <p>{{ comment.commentMsg }}</p>
     </div>
-    <ul>
-      <!-- <li
+    <ul> -->
+<!-- <li
         v-for="(review, index) in comments"
         :key="index"
       >
@@ -19,11 +22,11 @@
         <br />
         "{{ review.review }}"
       </li> -->
-    </ul>
-    <!-- <p>{{ postComments }}</p> -->
-  </div>
-</template>
-
+<!-- </ul> -->
+<!-- <p>{{ postComments }}</p> -->
+<!-- </div> -->
+<!-- </template> -->
+<!-- 
 <script>
 const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 import { inject } from 'vue'
@@ -44,18 +47,19 @@ export default {
     },
     data() {
       return {
-        allComments: [],
-        postComments: [],
-        commentList: [],
-        editId: '',
-        id: '',
-        msg: '',
-        commentFormValues: {
-          commentMsg: '',
-          productPostId: '',
-          userName: '',
-          userId: '',
-        },
+        productCommentId: '',
+        // allComments: [],
+        // postComments: [],
+        // commentList: [],
+        // editId: '',
+        // id: '',
+        // msg: '',
+        // commentFormValues: {
+        //   commentMsg: '',
+        //   productPostId: '',
+        //   userName: '',
+        //   userId: '',
+        // },
       }
     },
     watch: {
@@ -96,10 +100,14 @@ export default {
       //   this.$emit('showUsersData')
       // },
     },
-    mounted() {
+    created() {
+      this.productCommentId = this.store.state.product_id
       // this.getAllMessages()
       // this.getAllComments()
       // this.method()
+      console.log(this.productCommentId)
+      console.log('StoredID = ' + this.store.state.product_id)
+      console.log('hello')
     },
   },
 }
@@ -113,7 +121,7 @@ export default {
   overflow-x: hidden;
   overflow-y: auto;
   height: 280px;
-  // min-width: 100%;
+  width: 100%;
   margin-left: 10px;
 
   li {
@@ -145,4 +153,4 @@ export default {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(115, 115, 115);
 }
-</style>
+</style> -->

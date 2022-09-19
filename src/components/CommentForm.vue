@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="review-container">
     <form
       class="review-form"
@@ -145,7 +145,7 @@ export default {
       this.commentFormValues.userId = localStorage.userId
     }
     // console.log('StoredID = ' + this.store.state.product_id)
-
+    // console.log(this.store.state.product_id)
     // this.getAllComments()
   },
 }
@@ -154,7 +154,7 @@ export default {
 <style scoped lang="scss">
 .review-container {
   display: flex;
-  width: 100%;
+  // width: 100%;
   .review-form {
     display: flex;
     flex-direction: column;
@@ -195,4 +195,4 @@ export default {
     transition: border-color 0.25s;
   }
 }
-</style>
+</style> -->

@@ -8,6 +8,7 @@
           class="logo"
         />
       </router-link>
+
       <div
         v-if="loggedUser"
         class="nav-links"
