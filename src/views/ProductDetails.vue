@@ -95,7 +95,7 @@ import ProductService from '../services/ProductService.js'
 import store from '../store'
 import CommentSection from '../components/CommentSection.vue'
 
-const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
+// const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 
 export default {
   props: ['id'],
@@ -103,7 +103,7 @@ export default {
     return {
       record: null,
       path: mdiHeartOutline,
-      comments: [],
+      // comments: [],
     }
   },
   components: {

@@ -40,16 +40,9 @@
         :key="comment._id"
         class="records-loop"
       >
-        <h4>username: {{ comment.userName }}</h4>
+        <h4>{{ comment.userName }}</h4>
         <span> Product ID: {{ comment.productPostId }}</span>
-        <p>USER ID: {{ comment.userId }}</p>
-        <div v-if="loggedUser">
-          <!-- <p>{{ comment.commentMsg }}</p> -->
-          <p><span>edit </span> | <span>delete</span></p>
-        </div>
-        <div>
-          <p>{{ comment.commentMsg }}</p>
-        </div>
+        <p>{{ comment.commentMsg }}</p>
       </div>
 
       <div>
@@ -74,10 +67,9 @@
 </template>
 
 <script>
+const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api/'
 import Swal from 'sweetalert2'
 import { inject } from 'vue'
-
-const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 
 export default {
   name: 'CommentsForm',
@@ -94,12 +86,10 @@ export default {
       allComments: [],
       postComments: [],
       // commentList: [],
-      commentData: [],
       postsData: [],
       userPosts: [],
       allMessages: [],
       msglist: [],
-      comments: [],
       editId: '',
       id: '',
       msg: '',
@@ -109,7 +99,6 @@ export default {
         userName: '',
         userId: '',
       },
-      loggedUser: false,
     }
   },
   methods: {
@@ -174,42 +163,25 @@ export default {
     //       if (err) throw err
     //     })
     // },
-    // getAllComments() {
-    //   fetch(commentsApi)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.commentFormValues = data
-
-    //       // console.log(this.commentFormValues)
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
-    editComment() {
-      if (localStorage.userId != this.comments.userId) {
-        this.loggedUser = true
-        return
-      }
-    },
     getAllComments() {
       fetch(commentsApi)
         .then(response => response.json())
         .then(data => {
-          this.comments = data
+          this.commentFormValues = data
+
           // get user posts
           if (localStorage.userId) {
             let postData = []
-            this.comments.forEach(element => {
-              // console.log(element)
+            this.commentFormValues.forEach(element => {
+              console.log(element)
               if (this.store.state.product_id == element.productPostId) {
                 postData.push(element)
               }
             })
             this.userPosts = postData
-            this.editComment()
           }
-          // console.log(this.comments)
+
+          // console.log(this.commentFormValues)
         })
         .catch(err => {
           if (err) throw err
@@ -231,7 +203,6 @@ export default {
     }
     console.log('StoredID = ' + this.store.state.product_id)
     this.getAllComments()
-    console.log(this.commentFormValues.userId)
   },
 }
 </script>
