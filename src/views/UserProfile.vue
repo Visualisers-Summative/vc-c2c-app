@@ -507,62 +507,6 @@ export default {
     }
   },
   methods: {
-    // uploadImage(event) {
-    //   try {
-    //     console.log('ping !')
-    //     const bodyFormData = new formData()
-    //     bodyFormData.append('image', event) // event = is our image object
-
-    //     const imgApiUrl = 'https://api.imgbb.com/1/upload'
-    //     const apiKey = 'ad1657a0170c660f8b82bff44cafbb78'
-    //     axios({
-    //       method: 'POST',
-    //       url: imgApiUrl + '?key=' + apiKey,
-    //       data: bodyFormData,
-    //       header: { 'Content-Type': 'multipart/form-data' },
-    //     })
-    //       .then(response => {
-    //         console.log('API response ↓')
-    //         console.log(response)
-    //         console.log(response.data.data.url) // image url
-    //         this.uploadedImage = response.data.data.url // assign to data property
-    //         this.listRecord.imageUrl = response.data.data.url
-    //       })
-    //       .catch(err => {
-    //         console.log('API error ↓')
-    //         console.log(err)
-
-    //         if (err.response.data.error) {
-    //           console.log(err.response.data.error)
-    //           //When trouble shooting, simple informations about the error can be found in err.response.data.error so it's good to display it
-    //         }
-    //       })
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // },
-    // insertDoc() {
-    //   // done
-    //   fetch(productApi, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(this.listRecord),
-    //   })
-    //     .then(response => response.text())
-    //     .then(data => {
-    //       // console.log(data._id)
-
-    //       this.loadAllData()
-    //       // this.hideModal()
-    //       this.resetData()
-    //       console.log(data)
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
     loadAllData() {
       fetch(productApi)
         .then(response => response.json())
@@ -593,10 +537,6 @@ export default {
             this.postsData[element._id] = element
             // this.listRecord.productId =
           })
-          // console.log(this.postsData)
-          // console.log(this.listRecord.productId)
-          // this.postsLoading = false
-          // this.loading = false
         })
         .catch(err => {
           if (err) throw err

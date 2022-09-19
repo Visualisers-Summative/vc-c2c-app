@@ -500,41 +500,6 @@ export default {
       this.listRecord.price = ''
       this.listRecord.yearReleased = ''
     },
-    // loadAllData() {
-    //   fetch(productApi)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.usersRecords = data
-    //       console.log('id: ' + localStorage.userId)
-    //       if (localStorage.userId) {
-    //         let postData = []
-    //         data.forEach(element => {
-    //           console.log(element)
-    //           if (localStorage.userId === element.loggedUserId) {
-    //             postData.push(element)
-    //             console.log(postData)
-    //           }
-    //         })
-    //         this.usersRecords = postData
-    //         // console.log(this.usersRecords)
-    //         // } else {
-    //         //   // call login
-    //         //   console.log("call login");
-    //         //   localStorage.callLogin = true;
-    //       }
-    //       // set posts data
-    //       data.forEach(element => {
-    //         this.postsData[element._id] = element
-    //       })
-    //       // console.log(this.postsData)
-    //       // console.log(this.usersRecords)
-    //       // this.postsLoading = false
-    //       // this.loading = false
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
     loadAllData() {
       this.$emit('showUsersData')
     },

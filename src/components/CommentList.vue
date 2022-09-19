@@ -2,17 +2,25 @@
   <div class="review-container">
     <h2>Comments</h2>
     <br />
+
+    <div
+      v-for="comment in comments"
+      v-bind:key="comment._id"
+      class="records-loop"
+    >
+      <div>{{ comment }}</div>
+    </div>
     <ul>
-      <li
-        v-for="(review, index) in reviews"
+      <!-- <li
+        v-for="(review, index) in comments"
         :key="index"
       >
         <h4>Username here!!!</h4>
         <br />
         "{{ review.review }}"
-      </li>
+      </li> -->
     </ul>
-    <p>this si the content</p>
+    <!-- <p>{{ postComments }}</p> -->
   </div>
 </template>
 
@@ -23,39 +31,58 @@ import { inject } from 'vue'
 export default {
   name: 'CommentsList',
   props: {
-    reviews: {
+    comments: {
       type: Array,
       required: true,
     },
+    method: { type: Function },
     setup() {
       const store = inject('store')
       return {
         store,
       }
     },
+    data() {
+      return {
+        allComments: [],
+        postComments: [],
+        commentList: [],
+        editId: '',
+        id: '',
+        msg: '',
+        commentFormValues: {
+          commentMsg: '',
+          productPostId: '',
+          userName: '',
+          userId: '',
+        },
+      }
+    },
+    watch: {
+      // whenever question changes, this function will run
+    },
     methods: {
-      getMessages(postId) {
-        this.msglist = []
-        if (postId) {
-          let singlePost = []
-          this.allMessages.forEach(msg => {
-            if (msg.postId == postId) {
-              singlePost.push(msg)
-            }
-          })
-          this.msglist = singlePost
-        }
-      },
-
+      // getMessages(postId) {
+      //   this.msglist = []
+      //   if (postId) {
+      //     let singlePost = []
+      //     this.allMessages.forEach(msg => {
+      //       if (msg.postId == postId) {
+      //         singlePost.push(msg)
+      //       }
+      //     })
+      //     this.msglist = singlePost
+      //   }
+      // },
       // getAllMessages() {
-      //   fetch(commentsApi)
+      //   fetch(commentsApi, { method: 'GET' })
       //     .then(response => response.json())
       //     .then(data => {
       //       // all messages
       //       this.allMessages = data
-
+      //       console.log(this.allMessages)
       //       // grouping message by post_id
-      //       this.postMessages = this.allMessages.reduce((results, msg) => {
+      //       this.postComments = this.allMessages.reduce((results, msg) => {
       //         results[msg.post_id] = results[msg.post_id] || []
       //         results[msg.post_id].push(msg)
       //         return results
@@ -65,6 +92,14 @@ export default {
       //       if (err) throw err
       //     })
       // },
+      // getAllComments() {
+      //   this.$emit('showUsersData')
+      // },
+    },
+    mounted() {
+      // this.getAllMessages()
+      // this.getAllComments()
+      // this.method()
     },
   },
 }

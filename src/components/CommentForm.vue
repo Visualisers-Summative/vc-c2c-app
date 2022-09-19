@@ -24,14 +24,6 @@
         />
       </div>
     </form>
-
-    <div
-      v-for="comment in commentList"
-      v-bind:key="comment._id"
-      class="records-loop"
-    >
-      <div></div>
-    </div>
   </div>
 </template>
 
@@ -88,7 +80,7 @@ export default {
       })
         .then(response => response.text())
         .then(data => {
-          // this.loadAllData()
+          this.getAllComments()
           // this.hideModal()
           this.resetData()
           console.log(data)
@@ -141,20 +133,20 @@ export default {
     resetData() {
       this.commentFormValues.commentMsg = ''
     },
-    loadAllData() {
+    getAllComments() {
       this.$emit('showUsersData')
     },
   },
   mounted() {
     // set user_id
     if (localStorage.userId) {
-      console.log(localStorage)
+      // console.log(localStorage)
       this.commentFormValues.userName = localStorage.loggedUser
       this.commentFormValues.userId = localStorage.userId
     }
-    console.log('StoredID = ' + this.store.state.product_id)
+    // console.log('StoredID = ' + this.store.state.product_id)
 
-    this.loadAllData()
+    // this.getAllComments()
   },
 }
 </script>

@@ -74,11 +74,17 @@
   </div>
 
   <div class="comment-section">
-    <CommentForm
+    <!-- <CommentForm
       @review-submitted="addReview"
-      @showUsersData="loadAllData"
+      @showUsersData="getAllComments"
+    /> -->
+    <CommentForm @showUsersData="getAllComments" />
+    <CommentList
+      :comments="comments"
+      @showUsersData="getAllComments"
+      :method="parentMethod"
     />
-    <CommentList :comments="commentFormValues" />
+    <!-- <CommentList :commentFormValues="commentFormValues" /> -->
   </div>
 </template>
 
@@ -91,6 +97,8 @@ import ProductService from '../services/ProductService.js'
 import CommentForm from '../components/CommentForm.vue'
 import CommentList from '../components/CommentList.vue'
 import store from '../store'
+
+const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 
 export default {
   props: ['id'],
@@ -111,26 +119,53 @@ export default {
       .then(response => {
         // console.log(response.data);
         this.record = response.data
-        console.log(this.record)
+        // console.log(this.record)
       })
       .catch(error => {
         console.log(error)
       })
   },
+  watch: {
+    // getAllComments() {
+    //   fetch(commentsApi)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       this.comments = data
+    //       console.log(this.comments)
+    //     })
+    //     .catch(err => {
+    //       if (err) throw err
+    //     })
+    // },
+  },
   methods: {
-    addReview(comment) {
-      this.comments.push(comment)
-    },
+    // addReview(comment) {
+    //   this.comments.push(comment)
+    // },
     favourite() {
       event.target.classList.toggle('favourite')
     },
     onClickHandler() {
       console.log(page)
     },
+    parentMethod() {
+      this.getAllComments()
+    },
+    getAllComments() {
+      fetch(commentsApi)
+        .then(response => response.json())
+        .then(data => {
+          this.comments = data
+          console.log(this.comments)
+        })
+        .catch(err => {
+          if (err) throw err
+        })
+    },
   },
   mounted() {
     // console.log(this.id)
-
+    this.getAllComments()
     // The product ID shared for comment connection
     store.state.product_id = this.id
   },
