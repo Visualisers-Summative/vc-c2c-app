@@ -78,13 +78,9 @@
       @review-submitted="addReview"
       @showUsersData="getAllComments"
     /> -->
-    <CommentForm @showUsersData="getAllComments" />
-    <CommentList
-      :comments="comments"
-      @showUsersData="getAllComments"
-      :method="parentMethod"
-    />
-    <!-- <CommentList :commentFormValues="commentFormValues" /> -->
+    <!-- <CommentForm @showUsersData="getAllComments" /> -->
+    <!-- <CommentList :comments="comments" /> -->
+    <CommentSection />
   </div>
 </template>
 
@@ -94,9 +90,10 @@ import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiHeartOutline } from '@mdi/js'
 
 import ProductService from '../services/ProductService.js'
-import CommentForm from '../components/CommentForm.vue'
-import CommentList from '../components/CommentList.vue'
+// import CommentForm from '../components/CommentForm.vue'
+// import CommentList from '../components/CommentList.vue'
 import store from '../store'
+import CommentSection from '../components/CommentSection.vue'
 
 const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 
@@ -111,8 +108,9 @@ export default {
   },
   components: {
     SvgIcon,
-    CommentForm,
-    CommentList,
+    // CommentForm,
+    // CommentList,
+    CommentSection,
   },
   created() {
     ProductService.getData(this.id)
@@ -125,7 +123,14 @@ export default {
         console.log(error)
       })
   },
-  watch: {
+  watch: {},
+  methods: {
+    favourite() {
+      event.target.classList.toggle('favourite')
+    },
+    onClickHandler() {
+      console.log(page)
+    },
     // getAllComments() {
     //   fetch(commentsApi)
     //     .then(response => response.json())
@@ -138,34 +143,9 @@ export default {
     //     })
     // },
   },
-  methods: {
-    // addReview(comment) {
-    //   this.comments.push(comment)
-    // },
-    favourite() {
-      event.target.classList.toggle('favourite')
-    },
-    onClickHandler() {
-      console.log(page)
-    },
-    parentMethod() {
-      this.getAllComments()
-    },
-    getAllComments() {
-      fetch(commentsApi)
-        .then(response => response.json())
-        .then(data => {
-          this.comments = data
-          console.log(this.comments)
-        })
-        .catch(err => {
-          if (err) throw err
-        })
-    },
-  },
   mounted() {
     // console.log(this.id)
-    this.getAllComments()
+    // this.getAllComments()
     // The product ID shared for comment connection
     store.state.product_id = this.id
   },
