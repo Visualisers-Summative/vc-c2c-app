@@ -7,7 +7,10 @@
         @submit.prevent="onSubmit"
       >
         <h4>Post a Comment</h4>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 87661cb74b6f9e1cdd659671956b24d47c66d3b6
         <textarea
           id="review"
           v-model="commentFormValues.commentMsg"
@@ -43,6 +46,7 @@
 
     <!-- Right side dispaly comments [START] -->
     <div class="comments-list-container">
+<<<<<<< HEAD
       <h2>Comments</h2>
       <div class="comment-wrap comments-list-container">
         <div
@@ -63,13 +67,41 @@
 
         <div>
           <!-- {{ allMessages }} -->
+=======
+      <!-- <h2>Comments</h2> -->
+      <!-- {{ store.state.product_id }} -->
+      <!-- ---------------- -->
+
+      <div
+        v-for="comment in userPosts"
+        :key="comment._id"
+        class="records-loop"
+      >
+      <div class="user-edit-container">
+        <h4>{{ comment.userName }}</h4>
+        <!-- <p class="ammend-comment"><span>edit </span> | <span>delete</span>
+        </p> -->
+      </div>
+
+
+        <!-- <div v-show="2 == 2 ? true : false">
+          <p>{{ comment.commentMsg }}</p>
+          <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
+        </div> -->
+        <div>
+          <p class="user-comment">{{ comment.commentMsg }}</p>
+>>>>>>> 87661cb74b6f9e1cdd659671956b24d47c66d3b6
         </div>
         <!-- <div>{{ userPosts }}</div> -->
         <!-- <p>{{ postComments }}</p> -->
       </div>
     </div>
+<<<<<<< HEAD
 
     <!-- Right side dispaly comments [END] -->
+=======
+    <!-- Right side display comments [END] -->
+>>>>>>> 87661cb74b6f9e1cdd659671956b24d47c66d3b6
   </div>
 </template>
 
@@ -288,13 +320,30 @@ export default {
   overflow-y: auto;
   height: 280px;
   width: 100%;
-  margin-left: 10px;
+  margin-left: 20px;
 
-  li {
-    // margin-right: 10px;
-    padding-top: 10px;
+  .user-edit-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 20px 10px 0px;
+
+  }
+
+  .user-comment{
+    padding-bottom:10px ;
+    margin: 5px 20px 10px 0px;
     align-items: center;
     border-bottom: 1px solid;
+  }
+
+  p {
+    // margin-right: 10px;
+    // padding-top: 10px;
+    // padding-bottom:10px ;
+    // margin: 5px 10px 10px 0px;
+    // align-items: center;
+    // border-bottom: 1px solid;
   }
 }
 
@@ -320,8 +369,16 @@ export default {
   background: rgb(115, 115, 115);
 }
 
+<<<<<<< HEAD
 .ammend-comment,
 .max-char-reached {
   color: red;
+=======
+.ammend-comment {
+  // display: flex;
+  // flex-direction: flex-end;
+  // color: red;
+>>>>>>> 87661cb74b6f9e1cdd659671956b24d47c66d3b6
 }
+
 </style>
