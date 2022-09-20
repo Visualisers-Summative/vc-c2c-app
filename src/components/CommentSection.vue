@@ -245,9 +245,9 @@ export default {
       this.commentFormValues.userName = localStorage.loggedUser
       this.commentFormValues.userId = localStorage.userId
     }
-    console.log('StoredID = ' + this.store.state.product_id)
-    console.log('StoredGraD = ' + this.store.state.user_gradient)
-    // this.getAllUsers()
+    // console.log('StoredID = ' + this.store.state.product_id)
+    // console.log('StoredGraD = ' + this.store.state.user_gradient)
+
     this.getAllComments()
 
     // this.usersGradient = this.users.userGradient
