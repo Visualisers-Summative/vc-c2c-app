@@ -46,7 +46,7 @@
         <p>USER ID: {{ comment.userId }}</p>
         {{ commentFormValues.userId }}
         {{ commentFormValues.userId == comments.userId }}
-        <div v-show="commentFormValues.userId == comments.userId ? true : false">
+        <div v-show="2 == 2 ? true : false">
           <!-- <p>{{ comment.commentMsg }}</p> -->
           <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
         </div>
@@ -59,17 +59,6 @@
         <!-- {{ allMessages }} -->
       </div>
       <!-- <div>{{ userPosts }}</div> -->
-
-      <ul>
-        <!-- <li
-        v-for="(review, index) in comments"
-        :key="index"
-      >
-        <h4>Username here!!!</h4>
-        <br />
-        "{{ review.review }}"
-      </li> -->
-      </ul>
       <!-- <p>{{ postComments }}</p> -->
     </div>
     <!-- Right side dispaly comments [END] -->
@@ -77,7 +66,7 @@
 </template>
 
 <script>
-import { faL } from '@fortawesome/free-solid-svg-icons'
+// import { faL } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
 import { inject } from 'vue'
 
@@ -113,7 +102,7 @@ export default {
         userName: '',
         userId: '',
       },
-      loggedInUser: false,
+      loggedInUser: true,
     }
   },
   methods: {

@@ -418,6 +418,7 @@ export default {
       this.dialog = false
     }
 
+    // this.$emit('loggedUser', localStorage.loggedUser)
     // get all users
     this.getAllUsers()
     this.getAll()
