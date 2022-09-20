@@ -407,7 +407,7 @@ export default {
         yearReleased: '',
         loggedUser: '',
         loggedUserId: '',
-        productId: '',
+        // productId: '',
       },
       //   editRecord: {
       //     albumDescription: '',
