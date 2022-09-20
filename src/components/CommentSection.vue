@@ -7,17 +7,29 @@
         @submit.prevent="onSubmit"
       >
         <h4>Post a Comment</h4>
-        {{ store.state.product_id }}
+
         <textarea
           id="review"
           v-model="commentFormValues.commentMsg"
           placeholder="Your comment here..."
           name="type-comment"
-          maxlength="300"
+          :maxlength="maxChar"
           cols="60"
           rows="13"
         ></textarea>
-
+        <div>
+          <span
+            v-if="commentFormValues.commentMsg.length != max"
+            class="max-char"
+            >Character count: {{ commentFormValues.commentMsg.length }} / {{ maxChar }} |
+          </span>
+          <span
+            v-if="commentFormValues.commentMsg && commentFormValues.commentMsg.length == maxChar"
+            class="max-char-reached max-char"
+          >
+            Character limit reached</span
+          >
+        </div>
         <div class="button-container">
           <input
             type="submit"
@@ -32,35 +44,31 @@
     <!-- Right side dispaly comments [START] -->
     <div class="comments-list-container">
       <h2>Comments</h2>
-      <!-- {{ store.state.product_id }} -->
-      ----------------
+      <div class="comment-wrap comments-list-container">
+        <div
+          v-for="comment in userPosts"
+          :key="comment._id"
+          class="records-loop"
+        >
+          <h4>{{ comment.userName }}</h4>
 
-      <div
-        v-for="comment in userPosts"
-        :key="comment._id"
-        class="records-loop"
-      >
-        <h4>username: {{ comment.userName }}</h4>
-
-        <span> Product ID: {{ comment.productPostId }}</span>
-        <p>USER ID: {{ comment.userId }}</p>
-        {{ commentFormValues.userId }}
-        {{ commentFormValues.userId == comments.userId }}
-        <div v-show="2 == 2 ? true : false">
-          <!-- <p>{{ comment.commentMsg }}</p> -->
-          <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
+          <!-- <div v-show="commentFormValues.userId == comments.userId ? true : false">
+            <p>{{ comment.commentMsg }}</p>
+            <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
+          </div> -->
+          <div>
+            <p>{{ comment.commentMsg }}</p>
+          </div>
         </div>
+
         <div>
-          <p>{{ comment.commentMsg }}</p>
+          <!-- {{ allMessages }} -->
         </div>
+        <!-- <div>{{ userPosts }}</div> -->
+        <!-- <p>{{ postComments }}</p> -->
       </div>
-
-      <div>
-        <!-- {{ allMessages }} -->
-      </div>
-      <!-- <div>{{ userPosts }}</div> -->
-      <!-- <p>{{ postComments }}</p> -->
     </div>
+
     <!-- Right side dispaly comments [END] -->
   </div>
 </template>
@@ -84,18 +92,19 @@ export default {
     return {
       name: '',
       review: '',
-      allComments: [],
-      postComments: [],
+      // allComments: [],
+      // postComments: [],
       // commentList: [],
-      commentData: [],
-      postsData: [],
+      // commentData: [],
+      // postsData: [],
       userPosts: [],
-      allMessages: [],
-      msglist: [],
+      // allMessages: [],
+      // msglist: [],
       comments: [],
-      editId: '',
-      id: '',
-      msg: '',
+      maxChar: 300,
+      // editId: '',
+      // id: '',
+      // msg: '',
       commentFormValues: {
         commentMsg: '',
         productPostId: '',
@@ -311,7 +320,8 @@ export default {
   background: rgb(115, 115, 115);
 }
 
-.ammend-comment {
+.ammend-comment,
+.max-char-reached {
   color: red;
 }
 </style>

@@ -31,16 +31,7 @@ export default {
       loggedUser: '',
     }
   },
-  methods: {},
-  // created() {
-  //   ProductService.getData(this.id)
-  //     .then(response => {
-  //       this.record = response.data
-  //     })
-  //     .catch(error => {
-  //       console.log(error)
-  //     })
-  // },
+
   mounted() {
     this.userGradient = localStorage.userGradient
     this.loggedUser = localStorage.loggedUser
