@@ -7,7 +7,6 @@
         @submit.prevent="onSubmit"
       >
         <h4>Post a Comment</h4>
-        {{ store.state.product_id }}
         <textarea
           id="review"
           v-model="commentFormValues.commentMsg"
@@ -31,27 +30,28 @@
 
     <!-- Right side dispaly comments [START] -->
     <div class="comments-list-container">
-      <h2>Comments</h2>
+      <!-- <h2>Comments</h2> -->
       <!-- {{ store.state.product_id }} -->
-      ----------------
+      <!-- ---------------- -->
 
       <div
         v-for="comment in userPosts"
         :key="comment._id"
         class="records-loop"
       >
-        <h4>username: {{ comment.userName }}</h4>
+      <div class="user-edit-container">
+        <h4>{{ comment.userName }}</h4>
+        <!-- <p class="ammend-comment"><span>edit </span> | <span>delete</span>
+        </p> -->
+      </div>
 
-        <span> Product ID: {{ comment.productPostId }}</span>
-        <p>USER ID: {{ comment.userId }}</p>
-        {{ commentFormValues.userId }}
-        {{ commentFormValues.userId == comments.userId }}
-        <div v-show="2 == 2 ? true : false">
-          <!-- <p>{{ comment.commentMsg }}</p> -->
-          <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
-        </div>
-        <div>
+
+        <!-- <div v-show="2 == 2 ? true : false">
           <p>{{ comment.commentMsg }}</p>
+          <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
+        </div> -->
+        <div>
+          <p class="user-comment">{{ comment.commentMsg }}</p>
         </div>
       </div>
 
@@ -61,7 +61,7 @@
       <!-- <div>{{ userPosts }}</div> -->
       <!-- <p>{{ postComments }}</p> -->
     </div>
-    <!-- Right side dispaly comments [END] -->
+    <!-- Right side display comments [END] -->
   </div>
 </template>
 
@@ -279,13 +279,30 @@ export default {
   overflow-y: auto;
   height: 280px;
   width: 100%;
-  margin-left: 10px;
+  margin-left: 20px;
 
-  li {
-    // margin-right: 10px;
-    padding-top: 10px;
+  .user-edit-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 20px 10px 0px;
+
+  }
+
+  .user-comment{
+    padding-bottom:10px ;
+    margin: 5px 20px 10px 0px;
     align-items: center;
     border-bottom: 1px solid;
+  }
+
+  p {
+    // margin-right: 10px;
+    // padding-top: 10px;
+    // padding-bottom:10px ;
+    // margin: 5px 10px 10px 0px;
+    // align-items: center;
+    // border-bottom: 1px solid;
   }
 }
 
@@ -312,6 +329,9 @@ export default {
 }
 
 .ammend-comment {
-  color: red;
+  // display: flex;
+  // flex-direction: flex-end;
+  // color: red;
 }
+
 </style>
