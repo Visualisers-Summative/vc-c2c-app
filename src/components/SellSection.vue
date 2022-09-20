@@ -407,7 +407,7 @@ export default {
         yearReleased: '',
         loggedUser: '',
         loggedUserId: '',
-        productId: '',
+        // productId: '',
       },
       //   editRecord: {
       //     albumDescription: '',
@@ -519,7 +519,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   width: 20rem;
-  height: 30rem;
+  //   height: 30rem;
 
   input {
     margin-bottom: 0.8rem;
