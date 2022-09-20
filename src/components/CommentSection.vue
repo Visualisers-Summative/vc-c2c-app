@@ -60,8 +60,8 @@
             >
           </div>
           <div class="user-comment">
-              <h4>{{ comment.userName }}</h4>
-              <p>{{ comment.commentMsg }}</p>
+            <h4>{{ comment.userName }}</h4>
+            <p>{{ comment.commentMsg }}</p>
           </div>
 
           <!-- <h4>{{ comment.userName }}</h4> -->
@@ -368,7 +368,6 @@ export default {
       min-height: 60px;
       padding-top: 5px;
       padding-bottom: 10px;
-
     }
   }
 }
@@ -394,7 +393,6 @@ export default {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(115, 115, 115);
 }
-<<<<<<< HEAD
 
 .profile-circle {
   height: 30px;
@@ -417,6 +415,4 @@ export default {
 .max-char-reached {
   color: red;
 }
-=======
->>>>>>> bc10628f1f60e9efe0c4ea1e304e058d4b4216d1
 </style>
