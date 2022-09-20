@@ -123,7 +123,6 @@ export default {
         console.log(error)
       })
   },
-  watch: {},
   methods: {
     favourite() {
       event.target.classList.toggle('favourite')

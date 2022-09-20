@@ -156,6 +156,7 @@
 </template>
 
 <script>
+import store from '../store'
 // import axios from 'axios'
 // import formData from 'form-data'
 // import { ref } from 'vue'
@@ -204,11 +205,7 @@ export default {
       },
     }
   },
-  computed: {
-    // passwordMatch() {
-    //   return this.userDetails.userPassword === this.verify || 'Password must match'
-    // },
-  },
+
   methods: {
     createHex() {
       var hexCode1 = ''
@@ -426,12 +423,14 @@ export default {
     if (localStorage.userId) {
       // set user_id
       this.userDetails.user_id = localStorage.userId
-      // console.log(localStorage)
+      console.log(localStorage)
     }
 
     if (localStorage.userId) {
       this.isLoginVisible = false
     }
+
+    store.state.user_gradient = localStorage.userGradient
   },
 }
 </script>

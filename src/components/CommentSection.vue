@@ -7,10 +7,6 @@
         @submit.prevent="onSubmit"
       >
         <h4>Post a Comment</h4>
-<<<<<<< HEAD
-
-=======
->>>>>>> 87661cb74b6f9e1cdd659671956b24d47c66d3b6
         <textarea
           id="review"
           v-model="commentFormValues.commentMsg"
@@ -46,28 +42,6 @@
 
     <!-- Right side dispaly comments [START] -->
     <div class="comments-list-container">
-<<<<<<< HEAD
-      <h2>Comments</h2>
-      <div class="comment-wrap comments-list-container">
-        <div
-          v-for="comment in userPosts"
-          :key="comment._id"
-          class="records-loop"
-        >
-          <h4>{{ comment.userName }}</h4>
-
-          <!-- <div v-show="commentFormValues.userId == comments.userId ? true : false">
-            <p>{{ comment.commentMsg }}</p>
-            <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
-          </div> -->
-          <div>
-            <p>{{ comment.commentMsg }}</p>
-          </div>
-        </div>
-
-        <div>
-          <!-- {{ allMessages }} -->
-=======
       <!-- <h2>Comments</h2> -->
       <!-- {{ store.state.product_id }} -->
       <!-- ---------------- -->
@@ -77,12 +51,17 @@
         :key="comment._id"
         class="records-loop"
       >
-      <div class="user-edit-container">
-        <h4>{{ comment.userName }}</h4>
-        <!-- <p class="ammend-comment"><span>edit </span> | <span>delete</span>
-        </p> -->
-      </div>
+        <div class="user-edit-container">
+          <span
+            class="profile-circle"
+            :style="{ background: comment.userGradient }"
+            >{{ comment.userName.charAt(0) }}</span
+          >
 
+          <h4>{{ comment.userName }}</h4>
+          <!-- <p class="ammend-comment"><span>edit </span> | <span>delete</span>
+        </p> -->
+        </div>
 
         <!-- <div v-show="2 == 2 ? true : false">
           <p>{{ comment.commentMsg }}</p>
@@ -90,18 +69,12 @@
         </div> -->
         <div>
           <p class="user-comment">{{ comment.commentMsg }}</p>
->>>>>>> 87661cb74b6f9e1cdd659671956b24d47c66d3b6
         </div>
         <!-- <div>{{ userPosts }}</div> -->
         <!-- <p>{{ postComments }}</p> -->
       </div>
     </div>
-<<<<<<< HEAD
-
-    <!-- Right side dispaly comments [END] -->
-=======
     <!-- Right side display comments [END] -->
->>>>>>> 87661cb74b6f9e1cdd659671956b24d47c66d3b6
   </div>
 </template>
 
@@ -109,7 +82,7 @@
 // import { faL } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
 import { inject } from 'vue'
-
+const usersApi = 'https://vc-users-login.netlify.app/.netlify/functions/api/'
 const commentsApi = 'https://vc-comments.netlify.app/.netlify/functions/api'
 
 export default {
@@ -129,6 +102,7 @@ export default {
       // commentList: [],
       // commentData: [],
       // postsData: [],
+      users: [],
       userPosts: [],
       // allMessages: [],
       // msglist: [],
@@ -140,15 +114,19 @@ export default {
       commentFormValues: {
         commentMsg: '',
         productPostId: '',
+        userGradient: '',
         userName: '',
         userId: '',
       },
+
+      loggedUser: '',
       loggedInUser: true,
     }
   },
   methods: {
     onSubmit() {
       this.commentFormValues.productPostId = this.store.state.product_id
+      this.commentFormValues.userGradient = this.store.state.user_gradient
 
       if (this.commentFormValues.commentMsg === '') {
         Swal.fire({
@@ -220,7 +198,18 @@ export default {
     //       if (err) throw err
     //     })
     // },
+    // getAllUsers() {
+    //   fetch(usersApi)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       this.users = data
 
+    //       // console.log(this.users)
+    //     })
+    //     .catch(err => {
+    //       if (err) throw err
+    //     })
+    // },
     getAllComments() {
       fetch(commentsApi)
         .then(response => response.json())
@@ -248,6 +237,7 @@ export default {
       this.commentFormValues.commentMsg = ''
     },
   },
+
   mounted() {
     // set user_id
     if (localStorage.userId) {
@@ -256,10 +246,12 @@ export default {
       this.commentFormValues.userId = localStorage.userId
     }
     console.log('StoredID = ' + this.store.state.product_id)
+    console.log('StoredGraD = ' + this.store.state.user_gradient)
+    // this.getAllUsers()
     this.getAllComments()
-    // console.log(this.commentFormValues.userId)
+
+    // this.usersGradient = this.users.userGradient
   },
-  updated() {},
 }
 </script>
 
@@ -322,29 +314,28 @@ export default {
   width: 100%;
   margin-left: 20px;
 
-  .user-edit-container{
+  .user-edit-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 0px 20px 10px 0px;
-
   }
 
-  .user-comment{
-    padding-bottom:10px ;
+  .user-comment {
+    padding-bottom: 10px;
     margin: 5px 20px 10px 0px;
     align-items: center;
     border-bottom: 1px solid;
   }
 
-  p {
-    // margin-right: 10px;
-    // padding-top: 10px;
-    // padding-bottom:10px ;
-    // margin: 5px 10px 10px 0px;
-    // align-items: center;
-    // border-bottom: 1px solid;
-  }
+  // p {
+  //   // margin-right: 10px;
+  //   // padding-top: 10px;
+  //   // padding-bottom:10px ;
+  //   // margin: 5px 10px 10px 0px;
+  //   // align-items: center;
+  //   // border-bottom: 1px solid;
+  // }
 }
 
 //Scrollbar styling
@@ -369,16 +360,25 @@ export default {
   background: rgb(115, 115, 115);
 }
 
-<<<<<<< HEAD
+.profile-circle {
+  height: 30px;
+  width: 30px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-color: #000000;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.max-char {
+  color: grey;
+}
+
 .ammend-comment,
 .max-char-reached {
   color: red;
-=======
-.ammend-comment {
-  // display: flex;
-  // flex-direction: flex-end;
-  // color: red;
->>>>>>> 87661cb74b6f9e1cdd659671956b24d47c66d3b6
 }
-
 </style>
