@@ -51,14 +51,20 @@
         :key="comment._id"
         class="records-loop"
       >
-        <div class="user-edit-container">
-          <span
-            class="profile-circle"
-            :style="{ background: comment.userGradient }"
-            >{{ comment.userName.charAt(0) }}</span
-          >
+        <div class="user-comment-container">
+          <div class="profile-circle-container">
+            <span
+              class="profile-circle"
+              :style="{ background: comment.userGradient }"
+              >{{ comment.userName.charAt(0) }}</span
+            >
+          </div>
+          <div class="user-comment">
+              <h4>{{ comment.userName }}</h4>
+              <p>{{ comment.commentMsg }}</p>
+          </div>
 
-          <h4>{{ comment.userName }}</h4>
+          <!-- <h4>{{ comment.userName }}</h4> -->
           <!-- <p class="ammend-comment"><span>edit </span> | <span>delete</span>
         </p> -->
         </div>
@@ -67,9 +73,10 @@
           <p>{{ comment.commentMsg }}</p>
           <p class="ammend-comment"><span>edit </span> | <span>delete</span></p>
         </div> -->
-        <div>
+        <!-- <div>
+
           <p class="user-comment">{{ comment.commentMsg }}</p>
-        </div>
+        </div> -->
         <!-- <div>{{ userPosts }}</div> -->
         <!-- <p>{{ postComments }}</p> -->
       </div>
@@ -287,6 +294,14 @@ export default {
     padding: 5px;
     border: 1px solid;
   }
+
+  .max-char {
+    color: grey;
+  }
+  .ammend-comment,
+  .max-char-reached {
+    color: red;
+  }
 }
 
 .button-container {
@@ -311,31 +326,51 @@ export default {
   overflow-x: hidden;
   overflow-y: auto;
   height: 280px;
-  width: 100%;
+  // width: 100%;
   margin-left: 20px;
 
-  .user-edit-container {
+  .user-comment-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin: 0px 20px 10px 0px;
-  }
+    width: 100%;
 
-  .user-comment {
-    padding-bottom: 10px;
-    margin: 5px 20px 10px 0px;
-    align-items: center;
-    border-bottom: 1px solid;
-  }
+    .profile-circle-container {
+      display: flex;
+      align-items: center;
+    }
 
-  // p {
-  //   // margin-right: 10px;
-  //   // padding-top: 10px;
-  //   // padding-bottom:10px ;
-  //   // margin: 5px 10px 10px 0px;
-  //   // align-items: center;
-  //   // border-bottom: 1px solid;
-  // }
+    .profile-circle {
+      height: 60px;
+      width: 60px;
+      // display: table-cell;
+      // text-align: center;
+      // vertical-align: middle;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: #000000;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .user-comment {
+      display: flex;
+      flex-direction: column;
+      // align-content: center;
+      margin: 10px 10px 0px 10px;
+      border-bottom: 1px solid;
+      width: 100%;
+    }
+
+    p {
+      min-height: 60px;
+      padding-top: 5px;
+      padding-bottom: 10px;
+
+    }
+  }
 }
 
 //Scrollbar styling
@@ -358,27 +393,5 @@ export default {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(115, 115, 115);
-}
-
-.profile-circle {
-  height: 30px;
-  width: 30px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%;
-  background-color: #000000;
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.max-char {
-  color: grey;
-}
-
-.ammend-comment,
-.max-char-reached {
-  color: red;
 }
 </style>
