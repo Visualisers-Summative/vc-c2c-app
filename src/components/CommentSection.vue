@@ -363,7 +363,7 @@ export default {
 .profile-circle {
   height: 30px;
   width: 30px;
-  display: table-cell;
+  // display: table-cell;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;
