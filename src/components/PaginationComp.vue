@@ -13,7 +13,7 @@
     <!-- prettier-ignore -->
     &#5176 
     </span>
-    {{ currentPage + 1 }} of {{ totalPages() }}
+   <span class="page-number"> {{ currentPage + 1 }} of {{ totalPages() }}</span>
     
     <span
       v-if="showNextLink()"
@@ -60,5 +60,11 @@ export default {
 <style>
 .pagination-btn {
   cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.page-number{
+  font-size: 1.1rem;
 }
 </style>

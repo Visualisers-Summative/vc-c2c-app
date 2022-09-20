@@ -423,7 +423,7 @@ export default {
     if (localStorage.userId) {
       // set user_id
       this.userDetails.user_id = localStorage.userId
-      console.log(localStorage)
+      // console.log(localStorage)
     }
 
     if (localStorage.userId) {
