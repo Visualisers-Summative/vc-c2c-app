@@ -6,7 +6,6 @@
     </div>
 
     <div class="user-listings">
-      <!-- <h1>USER LISTINGS HERE</h1> -->
       <div
         v-for="record in usersRecords"
         v-bind:key="record._id"
@@ -352,44 +351,6 @@
         <!-- end of edit values -->
 
         <!-- start of display values -->
-        <!-- <div
-          id="displayed-values"
-          v-else
-          class="displayed-values-container"
-        >
-          <img
-            :src="record.imageUrl"
-            alt="Record cover"
-          />
-
-          <div class="artist-name listings-product-details">
-            {{ record.artistName }}
-            <div>{{ record._id }}</div>
-            <div>{{ record.genre.join(', ') }}</div>
-            <div>{{ record.albumDescription }}</div>
-
-          </div>
-
-
-          <div class="edit-buttons">
-            <div>${{ record.price }}</div> -->
-
-        <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
-        <!-- <button
-              class="delete-btn"
-              @click="deleteDoc(record._id)"
-            >
-              Delete
-            </button>
-            <button
-              class="edit-btn"
-              @click="getRecordData(record._id)"
-            >
-              Edit
-            </button>
-          </div>
-        </div> -->
-
         <div
           v-else
           class="displayed-values-container"
@@ -440,7 +401,7 @@
                 </button>
                 <button
                   class="edit-btn"
-                  v-on:click="getRecordData(record._id)"
+                  @click="getRecordData(record._id)"
                 >
                   EDIT
                 </button>
@@ -458,12 +419,10 @@
 import ProfileSection from '../components/ProfileSection.vue'
 import SellSection from '../components/SellSection.vue'
 import Swal from 'sweetalert2'
-// import axios from 'axios'
-// import formData from 'form-data'
 const productApi = 'https://vc-products.netlify.app/.netlify/functions/api/'
 
 export default {
-  name: 'UserProfile',
+  name: 'UserProfileProducts',
   props: [],
   components: {
     ProfileSection,
@@ -512,30 +471,20 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.usersRecords = data
-
-          // console.log(data._id)
           console.log('user id: ' + localStorage.userId)
           if (localStorage.userId) {
             let postData = []
             data.forEach(element => {
-              // console.log(element._id)
               this.listRecord.productId = element._id
-              // console.log('id:' + this.listRecord.productId)
               if (localStorage.userId == element.loggedUserId) {
                 postData.push(element)
               }
             })
             this.usersRecords = postData
-
-            // } else {
-            //   // call login
-            //   console.log("call login");
-            //   localStorage.callLogin = true;
           }
           // set posts data
           data.forEach(element => {
             this.postsData[element._id] = element
-            // this.listRecord.productId =
           })
         })
         .catch(err => {
@@ -598,7 +547,7 @@ export default {
     updateDoc(id) {
       Swal.fire({
         // title: "Well done!",
-        text: 'Your profile was updated',
+        text: 'Your record was updated',
         icon: 'success',
         confirmButtonText: 'Rock n roll',
       })
@@ -629,17 +578,6 @@ export default {
           if (err) throw err
         })
     },
-    // onEdit(record) {
-    //   this.editId = record._id
-    //   this.editRecord.albumDescription = record.albumDescription
-    //   this.editRecord.albumTitle = record.albumTitle
-    //   this.editRecord.artistName = record.artistName
-    //   this.editRecord.genre = record.genre
-    //   this.editRecord.imageUrl = record.imageUrl
-    //   this.editRecord.length = record.length
-    //   this.editRecord.price = record.price
-    //   this.editRecord.yearReleased = record.yearReleased
-    // },
     onCancel() {
       this.editId = ''
       this.editRecord.artistName = ''
@@ -656,18 +594,6 @@ export default {
       this.listRecord.productId = element._id
       // console.log(this.listRecord)
     },
-    // resetData() {
-    //   this.editId = ''
-    //   this.listRecord.artistName = ''
-    //   this.listRecord.albumTitle = ''
-    //   this.listRecord.albumDescription = ''
-    //   this.listRecord.genre = ''
-    //   this.listRecord.imageUrl = ''
-    //   this.listRecord.label = ''
-    //   this.listRecord.length = ''
-    //   this.listRecord.price = ''
-    //   this.listRecord.yearReleased = ''
-    // },
   },
   mounted() {
     this.listRecord.loggedUser = localStorage.loggedUser
@@ -791,7 +717,7 @@ input[type='radio']:checked::before {
   display: flex;
   width: 100%;
   min-height: 280px;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 20px 20px 20px;
 
   img {
     height: 280px;

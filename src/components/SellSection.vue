@@ -21,16 +21,6 @@
         v-model.trim="listRecord.albumTitle"
         class="album input long-input"
       />
-      <label for="albumCover"
-        >Album Cover Image
-
-        <!-- v-model="listRecord.imageUrl" -->
-        <input
-          type="file"
-          class="album-cover input long-input"
-          @change="uploadImage($event)"
-        />
-      </label>
       <div class="long-inputs long-input">
         <div class="genres">
           <p>
@@ -337,32 +327,26 @@
             class="length"
         /></label>
       </div>
-      <label
-        class="album-image"
-        for="albumCover"
-      >
-        Album Cover
-        <div class="album-div">
+
+      <div class="album-div">
+        <label for="albumCover">
+          <font-awesome-icon
+            class="image-icon"
+            icon="fa-solid fa-camera"
+          />
+          Album Cover
           <input
             id="albumCover"
             name="albumCover"
-            type="button"
-            class="album-cover button"
-            value="Upload image"
+            type="file"
+            class="album-cover input long-input"
+            @change="uploadImage($event)"
+            icon="fa-solid fa-camera"
           />
-          <p>Choose an image to upload</p>
-        </div>
-      </label>
-      <div
-        v-if="image"
-        class="uploaded-image"
-      >
-        {{ image }}
-        <font-awesome-icon
-          class="image"
-          icon="fa-solid fa-camera"
-        />
+        </label>
+        <!-- <p>Choose an image to upload</p> -->
       </div>
+
       <input
         type="submit"
         class="button start-listing"
@@ -409,26 +393,9 @@ export default {
         loggedUserId: '',
         // productId: '',
       },
-      //   editRecord: {
-      //     albumDescription: '',
-      //     albumTitle: '',
-      //     artistName: '',
-      //     genre: [],
-      //     imageUrl: '',
-      //     label: '',
-      //     length: '',
-      //     price: '',
-      //     yearReleased: '',
-      //   },
-      //   dropDownVisible: false,
     }
   },
   methods: {
-    // onFileUpload(event) {
-    //   this.FILE = event.target.files[0]
-    //   this.uploadImage()
-    // },
-
     uploadImage(event) {
       try {
         console.log('ping !')
@@ -486,9 +453,6 @@ export default {
           if (err) throw err
         })
     },
-    // dropDown() {
-    //   this.dropDownVisible = !this.dropDownVisible
-    // },
     resetData() {
       this.listRecord.artistName = ''
       this.listRecord.albumTitle = ''
@@ -665,12 +629,6 @@ input[type='radio']:checked::before {
   font-size: 1rem;
 }
 
-.album-image {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.8rem;
-}
-
 .album-div {
   display: flex;
   align-items: center;
@@ -681,19 +639,12 @@ input[type='radio']:checked::before {
   }
 }
 
-.album-cover {
-  margin: 0.8rem 0rem 0.8rem 0rem;
+.image-icon {
+  margin-right: 0.2em;
 }
 
-.uploaded-image {
-  margin-top: -0.3rem;
-  font-size: 0.8rem;
-  width: 100%;
-  border: 1px solid grey;
-  padding: 0.4rem;
-
-  .image {
-    margin-left: 1rem;
-  }
+.album-cover {
+  margin: 0.8rem 0rem 0.8rem 0rem;
+  padding-bottom: 2em;
 }
 </style>

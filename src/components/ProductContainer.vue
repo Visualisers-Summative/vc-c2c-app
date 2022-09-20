@@ -1,19 +1,23 @@
 <template>
   <div class="product-div">
     <div class="product-container">
-      <ProductCard
-        v-for="vinyl in visibleRecords"
-        :key="vinyl.id"
-        :vinyls="vinyl"
-        :visibleRecords="visibleRecords"
-        :currentPage="currentPage"
-      />
-      <PaginationComp
-        :recordsArray="recordsArray"
-        @page:update="updatePage"
-        :currentPage="currentPage"
-        :pageSize="pageSize"
-      />
+      <div class="all-products">
+        <ProductCard
+          v-for="vinyl in visibleRecords"
+          :key="vinyl.id"
+          :vinyls="vinyl"
+          :visibleRecords="visibleRecords"
+          :currentPage="currentPage"
+        />
+      </div>
+      <div class="page-control">
+        <PaginationComp
+          :recordsArray="recordsArray"
+          @page:update="updatePage"
+          :currentPage="currentPage"
+          :pageSize="pageSize"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -64,7 +68,7 @@ export default {
   created() {
     ProductService.getDatas()
       .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         this.records = response.data
         this.recordsArray = response.data
         this.visibleRecords = response.data
@@ -86,7 +90,23 @@ export default {
 
 .product-container {
   display: grid;
+  // width: 80vw;
+  // grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1em;
+}
+
+.all-products {
+  display: grid;
   grid-template-columns: auto auto auto;
+  grid-row: 1;
+}
+
+.page-control {
+  grid-row: 2;
+  grid-column: 3;
+  text-align: right;
+  margin-right: 1em;
 }
 
 @media only screen and (max-width: 1200px) {

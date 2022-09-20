@@ -19,16 +19,6 @@
         <p class="record-artist column-2">{{ record.artistName }}</p>
       </div>
 
-      <!-- <div class="product-titles">
-        <h4 class="column-1">LABEL</h4>
-        <p class="column-2">Details for Label here?</p>
-      </div>
-
-      <div class="product-titles">
-        <h4 class="column-1">COUNTRY</h4>
-        <p class="column-2">Details for Country here?</p>
-      </div> -->
-
       <div class="product-titles">
         <h4 class="column-1">RELEASED</h4>
         <p class="record-year column-2">{{ record.yearReleased }}</p>
@@ -74,24 +64,14 @@
   </div>
 
   <div class="comment-section">
-    <!-- <CommentForm
-      @review-submitted="addReview"
-      @showUsersData="getAllComments"
-    /> -->
-    <!-- <CommentForm @showUsersData="getAllComments" /> -->
-    <!-- <CommentList :comments="comments" /> -->
     <CommentSection />
   </div>
 </template>
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon'
-// import { mdiAccount } from '@mdi/js'
 import { mdiHeartOutline } from '@mdi/js'
-
 import ProductService from '../services/ProductService.js'
-// import CommentForm from '../components/CommentForm.vue'
-// import CommentList from '../components/CommentList.vue'
 import store from '../store'
 import CommentSection from '../components/CommentSection.vue'
 
@@ -103,13 +83,10 @@ export default {
     return {
       record: null,
       path: mdiHeartOutline,
-      // comments: [],
     }
   },
   components: {
     SvgIcon,
-    // CommentForm,
-    // CommentList,
     CommentSection,
   },
   created() {

@@ -60,8 +60,8 @@
             >
           </div>
           <div class="user-comment">
-              <h4>{{ comment.userName }}</h4>
-              <p>{{ comment.commentMsg }}</p>
+            <h4>{{ comment.userName }}</h4>
+            <p>{{ comment.commentMsg }}</p>
           </div>
 
           <!-- <h4>{{ comment.userName }}</h4> -->
@@ -252,9 +252,9 @@ export default {
       this.commentFormValues.userName = localStorage.loggedUser
       this.commentFormValues.userId = localStorage.userId
     }
-    console.log('StoredID = ' + this.store.state.product_id)
-    console.log('StoredGraD = ' + this.store.state.user_gradient)
-    // this.getAllUsers()
+    // console.log('StoredID = ' + this.store.state.product_id)
+    // console.log('StoredGraD = ' + this.store.state.user_gradient)
+
     this.getAllComments()
 
     // this.usersGradient = this.users.userGradient
@@ -368,7 +368,6 @@ export default {
       min-height: 60px;
       padding-top: 5px;
       padding-bottom: 10px;
-
     }
   }
 }
@@ -393,5 +392,27 @@ export default {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(115, 115, 115);
+}
+
+.profile-circle {
+  height: 30px;
+  width: 30px;
+  // display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-color: #000000;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.max-char {
+  color: grey;
+}
+
+.ammend-comment,
+.max-char-reached {
+  color: red;
 }
 </style>
