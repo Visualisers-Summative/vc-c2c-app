@@ -60,11 +60,6 @@ export default {
       }
     },
   },
-  updated() {
-    // console.log(this.visibleRecords)
-    // console.log(localStorage)
-    this.updateVisibleRecords()
-  },
   created() {
     ProductService.getDatas()
       .then(response => {
@@ -76,6 +71,11 @@ export default {
       .catch(error => {
         console.log(error)
       })
+  },
+  beforeUpdate() {
+    // console.log(this.visibleRecords)
+    // console.log(localStorage)
+    this.updateVisibleRecords()
   },
 }
 </script>
