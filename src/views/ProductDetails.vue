@@ -180,6 +180,8 @@ export default {
   .icon-container {
     display: flex;
     justify-content: right;
+    align-items: flex-end;
+    height: 100%;
 
     .bi:hover {
       cursor: pointer;
@@ -194,6 +196,7 @@ export default {
   //button styling - can be moved to main.scss
   .button-container {
     display: flex;
+    min-height: 70px;
     justify-content: space-between;
     align-items: flex-end;
 
