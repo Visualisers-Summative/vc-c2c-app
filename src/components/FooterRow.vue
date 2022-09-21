@@ -1,6 +1,4 @@
-
-  
-  <template>
+<template>
   <div class="divider-line">
     <hr>
   </div>
@@ -39,53 +37,54 @@
       <li>© 2022 Chords</li>
     </ul>
     <div>
-      <router-link to="/#"><img src="../assets/images/c.png" alt="C-logo" class="logo-c"></router-link>
+      <router-link to="/#"><img src="../assets/images/c.png"
+          alt="C-logo"
+          class="logo-c"></router-link>
     </div>
 
   </div>
 </template>
 
 <script >
-  export default {
-    name: "FooterRow",
-    data () {
-      return {
-  
-      }
+export default {
+  name: "FooterRow",
+  data() {
+    return {
+
     }
   }
+}
+</script>
   
-  </script>
-  
-  <style lang="scss" scoped>
-  .footer {
-    position: relative;
-    top: 3rem;
-    bottom: 3rem;
-    display: flex;
-    margin: auto 0;
-    margin-bottom: 3rem;
-    ;
-    flex-direction: row;
-    justify-content: space-between;
-    line-height: 1.5rem;
-  }
-  
-  .divider-line {
-    margin-top: 3rem;
-  }
-  
-  li:hover {
-    text-decoration: underline;
-  }
-  
-  li {
-    font-size: 0.85rem;
-    cursor: pointer;
-  }
-  
-  .logo-c {
-    width: 3rem;
-  }
-  </style>
+<style lang="scss" scoped>
+.footer {
+  position: relative;
+  top: 3rem;
+  bottom: 3rem;
+  display: flex;
+  margin: auto 0;
+  margin-bottom: 3rem;
+  ;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: 1.5rem;
+}
+
+.divider-line {
+  margin-top: 3rem;
+}
+
+li:hover {
+  text-decoration: underline;
+}
+
+li {
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.logo-c {
+  width: 3rem;
+}
+</style>
   
