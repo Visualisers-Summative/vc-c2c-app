@@ -36,7 +36,7 @@
         >
           Confirm
         </button>
-        <!-- <button :id="profile._id" class="remove" @click="showModal">Remove</button> -->
+
         <button
           class="remove"
           @click="onCancel"
