@@ -187,7 +187,7 @@ export default {
         userName: '',
         userEmail: '',
         userPassword: '',
-        user_id: '',
+        // user_id: '',
         userGradient: '',
       },
       errors: {
@@ -261,7 +261,7 @@ export default {
             this.loggedUser = element.userName
             this.userDetails.userGradient = element.userGradient
             this.userDetails.userEmail = element.userEmail
-            console.log(this.loggedUser)
+            // console.log(this.loggedUser)
             localStorage.userId = element._id
             localStorage.loggedUser = this.loggedUser
             localStorage.userGradient = this.userDetails.userGradient
@@ -273,9 +273,9 @@ export default {
           this.userDetails.user_id = localStorage.userId
           this.userDetails.userGradient = localStorage.userGradient
           this.userDetails.userEmail = localStorage.userEmail
-          console.log('userid= ' + localStorage.userId)
-          console.log(this.userDetails.user_id)
-          console.log(localStorage)
+          // console.log('userid= ' + localStorage.userId)
+          // console.log(this.userDetails.user_id)
+          // console.log(localStorage)
 
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
@@ -353,9 +353,9 @@ export default {
       ) {
         // check email from database
         this.users.forEach(element => {
-          console.log('users = ' + this.users)
-          console.log('users = ' + this.users.userEmail)
-          console.log('element = ' + element.userEmail)
+          // console.log('users = ' + this.users)
+          // console.log('users = ' + this.users.userEmail)
+          // console.log('element = ' + element.userEmail)
           if (element.userEmail == this.userDetails.userEmail) {
             this.isEmailError = true
           }

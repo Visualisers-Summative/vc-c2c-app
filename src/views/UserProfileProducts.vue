@@ -471,7 +471,7 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.usersRecords = data
-          console.log('user id: ' + localStorage.userId)
+          // console.log('user id: ' + localStorage.userId)
           if (localStorage.userId) {
             let postData = []
             data.forEach(element => {

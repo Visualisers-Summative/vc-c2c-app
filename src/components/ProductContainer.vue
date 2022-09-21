@@ -63,6 +63,7 @@ export default {
   },
   updated() {
     // console.log(this.visibleRecords)
+    // console.log(localStorage)
     this.updateVisibleRecords()
   },
   created() {
@@ -91,9 +92,9 @@ export default {
 .product-container {
   display: grid;
   // width: 80vw;
-  // grid-template-columns: auto auto auto;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 1em;
+  grid-template-columns: auto auto auto;
+  // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  // grid-gap: 1em;
 }
 
 .all-products {
@@ -104,7 +105,7 @@ export default {
 
 .page-control {
   grid-row: 2;
-  grid-column: 3;
+  // grid-column: 3;
   text-align: right;
   margin-right: 1em;
 }
@@ -112,12 +113,12 @@ export default {
 @media only screen and (max-width: 1200px) {
   .product-container {
     grid-template-columns: auto auto;
-    column-gap: 3rem;
+    // column-gap: 3rem;
   }
 }
 
 @media only screen and (min-width: 1500px) {
-  .product-container {
+  .all-products {
     grid-template-columns: auto auto auto auto;
     column-gap: 2rem;
   }
