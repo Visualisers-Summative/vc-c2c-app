@@ -20,7 +20,7 @@
           <span
             v-if="commentFormValues.commentMsg.length != max"
             class="max-char"
-            >Character count: {{ commentFormValues.commentMsg.length }} / {{ maxChar }} |
+            >Character count: {{ commentFormValues.commentMsg.length }} / {{ maxChar }}
           </span>
           <span
             v-if="commentFormValues.commentMsg && commentFormValues.commentMsg.length == maxChar"
