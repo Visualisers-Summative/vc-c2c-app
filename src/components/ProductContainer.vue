@@ -1,23 +1,18 @@
 <template>
   <div class="product-div">
-    <div class="product-container">
-      <div class="all-products">
-        <ProductCard
-          v-for="vinyl in visibleRecords"
-          :key="vinyl.id"
-          :vinyls="vinyl"
-          :visibleRecords="visibleRecords"
-          :currentPage="currentPage"
-        />
-      </div>
-      <div class="page-control">
-        <PaginationComp
-          :recordsArray="recordsArray"
-          @page:update="updatePage"
-          :currentPage="currentPage"
-          :pageSize="pageSize"
-        />
-      </div>
+    <div class="all-products">
+      <ProductCard v-for="vinyl in visibleRecords"
+        :key="vinyl.id"
+        :vinyls="vinyl"
+        :visibleRecords="visibleRecords"
+        :currentPage="currentPage" />
+    </div>
+
+    <div class="page-control">
+      <PaginationComp :recordsArray="recordsArray"
+        @page:update="updatePage"
+        :currentPage="currentPage"
+        :pageSize="pageSize" />
     </div>
   </div>
 </template>
@@ -84,8 +79,10 @@ export default {
 .product-div {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
   margin-bottom: 1.5rem;
 }
 
@@ -95,6 +92,9 @@ export default {
   grid-template-columns: auto auto auto;
   // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   // grid-gap: 1em;
+=======
+  margin-bottom: 2rem;
+>>>>>>> 373282a8131de6ec7c51de3388b5094552128793
 }
 
 .all-products {
@@ -104,16 +104,24 @@ export default {
 }
 
 .page-control {
+<<<<<<< HEAD
   grid-row: 2;
   // grid-column: 3;
   text-align: right;
   margin-right: 1em;
+=======
+  margin: 0 auto;
+>>>>>>> 373282a8131de6ec7c51de3388b5094552128793
 }
 
 @media only screen and (max-width: 1200px) {
   .product-container {
     grid-template-columns: auto auto;
+<<<<<<< HEAD
     // column-gap: 3rem;
+=======
+    column-gap: 5rem;
+>>>>>>> 373282a8131de6ec7c51de3388b5094552128793
   }
 }
 

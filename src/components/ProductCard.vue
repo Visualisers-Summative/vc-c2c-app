@@ -115,7 +115,6 @@ export default {
 .bi {
   margin-top: 0.8rem;
   align-self: flex-end;
-  padding-right: 1rem;
   fill: black !important;
   transition: fill 0.5s ease;
 }

@@ -49,16 +49,23 @@
     </ul>
 
     <div>
+<<<<<<< HEAD
       <router-link to="/#"
         ><img
           src="../assets/images/c.png"
           alt="C-logo"
           class="logo-c"
       /></router-link>
+=======
+      <router-link to="/#"><img src="../assets/images/c.png"
+          alt="C-logo"
+          class="logo-c"></router-link>
+>>>>>>> 373282a8131de6ec7c51de3388b5094552128793
     </div>
   </div>
 </template>
 
+<<<<<<< HEAD
 <script>
 export default {
   name: 'FooterRow',
@@ -79,11 +86,31 @@ export default {
 <style lang="scss" scoped>
 .footer {
   // position: relative;
+=======
+<script >
+export default {
+  name: "FooterRow",
+  data() {
+    return {
+
+    }
+  }
+}
+</script>
+  
+<style lang="scss" scoped>
+.footer {
+  position: relative;
+>>>>>>> 373282a8131de6ec7c51de3388b5094552128793
   top: 3rem;
   bottom: 3rem;
   display: flex;
   margin: auto 0;
   margin-bottom: 3rem;
+<<<<<<< HEAD
+=======
+  ;
+>>>>>>> 373282a8131de6ec7c51de3388b5094552128793
   flex-direction: row;
   justify-content: space-between;
   line-height: 1.5rem;
@@ -105,8 +132,13 @@ li {
 .logo-c {
   width: 3rem;
 }
+<<<<<<< HEAD
 
 .bold {
   font-weight: bold;
 }
 </style>
+=======
+</style>
+  
+>>>>>>> 373282a8131de6ec7c51de3388b5094552128793

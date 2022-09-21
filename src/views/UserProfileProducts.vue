@@ -717,17 +717,24 @@ input[type='radio']:checked::before {
   display: flex;
   width: 100%;
   min-height: 280px;
-  margin: 0px 20px 20px 20px;
+  margin: 0px 20px 40px 20px;
 
   img {
     height: 280px;
+    width: 280px;
+    object-fit: cover;
     margin: 0rem 1rem 3rem 0rem;
   }
 
   .listing-product-details {
     display: flex;
     flex-direction: column;
+    max-height: 280px;
     width: 60%;
+
+    h2{
+        margin-bottom:10px;
+      }
 
     .title-description {
       display: flex;
@@ -759,6 +766,7 @@ input[type='radio']:checked::before {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    height: 100%;
 
     .listing-edit-buttons {
       display: flex;

@@ -304,22 +304,9 @@ export default {
 }
 
 .footer {
-  margin-top: 4rem;
   position: absolute;
-  padding: 2rem 0rem;
+  margin-top: 5rem;
   width: clamp(40rem, 80%, 80rem);
   z-index: 0;
 }
-
-// @media only screen and (max-width: 1500px) {
-//   .footer {
-//     margin-top: -6rem;
-//   }
-// }
-
-// @media only screen and (max-width: 1200px) {
-//   .footer {
-//     margin-top: -16rem;
-//   }
-// }
 </style>
