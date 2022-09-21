@@ -1,18 +1,22 @@
 <template>
   <div class="product-div">
     <div class="all-products">
-      <ProductCard v-for="vinyl in visibleRecords"
+      <ProductCard
+        v-for="vinyl in visibleRecords"
         :key="vinyl.id"
         :vinyls="vinyl"
         :visibleRecords="visibleRecords"
-        :currentPage="currentPage" />
+        :currentPage="currentPage"
+      />
     </div>
 
     <div class="page-control">
-      <PaginationComp :recordsArray="recordsArray"
+      <PaginationComp
+        :recordsArray="recordsArray"
         @page:update="updatePage"
         :currentPage="currentPage"
-        :pageSize="pageSize" />
+        :pageSize="pageSize"
+      />
     </div>
   </div>
 </template>
@@ -58,6 +62,7 @@ export default {
   },
   updated() {
     // console.log(this.visibleRecords)
+    // console.log(localStorage)
     this.updateVisibleRecords()
   },
   created() {
@@ -102,7 +107,7 @@ export default {
 }
 
 @media only screen and (min-width: 1500px) {
-  .product-container {
+  .all-products {
     grid-template-columns: auto auto auto auto;
     column-gap: 2rem;
   }
