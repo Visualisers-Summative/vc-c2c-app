@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Page view files (add about here or other page views)
 import HomeView from '../views/HomeView.vue'
-// import SellProduct from '../views/SellProduct.vue'
 import UserProfileProducts from '../views/UserProfileProducts.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import ProductDetails from '../views/ProductDetails.vue'

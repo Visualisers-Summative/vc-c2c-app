@@ -44,7 +44,6 @@
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon'
-// import { mdiAccount } from '@mdi/js'
 import { mdiHeartOutline } from '@mdi/js'
 
 export default {
