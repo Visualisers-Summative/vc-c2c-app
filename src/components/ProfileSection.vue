@@ -7,7 +7,7 @@
       <h1>{{ loggedUser.slice(0, 1) }}</h1>
     </div>
 
-    <!-- Display input edit forms -->
+    <!-- Display input edit forms [START]-->
     <div
       class="edit-inputs"
       v-if="editId == loggedUserId"
@@ -45,8 +45,9 @@
         </button>
       </div>
     </div>
+    <!-- Display input edit forms [END]-->
 
-    <!-- Display logged in user details -->
+    <!-- Display logged in user details [START]-->
     <div
       v-else
       class="user-details"
@@ -61,6 +62,7 @@
       />
     </div>
   </div>
+  <!-- Display logged in user details [END ]-->
 </template>
 
 <script>

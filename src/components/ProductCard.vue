@@ -1,4 +1,5 @@
 <template>
+  <!-- Landing page/product card display [START] -->
   <div class="product-card-container">
     <router-link
       :to="{ name: 'ProductDetails', params: { id: vinyls._id } }"
@@ -40,6 +41,7 @@
       />
     </svg>
   </div>
+  <!-- Landing page/product card display [END] -->
 </template>
 
 <script>
@@ -58,6 +60,7 @@ export default {
     }
   },
   methods: {
+    // Heart icon toggle
     favourite() {
       event.target.classList.toggle('favourite')
     },
