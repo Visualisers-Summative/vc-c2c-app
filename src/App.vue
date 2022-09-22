@@ -1,53 +1,80 @@
 <template>
   <div class="header-container">
     <div>
+      <!-- Link to HOME view -->
       <router-link to="/#">
-        <img src="./assets/images/chordstwo.svg"
+        <img
+          src="./assets/images/chordstwo.svg"
           alt="chords-logo"
-          class="logo" />
+          class="logo"
+        />
       </router-link>
 
-      <div v-if="loggedUser"
-        class="nav-links">
-        <router-link to="/#"
-          class="top">Buy</router-link>
+      <div
+        v-if="loggedUser"
+        class="nav-links"
+      >
+        <!-- Link to HOME view -->
+        <router-link
+          to="/#"
+          class="top"
+          >Buy</router-link
+        >
         |
-        <router-link to="/Profile"
-          class="top">Sell</router-link>
+        <!-- Link to PROFILE view -->
+        <router-link
+          to="/Profile"
+          class="top"
+          >Sell</router-link
+        >
       </div>
     </div>
-    <div v-if="loggedUser" class="search-profile-container">
+    <div
+      v-if="loggedUser"
+      class="search-profile-container"
+    >
       <div class="profile-cmp">
-        <router-link 
+        <!-- Link to PROFILE view -->
+        <router-link
           to="/Profile"
-          class="profile-icon">
-          <span class="profile-circle"
-            :style="{ background: userGradient }">{{ loggedUser.charAt(0) }}</span>
+          class="profile-icon"
+        >
+          <span
+            class="profile-circle"
+            :style="{ background: userGradient }"
+            >{{ loggedUser.charAt(0) }}</span
+          >
         </router-link>
-        <router-link 
+
+        <!-- Link to PROFILE view -->
+        <router-link
           to="/Profile"
-          class="top">
-          Profile</router-link>
-        <span 
-          class="profile-options text">|</span>
-        <router-link to="/#"
+          class="top"
+        >
+          Profile</router-link
+        >
+        <span class="profile-options text">|</span>
+        <!-- Link to PROFILE view -->
+        <router-link
+          to="/#"
           class="profile-options text"
-         
           @click="logout"
-          title="Logout">
+          title="Logout"
+        >
           <span>Logout</span>
         </router-link>
-        <span 
-          class="profile-options">|</span>
-        <span 
-          class="profile-options text">Cart</span>
+        <span class="profile-options">|</span>
+        <span class="profile-options text">Cart</span>
       </div>
 
-      <div v-show="$route.name === 'Home'" class="box"
+      <div
+        v-show="$route.name === 'Home'"
+        class="box"
         @click=";(expandBox = '350px'), (radius = '0px')"
-        >
+      >
         <div name="search">
-          <input type="text"
+          <input
+            type="text"
             class="input"
             name="txt"
             :placeholder="searchPlaceholder"
@@ -55,11 +82,14 @@
             :style="{ width: expandBox, borderRadius: radius }"
             v-model="searchInput"
             @keyup.enter="searchFunction"
-            @blur=";(expandBox = ''), (radius = '50px')" />
+            @blur=";(expandBox = ''), (radius = '50px')"
+          />
 
-          <img class="search-icon"
+          <img
+            class="search-icon"
             src="./assets/images/search.png"
-            @click="searchFunction" />
+            @click="searchFunction"
+          />
         </div>
       </div>
     </div>
@@ -67,12 +97,19 @@
 
   <hr />
 
+  <!-- Login Component -->
   <div class="login">
-    <Login class="login-form"
+    <Login
+      class="login-form"
       @logged-user="setLoggedUser"
-      v-if="isLoginVisible == true" />
-    <router-view :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
-      class="loginform" />
+      v-if="isLoginVisible == true"
+    />
+
+    <!-- MAIN view  -->
+    <router-view
+      :class="{ loggedin: loggedUser, loggedout: !loggedUser }"
+      class="loginform"
+    />
   </div>
 
   <div class="footer">
@@ -103,7 +140,7 @@ export default {
       radius: '',
       searchInput: '',
       search_value: '',
-      searchPlaceholder: 'Search'
+      searchPlaceholder: 'Search',
     }
   },
   methods: {
@@ -132,7 +169,7 @@ export default {
   computed: {
     isHomeView() {
       return this.$route.name === 'Home'
-    }
+    },
   },
   mounted() {
     if (localStorage.loggedUser) {
