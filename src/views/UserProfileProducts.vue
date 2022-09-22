@@ -375,7 +375,12 @@
 
             <div class="title-description">
               <h4 class="column-1">GENRE</h4>
-              <p v-show="record.genre != ''" class="record-genre">{{ record.genre.join(', ') }}</p>
+              <p
+                v-show="record.genre != ''"
+                class="record-genre"
+              >
+                {{ record.genre.join(', ') }}
+              </p>
             </div>
 
             <div class="title-description">
@@ -725,9 +730,9 @@ input[type='radio']:checked::before {
     max-height: 280px;
     width: 60%;
 
-    h2{
-        margin-bottom:10px;
-      }
+    h2 {
+      margin-bottom: 10px;
+    }
 
     .title-description {
       display: flex;
