@@ -1,6 +1,12 @@
 <template>
   <div class="search-div">
     <div v-if="searchValue">
+      <div
+        class="no-results"
+        v-show="searchRes == null"
+      >
+        No Results
+      </div>
       <input
         type="button"
         value="clear"
@@ -8,16 +14,11 @@
         @click="clearSearch"
       />
     </div>
-    <div
-      class="no-results"
-      v-show="searchRes == null"
-    >
-      No Results
-    </div>
   </div>
   <div class="product-div">
     <div class="all-products">
       <ProductCard
+        v-show="searchRes != null"
         v-for="vinyl in visibleRecords"
         :key="vinyl.id"
         :vinyls="vinyl"
@@ -28,6 +29,7 @@
 
     <div class="page-control">
       <PaginationComp
+        v-show="searchRes != null"
         :recordsArray="recordsArray"
         @page:update="updatePage"
         :currentPage="currentPage"
@@ -144,6 +146,27 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.search-div {
+  display: flex;
+  margin: 0 auto;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+}
+.button {
+  min-width: 5rem;
+  margin-right: 1rem;
+}
+.search {
+  border: 1px solid grey;
+  padding: 5px;
+  margin-right: 1rem;
+}
+.no-results {
+  min-width: 5rem;
+  color: red;
+}
+
 .product-div {
   width: 100%;
   display: flex;

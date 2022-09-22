@@ -270,6 +270,7 @@ export default {
 }
 
 .loggedin {
+  width: 100%;
   transform: none;
   z-index: 0;
   max-height: none;
