@@ -1,4 +1,20 @@
 <template>
+  <div class="search-div">
+    <div v-if="searchValue">
+      <input
+        type="button"
+        value="clear"
+        class="button"
+        @click="clearSearch"
+      />
+    </div>
+    <div
+      class="no-results"
+      v-show="searchRes == null"
+    >
+      No Results
+    </div>
+  </div>
   <div class="product-div">
     <div class="all-products">
       <ProductCard
@@ -26,11 +42,17 @@ import ProductCard from '../components/ProductCard.vue'
 import ProductService from '../services/ProductService.js'
 // const api = 'https://vc-products.netlify.app/.netlify/functions/api/'
 import PaginationComp from '../components/PaginationComp.vue'
+import { inject } from 'vue'
 
 export default {
   name: 'ProductContainer',
   // props: { vinyls: Object },
-  methods: {},
+  setup() {
+    const store = inject('store')
+    return {
+      store,
+    }
+  },
   data() {
     return {
       records: null,
@@ -38,6 +60,10 @@ export default {
       currentPage: 0,
       pageSize: 8,
       visibleRecords: null,
+      searchValue: '',
+      keyValue: 0,
+      searchRes: '',
+      search_value: '',
     }
   },
   components: {
@@ -50,14 +76,42 @@ export default {
       this.updateVisibleRecords()
     },
     updateVisibleRecords() {
-      this.visibleRecords = this.records.slice(
-        this.currentPage * this.pageSize,
-        this.currentPage * this.pageSize + this.pageSize,
-      )
-
-      if (this.visibleRecords.length == 0 && this.currentPage > 0) {
-        this.updatePage(this.currentPage - 1)
+      if (this.searchRes != null) {
+        if (this.searchRes.length == 0) {
+          this.visibleRecords = this.records.slice(
+            this.currentPage * this.pageSize,
+            this.currentPage * this.pageSize + this.pageSize,
+          )
+        } else if (this.searchRes.length != 0) {
+          this.visibleRecords = this.searchRes.slice(
+            this.currentPage * this.pageSize,
+            this.currentPage * this.pageSize + this.pageSize,
+          )
+        }
+        if (this.visibleRecords.length == 0 && this.currentPage > 0) {
+          this.updatePage(this.currentPage - 1)
+        }
+      } else return
+    },
+    search() {
+      this.searchRes = []
+      let regEx = new RegExp(this.searchValue, 'gi')
+      for (let i = 0; i < this.records.length; i++) {
+        let haystack = this.records[i].artistName
+        var searchRes = haystack.match(regEx)
+        if (searchRes != null) {
+          this.searchRes.push(this.records[i])
+        }
       }
+      if (this.searchRes.length != 0) {
+        this.updateVisibleRecords()
+      } else this.searchRes = null
+    },
+    clearSearch() {
+      this.searchRes = []
+      this.searchValue = ''
+      this.store.state.search_value = ''
+      this.updateVisibleRecords()
     },
   },
   created() {
@@ -73,9 +127,19 @@ export default {
       })
   },
   beforeUpdate() {
-    // console.log(this.visibleRecords)
-    // console.log(localStorage)
     this.updateVisibleRecords()
+  },
+  computed: {
+    searchTerm() {
+      return this.store.state.search_value
+    },
+  },
+  watch: {
+    searchTerm(newValue) {
+      this.searchValue = newValue
+      // console.log(this.searchValue)
+      this.search()
+    },
   },
 }
 </script>
