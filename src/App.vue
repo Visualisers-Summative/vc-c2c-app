@@ -77,7 +77,7 @@
         @click=";(expandBox = '350px'), (radius = '0px')"
         v-if="loggedUser"
       >
-        <form name="search">
+        <div name="search">
           <input
             type="text"
             class="input"
@@ -85,6 +85,8 @@
             placeholder="Search"
             onclick="this.value = '';"
             :style="{ width: expandBox, borderRadius: radius }"
+            v-model="searchInput"
+            @change="searchFunction"
             @blur=";(expandBox = ''), (radius = '50px')"
           />
 
@@ -92,7 +94,7 @@
             class="search-icon"
             src="./assets/images/search.png"
           />
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -134,11 +136,12 @@ export default {
       loggedUser: '',
       loginform: false,
       isLoginVisible: true,
-      search: '',
       records: [],
       expandBox: 'none',
       userGradient: '',
       radius: '',
+      searchInput: '',
+      search_value: '',
     }
   },
   methods: {
@@ -153,6 +156,11 @@ export default {
     },
     login() {
       this.loginform = true
+    },
+    searchFunction() {
+      store.state.search_value = this.searchInput
+      this.searchInput = ''
+      // this.searchRes = store.state.search_value
     },
     // shrinkBox() {
     //   console.log('test')
@@ -262,6 +270,7 @@ export default {
 }
 
 .loggedin {
+  width: 100%;
   transform: none;
   z-index: 0;
   max-height: none;
