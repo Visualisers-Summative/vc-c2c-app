@@ -15,7 +15,7 @@
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
           <div class="genre">
-            <span>{{ vinyls.genre.join(', ') }}</span>
+            <span v-show="vinyls.genre != ''">{{ vinyls.genre.join(', ') }}</span>
           </div>
           <p class="length">{{ vinyls.length.toUpperCase() }}</p>
           <p class="year">{{ vinyls.year }}</p>
