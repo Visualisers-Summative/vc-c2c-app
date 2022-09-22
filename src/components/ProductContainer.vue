@@ -1,18 +1,25 @@
 <template>
-    <div class="search-div" v-show="searchValue">
-      <div
-        class="no-results"
-        v-show="searchRes == null"
-      >
-        No Results
-      </div>
-      <input
-        type="button"
-        value="clear"
-        class="button"
-        @click="clearSearch"
-      />
+  <div
+    class="search-div"
+    v-show="searchValue"
+  >
+    <!-- Search results display [START] -->
+    <div
+      class="no-results"
+      v-show="searchRes == null"
+    >
+      No Results
     </div>
+    <input
+      type="button"
+      value="clear"
+      class="button"
+      @click="clearSearch"
+    />
+  </div>
+  <!-- Search results display [END] -->
+
+  <!-- Product card component [START] -->
   <div class="product-div">
     <div class="all-products">
       <ProductCard
@@ -24,7 +31,9 @@
         :currentPage="currentPage"
       />
     </div>
+    <!-- Product card component [END] -->
 
+    <!-- Page select [START] -->
     <div class="page-control">
       <PaginationComp
         v-show="searchRes != null"
@@ -34,6 +43,7 @@
         :pageSize="pageSize"
       />
     </div>
+    <!-- Page select [END] -->
   </div>
 </template>
 
@@ -73,6 +83,7 @@ export default {
       this.currentPage = pageNumber
       this.updateVisibleRecords()
     },
+    // Function to split the products into pages
     updateVisibleRecords() {
       if (this.searchRes != null) {
         if (this.searchRes.length == 0) {
@@ -113,6 +124,7 @@ export default {
     },
   },
   created() {
+    // Gets products to services file
     ProductService.getDatas()
       .then(response => {
         this.records = response.data
@@ -166,7 +178,6 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
-
 }
 
 .all-products {

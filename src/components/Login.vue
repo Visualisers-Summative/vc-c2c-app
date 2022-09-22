@@ -1,4 +1,5 @@
 <template>
+  <!-- Login pop up [START] -->
   <section
     class="login"
     v-show="isLoginVisible"
@@ -69,9 +70,9 @@
       </div>
     </div>
   </section>
-  <!-- LOGIN UP SECTION [ENDS] -->
+  <!-- Login pop up section [ENDS] -->
 
-  <!-- SIGN UP SECTION [STARTS] -->
+  <!-- Sign up section [STARTS] -->
   <section
     class="signup"
     v-show="isSignUpVisible"
@@ -149,7 +150,7 @@
       </form>
     </div>
   </section>
-  <!-- SIGN UP SECTION [ENDS] -->
+  <!-- sign up section [ENDS] -->
 </template>
 
 <script>
@@ -200,6 +201,7 @@ export default {
   },
 
   methods: {
+    // Create the hex code for propfile gradient background
     createHex() {
       var hexCode1 = ''
       var hexValues1 = '0123456789abcdef'
@@ -225,7 +227,6 @@ export default {
         ')'
 
       this.userDetails.userGradient = gradient
-
     },
     showSignupHideLogin() {
       this.isLoginVisible = false
@@ -271,6 +272,7 @@ export default {
         this.loginError = 'Please enter the required fields'
       }
     },
+    // Signup input form validation checks
     checkForm(e) {
       e.preventDefault()
       this.errors = []
@@ -395,7 +397,7 @@ export default {
     this.getAll()
 
     if (localStorage.userId) {
-      // set user_id
+      // set logged-in user_id
       this.userDetails.user_id = localStorage.userId
     }
 
@@ -409,7 +411,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .login-div,
 .signup-div {
   background-color: white;

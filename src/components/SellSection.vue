@@ -1,4 +1,5 @@
 <template>
+  <!-- Sell record inputs [START] -->
   <section class="sell-vinyl-section">
     <form
       id="signup-form"
@@ -23,9 +24,7 @@
       />
       <div class="long-inputs long-input">
         <div class="genres">
-          <p>
-            Genres:
-          </p>
+          <p>Genres:</p>
           <div class="checkbox-dropdown-list input">
             <label
               >Alternative
@@ -352,6 +351,7 @@
       />
     </form>
   </section>
+  <!-- Sell record inputs [END] -->
 </template>
 
 <script>
@@ -428,6 +428,7 @@ export default {
         console.log(error)
       }
     },
+    // Function to insert the record for sale
     insertDoc() {
       // done
       fetch(productApi, {

@@ -1,4 +1,5 @@
 <template>
+  <!-- Product description display for the record [START] -->
   <div
     v-if="record"
     class="product-details-container"
@@ -62,10 +63,13 @@
       </div>
     </div>
   </div>
+  <!-- Product description display for the record [END] -->
 
+  <!-- Comment display component [START] -->
   <div class="comment-section">
     <CommentSection />
   </div>
+  <!-- Comment display component [END] -->
 </template>
 
 <script>
