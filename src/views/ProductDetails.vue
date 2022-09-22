@@ -107,22 +107,8 @@ export default {
     onClickHandler() {
       console.log(page)
     },
-    // getAllComments() {
-    //   fetch(commentsApi)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.comments = data
-    //       console.log(this.comments)
-    //     })
-    //     .catch(err => {
-    //       if (err) throw err
-    //     })
-    // },
   },
   mounted() {
-    // console.log(this.id)
-    // this.getAllComments()
-    // The product ID shared for comment connection
     store.state.product_id = this.id
   },
 }

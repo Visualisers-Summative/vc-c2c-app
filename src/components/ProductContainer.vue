@@ -1,6 +1,5 @@
 <template>
-  <div class="search-div">
-    <div v-if="searchValue">
+    <div class="search-div" v-show="searchValue">
       <div
         class="no-results"
         v-show="searchRes == null"
@@ -14,7 +13,6 @@
         @click="clearSearch"
       />
     </div>
-  </div>
   <div class="product-div">
     <div class="all-products">
       <ProductCard
@@ -42,13 +40,11 @@
 <script>
 import ProductCard from '../components/ProductCard.vue'
 import ProductService from '../services/ProductService.js'
-// const api = 'https://vc-products.netlify.app/.netlify/functions/api/'
 import PaginationComp from '../components/PaginationComp.vue'
 import { inject } from 'vue'
 
 export default {
   name: 'ProductContainer',
-  // props: { vinyls: Object },
   setup() {
     const store = inject('store')
     return {
@@ -119,7 +115,6 @@ export default {
   created() {
     ProductService.getDatas()
       .then(response => {
-        // console.log(response.data)
         this.records = response.data
         this.recordsArray = response.data
         this.visibleRecords = response.data
@@ -139,7 +134,6 @@ export default {
   watch: {
     searchTerm(newValue) {
       this.searchValue = newValue
-      // console.log(this.searchValue)
       this.search()
     },
   },
@@ -148,22 +142,20 @@ export default {
 <style lang="scss" scoped>
 .search-div {
   display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  width: 40%;
+  width: 10rem;
   justify-content: space-between;
   align-items: center;
 }
 .button {
   min-width: 5rem;
-  margin-right: 1rem;
 }
-.search {
-  border: 1px solid grey;
-  padding: 5px;
-  margin-right: 1rem;
-}
+
 .no-results {
+  font-size: 2rem;
   min-width: 5rem;
+  margin-bottom: 1rem;
   color: red;
 }
 
@@ -174,11 +166,13 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
+
 }
 
 .all-products {
   display: grid;
   grid-template-columns: auto auto auto;
+  column-gap: 1rem;
   grid-row: 1;
 }
 
@@ -187,13 +181,13 @@ export default {
 }
 
 @media only screen and (max-width: 1200px) {
-  .product-container {
+  .all-products {
     grid-template-columns: auto auto;
     column-gap: 5rem;
   }
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1600px) {
   .all-products {
     grid-template-columns: auto auto auto auto;
     column-gap: 2rem;

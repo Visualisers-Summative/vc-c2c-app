@@ -1,5 +1,4 @@
 <template>
-  <!-- LOGIN UP SECTION [STARTS] -->
   <section
     class="login"
     v-show="isLoginVisible"
@@ -116,7 +115,6 @@
             <div class="input user-password">
               <p>Password</p>
               <div class="password">
-                <!-- CHANGE TO 8 minlength="8" LATER!!! -->
                 <input
                   type="password"
                   v-model.trim="userDetails.userPassword"
@@ -147,7 +145,6 @@
               Login
             </span>
           </p>
-          <!-- <input type="button" @click="checkForm" class="sign-up-btn" value="Sign up" /> -->
         </div>
       </form>
     </div>
@@ -157,9 +154,6 @@
 
 <script>
 import store from '../store'
-// import axios from 'axios'
-// import formData from 'form-data'
-// import { ref } from 'vue'
 const usersApi = 'https://vc-users-login.netlify.app/.netlify/functions/api/'
 const MINCHAR = 8
 
@@ -187,7 +181,6 @@ export default {
         userName: '',
         userEmail: '',
         userPassword: '',
-        // user_id: '',
         userGradient: '',
       },
       errors: {
@@ -233,10 +226,8 @@ export default {
 
       this.userDetails.userGradient = gradient
 
-      // console.log(gradient)
     },
     showSignupHideLogin() {
-      // console.log(this.id);
       this.isLoginVisible = false
       this.isSignUpVisible = true
     },
@@ -249,10 +240,7 @@ export default {
       this.userDetails.userEmail = this.userDetails.userEmail.toLowerCase()
     },
     login() {
-      console.log(this.loginFormValue)
-      //   let validform = this.$refs.loginForm.checkForm()
       if (this.loginFormValue.loginEmail && this.loginFormValue.loginPassword) {
-        // // // verify login details
         this.users.forEach(element => {
           if (
             element.userEmail == this.loginFormValue.loginEmail &&
@@ -261,7 +249,6 @@ export default {
             this.loggedUser = element.userName
             this.userDetails.userGradient = element.userGradient
             this.userDetails.userEmail = element.userEmail
-            // console.log(this.loggedUser)
             localStorage.userId = element._id
             localStorage.loggedUser = this.loggedUser
             localStorage.userGradient = this.userDetails.userGradient
@@ -269,14 +256,9 @@ export default {
           }
         })
         if (this.loggedUser) {
-          console.log('login successful')
           this.userDetails.user_id = localStorage.userId
           this.userDetails.userGradient = localStorage.userGradient
           this.userDetails.userEmail = localStorage.userEmail
-          // console.log('userid= ' + localStorage.userId)
-          // console.log(this.userDetails.user_id)
-          // console.log(localStorage)
-
           this.dialog = false // closing form
           this.$emit('logged-user', this.loggedUser) // local storage - update header proile text
           document.location.reload(true) // force page reload to show admin table
@@ -353,9 +335,6 @@ export default {
       ) {
         // check email from database
         this.users.forEach(element => {
-          // console.log('users = ' + this.users)
-          // console.log('users = ' + this.users.userEmail)
-          // console.log('element = ' + element.userEmail)
           if (element.userEmail == this.userDetails.userEmail) {
             this.isEmailError = true
           }
@@ -374,7 +353,6 @@ export default {
               this.resetData()
               this.showLoginHideSignup()
               console.log(data)
-              // console.log(this.userDetails)
             })
             .catch(err => {
               if (err) throw err
@@ -387,7 +365,6 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.users = data
-          // console.log(this.users)
         })
         .catch(err => {
           if (err) throw err
@@ -400,7 +377,6 @@ export default {
       this.isEmailError = false
     },
     resetData() {
-      // this.editId = ''
       this.userDetails.userName = ''
       this.userDetails.userEmail = ''
       this.userDetails.userPassword = ''
@@ -414,8 +390,6 @@ export default {
     if (localStorage.loggedUser) {
       this.dialog = false
     }
-
-    // this.$emit('loggedUser', localStorage.loggedUser)
     // get all users
     this.getAllUsers()
     this.getAll()
@@ -423,7 +397,6 @@ export default {
     if (localStorage.userId) {
       // set user_id
       this.userDetails.user_id = localStorage.userId
-      // console.log(localStorage)
     }
 
     if (localStorage.userId) {
@@ -436,15 +409,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .logo-header {
-//   height: auto;
-//   margin-bottom: 4rem;
-
-//   .logo {
-//     width: 14rem;
-//     margin-bottom: 4rem;
-//   }
-// }
 
 .login-div,
 .signup-div {
@@ -454,7 +418,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  //   height: 20rem;
   width: 30rem;
   padding: 4rem 6rem 6rem 6rem;
   box-shadow: 4px 4px 16px grey;
@@ -472,8 +435,6 @@ export default {
 
 .login-header,
 .signup-header {
-  //   display: flex;
-  //   align-items: baseline;
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -554,12 +515,4 @@ export default {
   font-size: 1rem;
   padding-bottom: 1em;
 }
-
-// .signup-section {
-//     display: none;
-// }
-
-// .activeClass {
-//   display: block;
-// }
 </style>

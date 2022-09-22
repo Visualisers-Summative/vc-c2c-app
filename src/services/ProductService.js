@@ -13,7 +13,6 @@ const apiClient = axios.create({
 
 export default {
   getDatas () {
-    // return apiClient.get('/products')
     return apiClient.get()
   },
   getData (id) {

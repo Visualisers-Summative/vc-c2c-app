@@ -25,7 +25,6 @@
         <div class="genres">
           <p>
             Genres:
-            <!-- <span>{{ listRecord.genre.join(' , ') }}</span> -->
           </p>
           <div class="checkbox-dropdown-list input">
             <label
@@ -344,7 +343,6 @@
             icon="fa-solid fa-camera"
           />
         </label>
-        <!-- <p>Choose an image to upload</p> -->
       </div>
 
       <input
@@ -369,7 +367,6 @@ export default {
     return {
       image: 'image.png',
       max: 200,
-      //   isModalVisible: false,
       usersRecords: [],
       postsData: [],
       postsLoading: true,
@@ -391,7 +388,6 @@ export default {
         yearReleased: '',
         loggedUser: '',
         loggedUserId: '',
-        // productId: '',
       },
     }
   },
@@ -426,7 +422,6 @@ export default {
 
             if (err.response.data.error) {
               console.log(err.response.data.error)
-              //When trouble shooting, simple informations about the error can be found in err.response.data.error so it's good to display it
             }
           })
       } catch (error) {
@@ -445,7 +440,6 @@ export default {
         .then(response => response.text())
         .then(data => {
           this.loadAllData()
-          // this.hideModal()
           this.resetData()
           console.log(data)
         })
@@ -471,7 +465,6 @@ export default {
   mounted() {
     this.listRecord.loggedUser = localStorage.loggedUser
     this.listRecord.loggedUserId = localStorage.userId
-    // this.loadAllData()
   },
 }
 </script>
@@ -483,7 +476,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   width: 20rem;
-  //   height: 30rem;
 
   input {
     margin-bottom: 0.8rem;
