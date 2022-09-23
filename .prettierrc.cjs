@@ -1,10 +1,11 @@
 module.exports = {
-  "printWidth": 300,
+  "printWidth": 100,
   "singleQuote": true,
   "tabWidth": 2,
   "useTabs": false,
   "semi": false,
   "trailingComma": "all",
   "bracketSpacing": true,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "singleAttributePerLine": true
 }

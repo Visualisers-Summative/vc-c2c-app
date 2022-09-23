@@ -1,16 +1,24 @@
 <template>
-
+  <!-- Landing page/product card display [START] -->
   <div class="product-card-container">
-    <router-link :to="{ name: 'ProductDetails', params: { id: vinyls._id } }" class="top">
+    <router-link
+      :to="{ name: 'ProductDetails', params: { id: vinyls._id } }"
+      class="top"
+    >
       <div class="product-card">
-        <img :src="vinyls.imageUrl" alt="Record cover">
+        <img
+          :src="vinyls.imageUrl"
+          alt="Record cover"
+        />
         <div class="product-info">
           <div class="artist-div">
             <p class="artist">{{ vinyls.artistName }}</p>
           </div>
           <p class="album">{{ vinyls.albumTitle }}</p>
-          <p class="genre" v-for="(genre, index) in vinyls.genre" :key="index">{{ genre }}</p>
-          <p class="length">{{ vinyls.length }}</p>
+          <div class="genre">
+            <span v-show="vinyls.genre != ''">{{ vinyls.genre.join(', ') }}</span>
+          </div>
+          <p class="length">{{ vinyls.length.toUpperCase() }}</p>
           <p class="year">{{ vinyls.year }}</p>
           <div class="more-info-div">
             <h3 class="price">${{ vinyls.price }}</h3>
@@ -20,48 +28,50 @@
           </div>
         </div>
       </div>
-
-
     </router-link>
-    <svg @click="favourite" width="20" height="20" class="bi" viewBox="0 0 512 512">
+    <svg
+      @click="favourite"
+      width="20"
+      height="20"
+      class="bi"
+      viewBox="0 0 512 512"
+    >
       <path
-        d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
+        d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
+      />
     </svg>
   </div>
-
+  <!-- Landing page/product card display [END] -->
 </template>
 
 <script>
 import SvgIcon from '@jamescoyle/vue-icon'
-// import { mdiAccount } from '@mdi/js'
-import { mdiHeartOutline } from '@mdi/js';
+import { mdiHeartOutline } from '@mdi/js'
 
 export default {
-  name: "ProductCard",
+  name: 'ProductCard',
   props: {
-    vinyls: Object
+    vinyls: Object,
   },
-  data () {
+  data() {
     return {
       path: mdiHeartOutline,
       uppercased: '',
     }
   },
   methods: {
-    favourite () {
-      event.target.classList.toggle("favourite")
-    }
+    // Heart icon toggle
+    favourite() {
+      event.target.classList.toggle('favourite')
+    },
+    onClickHandler() {
+      console.log(page)
+    },
   },
   components: {
-    SvgIcon
+    SvgIcon,
   },
-  filters: {
-    uppercased () {
-      return this.value.toUpperCase()
-    }
-  }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -71,8 +81,9 @@ export default {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  min-height: 25rem;
+  min-height: 29rem;
   min-width: 16rem;
 }
 
@@ -83,8 +94,8 @@ export default {
 
 .product-card {
   cursor: pointer;
-  min-height: 100%;
-  min-width: 100%;
+  height: 24rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -95,12 +106,19 @@ export default {
   }
 }
 
+.product-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
 .bi {
   margin-top: 0.8rem;
   align-self: flex-end;
-  padding-right: 5px;
   fill: black !important;
-  transition: fill .5s ease;
+  transition: fill 0.5s ease;
 }
 
 .bi:hover {
@@ -108,7 +126,7 @@ export default {
 }
 
 .favourite {
-  transition: .5s ease;
+  transition: 0.5s ease;
   fill: red !important;
 }
 
@@ -118,6 +136,7 @@ a:hover {
 
 img {
   margin-bottom: 0.8rem;
+  width: 16rem;
 }
 
 .artist-div {
@@ -138,9 +157,12 @@ img {
   margin-bottom: 0.8rem;
 }
 
-.genre,
-.length {
+.genre {
   margin-bottom: 0.5rem;
+}
+
+.length {
+  margin: 1rem 0;
 }
 
 .more-info-div {
