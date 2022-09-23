@@ -29,6 +29,7 @@
         >
       </div>
     </div>
+
     <div
       v-if="loggedUser"
       class="search-profile-container"
